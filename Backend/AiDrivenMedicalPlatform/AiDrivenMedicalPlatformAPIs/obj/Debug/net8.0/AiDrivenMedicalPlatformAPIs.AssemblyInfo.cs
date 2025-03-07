@@ -13,7 +13,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AiDrivenMedicalPlatformAPIs")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+Registration-Login
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f8bb0c9d6616f55e43a8d92bebb03a7cedc7cb6")]
+
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+18ef4f94dd9b1d2c0b1b486b6c2d5cd0f79558a2")]
+main
 [assembly: System.Reflection.AssemblyProductAttribute("AiDrivenMedicalPlatformAPIs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AiDrivenMedicalPlatformAPIs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
