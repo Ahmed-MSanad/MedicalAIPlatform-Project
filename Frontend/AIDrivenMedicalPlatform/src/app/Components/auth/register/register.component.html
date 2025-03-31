@@ -1,1 +1,398 @@
-<p>register works!</p>
+<main class="overflow-hidden bg-gradient-to-r from-black via-gray-900 to-blue-900">
+    <div #box class="min-h-screen flex bg-red-300 h-full relative left-0 z-5 transition-[left] duration-[1s]" [ngClass]="{'left-[-100%]' : afterGetStarted}">
+        <div class="w-full md:w-[50%] min-w-[20rem] px-4 bg-gradient-to-r from-black via-gray-900 to-blue-900 flex items-center">
+            <div class="w-full px-4 rounded-lg border-0 shadow-black shadow-lg bg-black min-h-[450px]">
+                <div class="p-5">
+    
+                    <div class="mb-4 text-white font-bold">
+                        <h2 class="text-4xl">Hi There 🤙🏼</h2>
+                        <span class="text-gray-500">Get Started Now...</span>
+                    </div>
+                    
+                    <form [formGroup]="registerForm">
+                    
+                        <label for="Fullname" class="text-white">Full Name</label>
+                        <div class="mb-3">
+                            <div class="relative">
+                                <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-user"></i></span>
+                                <input formControlName="fullName" id="Fullname" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Ex: Ahmed Sanad">
+                            </div>
+                            <div class="bg-red-300 p-4 rounded-lg" 
+                                    *ngIf="
+                                        (registerForm.controls.fullName.touched || 
+                                        registerForm.controls.fullName.dirty) &&
+                                        registerForm.controls.fullName.hasError('required')
+                                    ">
+                                Full Name is Required !!
+                            </div>
+                        </div>
+                    
+    
+                        <label for="Email" class="text-white">Email</label>
+                        <div class="mb-3">
+                            <div class="relative">
+                                <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-envelope"></i></span>
+                                <input formControlName="email" id="Email" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Ex: AhmedSanad@gmail.com">
+                            </div>
+                            <div class="bg-red-300 p-4 rounded-lg" 
+                                    *ngIf="
+                                        (registerForm.controls.email.touched || 
+                                        registerForm.controls.email.dirty) &&
+                                        registerForm.controls.email.hasError('required')
+                                    ">
+                                Email is Required !!
+                            </div>
+                            <div class="bg-red-300 p-4 rounded-lg" 
+                                    *ngIf="
+                                        (registerForm.controls.email.touched || 
+                                        registerForm.controls.email.dirty) &&
+                                        registerForm.controls.email.hasError('email')
+                                    ">
+                                Email Format is wrong !!
+                            </div>
+                        </div>
+                    
+    
+                        <label for="phone_Number" class="text-white">Phone number</label>
+                        <div class="mb-3">
+                            <div class="relative">
+                                <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-phone"></i></span>
+                                <input formControlName="phoneNumber" type="tel" id="phone_Number" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="+01">
+                            </div>
+                            <div class="bg-red-300 p-4 rounded-lg" 
+                                    *ngIf="
+                                        (registerForm.controls.phoneNumber.touched || 
+                                        registerForm.controls.phoneNumber.dirty) &&
+                                        registerForm.controls.phoneNumber.hasError('required')
+                                    ">
+                                Phone Number is Required !!
+                            </div>
+                            <div class="bg-red-300 p-4 rounded-lg" 
+                                    *ngIf="
+                                        (registerForm.controls.phoneNumber.touched || 
+                                        registerForm.controls.phoneNumber.dirty) &&
+                                        registerForm.controls.phoneNumber.hasError('pattern')
+                                    ">
+                                Phone Number Format is wrong !!
+                            </div>
+                        </div>
+                    
+                        <div class="w-full">
+                            <button class="w-full bg-gradient-to-r from-blue-900 via-balck to-gray-800 rounded-lg text-white p-2 cursor-pointer" (click)="onGetStarted()">Get Started</button>
+                        </div>
+
+                        <div class="w-full text-center mt-5">
+                            <a class="text-white cursor-pointer" routerLink="/login">Already Have an account ?</a>
+                        </div>
+                    
+                    </form>
+    
+                </div>
+            </div>
+        </div>
+        <div class="w-[50%] h-screen hidden md:block bg-gradient-to-r from-blue-900 via-gray-900 to-black">
+            <img src="./register_7.jpg" alt="medical image" class="w-auto h-full mx-auto">
+        </div>
+    </div>
+    
+    @if(afterGetStarted){
+        <div class="min-w-[20rem] max-w-[70rem] min-h-screen mx-auto h-full relative z-1 transition-all duration-[1s]">
+        
+            <div class="w-full bg-red-400 rounded-lg border-0 shadow-black shadow-lg bg-gradient-to-r from-black via-gray-900 to-blue-900 min-h-[450px] px-4 flex items-center">
+                <div class="p-5">
+                    <button type="button" [@shakeAnimation]="isHovered" 
+                            (mouseenter)="isHovered = true" 
+                            (mouseleave)="isHovered = false" 
+                            class="text-xl text-white cursor-pointer transition-all" 
+                            (click)="toggleGetStarted()">
+                        <i class="fa-solid fa-hand-point-left"></i>
+                    </button>
+    
+                    <div class="mb-12 text-white font-bold">
+                        <h2 class="text-4xl">Welcome <button type="button" [@shakeAnimation]="isHovered" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">👋🏼</button></h2>
+                        <span class="text-gray-500">Let's Know More About Yourself</span>
+                    </div>
+    
+                    <div class="mb-4 text-white font-bold">
+                        <h2 class="text-2xl">Personal Information</h2>
+                    </div>
+                    
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegistration()">
+                    
+                        <div class="mb-3">
+                            <div class="relative">
+                                <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-user"></i></span>
+                                <input formControlName="fullName" [value]="registerForm.controls.fullName" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Ex: Ahmed Sanad">
+                            </div>
+                            <div class="bg-red-300 p-4 rounded-lg" 
+                                    *ngIf="
+                                        (registerForm.controls.fullName.touched || 
+                                        registerForm.controls.fullName.dirty) &&
+                                        registerForm.controls.fullName.hasError('required')
+                                    ">
+                                Full Name is Required !!
+                            </div>
+                        </div>
+                    
+                        <div class="flex flex-wrap space-y-5">
+                            <div class="w-full md:w-1/2 px-5">
+                                <label for="email" class="text-white">Email</label>
+                                <div class="mb-3">
+                                    <div class="relative">
+                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-envelope"></i></span>
+                                        <input formControlName="email" id="email" [value]="registerForm.controls.email" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Ex: AhmedSanad@gmail.com">
+                                    </div>
+                                    <div class="bg-red-300 p-4 rounded-lg" 
+                                            *ngIf="
+                                                (registerForm.controls.email.touched || 
+                                                registerForm.controls.email.dirty) &&
+                                                registerForm.controls.email.hasError('required')
+                                            ">
+                                        Email is Required !!
+                                    </div>
+                                    <div class="bg-red-300 p-4 rounded-lg" 
+                                            *ngIf="
+                                                (registerForm.controls.email.touched || 
+                                                registerForm.controls.email.dirty) &&
+                                                registerForm.controls.email.hasError('email')
+                                            ">
+                                        Email Format is wrong !!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 px-5">
+                                <label for="phoneNumber" class="text-white">Phone number</label>
+                                <div class="mb-3">
+                                    <div class="relative">
+                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-phone"></i></span>
+                                        <input formControlName="phoneNumber" id="phoneNumber" type="tel" [value]="registerForm.controls.phoneNumber" id="phoneNumber" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="+01">
+                                    </div>
+                                    <div class="bg-red-300 p-4 rounded-lg" 
+                                            *ngIf="
+                                                (registerForm.controls.phoneNumber.touched || 
+                                                registerForm.controls.phoneNumber.dirty) &&
+                                                registerForm.controls.phoneNumber.hasError('required')
+                                            ">
+                                        Phone Number is Required !!
+                                    </div>
+                                    <div class="bg-red-300 p-4 rounded-lg" 
+                                            *ngIf="
+                                                (registerForm.controls.phoneNumber.touched || 
+                                                registerForm.controls.phoneNumber.dirty) &&
+                                                registerForm.controls.phoneNumber.hasError('pattern')
+                                            ">
+                                        Phone Number Format is wrong !!
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="w-full md:w-1/2 px-5">
+                                <div class="flex justify-between">
+                                    <label for="password" class="text-white">Password</label>
+                                    <button type="button" class="text-white cursor-pointer" (click)="togglePassword('Password')">
+                                        @if(showPasswordOffOn["Password"]){<i class="fa-solid fa-eye-low-vision"></i>}
+                                        @else{<i class="fa-solid fa-eye"></i>}
+                                    </button>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="relative">
+                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-lock"></i></span>
+                                        <input formControlName="password" [value]="registerForm.controls.password" [type]="showPasswordOffOn['Password'] ? 'text' : 'password'" id="password" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Password">
+                                    </div>
+                                    <div class="bg-red-300 rounded-lg">
+                                        @if(registerForm.controls.password.touched || registerForm.controls.password.dirty)
+                                        {
+                                            @if(registerForm.controls.password.hasError('minlength')){
+                                                <p class="p-4">Password Must at least of length 6 !!</p>
+                                            }
+                                            @else if (registerForm.controls.password.hasError('pattern')){
+                                                <p class="p-4">Password has to have at least a special character</p>
+                                            }
+                                            @else if(registerForm.controls.password.hasError('required')){
+                                                <p class="p-4">Password is Required !!</p>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 px-5">
+                                <div class="flex justify-between">
+                                    <label for="ConfirmPassword" class="text-white">Confirm Password</label>
+                                    <button type="button" class="text-white cursor-pointer" (click)="togglePassword('ConfirmPassword')">
+                                        @if(showPasswordOffOn["ConfirmPassword"]){<i class="fa-solid fa-eye-low-vision"></i>}
+                                        @else{<i class="fa-solid fa-eye"></i>}
+                                    </button>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="relative">
+                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-lock"></i></span>
+                                        <input formControlName="confirmPassword" [value]="registerForm.controls.confirmPassword" [type]="showPasswordOffOn['ConfirmPassword'] ? 'text' : 'password'" id="ConfirmPassword" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Confirm Password">
+                                    </div>
+                                    <div class="bg-red-300 p-4 rounded-lg" *ngIf="registerForm.getError('passwordMismatch')">
+                                        Confirm Password must be like the password !!
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="w-full md:w-1/2 px-5">
+                                <label for="dateOfBirth" class="text-white">Date Of Birth</label>
+                                <div class="mb-3">
+                                    <div class="relative">
+                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-calendar"></i></span>
+                                        <input formControlName="dateOfBirth" type="date" id="dateOfBirth" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="00/00/0000">
+                                    </div>
+                                    <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.dateOfBirth.dirty || registerForm.controls.dateOfBirth.touched) && registerForm.controls.dateOfBirth.getError('required')">
+                                        Date is Required !!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 px-5">
+                                <label for="gender" class="text-white">Gender</label>
+                                <div class="mb-3">
+                                    <div class="relative flex justify-center space-x-10">
+                                        <div class="bg-black py-2 px-5 rounded-full space-x-5">
+                                            <input formControlName="gender" type="radio" name="gender" id="Male" [value]="0">
+                                            <label for="gender" class="text-white">Male</label>
+                                        </div>
+                                        <div class="bg-black py-2 px-5 rounded-full space-x-5">
+                                            <input formControlName="gender" type="radio" name="gender" id="Female" [value]="1">
+                                            <label for="gender" class="text-white">Female</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="w-full md:w-1/2 px-5">
+                                <label for="Address" class="text-white">Address</label>
+                                <div class="mb-3">
+                                    <div class="relative">
+                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
+                                        <input formControlName="address" id="Address" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="14-street-Cairo-5302">
+                                    </div>
+                                    <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
+                                        Address is required !!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 px-5">
+                                <label for="Occupation" class="text-white">Occupation</label>
+                                <div class="mb-3">
+                                    <div class="relative">
+                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-briefcase"></i></span>
+                                        <input formControlName="occupation" id="Occupation" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Doctor">
+                                    </div>
+                                    <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.occupation.touched || registerForm.controls.occupation.dirty) && registerForm.controls.occupation.getError('required')">
+                                        Occupation is required !!
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="w-full md:w-1/2 px-5">
+                                <label for="EmergencyContactName" class="text-white">Emergency Contact Name</label>
+                                <div class="mb-3">
+                                    <div class="relative">
+                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-id-badge"></i></span>
+                                        <input formControlName="emergencyContactName" id="EmergencyContactName" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Ahmed">
+                                    </div>
+                                    <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.emergencyContactName.touched || registerForm.controls.emergencyContactName.dirty) && registerForm.controls.emergencyContactName.getError('required')">
+                                        Emergency Contact Name is required !!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 px-5">
+                                <label for="EmergencyContactNumber" class="text-white">Emergency Contact Number</label>
+                                <div class="mb-3">
+                                    <div class="relative">
+                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-phone"></i></span>
+                                        <input formControlName="emergencyContactNumber" type="tel" [value]="registerForm.controls.emergencyContactNumber" id="EmergencyContactNumber" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="+01">
+                                    </div>
+                                    <div class="bg-red-300 p-4 rounded-lg" 
+                                            *ngIf="
+                                                (registerForm.controls.emergencyContactNumber.touched || 
+                                                registerForm.controls.emergencyContactNumber.dirty) &&
+                                                registerForm.controls.emergencyContactNumber.hasError('required')
+                                            ">
+                                        Emergency Contact Number is Required !!
+                                    </div>
+                                    <div class="bg-red-300 p-4 rounded-lg" 
+                                            *ngIf="
+                                                (registerForm.controls.emergencyContactNumber.touched || 
+                                                registerForm.controls.emergencyContactNumber.dirty) &&
+                                                registerForm.controls.emergencyContactNumber.hasError('pattern')
+                                            ">
+                                        Emergency Contact Number Format is wrong !!
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="w-full md:w-1/2 px-5">
+                                <label for="role" class="text-white">Role</label>
+                                <div class="mb-3">
+                                    <div class="relative">
+                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-regular fa-hand-pointer"></i></span>
+                                        <select formControlName="role" name="role" id="role" class="w-full bg-black text-white ps-8 p-2 rounded-lg border-1">
+                                            <option value="Doctor">Doctor</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Patient">Patient</option>
+                                        </select>
+                                    </div>
+                                    <div class="bg-red-300 p-4 rounded-lg" 
+                                            *ngIf="
+                                                (registerForm.controls.role.touched || 
+                                                registerForm.controls.role.dirty) &&
+                                                registerForm.controls.role.hasError('required')
+                                            ">
+                                        Emergency Contact Number is Required !!
+                                    </div>
+                                    <div class="bg-red-300 p-4 rounded-lg" 
+                                            *ngIf="
+                                                (registerForm.controls.role.touched || 
+                                                registerForm.controls.role.dirty) &&
+                                                registerForm.controls.role.hasError('pattern')
+                                            ">
+                                        Emergency Contact Number Format is wrong !!
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+    
+                        <div class="mb-4 text-white font-bold">
+                            <h2 class="text-2xl">Medical Information</h2>
+                        </div>
+    
+                        <div class="flex flex-wrap space-y-5">
+    
+                            <div class="w-full md:w-1/2 px-5">
+                                <label for="familyMedicalHistory" class="text-white">Family Medical History(if relevant)</label>
+                                <div class="mb-3">
+                                    <div class="relative">
+                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-briefcase-medical"></i></span>
+                                        <input formControlName="familyMedicalHistory" type="text" [value]="registerForm.controls.familyMedicalHistory" id="familyMedicalHistory" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Mother had brain cancer, Father has hypertension">
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="w-full md:w-1/2 px-5">
+                                <label for="pastMedicalHistory" class="text-white">Past Medical History</label>
+                                <div class="mb-3">
+                                    <div class="relative">
+                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-briefcase-medical"></i></span>
+                                        <input formControlName="pastMedicalHistory" type="text" [value]="registerForm.controls.pastMedicalHistory" id="pastMedicalHistory" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Appendectomy in 2015 Asthma diagnosis in childhood">
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+    
+                        <div class="w-full">
+                            <button class="w-full bg-gradient-to-r from-blue-900 via-balck to-gray-800 rounded-lg text-white p-2 cursor-pointer">Go ahead 😃</button>
+                        </div>
+                    
+                    </form>
+                </div>
+            </div>
+    
+        </div>
+    }
+</main>
