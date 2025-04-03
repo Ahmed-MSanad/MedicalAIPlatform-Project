@@ -262,6 +262,9 @@ namespace AiDrivenMedicalPlatformAPIs.Migrations
                     b.Property<int?>("HospitalId")
                         .HasColumnType("int");
 
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("Occupation")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

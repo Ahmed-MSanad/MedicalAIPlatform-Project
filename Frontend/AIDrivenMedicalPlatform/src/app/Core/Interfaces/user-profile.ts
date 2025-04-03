@@ -1,6 +1,7 @@
 import { Gender } from "../Enums/gender";
 
 export interface UserProfile {
+    email : string
     fullName : string,
     dateOfBirth : Date,
     gender : Gender,
@@ -10,4 +11,6 @@ export interface UserProfile {
     emergencyContactNumber : string,
     familyMedicalHistory : string,
     pastMedicalHistory : string,
+    phone: string,
+    imagePath: string
 }

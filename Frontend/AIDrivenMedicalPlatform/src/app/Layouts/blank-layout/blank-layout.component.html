@@ -18,7 +18,7 @@
         <button class="px-6 py-2.5 bg-gray-600 text-white rounded-lg cursor-pointer" (click)="onLogOut()">Log Out</button>
     </nav>
     <div class="">
-        <aside [@toggleSideNavAnimation]="SideNavState()" class="w-80 absolute top-0 left-0 bottom-0 bg-gray-600 z-[9999]">
+        <aside [@toggleSideNavAnimation]="SideNavState()" class="w-80 fixed top-0 left-0 bottom-0 bg-gray-600 z-[9999]">
             <ul>
                 <li class="text-white py-5 flex justify-between mx-6">
                     <div class="">

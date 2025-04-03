@@ -12,5 +12,12 @@ export class UserService {
   getUserProfile(){
     return this._http.get(environment.apiBaseURL+'/profile');
   }
+  updateUserProfile(updatedUser: any) {
+    return this._http.put(environment.apiBaseURL + '/profile', updatedUser);
+  }
+  deleteUserProfile() {
+    return this._http.delete(environment.apiBaseURL + '/profile');
+  }
+
 
 }

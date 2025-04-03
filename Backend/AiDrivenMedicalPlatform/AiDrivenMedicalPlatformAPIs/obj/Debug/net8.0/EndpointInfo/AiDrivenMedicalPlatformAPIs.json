@@ -507,6 +507,36 @@
             "description": "OK"
           }
         }
+      },
+      "put": {
+        "tags": [
+          "ProfileEndpoints"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AppUserDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ProfileEndpoints"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api/UserCheck/check-email": {
@@ -605,6 +635,57 @@
           },
           "refreshToken": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AppUserDto": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date"
+          },
+          "gender": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "occupation": {
+            "type": "string",
+            "nullable": true
+          },
+          "emergencyContactName": {
+            "type": "string",
+            "nullable": true
+          },
+          "emergencyContactNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "familyMedicalHistory": {
+            "type": "string",
+            "nullable": true
+          },
+          "pastMedicalHistory": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "format": "byte",
             "nullable": true
           }
         },

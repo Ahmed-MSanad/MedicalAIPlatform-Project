@@ -322,6 +322,44 @@
     ]
   },
   {
+    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.ProfileEndpoints",
+    "Method": "EditUserProfile",
+    "RelativePath": "api/profile",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "updateRequest",
+        "Type": "AiDrivenMedicalPlatformAPIs.Models.Dto.AppUserDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.ProfileEndpoints",
+    "Method": "DeleteUserProfile",
+    "RelativePath": "api/profile",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions\u002B\u003C\u003Ec__DisplayClass1_0\u00601[[AiDrivenMedicalPlatformAPIs.Models.AppUser, AiDrivenMedicalPlatformAPIs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "\u003CMapIdentityApi\u003Eb__2",
     "RelativePath": "api/refresh",

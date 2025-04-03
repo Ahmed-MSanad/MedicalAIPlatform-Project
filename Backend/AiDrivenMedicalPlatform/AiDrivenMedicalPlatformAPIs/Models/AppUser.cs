@@ -27,6 +27,9 @@ namespace AiDrivenMedicalPlatformAPIs.Models
         [PersonalData]
         public string PastMedicalHistory { get; set; }
         [PersonalData]
+        public byte[]? Image { get; set; }
+
+        [PersonalData]
         public int? HospitalId { get; set; }
     }
 }
