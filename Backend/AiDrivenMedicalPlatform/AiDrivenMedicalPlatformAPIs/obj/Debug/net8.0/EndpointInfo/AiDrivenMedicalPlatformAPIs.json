@@ -539,6 +539,41 @@
         }
       }
     },
+    "/api/schedule": {
+      "get": {
+        "tags": [
+          "ScheduleEndPoints"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ScheduleEndPoints"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ScheduleDto"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/UserCheck/check-email": {
       "post": {
         "tags": [
@@ -700,6 +735,19 @@
           }
         },
         "additionalProperties": false
+      },
+      "DayOfWeek": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "type": "integer",
+        "format": "int32"
       },
       "ForgotPasswordRequest": {
         "required": [
@@ -897,6 +945,23 @@
           "newPassword": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ScheduleDto": {
+        "type": "object",
+        "properties": {
+          "day": {
+            "$ref": "#/components/schemas/DayOfWeek"
+          },
+          "from": {
+            "type": "string",
+            "format": "date-span"
+          },
+          "to": {
+            "type": "string",
+            "format": "date-span"
           }
         },
         "additionalProperties": false

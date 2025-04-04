@@ -8,5 +8,6 @@ namespace AiDrivenMedicalPlatformAPIs.Models
         {
         }
         public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<DoctorSchedule> DoctorSchedules { get; set; }
     }
 }

@@ -31,5 +31,8 @@ namespace AiDrivenMedicalPlatformAPIs.Models
 
         [PersonalData]
         public int? HospitalId { get; set; }
+
+        [PersonalData]
+        public virtual List<DoctorSchedule>? Schedules { get; set; }
     }
 }

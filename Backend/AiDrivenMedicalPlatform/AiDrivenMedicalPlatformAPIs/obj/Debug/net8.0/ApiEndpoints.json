@@ -464,6 +464,44 @@
     ]
   },
   {
+    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.ScheduleEndPoints",
+    "Method": "GetDoctorSchedule",
+    "RelativePath": "api/schedule",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.ScheduleEndPoints",
+    "Method": "EditDoctorSchedule",
+    "RelativePath": "api/schedule",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "schedules",
+        "Type": "System.Collections.Generic.List\u00601[[AiDrivenMedicalPlatformAPIs.Models.Dto.ScheduleDto, AiDrivenMedicalPlatformAPIs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.IdentityUserEndPoints",
     "Method": "SignInUser",
     "RelativePath": "api/signin",
