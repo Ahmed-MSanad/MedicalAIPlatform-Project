@@ -1,12 +1,12 @@
-import { DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { UserService } from '../../../Core/Services/user.service';
 import { UserProfile } from '../../../Core/Interfaces/user-profile';
 import { ProfileLayoutComponent } from "../../../Layouts/profile-layout/profile-layout.component";
 
+
 @Component({
   selector: 'app-patient-profile',
-  imports: [DatePipe, ProfileLayoutComponent],
+  imports: [ProfileLayoutComponent],
   templateUrl: './patient-profile.component.html',
   styleUrl: './patient-profile.component.scss'
 })

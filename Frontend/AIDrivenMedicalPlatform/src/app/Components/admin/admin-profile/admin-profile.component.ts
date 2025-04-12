@@ -6,7 +6,7 @@ import { ProfileLayoutComponent } from "../../../Layouts/profile-layout/profile-
 
 @Component({
   selector: 'app-admin-profile',
-  imports: [DatePipe, ProfileLayoutComponent],
+  imports: [ProfileLayoutComponent],
   templateUrl: './admin-profile.component.html',
   styleUrl: './admin-profile.component.scss'
 })

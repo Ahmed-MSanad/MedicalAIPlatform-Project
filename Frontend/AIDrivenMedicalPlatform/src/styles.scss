@@ -1,2 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
+.spinner-container {
+    @apply flex flex-col items-center justify-center h-full;
+}
+
+.spinner-text {
+    @apply mt-3 text-xl text-green-600 font-sans;
+}
