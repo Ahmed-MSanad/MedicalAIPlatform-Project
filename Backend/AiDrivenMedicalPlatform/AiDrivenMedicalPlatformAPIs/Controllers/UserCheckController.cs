@@ -1,4 +1,5 @@
 ﻿using AiDrivenMedicalPlatformAPIs.Models;
+using MedicalProj.Data.Contexts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,9 +10,9 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
     [ApiController]
     public class UserCheckController : ControllerBase
     {
-        private readonly AppDbContext Context;
+        private readonly MedicalDbContext Context;
 
-        public UserCheckController(AppDbContext _context)
+        public UserCheckController(MedicalDbContext _context)
         {
             Context = _context;
         }

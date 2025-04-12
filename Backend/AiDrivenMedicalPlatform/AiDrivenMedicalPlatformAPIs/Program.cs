@@ -1,19 +1,7 @@
 
-using AiDrivenMedicalPlatformAPIs.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
-using Microsoft.AspNetCore.Http.HttpResults;
-using AiDrivenMedicalPlatformAPIs.Types;
-using System.Net;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
 using AiDrivenMedicalPlatformAPIs.Extensions;
 using AiDrivenMedicalPlatformAPIs.Controllers;
+using MedicalProj.Data.Models;
 
 namespace AiDrivenMedicalPlatformAPIs
 {
@@ -48,11 +36,10 @@ namespace AiDrivenMedicalPlatformAPIs
 
             app.MapGroup("/api").MapIdentityApi<AppUser>();
 
-            
+
             app.MapGroup("/api")
                .MapIdentityUserEndPoints() // Registration + Login
                .MapProfileEndpoints()
-               .MapScheduleEndpoints()
                .MapAuthorizationEndPoints();
 
 

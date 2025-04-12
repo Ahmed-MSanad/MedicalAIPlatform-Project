@@ -1,5 +1,6 @@
 ﻿using System.Text;
-using AiDrivenMedicalPlatformAPIs.Models;
+using MedicalProj.Data.Contexts;
+using MedicalProj.Data.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -13,7 +14,7 @@ namespace AiDrivenMedicalPlatformAPIs.Extensions
         {
             services.AddIdentityApiEndpoints<AppUser>() // For user the default entity is identityUser But we've customized it into AppUser
                     .AddRoles<IdentityRole>() // here we don't have any customization for the roles so we can use the default IdentityRole
-                    .AddEntityFrameworkStores<AppDbContext>();
+                    .AddEntityFrameworkStores<MedicalDbContext>();
             return services;
         }
 
@@ -60,11 +61,11 @@ namespace AiDrivenMedicalPlatformAPIs.Extensions
                 // The user has to be authorized by having an id in the hospital to use any method has this policy:
                 options.AddPolicy("HasHospitalId", policy => policy.RequireClaim("HospitalId"));
 
-                
+
                 options.AddPolicy("FemaleOnly", policy => policy.RequireClaim("Gender", "Female"));
 
 
-                options.AddPolicy("Above18", policy => policy.RequireAssertion(context => 
+                options.AddPolicy("Above18", policy => policy.RequireAssertion(context =>
                                                     Int32.Parse(context.User.Claims.First(x => x.Type == "Age").Value) > 18));
             });
             return services;

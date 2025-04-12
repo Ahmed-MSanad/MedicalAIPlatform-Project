@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiDrivenMedicalPlatformAPIs", "AiDrivenMedicalPlatformAPIs\AiDrivenMedicalPlatformAPIs.csproj", "{E21912A0-53C9-4E37-8000-F6189AEAF8EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalProj.Data", "MedicalProj.Data\MedicalProj.Data.csproj", "{A6164DAD-260E-48AE-9800-03DC7259FFF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{E21912A0-53C9-4E37-8000-F6189AEAF8EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E21912A0-53C9-4E37-8000-F6189AEAF8EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E21912A0-53C9-4E37-8000-F6189AEAF8EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6164DAD-260E-48AE-9800-03DC7259FFF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6164DAD-260E-48AE-9800-03DC7259FFF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6164DAD-260E-48AE-9800-03DC7259FFF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6164DAD-260E-48AE-9800-03DC7259FFF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
