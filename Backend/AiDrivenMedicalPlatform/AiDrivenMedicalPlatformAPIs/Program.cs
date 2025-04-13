@@ -2,12 +2,15 @@
 using AiDrivenMedicalPlatformAPIs.Extensions;
 using AiDrivenMedicalPlatformAPIs.Controllers;
 using MedicalProj.Data.Models;
+using MedicalProj.Data.Contexts.Contracts.Interfaces;
+using MedicalProj.Data.Contexts.Contracts.Classes;
+using System.Threading.Tasks;
 
 namespace AiDrivenMedicalPlatformAPIs
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -22,9 +25,11 @@ namespace AiDrivenMedicalPlatformAPIs
                             .ConfigureIdentityOptions() // Adjust Validators => ** ConfigureIdentityOptions is an Extension Method ** 
                             .AddIdentityAuth(builder.Configuration); // Adding Login Authentication Needed => ** AddIdentityAuth is an Extension Method **
 
+            builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 
             var app = builder.Build();
 
+            await SeedDbAsync(app);
             // Configure Swagger (the HTTP request pipeline) => ConfiguerSwaggerExplorer is a custom extension method => 
             app.ConfiguerSwaggerExplorer()
                .ConfigureCORS(builder.Configuration) // ConfigureCORS is a custom extension method => Config CORS
@@ -44,6 +49,13 @@ namespace AiDrivenMedicalPlatformAPIs
 
 
             app.Run();
+        }
+
+        static async Task SeedDbAsync(WebApplication app)
+        {
+            using var scope = app.Services.CreateScope();
+            var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+            await dbInitializer.InitializeAsync();
         }
     }
 }

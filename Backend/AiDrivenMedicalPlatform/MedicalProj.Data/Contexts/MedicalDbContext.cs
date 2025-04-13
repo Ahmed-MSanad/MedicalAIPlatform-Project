@@ -38,7 +38,6 @@ namespace MedicalProj.Data.Contexts
         public DbSet<PatientPhones> PatientPhones { get; set; }
         public DbSet<DoctorPhones> DoctorPhones { get; set; }
         public DbSet<AdminPhones> AdminPhones { get; set; }
-
-        //public DbSet<DoctorSchedule> DoctorSchedules { get; set; }
+        public DbSet<DoctorSchedule> DoctorSchedules { get; set; }
     }
 }

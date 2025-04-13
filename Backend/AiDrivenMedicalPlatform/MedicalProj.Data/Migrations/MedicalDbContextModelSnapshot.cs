@@ -181,6 +181,25 @@ namespace MedicalProj.Data.Migrations
                     b.ToTable("DoctorPhones");
                 });
 
+            modelBuilder.Entity("MedicalProj.Data.Models.DoctorSchedule", b =>
+                {
+                    b.Property<string>("DoctorId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Day")
+                        .HasColumnType("int");
+
+                    b.Property<TimeSpan>("From")
+                        .HasColumnType("time");
+
+                    b.Property<TimeSpan>("To")
+                        .HasColumnType("time");
+
+                    b.HasKey("DoctorId", "Day");
+
+                    b.ToTable("DoctorSchedules");
+                });
+
             modelBuilder.Entity("MedicalProj.Data.Models.PatientPhones", b =>
                 {
                     b.Property<string>("Phone")
@@ -432,6 +451,17 @@ namespace MedicalProj.Data.Migrations
                 {
                     b.HasOne("MedicalProj.Data.Models.Doctor", "Doctor")
                         .WithMany("DoctorPhones")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+                });
+
+            modelBuilder.Entity("MedicalProj.Data.Models.DoctorSchedule", b =>
+                {
+                    b.HasOne("MedicalProj.Data.Models.AppUser", "Doctor")
+                        .WithMany()
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

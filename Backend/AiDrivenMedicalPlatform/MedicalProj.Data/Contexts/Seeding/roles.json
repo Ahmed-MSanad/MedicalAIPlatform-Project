@@ -1,0 +1,20 @@
+[
+  {
+    "Id": "1",
+    "Name": "Admin",
+    "NormalizedName": "ADMIN",
+    "ConcurrencyStamp": null
+  },
+  {
+    "Id": "2",
+    "Name": "Doctor",
+    "NormalizedName": "DOCTOR",
+    "ConcurrencyStamp": null
+  },
+  {
+    "Id": "3",
+    "Name": "Patient",
+    "NormalizedName": "PATIENT",
+    "ConcurrencyStamp": null
+  }
+]

@@ -13,3 +13,31 @@ D:\Graduation Project\Plateform\Local\MedicalAIPlatform-Project\Backend\AiDriven
 D:\Graduation Project\Plateform\Local\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\MedicalProj.Data.pdb
 D:\Graduation Project\Plateform\Local\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\MedicalProj.Data.genruntimeconfig.cache
 D:\Graduation Project\Plateform\Local\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\ref\MedicalProj.Data.dll
+C:\Users\Compu Art Store\Downloads\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\bin\Debug\net8.0\MedicalProj.Data.deps.json
+C:\Users\Compu Art Store\Downloads\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\bin\Debug\net8.0\MedicalProj.Data.runtimeconfig.json
+C:\Users\Compu Art Store\Downloads\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\bin\Debug\net8.0\MedicalProj.Data.dll
+C:\Users\Compu Art Store\Downloads\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\bin\Debug\net8.0\MedicalProj.Data.pdb
+C:\Users\Compu Art Store\Downloads\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\MedicalProj.Data.csproj.AssemblyReference.cache
+C:\Users\Compu Art Store\Downloads\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\MedicalProj.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Compu Art Store\Downloads\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\MedicalProj.Data.AssemblyInfoInputs.cache
+C:\Users\Compu Art Store\Downloads\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\MedicalProj.Data.AssemblyInfo.cs
+C:\Users\Compu Art Store\Downloads\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\MedicalProj.Data.csproj.CoreCompileInputs.cache
+C:\Users\Compu Art Store\Downloads\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\MedicalProj.Data.dll
+C:\Users\Compu Art Store\Downloads\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\refint\MedicalProj.Data.dll
+C:\Users\Compu Art Store\Downloads\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\MedicalProj.Data.pdb
+C:\Users\Compu Art Store\Downloads\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\MedicalProj.Data.genruntimeconfig.cache
+C:\Users\Compu Art Store\Downloads\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\ref\MedicalProj.Data.dll
+E:\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\bin\Debug\net8.0\MedicalProj.Data.deps.json
+E:\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\bin\Debug\net8.0\MedicalProj.Data.runtimeconfig.json
+E:\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\bin\Debug\net8.0\MedicalProj.Data.dll
+E:\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\bin\Debug\net8.0\MedicalProj.Data.pdb
+E:\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\MedicalProj.Data.csproj.AssemblyReference.cache
+E:\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\MedicalProj.Data.GeneratedMSBuildEditorConfig.editorconfig
+E:\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\MedicalProj.Data.AssemblyInfoInputs.cache
+E:\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\MedicalProj.Data.AssemblyInfo.cs
+E:\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\MedicalProj.Data.csproj.CoreCompileInputs.cache
+E:\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\MedicalProj.Data.dll
+E:\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\refint\MedicalProj.Data.dll
+E:\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\MedicalProj.Data.pdb
+E:\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\MedicalProj.Data.genruntimeconfig.cache
+E:\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\MedicalProj.Data\obj\Debug\net8.0\ref\MedicalProj.Data.dll
