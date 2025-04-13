@@ -20,7 +20,7 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
         private static async Task<IResult> GetDoctorSchedule(ClaimsPrincipal user,AppDbContext context)
         {
             string userId = user.Claims.First(x => x.Type == "UserID").Value;
-            var schedule = await context.DoctorSchedules.Where(s => s.DoctorId == userId).ToListAsync();
+            var schedule = await context.DoctorSchedules.Where(s => s.DoctorId == userId).Select(x=> new { x.Day,x.From,x.To}).ToListAsync();
             return Results.Ok(schedule);
 
         }
@@ -34,8 +34,8 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             { 
             DoctorId = userId,
             Day = day.Day,
-            From = day.From,
-            To = day.To,
+            From = TimeSpan.Parse(day.From),
+            To = TimeSpan.Parse(day.To),
             }).ToList();
             context.DoctorSchedules.AddRange(newSchedule);
             await context.SaveChangesAsync();

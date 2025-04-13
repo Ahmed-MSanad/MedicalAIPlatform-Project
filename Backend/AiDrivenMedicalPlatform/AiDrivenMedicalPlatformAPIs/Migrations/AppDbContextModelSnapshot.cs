@@ -27,8 +27,8 @@ namespace AiDrivenMedicalPlatformAPIs.Migrations
                     b.Property<string>("DoctorId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("Day")
-                        .HasColumnType("int");
+                    b.Property<string>("Day")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<TimeSpan>("From")
                         .HasColumnType("time");

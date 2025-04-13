@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AiDrivenMedicalPlatformAPIs.Migrations
 {
     /// <inheritdoc />
-    public partial class AddedDoctorSchedule : Migration
+    public partial class AddeDoctorSchedule : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,7 +16,7 @@ namespace AiDrivenMedicalPlatformAPIs.Migrations
                 columns: table => new
                 {
                     DoctorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Day = table.Column<int>(type: "int", nullable: false),
+                    Day = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     From = table.Column<TimeSpan>(type: "time", nullable: false),
                     To = table.Column<TimeSpan>(type: "time", nullable: false)
                 },

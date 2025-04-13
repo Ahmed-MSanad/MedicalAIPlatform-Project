@@ -11,7 +11,7 @@ namespace AiDrivenMedicalPlatformAPIs.Models
 
         [ForeignKey("DoctorId")]
         public virtual AppUser Doctor { get; set; }
-        public DayOfWeek Day { get; set; }
+        public string Day { get; set; }
 
         [Required]
         public TimeSpan From { get; set; }

@@ -736,19 +736,6 @@
         },
         "additionalProperties": false
       },
-      "DayOfWeek": {
-        "enum": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
-        ],
-        "type": "integer",
-        "format": "int32"
-      },
       "ForgotPasswordRequest": {
         "required": [
           "email"
@@ -953,15 +940,16 @@
         "type": "object",
         "properties": {
           "day": {
-            "$ref": "#/components/schemas/DayOfWeek"
+            "type": "string",
+            "nullable": true
           },
           "from": {
             "type": "string",
-            "format": "date-span"
+            "nullable": true
           },
           "to": {
             "type": "string",
-            "format": "date-span"
+            "nullable": true
           }
         },
         "additionalProperties": false

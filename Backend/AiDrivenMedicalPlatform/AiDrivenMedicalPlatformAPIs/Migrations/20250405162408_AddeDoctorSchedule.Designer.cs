@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AiDrivenMedicalPlatformAPIs.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250404153058_AddedDoctorSchedule")]
-    partial class AddedDoctorSchedule
+    [Migration("20250405162408_AddeDoctorSchedule")]
+    partial class AddeDoctorSchedule
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,8 +30,8 @@ namespace AiDrivenMedicalPlatformAPIs.Migrations
                     b.Property<string>("DoctorId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("Day")
-                        .HasColumnType("int");
+                    b.Property<string>("Day")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<TimeSpan>("From")
                         .HasColumnType("time");
