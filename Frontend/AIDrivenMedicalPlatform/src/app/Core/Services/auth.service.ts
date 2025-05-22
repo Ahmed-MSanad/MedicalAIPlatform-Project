@@ -11,7 +11,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   createUser(formData : any){
-    return this.http.post(environment.apiBaseURL+'/signup', formData);
+    return this.http.post(`${environment.apiBaseURL}/signup/${`${formData.role}`.toLowerCase()}`, formData);
   }
 
   checkEmail(formData : any){
