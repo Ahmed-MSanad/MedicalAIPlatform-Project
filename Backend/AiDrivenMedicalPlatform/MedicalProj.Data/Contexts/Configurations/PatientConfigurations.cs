@@ -15,6 +15,10 @@ namespace MedicalProj.Data.Contexts.Configurations
             builder.HasMany(p => p.Appointments)
                     .WithOne(a => a.Patient)
                     .HasForeignKey(a => a.Pid);
+
+            builder.HasMany(patient => patient.Feedbacks)
+                   .WithOne(feedback => feedback.Patient)
+                   .HasForeignKey(feedback => feedback.PatientId);
         }
     }
 }

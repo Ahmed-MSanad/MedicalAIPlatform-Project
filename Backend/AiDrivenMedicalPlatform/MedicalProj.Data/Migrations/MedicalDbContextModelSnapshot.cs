@@ -22,7 +22,7 @@ namespace MedicalProj.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MedicalProj.Data.Models.AdminPhones", b =>
+            modelBuilder.Entity("MedicalProj.Data.Models.AdminPhone", b =>
                 {
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(450)");
@@ -35,6 +35,43 @@ namespace MedicalProj.Data.Migrations
                     b.HasIndex("AdminId");
 
                     b.ToTable("AdminPhones");
+                });
+
+            modelBuilder.Entity("MedicalProj.Data.Models.AiAnalysis", b =>
+                {
+                    b.Property<int>("AiAnalysisId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AiAnalysisId"));
+
+                    b.Property<DateTime>("AnalysisDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("ConfidenceScore")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Diagnosis")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExplanationDetails")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HeatmapData")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MedicalImageId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AiAnalysisId");
+
+                    b.HasIndex("MedicalImageId")
+                        .IsUnique();
+
+                    b.ToTable("AiAnalyses");
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.AppUser", b =>
@@ -166,7 +203,7 @@ namespace MedicalProj.Data.Migrations
                     b.ToTable("Appointments");
                 });
 
-            modelBuilder.Entity("MedicalProj.Data.Models.DoctorPhones", b =>
+            modelBuilder.Entity("MedicalProj.Data.Models.DoctorPhone", b =>
                 {
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(450)");
@@ -197,10 +234,87 @@ namespace MedicalProj.Data.Migrations
 
                     b.HasKey("DoctorId", "Day");
 
+                    b.HasIndex("DoctorId")
+                        .IsUnique();
+
                     b.ToTable("DoctorSchedules");
                 });
 
-            modelBuilder.Entity("MedicalProj.Data.Models.PatientPhones", b =>
+            modelBuilder.Entity("MedicalProj.Data.Models.Feedback", b =>
+                {
+                    b.Property<int>("FeedbackId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeedbackId"));
+
+                    b.Property<string>("AdminId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PatientId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("RespondedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ResponseMessage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("SubmittedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("FeedbackId");
+
+                    b.HasIndex("AdminId");
+
+                    b.HasIndex("PatientId");
+
+                    b.ToTable("Feedbacks");
+                });
+
+            modelBuilder.Entity("MedicalProj.Data.Models.MedicalImage", b =>
+                {
+                    b.Property<int>("MedicalImageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MedicalImageId"));
+
+                    b.Property<string>("Did")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<byte[]>("Image")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Pid")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("UploadDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("MedicalImageId");
+
+                    b.HasIndex("Did");
+
+                    b.HasIndex("Pid");
+
+                    b.ToTable("MedicalImages");
+                });
+
+            modelBuilder.Entity("MedicalProj.Data.Models.PatientPhone", b =>
                 {
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(450)");
@@ -417,7 +531,7 @@ namespace MedicalProj.Data.Migrations
                     b.ToTable("Patients", (string)null);
                 });
 
-            modelBuilder.Entity("MedicalProj.Data.Models.AdminPhones", b =>
+            modelBuilder.Entity("MedicalProj.Data.Models.AdminPhone", b =>
                 {
                     b.HasOne("MedicalProj.Data.Models.Admin", "Admin")
                         .WithMany("AdminPhones")
@@ -426,6 +540,17 @@ namespace MedicalProj.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Admin");
+                });
+
+            modelBuilder.Entity("MedicalProj.Data.Models.AiAnalysis", b =>
+                {
+                    b.HasOne("MedicalProj.Data.Models.MedicalImage", "MedicalImage")
+                        .WithOne("AiAnalysis")
+                        .HasForeignKey("MedicalProj.Data.Models.AiAnalysis", "MedicalImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MedicalImage");
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.Appointment", b =>
@@ -447,7 +572,7 @@ namespace MedicalProj.Data.Migrations
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("MedicalProj.Data.Models.DoctorPhones", b =>
+            modelBuilder.Entity("MedicalProj.Data.Models.DoctorPhone", b =>
                 {
                     b.HasOne("MedicalProj.Data.Models.Doctor", "Doctor")
                         .WithMany("DoctorPhones")
@@ -460,16 +585,54 @@ namespace MedicalProj.Data.Migrations
 
             modelBuilder.Entity("MedicalProj.Data.Models.DoctorSchedule", b =>
                 {
-                    b.HasOne("MedicalProj.Data.Models.AppUser", "Doctor")
-                        .WithMany()
-                        .HasForeignKey("DoctorId")
+                    b.HasOne("MedicalProj.Data.Models.Doctor", "Doctor")
+                        .WithOne("DoctorSchedule")
+                        .HasForeignKey("MedicalProj.Data.Models.DoctorSchedule", "DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Doctor");
                 });
 
-            modelBuilder.Entity("MedicalProj.Data.Models.PatientPhones", b =>
+            modelBuilder.Entity("MedicalProj.Data.Models.Feedback", b =>
+                {
+                    b.HasOne("MedicalProj.Data.Models.Admin", "Admin")
+                        .WithMany("Feedbacks")
+                        .HasForeignKey("AdminId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("MedicalProj.Data.Models.Patient", "Patient")
+                        .WithMany("Feedbacks")
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Admin");
+
+                    b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("MedicalProj.Data.Models.MedicalImage", b =>
+                {
+                    b.HasOne("MedicalProj.Data.Models.Doctor", "Doctor")
+                        .WithMany("MedicalImages")
+                        .HasForeignKey("Did")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("MedicalProj.Data.Models.Patient", "Patient")
+                        .WithMany("MedicalImages")
+                        .HasForeignKey("Pid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("MedicalProj.Data.Models.PatientPhone", b =>
                 {
                     b.HasOne("MedicalProj.Data.Models.Patient", "Patient")
                         .WithMany("PatientPhones")
@@ -558,9 +721,17 @@ namespace MedicalProj.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MedicalProj.Data.Models.MedicalImage", b =>
+                {
+                    b.Navigation("AiAnalysis")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("MedicalProj.Data.Models.Admin", b =>
                 {
                     b.Navigation("AdminPhones");
+
+                    b.Navigation("Feedbacks");
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.Doctor", b =>
@@ -568,11 +739,20 @@ namespace MedicalProj.Data.Migrations
                     b.Navigation("Appointments");
 
                     b.Navigation("DoctorPhones");
+
+                    b.Navigation("DoctorSchedule")
+                        .IsRequired();
+
+                    b.Navigation("MedicalImages");
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.Patient", b =>
                 {
                     b.Navigation("Appointments");
+
+                    b.Navigation("Feedbacks");
+
+                    b.Navigation("MedicalImages");
 
                     b.Navigation("PatientPhones");
                 });

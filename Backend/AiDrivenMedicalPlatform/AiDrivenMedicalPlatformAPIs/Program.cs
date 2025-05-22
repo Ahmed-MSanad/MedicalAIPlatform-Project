@@ -1,10 +1,9 @@
-
 using AiDrivenMedicalPlatformAPIs.Extensions;
 using AiDrivenMedicalPlatformAPIs.Controllers;
-using MedicalProj.Data.Models;
 using MedicalProj.Data.Contexts.Contracts.Interfaces;
 using MedicalProj.Data.Contexts.Contracts.Classes;
-using System.Threading.Tasks;
+using MedicalProj.Data.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace AiDrivenMedicalPlatformAPIs
 {
@@ -14,8 +13,6 @@ namespace AiDrivenMedicalPlatformAPIs
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container =>
-
             builder.Services.AddControllers();
 
             builder.Services.AddSwaggerExplorer()
@@ -24,6 +21,7 @@ namespace AiDrivenMedicalPlatformAPIs
                             .AddIdentityHandlersAndStores() // adding ASP.NET Identity Core Services => ** AddIdentityHandlersAndStores is an Extension Method ** 
                             .ConfigureIdentityOptions() // Adjust Validators => ** ConfigureIdentityOptions is an Extension Method ** 
                             .AddIdentityAuth(builder.Configuration); // Adding Login Authentication Needed => ** AddIdentityAuth is an Extension Method **
+
 
             builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 
@@ -39,12 +37,11 @@ namespace AiDrivenMedicalPlatformAPIs
 
             app.MapControllers();
 
-            app.MapGroup("/api").MapIdentityApi<AppUser>();
+            //app.MapGroup("/api").MapIdentityApi<AppUser>();
 
 
             app.MapGroup("/api")
                .MapIdentityUserEndPoints() // Registration + Login
-               .MapProfileEndpoints()
                .MapAuthorizationEndPoints();
 
 

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace MedicalProj.Data.Contexts.Configurations
 {
-    public class DoctorPhonesConfigurations : IEntityTypeConfiguration<DoctorPhones>
+    public class DoctorPhonesConfigurations : IEntityTypeConfiguration<DoctorPhone>
     {
-        public void Configure(EntityTypeBuilder<DoctorPhones> builder)
+        public void Configure(EntityTypeBuilder<DoctorPhone> builder)
         {
             builder.HasKey(dp => new { dp.Phone, dp.DoctorId });
 

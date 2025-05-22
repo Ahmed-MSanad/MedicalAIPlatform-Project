@@ -16,7 +16,7 @@ namespace AiDrivenMedicalPlatformAPIs.Models.Dto
         [PersonalData]
         public string Address { get; set; }
         [PersonalData]
-        public ICollection<DoctorPhones> DoctorPhones { get; set; } = new List<DoctorPhones>();
+        public ICollection<string> DoctorPhones { get; set; } = new List<string>();
         [PersonalData]
         public string IdentificationNumber { get; set; }
         [PersonalData]
@@ -25,6 +25,6 @@ namespace AiDrivenMedicalPlatformAPIs.Models.Dto
         public string Specialisation { get; set; }
         [PersonalData]
         public string WorkPlace { get; set; }
-        public byte[]? Image { get; set; }
+        public string? Image { get; set; }
     }
 }

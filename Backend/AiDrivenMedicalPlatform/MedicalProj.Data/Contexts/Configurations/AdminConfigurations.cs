@@ -1,5 +1,4 @@
-﻿using System.Reflection.Emit;
-using MedicalProj.Data.Models;
+﻿using MedicalProj.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

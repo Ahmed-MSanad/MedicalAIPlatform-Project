@@ -1,15 +1,14 @@
 ﻿using MedicalProj.Data.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using MedicalProj.Data.Types;
+using AiDrivenMedicalPlatformAPIs.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using MedicalProj.Data.Types;
-using AiDrivenMedicalPlatformAPIs.Models;
-using System.Text.Json.Serialization;
 
 namespace AiDrivenMedicalPlatformAPIs.Controllers
 {
@@ -21,6 +20,8 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             app.MapPost("/signup/patient", CreatePatient).AllowAnonymous();
             app.MapPost("/signup/doctor", CreateDoctor).AllowAnonymous();
             app.MapPost("/signup/admin", CreateAdmin).AllowAnonymous();
+
+            app.MapPost("/signin", SignInUser);
 
             return app;
         }
@@ -42,28 +43,32 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
                 return Results.BadRequest("Email, password, and full name are required.");
             }
 
-            AppUser user;
             if (string.IsNullOrEmpty(patientRegistrationModel.Occupation) ||
                 string.IsNullOrEmpty(patientRegistrationModel.EmergencyContactName))
             {
                 return Results.BadRequest("Occupation and emergency contact name are required for patients.");
             }
 
-                    user = new Patient
-                    {
-                        UserName = patientRegistrationModel.Email,
-                        Email = patientRegistrationModel.Email,
-                        FullName = patientRegistrationModel.FullName,
-                        PatientPhones = patientRegistrationModel.PatientPhones,
-                        DateOfBirth = patientRegistrationModel.DateOfBirth,
-                        Gender = patientRegistrationModel.Gender,
-                        Address = patientRegistrationModel.Address,
-                        Occupation = patientRegistrationModel.Occupation,
-                        EmergencyContactName = patientRegistrationModel.EmergencyContactName,
-                        EmergencyContactNumber = patientRegistrationModel.EmergencyContactNumber,
-                        FamilyMedicalHistory = patientRegistrationModel.FamilyMedicalHistory,
-                        PastMedicalHistory = patientRegistrationModel.PastMedicalHistory
-                    };
+            AppUser user;
+            user = new Patient
+            {
+                UserName = patientRegistrationModel.Email,
+                Email = patientRegistrationModel.Email,
+                FullName = patientRegistrationModel.FullName,
+                DateOfBirth = patientRegistrationModel.DateOfBirth,
+                Gender = patientRegistrationModel.Gender,
+                Address = patientRegistrationModel.Address,
+                Occupation = patientRegistrationModel.Occupation,
+                EmergencyContactName = patientRegistrationModel.EmergencyContactName,
+                EmergencyContactNumber = patientRegistrationModel.EmergencyContactNumber,
+                FamilyMedicalHistory = patientRegistrationModel.FamilyMedicalHistory,
+                PastMedicalHistory = patientRegistrationModel.PastMedicalHistory,
+                PatientPhones = patientRegistrationModel.Phones.Select(phone => new PatientPhone
+                {
+                    Phone = phone,
+                }).ToList(),
+                PhoneNumber = patientRegistrationModel.Phones.FirstOrDefault(),
+            };
             return await CreateUser(user, patientRegistrationModel.Password, patientRegistrationModel.Role, userManager, roleManager);
         }
 
@@ -83,26 +88,30 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
                 return Results.BadRequest("Email, password, and full name are required.");
             }
 
-            AppUser user;
             if (string.IsNullOrEmpty(doctorRegistrationModel.MedicalLicenseNumber) ||
                 string.IsNullOrEmpty(doctorRegistrationModel.Specialisation))
             {
                 return Results.BadRequest("Medical License number and Specialisation name are required for doctors.");
             }
 
+            AppUser user;
             user = new Doctor
             {
                 UserName = doctorRegistrationModel.Email,
                 Email = doctorRegistrationModel.Email,
                 FullName = doctorRegistrationModel.FullName,
-                DoctorPhones = doctorRegistrationModel.DoctorPhones,
                 DateOfBirth = doctorRegistrationModel.DateOfBirth,
                 Gender = doctorRegistrationModel.Gender,
                 Address = doctorRegistrationModel.Address,
                 IdentificationNumber = doctorRegistrationModel.IdentificationNumber,
                 MedicalLicenseNumber = doctorRegistrationModel.MedicalLicenseNumber,
                 Specialisation = doctorRegistrationModel.Specialisation,
-                WorkPlace = doctorRegistrationModel.WorkPlace
+                WorkPlace = doctorRegistrationModel.WorkPlace,
+                DoctorPhones = doctorRegistrationModel.Phones.Select(phone => new DoctorPhone
+                {
+                    Phone = phone,
+                }).ToList(),
+                PhoneNumber = doctorRegistrationModel.Phones.FirstOrDefault(),
             };
             return await CreateUser(user, doctorRegistrationModel.Password, doctorRegistrationModel.Role, userManager, roleManager);
         }
@@ -124,25 +133,29 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
                 return Results.BadRequest("Email, password, and full name are required.");
             }
 
-            AppUser user;
             if (string.IsNullOrEmpty(adminRegistrationModel.MedicalLicenseNumber) ||
                 string.IsNullOrEmpty(adminRegistrationModel.Specialisation))
             {
                 return Results.BadRequest("Medical License number and Specialisation name are required for admins.");
             }
 
+            AppUser user;
             user = new Admin
             {
                 UserName = adminRegistrationModel.Email,
                 Email = adminRegistrationModel.Email,
                 FullName = adminRegistrationModel.FullName,
-                AdminPhones = adminRegistrationModel.AdminPhones,
                 DateOfBirth = adminRegistrationModel.DateOfBirth,
                 Gender = adminRegistrationModel.Gender,
                 Address = adminRegistrationModel.Address,
                 IdentificationNumber = adminRegistrationModel.IdentificationNumber,
                 MedicalLicenseNumber = adminRegistrationModel.MedicalLicenseNumber,
-                Specialisation = adminRegistrationModel.Specialisation
+                Specialisation = adminRegistrationModel.Specialisation,
+                AdminPhones = adminRegistrationModel.Phones.Select(phone => new AdminPhone
+                {
+                    Phone = phone,
+                }).ToList(),
+                PhoneNumber = adminRegistrationModel.Phones.FirstOrDefault(),
             };
             return await CreateUser(user, adminRegistrationModel.Password, adminRegistrationModel.Role, userManager, roleManager);
         }
@@ -173,41 +186,88 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
                 return Results.BadRequest(roleAssignResult.Errors.Select(e => e.Description));
             }
 
-            return Results.Ok(new { Message = "User created successfully.", UserId = user.Id });
+            return Results.Ok(new { Message = "User created successfully." });
+        }
+
+        [AllowAnonymous]
+        private static async Task<IResult> SignInUser(UserManager<AppUser> userManager,
+                                              [FromBody] LoginModel loginModel,
+                                              IOptions<AppSettings> appSettings) // Injecting the AppSettings
+        {
+            var user = await userManager.FindByEmailAsync(loginModel.Email);
+
+            if (user != null && await userManager.CheckPasswordAsync(user, loginModel.Password))
+            {
+                var roles = await userManager.GetRolesAsync(user);
+                // Generate Token:
+                var signInKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appSettings.Value.JWTSecret));
+                // Describing the claims that we want to include in the JWT payload:
+                ClaimsIdentity claims = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim("UserID", user.Id.ToString()),
+                    new Claim("Gender", user.Gender.ToString()),
+                    new Claim("Age", (DateTime.Now.Year - user.DateOfBirth.Year).ToString()),
+                    new Claim(ClaimTypes.Role, roles.First()),
+                });
+                //if(user.HospitalId != null)
+                //{
+                //    claims.AddClaim(new Claim("HospitalId", user.HospitalId.ToString()!));
+                //}
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = claims,
+                    Expires = DateTime.UtcNow.AddDays(5), // Token expiration time
+                                                          // Signing the token with the key:
+                    SigningCredentials = new SigningCredentials(signInKey, SecurityAlgorithms.HmacSha256Signature),
+                };
+                // Creating the token:
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                var token = tokenHandler.WriteToken(securityToken);
+
+                return Results.Ok(new { token });
+            }
+            else
+            {
+                return Results.BadRequest(new { message = "Invalid email or password!" });
+            }
         }
 
 
+
+        public class LoginModel
+        {
+            public string Email { get; set; }
+            public string Password { get; set; }
+        }
+
     }
-
-
 
 
     public abstract class UserRegistrationModel
     {
         public string Password { get; set; }
         public string Email { get; set; }
+        public string Role { get; set; }
         public string FullName { get; set; }
         public DateOnly DateOfBirth { get; set; }
         public Gender Gender { get; set; }
         public string Address { get; set; }
-        public string Role { get; set; }
+        public ICollection<string> Phones { get; set; } = new List<string>();
     }
 
     
     public class PatientRegistrationModel : UserRegistrationModel
     {
-        public ICollection<PatientPhones> PatientPhones { get; set; } = new List<PatientPhones>();
         public string Occupation { get; set; }
         public string EmergencyContactName { get; set; }
         public string EmergencyContactNumber { get; set; }
         public string FamilyMedicalHistory { get; set; }
         public string PastMedicalHistory { get; set; }
-
     }
 
     public class DoctorRegistrationModel : UserRegistrationModel
     {
-        public ICollection<DoctorPhones> DoctorPhones { get; set; } = new List<DoctorPhones>();
         public string IdentificationNumber { get; set; }
         public string MedicalLicenseNumber { get; set; }
         public string Specialisation { get; set; }
@@ -216,8 +276,6 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
 
     public class AdminRegistrationModel : UserRegistrationModel
     {
-
-        public ICollection<AdminPhones> AdminPhones { get; set; } = new List<AdminPhones>();
         public string IdentificationNumber { get; set; }
         public string MedicalLicenseNumber { get; set; }
         public string Specialisation { get; set; }

@@ -5,340 +5,6 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/register": {
-      "post": {
-        "tags": [
-          "AiDrivenMedicalPlatformAPIs"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RegisterRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/login": {
-      "post": {
-        "tags": [
-          "AiDrivenMedicalPlatformAPIs"
-        ],
-        "parameters": [
-          {
-            "name": "useCookies",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "useSessionCookies",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LoginRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AccessTokenResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/refresh": {
-      "post": {
-        "tags": [
-          "AiDrivenMedicalPlatformAPIs"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RefreshRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AccessTokenResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/confirmEmail": {
-      "get": {
-        "tags": [
-          "AiDrivenMedicalPlatformAPIs"
-        ],
-        "operationId": "MapIdentityApi-/api/confirmEmail",
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "code",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "changedEmail",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/resendConfirmationEmail": {
-      "post": {
-        "tags": [
-          "AiDrivenMedicalPlatformAPIs"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ResendConfirmationEmailRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/forgotPassword": {
-      "post": {
-        "tags": [
-          "AiDrivenMedicalPlatformAPIs"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ForgotPasswordRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/resetPassword": {
-      "post": {
-        "tags": [
-          "AiDrivenMedicalPlatformAPIs"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ResetPasswordRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/manage/2fa": {
-      "post": {
-        "tags": [
-          "AiDrivenMedicalPlatformAPIs"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TwoFactorRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TwoFactorResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/api/manage/info": {
-      "get": {
-        "tags": [
-          "AiDrivenMedicalPlatformAPIs"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InfoResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "AiDrivenMedicalPlatformAPIs"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/InfoRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InfoResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
     "/api/AdminDashboard": {
       "get": {
         "tags": [
@@ -519,20 +185,131 @@
         }
       }
     },
-    "/api/profile/patient": {
+    "/api/signin": {
+      "post": {
+        "tags": [
+          "IdentityUserEndPoints"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Profile/GetPatientProfile": {
       "get": {
         "tags": [
-          "ProfileEndpoints"
+          "Profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatientDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatientDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatientDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Profile/GetDoctorProfile": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DoctorDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DoctorDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DoctorDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Profile/GetAdminProfile": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Profile/DeleteUserProfile": {
+      "delete": {
+        "tags": [
+          "Profile"
         ],
         "responses": {
           "200": {
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Profile/EditPatientProfile": {
       "put": {
         "tags": [
-          "ProfileEndpoints"
+          "Profile"
         ],
         "requestBody": {
           "content": {
@@ -540,9 +317,18 @@
               "schema": {
                 "$ref": "#/components/schemas/PatientDto"
               }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatientDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatientDto"
+              }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -551,20 +337,10 @@
         }
       }
     },
-    "/api/profile/doctor": {
-      "get": {
-        "tags": [
-          "ProfileEndpoints"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
+    "/api/Profile/EditDoctorProfile": {
       "put": {
         "tags": [
-          "ProfileEndpoints"
+          "Profile"
         ],
         "requestBody": {
           "content": {
@@ -572,9 +348,18 @@
               "schema": {
                 "$ref": "#/components/schemas/DoctorDto"
               }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DoctorDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DoctorDto"
+              }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -583,20 +368,10 @@
         }
       }
     },
-    "/api/profile/admin": {
-      "get": {
-        "tags": [
-          "ProfileEndpoints"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
+    "/api/Profile/EditAdminProfile": {
       "put": {
         "tags": [
-          "ProfileEndpoints"
+          "Profile"
         ],
         "requestBody": {
           "content": {
@@ -604,22 +379,19 @@
               "schema": {
                 "$ref": "#/components/schemas/AdminDto"
               }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminDto"
+              }
             }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
           }
-        }
-      }
-    },
-    "/api/profile": {
-      "delete": {
-        "tags": [
-          "ProfileEndpoints"
-        ],
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -661,136 +433,6 @@
   },
   "components": {
     "schemas": {
-      "AccessTokenResponse": {
-        "required": [
-          "accessToken",
-          "expiresIn",
-          "refreshToken"
-        ],
-        "type": "object",
-        "properties": {
-          "tokenType": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "accessToken": {
-            "type": "string",
-            "nullable": true
-          },
-          "expiresIn": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "refreshToken": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Admin": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "userName": {
-            "type": "string",
-            "nullable": true
-          },
-          "normalizedUserName": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "normalizedEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "emailConfirmed": {
-            "type": "boolean"
-          },
-          "passwordHash": {
-            "type": "string",
-            "nullable": true
-          },
-          "securityStamp": {
-            "type": "string",
-            "nullable": true
-          },
-          "concurrencyStamp": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumberConfirmed": {
-            "type": "boolean"
-          },
-          "twoFactorEnabled": {
-            "type": "boolean"
-          },
-          "lockoutEnd": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "lockoutEnabled": {
-            "type": "boolean"
-          },
-          "accessFailedCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "fullName": {
-            "type": "string",
-            "nullable": true
-          },
-          "dateOfBirth": {
-            "type": "string",
-            "format": "date"
-          },
-          "gender": {
-            "$ref": "#/components/schemas/Gender"
-          },
-          "address": {
-            "type": "string",
-            "nullable": true
-          },
-          "image": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          },
-          "identificationNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "medicalLicenseNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "specialisation": {
-            "type": "string",
-            "nullable": true
-          },
-          "adminPhones": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AdminPhones"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "AdminDto": {
         "type": "object",
         "properties": {
@@ -813,7 +455,7 @@
           "adminPhones": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/AdminPhones"
+              "type": "string"
             },
             "nullable": true
           },
@@ -831,25 +473,7 @@
           },
           "image": {
             "type": "string",
-            "format": "byte",
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "AdminPhones": {
-        "type": "object",
-        "properties": {
-          "phone": {
-            "type": "string",
-            "nullable": true
-          },
-          "adminId": {
-            "type": "string",
-            "nullable": true
-          },
-          "admin": {
-            "$ref": "#/components/schemas/Admin"
           }
         },
         "additionalProperties": false
@@ -865,6 +489,10 @@
             "type": "string",
             "nullable": true
           },
+          "role": {
+            "type": "string",
+            "nullable": true
+          },
           "fullName": {
             "type": "string",
             "nullable": true
@@ -880,14 +508,10 @@
             "type": "string",
             "nullable": true
           },
-          "role": {
-            "type": "string",
-            "nullable": true
-          },
-          "adminPhones": {
+          "phones": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/AdminPhones"
+              "type": "string"
             },
             "nullable": true
           },
@@ -905,181 +529,12 @@
           }
         },
         "additionalProperties": false
-      },
-      "Appointment": {
-        "type": "object",
-        "properties": {
-          "appointmentId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "status": {
-            "$ref": "#/components/schemas/AppointmentStatus"
-          },
-          "cost": {
-            "type": "number",
-            "format": "double"
-          },
-          "location": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "did": {
-            "type": "string",
-            "nullable": true
-          },
-          "pid": {
-            "type": "string",
-            "nullable": true
-          },
-          "doctor": {
-            "$ref": "#/components/schemas/Doctor"
-          },
-          "patient": {
-            "$ref": "#/components/schemas/Patient"
-          }
-        },
-        "additionalProperties": false
-      },
-      "AppointmentStatus": {
-        "enum": [
-          0,
-          1,
-          2
-        ],
-        "type": "integer",
-        "format": "int32"
       },
       "CheckEmailRequest": {
         "type": "object",
         "properties": {
           "email": {
             "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Doctor": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "userName": {
-            "type": "string",
-            "nullable": true
-          },
-          "normalizedUserName": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "normalizedEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "emailConfirmed": {
-            "type": "boolean"
-          },
-          "passwordHash": {
-            "type": "string",
-            "nullable": true
-          },
-          "securityStamp": {
-            "type": "string",
-            "nullable": true
-          },
-          "concurrencyStamp": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumberConfirmed": {
-            "type": "boolean"
-          },
-          "twoFactorEnabled": {
-            "type": "boolean"
-          },
-          "lockoutEnd": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "lockoutEnabled": {
-            "type": "boolean"
-          },
-          "accessFailedCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "fullName": {
-            "type": "string",
-            "nullable": true
-          },
-          "dateOfBirth": {
-            "type": "string",
-            "format": "date"
-          },
-          "gender": {
-            "$ref": "#/components/schemas/Gender"
-          },
-          "address": {
-            "type": "string",
-            "nullable": true
-          },
-          "image": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          },
-          "identificationNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "medicalLicenseNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "specialisation": {
-            "type": "string",
-            "nullable": true
-          },
-          "workPlace": {
-            "type": "string",
-            "nullable": true
-          },
-          "doctorPhones": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DoctorPhones"
-            },
-            "nullable": true
-          },
-          "appointments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Appointment"
-            },
             "nullable": true
           }
         },
@@ -1107,7 +562,7 @@
           "doctorPhones": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/DoctorPhones"
+              "type": "string"
             },
             "nullable": true
           },
@@ -1129,25 +584,7 @@
           },
           "image": {
             "type": "string",
-            "format": "byte",
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "DoctorPhones": {
-        "type": "object",
-        "properties": {
-          "phone": {
-            "type": "string",
-            "nullable": true
-          },
-          "doctorId": {
-            "type": "string",
-            "nullable": true
-          },
-          "doctor": {
-            "$ref": "#/components/schemas/Doctor"
           }
         },
         "additionalProperties": false
@@ -1163,6 +600,10 @@
             "type": "string",
             "nullable": true
           },
+          "role": {
+            "type": "string",
+            "nullable": true
+          },
           "fullName": {
             "type": "string",
             "nullable": true
@@ -1178,14 +619,10 @@
             "type": "string",
             "nullable": true
           },
-          "role": {
-            "type": "string",
-            "nullable": true
-          },
-          "doctorPhones": {
+          "phones": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/DoctorPhones"
+              "type": "string"
             },
             "nullable": true
           },
@@ -1208,19 +645,6 @@
         },
         "additionalProperties": false
       },
-      "ForgotPasswordRequest": {
-        "required": [
-          "email"
-        ],
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "Gender": {
         "enum": [
           0,
@@ -1229,83 +653,7 @@
         "type": "integer",
         "format": "int32"
       },
-      "HttpValidationProblemDetails": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "nullable": true
-          },
-          "title": {
-            "type": "string",
-            "nullable": true
-          },
-          "status": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "detail": {
-            "type": "string",
-            "nullable": true
-          },
-          "instance": {
-            "type": "string",
-            "nullable": true
-          },
-          "errors": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": { }
-      },
-      "InfoRequest": {
-        "type": "object",
-        "properties": {
-          "newEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "newPassword": {
-            "type": "string",
-            "nullable": true
-          },
-          "oldPassword": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "InfoResponse": {
-        "required": [
-          "email",
-          "isEmailConfirmed"
-        ],
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "isEmailConfirmed": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false
-      },
-      "LoginRequest": {
-        "required": [
-          "email",
-          "password"
-        ],
+      "LoginModel": {
         "type": "object",
         "properties": {
           "email": {
@@ -1314,131 +662,6 @@
           },
           "password": {
             "type": "string",
-            "nullable": true
-          },
-          "twoFactorCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "twoFactorRecoveryCode": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Patient": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "userName": {
-            "type": "string",
-            "nullable": true
-          },
-          "normalizedUserName": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "normalizedEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "emailConfirmed": {
-            "type": "boolean"
-          },
-          "passwordHash": {
-            "type": "string",
-            "nullable": true
-          },
-          "securityStamp": {
-            "type": "string",
-            "nullable": true
-          },
-          "concurrencyStamp": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumberConfirmed": {
-            "type": "boolean"
-          },
-          "twoFactorEnabled": {
-            "type": "boolean"
-          },
-          "lockoutEnd": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "lockoutEnabled": {
-            "type": "boolean"
-          },
-          "accessFailedCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "fullName": {
-            "type": "string",
-            "nullable": true
-          },
-          "dateOfBirth": {
-            "type": "string",
-            "format": "date"
-          },
-          "gender": {
-            "$ref": "#/components/schemas/Gender"
-          },
-          "address": {
-            "type": "string",
-            "nullable": true
-          },
-          "image": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          },
-          "occupation": {
-            "type": "string",
-            "nullable": true
-          },
-          "emergencyContactName": {
-            "type": "string",
-            "nullable": true
-          },
-          "emergencyContactNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "familyMedicalHistory": {
-            "type": "string",
-            "nullable": true
-          },
-          "pastMedicalHistory": {
-            "type": "string",
-            "nullable": true
-          },
-          "patientPhones": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PatientPhones"
-            },
-            "nullable": true
-          },
-          "appointments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Appointment"
-            },
             "nullable": true
           }
         },
@@ -1466,7 +689,7 @@
           "patientPhones": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PatientPhones"
+              "type": "string"
             },
             "nullable": true
           },
@@ -1492,25 +715,7 @@
           },
           "image": {
             "type": "string",
-            "format": "byte",
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "PatientPhones": {
-        "type": "object",
-        "properties": {
-          "phone": {
-            "type": "string",
-            "nullable": true
-          },
-          "patientId": {
-            "type": "string",
-            "nullable": true
-          },
-          "patient": {
-            "$ref": "#/components/schemas/Patient"
           }
         },
         "additionalProperties": false
@@ -1523,6 +728,10 @@
             "nullable": true
           },
           "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
             "type": "string",
             "nullable": true
           },
@@ -1541,14 +750,10 @@
             "type": "string",
             "nullable": true
           },
-          "role": {
-            "type": "string",
-            "nullable": true
-          },
-          "patientPhones": {
+          "phones": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PatientPhones"
+              "type": "string"
             },
             "nullable": true
           },
@@ -1571,129 +776,6 @@
           "pastMedicalHistory": {
             "type": "string",
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "RefreshRequest": {
-        "required": [
-          "refreshToken"
-        ],
-        "type": "object",
-        "properties": {
-          "refreshToken": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "RegisterRequest": {
-        "required": [
-          "email",
-          "password"
-        ],
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "password": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ResendConfirmationEmailRequest": {
-        "required": [
-          "email"
-        ],
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ResetPasswordRequest": {
-        "required": [
-          "email",
-          "newPassword",
-          "resetCode"
-        ],
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "resetCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "newPassword": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TwoFactorRequest": {
-        "type": "object",
-        "properties": {
-          "enable": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "twoFactorCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "resetSharedKey": {
-            "type": "boolean"
-          },
-          "resetRecoveryCodes": {
-            "type": "boolean"
-          },
-          "forgetMachine": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false
-      },
-      "TwoFactorResponse": {
-        "required": [
-          "isMachineRemembered",
-          "isTwoFactorEnabled",
-          "recoveryCodesLeft",
-          "sharedKey"
-        ],
-        "type": "object",
-        "properties": {
-          "sharedKey": {
-            "type": "string",
-            "nullable": true
-          },
-          "recoveryCodesLeft": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "recoveryCodes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "isTwoFactorEnabled": {
-            "type": "boolean"
-          },
-          "isMachineRemembered": {
-            "type": "boolean"
           }
         },
         "additionalProperties": false

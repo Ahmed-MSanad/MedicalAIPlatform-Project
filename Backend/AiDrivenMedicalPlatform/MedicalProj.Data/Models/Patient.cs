@@ -17,7 +17,9 @@ namespace MedicalProj.Data.Models
         public string PastMedicalHistory { get; set; }
 
         //Navigation properties :
-        public ICollection<PatientPhones> PatientPhones { get; set; } = new List<PatientPhones>();
-        public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
+        public ICollection<PatientPhone> PatientPhones { get; set; } = new List<PatientPhone>(); // Patient(1:Optional) - PatientPhones(0..N:Mandatory)
+        public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>(); // Patient(1:Optional) - Appointment(0..N:Mandatory)
+        public ICollection<MedicalImage>? MedicalImages { get; set; } = new List<MedicalImage>(); // Patient(1:Optional) - MedicalImage(0..N:Mandatory)
+        public ICollection<Feedback>? Feedbacks { get; set; } = new List<Feedback>();
     }
 }

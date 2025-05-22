@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using MedicalProj.Data.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,9 +34,12 @@ namespace MedicalProj.Data.Contexts
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
-        public DbSet<PatientPhones> PatientPhones { get; set; }
-        public DbSet<DoctorPhones> DoctorPhones { get; set; }
-        public DbSet<AdminPhones> AdminPhones { get; set; }
+        public DbSet<PatientPhone> PatientPhones { get; set; }
+        public DbSet<DoctorPhone> DoctorPhones { get; set; }
+        public DbSet<AdminPhone> AdminPhones { get; set; }
         public DbSet<DoctorSchedule> DoctorSchedules { get; set; }
+        public DbSet<MedicalImage> MedicalImages { get; set; }
+        public DbSet<AiAnalysis> AiAnalyses { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
     }
 }

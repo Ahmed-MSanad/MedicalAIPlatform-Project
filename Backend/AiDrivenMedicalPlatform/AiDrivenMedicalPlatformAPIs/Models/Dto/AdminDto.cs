@@ -16,13 +16,13 @@ namespace AiDrivenMedicalPlatformAPIs.Models.Dto
         [PersonalData]
         public string Address { get; set; }
         [PersonalData]
-        public ICollection<AdminPhones> AdminPhones { get; set; } = new List<AdminPhones>();
+        public ICollection<string> AdminPhones { get; set; } = new List<string>();
         [PersonalData]
         public string IdentificationNumber { get; set; }
         [PersonalData]
         public string MedicalLicenseNumber { get; set; }
         [PersonalData]
         public string Specialisation { get; set; }
-        public byte[]? Image { get; set; }
+        public string? Image { get; set; }
     }
 }

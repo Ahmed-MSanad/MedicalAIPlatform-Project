@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace MedicalProj.Data.Models
 {
@@ -17,6 +12,7 @@ namespace MedicalProj.Data.Models
         public string Specialisation { get; set; }
 
         //Navigation properties :
-        public ICollection<AdminPhones> AdminPhones { get; set; } = new List<AdminPhones>();
+        public ICollection<AdminPhone> AdminPhones { get; set; } = new List<AdminPhone>();
+        public ICollection<Feedback>? Feedbacks { get; set; } = new List<Feedback>();
     }
 }
