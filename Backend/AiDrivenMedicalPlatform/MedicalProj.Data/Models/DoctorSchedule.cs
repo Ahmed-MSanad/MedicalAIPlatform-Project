@@ -4,7 +4,7 @@ namespace MedicalProj.Data.Models
 {
     public class DoctorSchedule
     {
-        public DayOfWeek Day { get; set; }
+        public string Day { get; set; }
 
         [Required]
         public TimeSpan From { get; set; }
@@ -12,6 +12,6 @@ namespace MedicalProj.Data.Models
         public TimeSpan To { get; set; }
         public string DoctorId { get; set; }
 
-        public Doctor Doctor { get; set; } // 1:Mandatory - 1:Mandatory
+        public Doctor? Doctor { get; set; } // 1:Mandatory - 1:Mandatory
     }
 }

@@ -14,4 +14,11 @@ export class DoctorService {
   updateDoctorSchedule(updatedSchedule: any){
     return this._http.put(environment.apiBaseURL + '/schedule', updatedSchedule)
   }
+
+  getDoctorProfile(){
+    return this._http.get(environment.apiBaseURL+'/profile/GetDoctorProfile');
+  }
+  updateDoctorProfile(updatedUser: any) {
+    return this._http.put(environment.apiBaseURL + '/profile/EditDoctorProfile', updatedUser);
+  }
 }

@@ -13,6 +13,9 @@ namespace MedicalProj.Data.Contexts.Configurations
             builder.HasOne(ds => ds.Doctor)
                    .WithOne(d => d.DoctorSchedule)
                    .HasForeignKey<DoctorSchedule>(ds => ds.DoctorId);
+
+            builder.HasIndex(d => d.DoctorId)
+                   .IsUnique(false);
         }
     }
 }

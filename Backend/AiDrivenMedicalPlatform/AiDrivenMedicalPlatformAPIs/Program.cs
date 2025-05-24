@@ -42,7 +42,9 @@ namespace AiDrivenMedicalPlatformAPIs
 
             app.MapGroup("/api")
                .MapIdentityUserEndPoints() // Registration + Login
-               .MapAuthorizationEndPoints();
+               .MapAuthorizationEndPoints()
+               .MapScheduleEndpoints();
+               
 
 
             app.Run();
