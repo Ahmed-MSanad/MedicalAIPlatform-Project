@@ -1,6 +1,6 @@
-﻿namespace MedicalProj.Data.Models
+﻿namespace AiDrivenMedicalPlatformAPIs.Models.Dto
 {
-    public class Feedback
+    public class FeedbackDto
     {
         public int FeedbackId { get; set; }
         public string Message { get; set; } = null!;
@@ -10,8 +10,6 @@
         public string? ResponseMessage { get; set; }
 
         public string PatientId { get; set; } = null!;
-        public Patient Patient { get; set; } = null!;
         public string? AdminId { get; set; } = null!;
-        public Admin Admin { get; set; } = null!;
     }
 }
