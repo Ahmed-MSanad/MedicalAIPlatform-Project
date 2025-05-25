@@ -7,10 +7,11 @@ import { AuthService } from '../../../Core/Services/auth.service';
 import { FormArray, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { DoctorService } from '../../../Core/Services/ForDoctor/doctor.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-doctor-profile',
-  imports: [GenderPipe, ReactiveFormsModule],
+  imports: [GenderPipe, ReactiveFormsModule,CurrencyPipe],
   templateUrl: './doctor-profile.component.html',
   styleUrl: './doctor-profile.component.scss'
 })
@@ -36,6 +37,7 @@ export class DoctorProfileComponent {
     identificationNumber: ['',[Validators.required]],
     medicalLicenseNumber: ['',[Validators.required]],
     workPlace: ['',[Validators.required]],
+    fee:[null,[Validators.required, Validators.min(0)]],
     image: [null as string | ArrayBuffer | null]
   });
 
@@ -45,6 +47,7 @@ export class DoctorProfileComponent {
   oldData: any;
   isLoading: boolean = false;
   imageSrc: string = '';
+  rate: number | null = null;
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -54,7 +57,7 @@ export class DoctorProfileComponent {
         console.log(res)
         const { doctorPhones, ...rest } = res;
         this.profileForm.patchValue(rest);
-
+        this.rate = res.rate;
         this.doctorPhones.clear();
         res.doctorPhones.forEach((phone: string) => {
           this.doctorPhones.push(this._formBuilder.control(phone, [

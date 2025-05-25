@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace MedicalProj.Data.Models
 {
@@ -12,6 +13,14 @@ namespace MedicalProj.Data.Models
         public string Specialisation { get; set; }
         [PersonalData]
         public string WorkPlace { get; set; }
+        [PersonalData]
+        [Range(0, double.MaxValue)]
+        public decimal Fee { get; set; }
+        [PersonalData]
+        [Range(1, 5)]
+        [DisplayFormat(DataFormatString = "{0:F1}")]
+        public decimal? Rate { get; set; }
+        public int TotalRating { get; set; } = 0;
 
         // Navigation properties :
         public ICollection<DoctorPhone> DoctorPhones { get; set; } = new List<DoctorPhone>(); // Doctor(1:Optional) - DoctorPhone(0..N:Mandatory)

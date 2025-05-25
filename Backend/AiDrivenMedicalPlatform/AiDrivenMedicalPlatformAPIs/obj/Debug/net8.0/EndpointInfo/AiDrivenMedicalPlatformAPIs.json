@@ -617,6 +617,18 @@
             "type": "string",
             "nullable": true
           },
+          "fee": {
+            "minimum": 0,
+            "type": "number",
+            "format": "double"
+          },
+          "rate": {
+            "maximum": 5,
+            "minimum": 1,
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
           "image": {
             "type": "string",
             "nullable": true
@@ -676,6 +688,10 @@
           "workPlace": {
             "type": "string",
             "nullable": true
+          },
+          "fee": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false

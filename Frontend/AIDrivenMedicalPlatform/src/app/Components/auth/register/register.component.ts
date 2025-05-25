@@ -56,6 +56,7 @@ export class RegisterComponent {
     medicalLicenseNumber: ['', [Validators.required]],
     specialisation: ['', [Validators.required]],
     workPlace: ['', [Validators.required]],
+    fee:[null,[Validators.required, Validators.min(0)]], 
     role: ['Patient', [Validators.required, Validators.pattern(/(Doctor|Admin|Patient)/)] ]
   }, {validators: [this.confirmThePassword]});
 
@@ -130,7 +131,7 @@ export class RegisterComponent {
       console.log("Medical License Number valid (Doctor):", this.registerForm.controls.medicalLicenseNumber.valid);
       console.log("Specialisation valid (Doctor):", this.registerForm.controls.specialisation.valid);
       console.log("Work Place valid (Doctor):", this.registerForm.controls.workPlace.valid);
-
+      console.log("Medical Examination valid (Doctor):",this.registerForm.controls.fee.valid);
       this.registerForm.markAllAsTouched();
     }
   }

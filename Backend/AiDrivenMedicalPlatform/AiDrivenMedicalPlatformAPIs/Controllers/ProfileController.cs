@@ -78,6 +78,8 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
                     MedicalLicenseNumber = userDetails?.MedicalLicenseNumber,
                     Specialisation = userDetails?.Specialisation,
                     WorkPlace = userDetails?.WorkPlace,
+                    Fee = userDetails?.Fee,
+                    Rate = userDetails?.Rate,
                 }
             );
         }
@@ -237,7 +239,7 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             doctor.MedicalLicenseNumber = updateRequest.MedicalLicenseNumber;
             doctor.Specialisation = updateRequest.Specialisation;
             doctor.WorkPlace = updateRequest.WorkPlace;
-
+            doctor.Fee = updateRequest.Fee;
 
 
 
