@@ -1,29 +1,17 @@
-
-using AiDrivenMedicalPlatformAPIs.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
-using Microsoft.AspNetCore.Http.HttpResults;
-using AiDrivenMedicalPlatformAPIs.Types;
-using System.Net;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
 using AiDrivenMedicalPlatformAPIs.Extensions;
 using AiDrivenMedicalPlatformAPIs.Controllers;
+using MedicalProj.Data.Contexts.Contracts.Interfaces;
+using MedicalProj.Data.Contexts.Contracts.Classes;
+using MedicalProj.Data.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace AiDrivenMedicalPlatformAPIs
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container =>
 
             builder.Services.AddControllers();
 
@@ -35,8 +23,11 @@ namespace AiDrivenMedicalPlatformAPIs
                             .AddIdentityAuth(builder.Configuration); // Adding Login Authentication Needed => ** AddIdentityAuth is an Extension Method **
 
 
+            builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+
             var app = builder.Build();
 
+            await SeedDbAsync(app);
             // Configure Swagger (the HTTP request pipeline) => ConfiguerSwaggerExplorer is a custom extension method => 
             app.ConfiguerSwaggerExplorer()
                .ConfigureCORS(builder.Configuration) // ConfigureCORS is a custom extension method => Config CORS
@@ -46,16 +37,24 @@ namespace AiDrivenMedicalPlatformAPIs
 
             app.MapControllers();
 
-            app.MapGroup("/api").MapIdentityApi<AppUser>();
+            //app.MapGroup("/api").MapIdentityApi<AppUser>();
 
-            
+
             app.MapGroup("/api")
                .MapIdentityUserEndPoints() // Registration + Login
-               .MapProfileEndpoints()
-               .MapAuthorizationEndPoints();
+               .MapAuthorizationEndPoints()
+               .MapScheduleEndpoints();
+               
 
 
             app.Run();
+        }
+
+        static async Task SeedDbAsync(WebApplication app)
+        {
+            using var scope = app.Services.CreateScope();
+            var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+            await dbInitializer.InitializeAsync();
         }
     }
 }

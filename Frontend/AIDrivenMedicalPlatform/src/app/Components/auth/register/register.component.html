@@ -274,57 +274,113 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-full md:w-1/2 px-5">
-                                <label for="Occupation" class="text-white">Occupation</label>
-                                <div class="mb-3">
-                                    <div class="relative">
-                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-briefcase"></i></span>
-                                        <input formControlName="occupation" id="Occupation" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Doctor">
-                                    </div>
-                                    <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.occupation.touched || registerForm.controls.occupation.dirty) && registerForm.controls.occupation.getError('required')">
-                                        Occupation is required !!
-                                    </div>
-                                </div>
-                            </div>
-    
-                            <div class="w-full md:w-1/2 px-5">
-                                <label for="EmergencyContactName" class="text-white">Emergency Contact Name</label>
-                                <div class="mb-3">
-                                    <div class="relative">
-                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-id-badge"></i></span>
-                                        <input formControlName="emergencyContactName" id="EmergencyContactName" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Ahmed">
-                                    </div>
-                                    <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.emergencyContactName.touched || registerForm.controls.emergencyContactName.dirty) && registerForm.controls.emergencyContactName.getError('required')">
-                                        Emergency Contact Name is required !!
+                            @if(registerForm.controls.role.value === "Patient"){
+                                <div class="w-full md:w-1/2 px-5">
+                                    <label for="Occupation" class="text-white">Occupation</label>
+                                    <div class="mb-3">
+                                        <div class="relative">
+                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-briefcase"></i></span>
+                                            <input formControlName="occupation" id="Occupation" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Doctor">
+                                        </div>
+                                        <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.occupation.touched || registerForm.controls.occupation.dirty) && registerForm.controls.occupation.getError('required')">
+                                            Occupation is required !!
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="w-full md:w-1/2 px-5">
-                                <label for="EmergencyContactNumber" class="text-white">Emergency Contact Number</label>
-                                <div class="mb-3">
-                                    <div class="relative">
-                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-phone"></i></span>
-                                        <input formControlName="emergencyContactNumber" type="tel" [value]="registerForm.controls.emergencyContactNumber" id="EmergencyContactNumber" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="+01">
-                                    </div>
-                                    <div class="bg-red-300 p-4 rounded-lg" 
-                                            *ngIf="
-                                                (registerForm.controls.emergencyContactNumber.touched || 
-                                                registerForm.controls.emergencyContactNumber.dirty) &&
-                                                registerForm.controls.emergencyContactNumber.hasError('required')
-                                            ">
-                                        Emergency Contact Number is Required !!
-                                    </div>
-                                    <div class="bg-red-300 p-4 rounded-lg" 
-                                            *ngIf="
-                                                (registerForm.controls.emergencyContactNumber.touched || 
-                                                registerForm.controls.emergencyContactNumber.dirty) &&
-                                                registerForm.controls.emergencyContactNumber.hasError('pattern')
-                                            ">
-                                        Emergency Contact Number Format is wrong !!
-                                    </div>
-                                </div>
-                            </div>
 
+                                <div class="w-full md:w-1/2 px-5">
+                                    <label for="EmergencyContactName" class="text-white">Emergency Contact Name</label>
+                                    <div class="mb-3">
+                                        <div class="relative">
+                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-id-badge"></i></span>
+                                            <input formControlName="emergencyContactName" id="EmergencyContactName" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Ahmed">
+                                        </div>
+                                        <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.emergencyContactName.touched || registerForm.controls.emergencyContactName.dirty) && registerForm.controls.emergencyContactName.getError('required')">
+                                            Emergency Contact Name is required !!
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="w-full md:w-1/2 px-5">
+                                    <label for="EmergencyContactNumber" class="text-white">Emergency Contact Number</label>
+                                    <div class="mb-3">
+                                        <div class="relative">
+                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-phone"></i></span>
+                                            <input formControlName="emergencyContactNumber" type="tel" [value]="registerForm.controls.emergencyContactNumber" id="EmergencyContactNumber" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="+01">
+                                        </div>
+                                        <div class="bg-red-300 p-4 rounded-lg" 
+                                                *ngIf="
+                                                    (registerForm.controls.emergencyContactNumber.touched || 
+                                                    registerForm.controls.emergencyContactNumber.dirty) &&
+                                                    registerForm.controls.emergencyContactNumber.hasError('required')
+                                                ">
+                                            Emergency Contact Number is Required !!
+                                        </div>
+                                        <div class="bg-red-300 p-4 rounded-lg" 
+                                                *ngIf="
+                                                    (registerForm.controls.emergencyContactNumber.touched || 
+                                                    registerForm.controls.emergencyContactNumber.dirty) &&
+                                                    registerForm.controls.emergencyContactNumber.hasError('pattern')
+                                                ">
+                                            Emergency Contact Number Format is wrong !!
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if(registerForm.controls.role.value === "Admin" || registerForm.controls.role.value === "Doctor"){
+                                <div class="w-full md:w-1/2 px-5">
+                                    <label for="identificationNumber" class="text-white">Identification Number</label>
+                                    <div class="mb-3">
+                                        <div class="relative">
+                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
+                                            <input formControlName="identificationNumber" id="identificationNumber" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="ID123456789">
+                                        </div>
+                                        <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
+                                            Identification Number is required !!
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="w-full md:w-1/2 px-5">
+                                    <label for="medicalLicenseNumber" class="text-white">MedicalLicense Number</label>
+                                    <div class="mb-3">
+                                        <div class="relative">
+                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
+                                            <input formControlName="medicalLicenseNumber" id="medicalLicenseNumber" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="ID123456789">
+                                        </div>
+                                        <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
+                                            MedicalLicense Number is required !!
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="w-full md:w-1/2 px-5">
+                                    <label for="specialisation" class="text-white">Specialization</label>
+                                    <div class="mb-3">
+                                        <div class="relative">
+                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
+                                            <input formControlName="specialisation" id="specialisation" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Write your specialization here">
+                                        </div>
+                                        <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
+                                            Specialization is required !!
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if(registerForm.controls.role.value === "Doctor"){
+                                <div class="w-full md:w-1/2 px-5">
+                                    <label for="workPlace" class="text-white">Work Place</label>
+                                    <div class="mb-3">
+                                        <div class="relative">
+                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
+                                            <input formControlName="workPlace" id="workPlace" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Write your workPlace here">
+                                        </div>
+                                        <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
+                                            Work Place is required !!
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                             <div class="w-full md:w-1/2 px-5">
                                 <label for="role" class="text-white">Role</label>
                                 <div class="mb-3">
@@ -354,36 +410,35 @@
                                     </div>
                                 </div>
                             </div>
-    
                         </div>
     
-                        <div class="mb-4 text-white font-bold">
-                            <h2 class="text-2xl">Medical Information</h2>
-                        </div>
-    
-                        <div class="flex flex-wrap space-y-5">
-    
-                            <div class="w-full md:w-1/2 px-5">
-                                <label for="familyMedicalHistory" class="text-white">Family Medical History(if relevant)</label>
-                                <div class="mb-3">
-                                    <div class="relative">
-                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-briefcase-medical"></i></span>
-                                        <input formControlName="familyMedicalHistory" type="text" [value]="registerForm.controls.familyMedicalHistory" id="familyMedicalHistory" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Mother had brain cancer, Father has hypertension">
+                        
+                        @if(registerForm.controls.role.value === "Patient"){
+                            <div class="mb-4 text-white font-bold">
+                                <h2 class="text-2xl">Medical Information</h2>
+                            </div>
+                            <div class="flex flex-wrap space-y-5">
+                                <div class="w-full md:w-1/2 px-5">
+                                    <label for="familyMedicalHistory" class="text-white">Family Medical History(if relevant)</label>
+                                    <div class="mb-3">
+                                        <div class="relative">
+                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-briefcase-medical"></i></span>
+                                            <input formControlName="familyMedicalHistory" type="text" [value]="registerForm.controls.familyMedicalHistory" id="familyMedicalHistory" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Mother had brain cancer, Father has hypertension">
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="w-full md:w-1/2 px-5">
+                                    <label for="pastMedicalHistory" class="text-white">Past Medical History</label>
+                                    <div class="mb-3">
+                                        <div class="relative">
+                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-briefcase-medical"></i></span>
+                                            <input formControlName="pastMedicalHistory" type="text" [value]="registerForm.controls.pastMedicalHistory" id="pastMedicalHistory" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Appendectomy in 2015 Asthma diagnosis in childhood">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-    
-                            <div class="w-full md:w-1/2 px-5">
-                                <label for="pastMedicalHistory" class="text-white">Past Medical History</label>
-                                <div class="mb-3">
-                                    <div class="relative">
-                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-briefcase-medical"></i></span>
-                                        <input formControlName="pastMedicalHistory" type="text" [value]="registerForm.controls.pastMedicalHistory" id="pastMedicalHistory" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Appendectomy in 2015 Asthma diagnosis in childhood">
-                                    </div>
-                                </div>
-                            </div>
-    
-                        </div>
+                        }
     
                         <div class="w-full">
                             <button class="w-full bg-gradient-to-r from-blue-900 via-balck to-gray-800 rounded-lg text-white p-2 cursor-pointer">Go ahead 😃</button>

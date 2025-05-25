@@ -1,26 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Project\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\",
+  "WorkspaceRootPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|e:\\project\\medicalaiplatform-project\\backend\\aidrivenmedicalplatform\\aidrivenmedicalplatformapis\\controllers\\profileendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|solutionrelative:aidrivenmedicalplatformapis\\controllers\\profileendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|e:\\project\\medicalaiplatform-project\\backend\\aidrivenmedicalplatform\\aidrivenmedicalplatformapis\\models\\dto\\appuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|solutionrelative:aidrivenmedicalplatformapis\\models\\dto\\appuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|e:\\project\\medicalaiplatform-project\\backend\\aidrivenmedicalplatform\\aidrivenmedicalplatformapis\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|solutionrelative:aidrivenmedicalplatformapis\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|e:\\project\\medicalaiplatform-project\\backend\\aidrivenmedicalplatform\\aidrivenmedicalplatformapis\\aidrivenmedicalplatformapis.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|solutionrelative:aidrivenmedicalplatformapis\\aidrivenmedicalplatformapis.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|e:\\project\\medicalaiplatform-project\\backend\\aidrivenmedicalplatform\\aidrivenmedicalplatformapis\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|solutionrelative:aidrivenmedicalplatformapis\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|d:\\projects\\medicalapp\\medicalaiplatform-project\\backend\\aidrivenmedicalplatform\\aidrivenmedicalplatformapis\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|solutionrelative:aidrivenmedicalplatformapis\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,72 +14,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\Project\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Program.cs",
-              "RelativeDocumentMoniker": "AiDrivenMedicalPlatformAPIs\\Program.cs",
-              "ToolTip": "E:\\Project\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Program.cs",
-              "RelativeToolTip": "AiDrivenMedicalPlatformAPIs\\Program.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAAADYAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T21:32:40.239Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AiDrivenMedicalPlatformAPIs.csproj",
-              "DocumentMoniker": "E:\\Project\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj",
-              "RelativeDocumentMoniker": "AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj",
-              "ToolTip": "E:\\Project\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj",
-              "RelativeToolTip": "AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-01T21:16:39.397Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ProfileEndpoints.cs",
-              "DocumentMoniker": "E:\\Project\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Controllers\\ProfileEndpoints.cs",
-              "RelativeDocumentMoniker": "AiDrivenMedicalPlatformAPIs\\Controllers\\ProfileEndpoints.cs",
-              "ToolTip": "E:\\Project\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Controllers\\ProfileEndpoints.cs",
-              "RelativeToolTip": "AiDrivenMedicalPlatformAPIs\\Controllers\\ProfileEndpoints.cs",
-              "ViewState": "AgIAAE8AAAAAAAAAAAAAAFMAAABSAAAAAAAAAA==",
+              "Title": "ProfileController.cs",
+              "DocumentMoniker": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Controllers\\ProfileController.cs",
+              "RelativeDocumentMoniker": "AiDrivenMedicalPlatformAPIs\\Controllers\\ProfileController.cs",
+              "ToolTip": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Controllers\\ProfileController.cs",
+              "RelativeToolTip": "AiDrivenMedicalPlatformAPIs\\Controllers\\ProfileController.cs",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAgwGcAAABYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T18:22:24.529Z",
+              "WhenOpened": "2025-05-24T10:07:10.283Z",
               "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1417,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AppUserDto.cs",
-              "DocumentMoniker": "E:\\Project\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Models\\Dto\\AppUserDto.cs",
-              "RelativeDocumentMoniker": "AiDrivenMedicalPlatformAPIs\\Models\\Dto\\AppUserDto.cs",
-              "ToolTip": "E:\\Project\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Models\\Dto\\AppUserDto.cs",
-              "RelativeToolTip": "AiDrivenMedicalPlatformAPIs\\Models\\Dto\\AppUserDto.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAAB0AAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T19:01:53.773Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AppUser.cs",
-              "DocumentMoniker": "E:\\Project\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Models\\AppUser.cs",
-              "RelativeDocumentMoniker": "AiDrivenMedicalPlatformAPIs\\Models\\AppUser.cs",
-              "ToolTip": "E:\\Project\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Models\\AppUser.cs",
-              "RelativeToolTip": "AiDrivenMedicalPlatformAPIs\\Models\\AppUser.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAAACAAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T19:02:50.204Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1908,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             }
           ]
         }

@@ -52,7 +52,11 @@ export class RegisterComponent {
                                   Validators.pattern(/^(011|010|015|012)[0-9]{8}$/)]],
     familyMedicalHistory: [''],
     pastMedicalHistory: [''],
-    role: ['', [Validators.required, Validators.pattern(/(Doctor|Admin|Patient)/)] ]
+    identificationNumber: ['', [Validators.required]],
+    medicalLicenseNumber: ['', [Validators.required]],
+    specialisation: ['', [Validators.required]],
+    workPlace: ['', [Validators.required]],
+    role: ['Patient', [Validators.required, Validators.pattern(/(Doctor|Admin|Patient)/)] ]
   }, {validators: [this.confirmThePassword]});
 
 
@@ -71,19 +75,20 @@ export class RegisterComponent {
   private readonly _toastr = inject(ToastrService);
   private readonly _route = inject(Router);
   onSubmitRegistration(){
-    if(this.registerForm.valid){
+    if(
+      (this.registerForm.controls.fullName.valid && this.registerForm.controls.email.valid && this.registerForm.controls.password.valid && this.registerForm.controls.confirmPassword.valid && this.registerForm.controls.gender.valid && this.registerForm.controls.address.valid && this.registerForm.controls.dateOfBirth.valid && this.registerForm.controls.phoneNumber.valid && this.registerForm.controls.role.valid) &&
+      (this.registerForm.controls.role.value === 'Patient' && this.registerForm.controls.occupation.valid && this.registerForm.controls.emergencyContactName.valid && this.registerForm.controls.emergencyContactNumber.valid && this.registerForm.controls.familyMedicalHistory.valid && this.registerForm.controls.pastMedicalHistory.valid) ||
+      (this.registerForm.controls.role.value === 'Doctor' && this.registerForm.controls.identificationNumber.valid && this.registerForm.controls.medicalLicenseNumber.valid && this.registerForm.controls.specialisation.valid && this.registerForm.controls.workPlace.valid) ||
+      (this.registerForm.controls.role.value === 'Admin' && this.registerForm.controls.identificationNumber.valid && this.registerForm.controls.medicalLicenseNumber.valid && this.registerForm.controls.specialisation.valid)
+    ){
       console.log(this.registerForm.value);
 
       this._authService$.createUser(this.registerForm.value).subscribe({
         next:(res:any) =>{
-          if(res.succeeded){
-            this.registerForm.reset();
-            this._toastr.success("New User is created", "Registration Successful");
-            this._route.navigateByUrl('login');
-          }
-          else{
-            console.log('response: ',res);
-          }
+          this.registerForm.reset();
+          this._toastr.success("New User is created", "Registration Successful");
+          this._route.navigateByUrl('login');
+          console.log('response: ',res);
         },
         error:err =>{
           if(err.error.errors){
@@ -108,6 +113,24 @@ export class RegisterComponent {
       });
     }
     else{
+      console.log(this.registerForm.errors);
+      
+      console.log("Full Name valid:", this.registerForm.controls.fullName.valid);
+      console.log("Email valid:", this.registerForm.controls.email.valid);
+      console.log("Password valid:", this.registerForm.controls.password.valid);
+      console.log("Confirm Password valid:", this.registerForm.controls.confirmPassword.valid);
+      console.log("Gender valid:", this.registerForm.controls.gender.valid);
+      console.log("Address valid:", this.registerForm.controls.address.valid);
+      console.log("Date of Birth valid:", this.registerForm.controls.dateOfBirth.valid);
+      console.log("Phone Number valid:", this.registerForm.controls.phoneNumber.valid);
+      console.log("Role valid:", this.registerForm.controls.role.valid);
+
+      console.log("Role is 'Doctor':", this.registerForm.controls.role.value === 'Doctor');
+      console.log("Identification Number valid (Doctor):", this.registerForm.controls.identificationNumber.valid);
+      console.log("Medical License Number valid (Doctor):", this.registerForm.controls.medicalLicenseNumber.valid);
+      console.log("Specialisation valid (Doctor):", this.registerForm.controls.specialisation.valid);
+      console.log("Work Place valid (Doctor):", this.registerForm.controls.workPlace.valid);
+
       this.registerForm.markAllAsTouched();
     }
   }
