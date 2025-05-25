@@ -42,3 +42,92 @@ testem.log
 Thumbs.db
 
 .vs/
+
+# =====================
+# .NET / C# BACKEND
+# =====================
+bin/
+obj/
+out/
+*.dll
+*.exe
+*.pdb
+*.appx
+*.vsix
+*.user
+*.suo
+*.cache
+*.log
+*.dbmdl
+*.bak
+*.sql
+*.mdf
+*.ldf
+
+# Visual Studio
+.vscode/
+.vs/
+*.csproj.user
+*.csproj.FileListAbsolute.txt
+
+# Rider
+.idea/
+
+# NuGet packages
+*.nupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# dotnet CLI
+project.assets.json
+
+# User secrets
+secrets.json
+*.secret*
+
+# Azure Functions
+local.settings.json
+
+# Temporary files
+*.tmp
+*.temp
+
+# Others
+_ReSharper*/
+*.ncrunch*
+*.coverage
+*.orig
+
+# =====================
+# Angular FRONTEND
+# =====================
+/dist/
+/build/
+/node_modules/
+/.tmp/
+/.angular/
+/.env
+.env.*.local
+
+# Angular build cache
+/.angular/cache/
+/.angular/config.json
+
+# TypeScript & Webpack
+*.tsbuildinfo
+webpack-stats.json
+
+# Test coverage
+/coverage/
+
+# npm logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor & OS files
+.DS_Store
+Thumbs.db
+
+# End of file

@@ -1,0 +1,135 @@
+<!-- Displaying Feedbacks -->
+<div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 p-6">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                Customer Feedback
+            </h1>
+            <button type="button" class="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 cursor-pointer text-white rounded-lg shadow-lg" (click)="sendPatientFeedback()" [appHideIfClaimsNotMet]="claimReq.patientOnly">Send you're feedback now 😊</button>
+            <p class="text-gray-600 text-lg">Let's see What our customers are saying about us 👋🏼</p>
+        </div>
+
+        <!-- Feedback Cards -->
+        <div class="space-y-6">
+
+            @for(feedback of feedbacks ; track feedback.feedbackId){
+                <div
+                    [id]="feedback.feedbackId"
+                    class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+                >
+                    <div class="flex justify-end">
+                        <button (click)="removeFeedback(feedback.feedbackId)" type="button" class="cursor-pointer m-1 px-4 py-1 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition" aria-label="Delete feedback" [appHideIfClaimsNotMet]="claimReq.AdminAndPatient">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                    <!-- Card Header -->
+                    <div class="p-6 border-l-4" [ngClass]="getBorderColor(feedback.rating)">
+                    
+                    <!-- Rating and Date Row -->
+                    <div class="flex flex-wrap items-center justify-between mb-4">
+                        <div class="flex items-center gap-3 px-4 py-2 rounded-full border" [ngClass]="getRatingBg(feedback.rating)">
+                            <div class="flex items-center gap-1">
+                                @for(filled of getStarArray(feedback.rating); track $index){
+                                    <i 
+                                        class="fa-solid w-4 h-4"
+                                        [ngClass]="filled ? 'fa-star ' + getRatingColor(feedback.rating) : 'fa-star text-gray-300'"
+                                    >
+                                    </i>
+                                }
+                            </div>
+                            <span class="font-semibold text-sm" [ngClass]="getRatingColor(feedback.rating)">
+                                {{ feedback.rating }}.0
+                            </span>
+                        </div>
+                        
+                        <div class="flex items-center gap-2 text-gray-500 text-sm">
+                            <i class="fa-solid fa-calendar"></i>
+                            <span>Submitted: {{ feedback.submittedAt | date }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Message -->
+                    <div class="mb-4">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-message"></i>
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-2">Customer Feedback</h3>
+                            <p class="text-gray-700 leading-relaxed text-sm md:text-base">
+                            {{ feedback.message }}
+                            </p>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- Response Section -->
+                    @if(feedback.responseMessage){
+                        <div class="mt-6 pt-6 border-t border-gray-100">
+                            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-100">
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-reply"></i>
+                                <div class="flex-1">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-blue-800">Our Response</h4>
+                                    <div class="flex items-center gap-1.5 text-blue-600 text-xs">
+                                    <i class="fa-solid fa-clock"></i>
+                                    <span>{{ feedback.respondedAt! | date }}</span>
+                                    </div>
+                                </div>
+                                <p class="text-blue-700 text-sm md:text-base leading-relaxed">
+                                    {{ feedback.responseMessage }}
+                                </p>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    }
+                    @else {
+                        <!-- Pending Response Template -->
+                        <div class="mt-6 pt-6 border-t border-gray-100">
+                        <div class="bg-yellow-50 rounded-xl p-4 border border-yellow-200">
+                            <div class="flex items-center gap-3 justify-between">
+                                <div>
+                                    <i class="far fa-clock text-yellow-600"></i>
+                                    <span class="text-yellow-800 font-medium">
+                                        Response pending - We'll get back to you soon!
+                                    </span>
+                                </div>
+                                <div>
+                                    <button (click)="sendAdminRespond(feedback.feedbackId)" [appHideIfClaimsNotMet]="claimReq.adminOnly" class="px-2 md:px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 cursor-pointer text-white rounded-lg shadow-lg">Respond Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    }
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Stats Section -->
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100 text-center">
+                <div class="text-3xl font-bold text-blue-600 mb-2">
+                {{ getTotalReviews() }}
+                </div>
+                <div class="text-gray-600 font-medium">Total Reviews</div>
+            </div>
+            
+            <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100 text-center">
+                <div class="text-3xl font-bold text-green-600 mb-2">
+                {{ getAverageRating() }}
+                </div>
+                <div class="text-gray-600 font-medium">Average Rating</div>
+            </div>
+            
+            <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100 text-center">
+                <div class="text-3xl font-bold text-purple-600 mb-2">
+                {{ getResponseRate() }}%
+                </div>
+                <div class="text-gray-600 font-medium">Response Rate</div>
+            </div>
+        </div>
+    </div>
+</div>
+
