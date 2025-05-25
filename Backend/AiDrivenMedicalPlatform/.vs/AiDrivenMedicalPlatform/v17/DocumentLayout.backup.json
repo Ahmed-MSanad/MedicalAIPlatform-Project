@@ -1,14 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Graduation Project\\Plateform\\Local\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\",
+  "WorkspaceRootPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|d:\\graduation project\\plateform\\local\\medicalaiplatform-project\\backend\\aidrivenmedicalplatform\\aidrivenmedicalplatformapis\\userdetails.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|solutionrelative:aidrivenmedicalplatformapis\\userdetails.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|d:\\graduation project\\plateform\\local\\medicalaiplatform-project\\backend\\aidrivenmedicalplatform\\aidrivenmedicalplatformapis\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|solutionrelative:aidrivenmedicalplatformapis\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|d:\\projects\\medicalapp\\medicalaiplatform-project\\backend\\aidrivenmedicalplatform\\aidrivenmedicalplatformapis\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|solutionrelative:aidrivenmedicalplatformapis\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,27 +23,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "userDetails.json",
-              "DocumentMoniker": "D:\\Graduation Project\\Plateform\\Local\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\userDetails.json",
-              "RelativeDocumentMoniker": "AiDrivenMedicalPlatformAPIs\\userDetails.json",
-              "ToolTip": "D:\\Graduation Project\\Plateform\\Local\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\userDetails.json",
-              "RelativeToolTip": "AiDrivenMedicalPlatformAPIs\\userDetails.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-22T11:10:52.799Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Graduation Project\\Plateform\\Local\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Program.cs",
-              "RelativeDocumentMoniker": "AiDrivenMedicalPlatformAPIs\\Program.cs",
-              "ToolTip": "D:\\Graduation Project\\Plateform\\Local\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Program.cs",
-              "RelativeToolTip": "AiDrivenMedicalPlatformAPIs\\Program.cs",
-              "ViewState": "AgIAACIAAACA//////8fwCoAAAAgAAAAAAAAAA==",
+              "Title": "ProfileController.cs",
+              "DocumentMoniker": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Controllers\\ProfileController.cs",
+              "RelativeDocumentMoniker": "AiDrivenMedicalPlatformAPIs\\Controllers\\ProfileController.cs",
+              "ToolTip": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Controllers\\ProfileController.cs",
+              "RelativeToolTip": "AiDrivenMedicalPlatformAPIs\\Controllers\\ProfileController.cs",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAgwGcAAABYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T17:01:29.916Z",
+              "WhenOpened": "2025-05-24T10:07:10.283Z",
               "EditorCaption": ""
             }
           ]

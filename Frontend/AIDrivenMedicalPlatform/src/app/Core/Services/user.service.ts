@@ -9,15 +9,8 @@ export class UserService {
 
   constructor(private _http : HttpClient){}
 
-  getUserProfile(){
-    return this._http.get(environment.apiBaseURL+'/profile');
+deleteUserProfile() {
+    return this._http.delete(environment.apiBaseURL + '/profile/DeleteUserProfile');
   }
-  updateUserProfile(updatedUser: any) {
-    return this._http.put(environment.apiBaseURL + '/profile', updatedUser);
-  }
-  deleteUserProfile() {
-    return this._http.delete(environment.apiBaseURL + '/profile');
-  }
-
 
 }

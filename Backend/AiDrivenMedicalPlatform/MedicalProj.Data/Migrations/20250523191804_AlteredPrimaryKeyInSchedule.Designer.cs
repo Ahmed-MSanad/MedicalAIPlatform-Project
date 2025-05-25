@@ -4,6 +4,7 @@ using MedicalProj.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalProj.Data.Migrations
 {
     [DbContext(typeof(MedicalDbContext))]
-    partial class MedicalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250523191804_AlteredPrimaryKeyInSchedule")]
+    partial class AlteredPrimaryKeyInSchedule
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -223,8 +226,8 @@ namespace MedicalProj.Data.Migrations
                     b.Property<string>("DoctorId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Day")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Day")
+                        .HasColumnType("int");
 
                     b.Property<TimeSpan>("From")
                         .HasColumnType("time");
@@ -232,9 +235,7 @@ namespace MedicalProj.Data.Migrations
                     b.Property<TimeSpan>("To")
                         .HasColumnType("time");
 
-                    b.HasKey("DoctorId", "Day");
-
-                    b.HasIndex("DoctorId");
+                    b.HasKey("DoctorId");
 
                     b.ToTable("DoctorSchedules");
                 });
@@ -248,6 +249,7 @@ namespace MedicalProj.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeedbackId"));
 
                     b.Property<string>("AdminId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Message")
@@ -261,10 +263,11 @@ namespace MedicalProj.Data.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("RespondedAt")
+                    b.Property<DateTime>("RespondedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ResponseMessage")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("SubmittedAt")
@@ -596,7 +599,8 @@ namespace MedicalProj.Data.Migrations
                     b.HasOne("MedicalProj.Data.Models.Admin", "Admin")
                         .WithMany("Feedbacks")
                         .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.HasOne("MedicalProj.Data.Models.Patient", "Patient")
                         .WithMany("Feedbacks")

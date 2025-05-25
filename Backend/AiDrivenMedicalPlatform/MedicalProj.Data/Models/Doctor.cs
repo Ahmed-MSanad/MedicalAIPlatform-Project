@@ -18,5 +18,10 @@ namespace MedicalProj.Data.Models
         public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>(); // Doctor(1:Optional) - Appointment(0..N:Mandatory)
         public DoctorSchedule DoctorSchedule { get; set; } = null!; // Doctor(1:Mandatory) - DoctorSchedule(1:Mandatory)
         public ICollection<MedicalImage>? MedicalImages { get; set; } = new List<MedicalImage>(); // Doctor(1:Optional) - MedicalImage(0..N:Mandatory)
+
+        public static implicit operator Doctor(ValueTask<Doctor?> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
