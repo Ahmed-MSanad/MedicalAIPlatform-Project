@@ -34,7 +34,9 @@ export const routes: Routes = [
 
         {path: 'PatientProfile', component: PatientProfileComponent, data: {claimReq : claimReq.patientOnly}},
         {path: 'PatientDashboard', component: PatientDashboardComponent, data: {claimReq : claimReq.patientOnly}},
-        {path: 'forbidden', component: ForbiddenComponent}
+        {path: 'forbidden', component: ForbiddenComponent},
+
+        {path: "feedback", loadComponent: () => import("./Components/feedback/feedback.component").then((c) => c.FeedbackComponent) }
     ]},
     {path: "**", component: NotFoundComponent }
 ];

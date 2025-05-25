@@ -113,24 +113,6 @@ export class RegisterComponent {
       });
     }
     else{
-      console.log(this.registerForm.errors);
-      
-      console.log("Full Name valid:", this.registerForm.controls.fullName.valid);
-      console.log("Email valid:", this.registerForm.controls.email.valid);
-      console.log("Password valid:", this.registerForm.controls.password.valid);
-      console.log("Confirm Password valid:", this.registerForm.controls.confirmPassword.valid);
-      console.log("Gender valid:", this.registerForm.controls.gender.valid);
-      console.log("Address valid:", this.registerForm.controls.address.valid);
-      console.log("Date of Birth valid:", this.registerForm.controls.dateOfBirth.valid);
-      console.log("Phone Number valid:", this.registerForm.controls.phoneNumber.valid);
-      console.log("Role valid:", this.registerForm.controls.role.valid);
-
-      console.log("Role is 'Doctor':", this.registerForm.controls.role.value === 'Doctor');
-      console.log("Identification Number valid (Doctor):", this.registerForm.controls.identificationNumber.valid);
-      console.log("Medical License Number valid (Doctor):", this.registerForm.controls.medicalLicenseNumber.valid);
-      console.log("Specialisation valid (Doctor):", this.registerForm.controls.specialisation.valid);
-      console.log("Work Place valid (Doctor):", this.registerForm.controls.workPlace.valid);
-
       this.registerForm.markAllAsTouched();
     }
   }
