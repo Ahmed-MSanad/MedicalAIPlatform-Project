@@ -94,6 +94,11 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
                 return Results.BadRequest("Medical License number and Specialisation name are required for doctors.");
             }
 
+            if(doctorRegistrationModel.Fee < 0)
+            {
+                return Results.BadRequest("Medical Examination Fees must be 0 or more");
+            }
+
             AppUser user;
             user = new Doctor
             {
@@ -107,6 +112,7 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
                 MedicalLicenseNumber = doctorRegistrationModel.MedicalLicenseNumber,
                 Specialisation = doctorRegistrationModel.Specialisation,
                 WorkPlace = doctorRegistrationModel.WorkPlace,
+                Fee = doctorRegistrationModel.Fee,
                 DoctorPhones = doctorRegistrationModel.Phones.Select(phone => new DoctorPhone
                 {
                     Phone = phone,
@@ -272,6 +278,7 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
         public string MedicalLicenseNumber { get; set; }
         public string Specialisation { get; set; }
         public string WorkPlace { get; set; }
+        public decimal Fee { get; set; }
     }
 
     public class AdminRegistrationModel : UserRegistrationModel

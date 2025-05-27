@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|d:\\projects\\medicalapp\\medicalaiplatform-project\\backend\\aidrivenmedicalplatform\\aidrivenmedicalplatformapis\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|solutionrelative:aidrivenmedicalplatformapis\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|d:\\projects\\medicalapp\\medicalaiplatform-project\\backend\\aidrivenmedicalplatform\\aidrivenmedicalplatformapis\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|solutionrelative:aidrivenmedicalplatformapis\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|d:\\projects\\medicalapp\\medicalaiplatform-project\\backend\\aidrivenmedicalplatform\\aidrivenmedicalplatformapis\\models\\dto\\appointmentinfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|solutionrelative:aidrivenmedicalplatformapis\\models\\dto\\appointmentinfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|d:\\projects\\medicalapp\\medicalaiplatform-project\\backend\\aidrivenmedicalplatform\\aidrivenmedicalplatformapis\\models\\dto\\doctorinfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|solutionrelative:aidrivenmedicalplatformapis\\models\\dto\\doctorinfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6164DAD-260E-48AE-9800-03DC7259FFF7}|MedicalProj.Data\\MedicalProj.Data.csproj|d:\\projects\\medicalapp\\medicalaiplatform-project\\backend\\aidrivenmedicalplatform\\medicalproj.data\\models\\doctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6164DAD-260E-48AE-9800-03DC7259FFF7}|MedicalProj.Data\\MedicalProj.Data.csproj|solutionrelative:medicalproj.data\\models\\doctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6164DAD-260E-48AE-9800-03DC7259FFF7}|MedicalProj.Data\\MedicalProj.Data.csproj|d:\\projects\\medicalapp\\medicalaiplatform-project\\backend\\aidrivenmedicalplatform\\medicalproj.data\\migrations\\20250526190238_addedcolumnnumberofraters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6164DAD-260E-48AE-9800-03DC7259FFF7}|MedicalProj.Data\\MedicalProj.Data.csproj|solutionrelative:medicalproj.data\\migrations\\20250526190238_addedcolumnnumberofraters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,15 +38,64 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProfileController.cs",
-              "DocumentMoniker": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Controllers\\ProfileController.cs",
-              "RelativeDocumentMoniker": "AiDrivenMedicalPlatformAPIs\\Controllers\\ProfileController.cs",
-              "ToolTip": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Controllers\\ProfileController.cs",
-              "RelativeToolTip": "AiDrivenMedicalPlatformAPIs\\Controllers\\ProfileController.cs",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAgwGcAAABYAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "DoctorInfoDto.cs",
+              "DocumentMoniker": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Models\\Dto\\DoctorInfoDto.cs",
+              "RelativeDocumentMoniker": "AiDrivenMedicalPlatformAPIs\\Models\\Dto\\DoctorInfoDto.cs",
+              "ToolTip": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Models\\Dto\\DoctorInfoDto.cs",
+              "RelativeToolTip": "AiDrivenMedicalPlatformAPIs\\Models\\Dto\\DoctorInfoDto.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAoAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-24T10:07:10.283Z",
+              "WhenOpened": "2025-05-26T20:52:58.769Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "20250526190238_AddedColumnNumberOfRaters.cs",
+              "DocumentMoniker": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\MedicalProj.Data\\Migrations\\20250526190238_AddedColumnNumberOfRaters.cs",
+              "RelativeDocumentMoniker": "MedicalProj.Data\\Migrations\\20250526190238_AddedColumnNumberOfRaters.cs",
+              "ToolTip": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\MedicalProj.Data\\Migrations\\20250526190238_AddedColumnNumberOfRaters.cs",
+              "RelativeToolTip": "MedicalProj.Data\\Migrations\\20250526190238_AddedColumnNumberOfRaters.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T19:02:57.405Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Doctor.cs",
+              "DocumentMoniker": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\MedicalProj.Data\\Models\\Doctor.cs",
+              "RelativeDocumentMoniker": "MedicalProj.Data\\Models\\Doctor.cs",
+              "ToolTip": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\MedicalProj.Data\\Models\\Doctor.cs",
+              "RelativeToolTip": "MedicalProj.Data\\Models\\Doctor.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAA6wBcAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T18:46:58.44Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AppointmentInfoDto.cs",
+              "DocumentMoniker": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Models\\Dto\\AppointmentInfoDto.cs",
+              "RelativeDocumentMoniker": "AiDrivenMedicalPlatformAPIs\\Models\\Dto\\AppointmentInfoDto.cs",
+              "ToolTip": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Models\\Dto\\AppointmentInfoDto.cs",
+              "RelativeToolTip": "AiDrivenMedicalPlatformAPIs\\Models\\Dto\\AppointmentInfoDto.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAiwA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T00:45:47.529Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AppointmentController.cs",
+              "DocumentMoniker": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Controllers\\AppointmentController.cs",
+              "RelativeDocumentMoniker": "AiDrivenMedicalPlatformAPIs\\Controllers\\AppointmentController.cs",
+              "ToolTip": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\AiDrivenMedicalPlatformAPIs\\Controllers\\AppointmentController.cs",
+              "RelativeToolTip": "AiDrivenMedicalPlatformAPIs\\Controllers\\AppointmentController.cs",
+              "ViewState": "AgIAAOQAAAAAAAAAAAAAAOQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-24T19:07:53.25Z",
               "EditorCaption": ""
             }
           ]

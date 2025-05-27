@@ -70,6 +70,15 @@
       <div class="text-center md:text-left">
         <h2 class="font-bold text-xl">{{this.profileForm.get("fullName")?.value}}</h2>
         <h3 class="text-gray-400">{{this.profileForm.get("email")?.value}}</h3>
+        <div class="text-sm font-semibold flex items-center space-x-2">
+          @if (rate !== null) {
+          <i class="fa-solid fa-star text-yellow-400"></i>
+          <span>{{ rate.toFixed(1) }} / 5</span>
+          } @else {
+          <span class="text-gray-500 italic">No rating yet</span>
+          }
+        </div>
+
       </div>
     </div>
     <div class="flex md:flex-col flex-row justify-evenly">
@@ -159,51 +168,45 @@
         }
       </div>
       <div class="md:w-1/2 w-full md:mt-0 mt-2 px-4">
-  <h2 class="font-bold text-2xl">Phone Numbers</h2>
-  @if (!isEdit) {
-    <div class="mt-2 mx-4">
-      @for (phone of doctorPhones.value; track $index) {
-        <div class="p-1">{{phone}}</div>
-      }
-    </div>
-  }
-  @else {
-    <div class="mt-2 mx-4 space-y-2">
-      @for (phoneControl of doctorPhones.controls; track $index) {
-        <div class="flex flex-col">
-          <div class="flex items-center">
-            <input type="text" 
-                   [formControl]="getPhoneControl($index)"
-                   class="bg-gray-200 p-1 rounded-lg flex-grow"
-                   (input)="validatePhone(getPhoneControl($index), $index)">
-            <button type="button" 
-                    (click)="removePhone($index)" 
-                    class="ml-2 text-red-500 hover:text-red-700"
-                    [class.opacity-50]="doctorPhones.length === 1"
-                    [disabled]="doctorPhones.length === 1">
-              <i class="fa fa-minus-circle"></i>
-            </button>
-          </div>
-          @if (getPhoneControl($index).invalid && (getPhoneControl($index).dirty || getPhoneControl($index).touched)) {
-            <div class="text-red-500 text-sm mt-1 ml-1">
-              @if (getPhoneControl($index).errors?.['required']) {
-                <div>Phone number is required</div>
-              }
-              @if (getPhoneControl($index).errors?.['pattern']) {
-                <div>Please enter a valid Egyptian phone number (e.g., 01012345678)</div>
-              }
-            </div>
+        <h2 class="font-bold text-2xl">Phone Numbers</h2>
+        @if (!isEdit) {
+        <div class="mt-2 mx-4">
+          @for (phone of doctorPhones.value; track $index) {
+          <div class="p-1">{{phone}}</div>
           }
         </div>
-      }
-      <button type="button" 
-              (click)="addPhone()" 
-              class="text-blue-500 hover:text-blue-700 flex items-center mt-2">
-        <i class="fa fa-plus-circle mr-1"></i> Add Phone Number
-      </button>
-    </div>
-  }
-</div>
+        }
+        @else {
+        <div class="mt-2 mx-4 space-y-2">
+          @for (phoneControl of doctorPhones.controls; track $index) {
+          <div class="flex flex-col">
+            <div class="flex items-center">
+              <input type="text" [formControl]="getPhoneControl($index)" class="bg-gray-200 p-1 rounded-lg flex-grow"
+                (input)="validatePhone(getPhoneControl($index), $index)">
+              <button type="button" (click)="removePhone($index)" class="ml-2 text-red-500 hover:text-red-700"
+                [class.opacity-50]="doctorPhones.length === 1" [disabled]="doctorPhones.length === 1">
+                <i class="fa fa-minus-circle"></i>
+              </button>
+            </div>
+            @if (getPhoneControl($index).invalid && (getPhoneControl($index).dirty || getPhoneControl($index).touched))
+            {
+            <div class="text-red-500 text-sm mt-1 ml-1">
+              @if (getPhoneControl($index).errors?.['required']) {
+              <div>Phone number is required</div>
+              }
+              @if (getPhoneControl($index).errors?.['pattern']) {
+              <div>Please enter a valid Egyptian phone number (e.g., 01012345678)</div>
+              }
+            </div>
+            }
+          </div>
+          }
+          <button type="button" (click)="addPhone()" class="text-blue-500 hover:text-blue-700 flex items-center mt-2">
+            <i class="fa fa-plus-circle mr-1"></i> Add Phone Number
+          </button>
+        </div>
+        }
+      </div>
       <div class="md:w-1/2 w-full md:mt-0 mt-2 px-4">
         <h2 class="font-bold text-2xl">Identification Number</h2>
         @if (!isEdit) {
@@ -223,8 +226,8 @@
         <h3 class="mt-2 mx-4 p-1">{{this.profileForm.get('medicalLicenseNumber')?.value}}</h3>
         }
         @else {
-        <input type="text" name="medicalLicenseNumber" id="medicalLicenseNumber"
-          formControlName="medicalLicenseNumber" class="mt-2 mx-4 bg-gray-200 p-1 rounded-lg">
+        <input type="text" name="medicalLicenseNumber" id="medicalLicenseNumber" formControlName="medicalLicenseNumber"
+          class="mt-2 mx-4 bg-gray-200 p-1 rounded-lg">
         }
         @if(profileForm.get('medicalLicenseNumber')?.invalid && isEdit){
         <h6 class="mx-4 p-1 text-red-500">Medical License Number is Required</h6>
@@ -236,14 +239,26 @@
         <h3 class="mt-2 mx-4 p-1">{{this.profileForm.get('workPlace')?.value}}</h3>
         }
         @else {
-        <input type="text" name="workPlace" id="workPlace"
-          formControlName="workPlace" class="mt-2 mx-4 bg-gray-200 p-1 rounded-lg">
+        <input type="text" name="workPlace" id="workPlace" formControlName="workPlace"
+          class="mt-2 mx-4 bg-gray-200 p-1 rounded-lg">
         }
         @if(profileForm.get('workPlace')?.invalid && isEdit){
         <h6 class="mx-4 p-1 text-red-500">WorkPlace is Required</h6>
         }
       </div>
-      
+      <div class="md:w-1/2 w-full md:mt-0 mt-2 px-4">
+        <h2 class="font-bold text-2xl">Medical Examination Fees</h2>
+        @if (!isEdit) {
+        <h3 class="mt-2 mx-4 p-1">{{this.profileForm.get('fee')?.value | currency:"EGP "}}</h3>
+        }
+        @else {
+        <input type="text" name="fee" id="fee" formControlName="fee" class="mt-2 mx-4 bg-gray-200 p-1 rounded-lg">
+        }
+        @if(profileForm.get('fee')?.invalid && isEdit){
+        <h6 class="mx-4 p-1 text-red-500">Enter a Valid Medical Examination Fees</h6>
+        }
+      </div>
+
     </div>
   </form>
 </div>
