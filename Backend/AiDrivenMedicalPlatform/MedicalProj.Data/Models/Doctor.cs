@@ -21,6 +21,7 @@ namespace MedicalProj.Data.Models
         [DisplayFormat(DataFormatString = "{0:F1}")]
         public decimal? Rate { get; set; }
         public int TotalRating { get; set; } = 0;
+        public int NumberOfRaters { get; set; } = 0;
 
         // Navigation properties :
         public ICollection<DoctorPhone> DoctorPhones { get; set; } = new List<DoctorPhone>(); // Doctor(1:Optional) - DoctorPhone(0..N:Mandatory)
