@@ -67,6 +67,8 @@ namespace AiDrivenMedicalPlatformAPIs.Extensions
 
                 options.AddPolicy("Above18", policy => policy.RequireAssertion(context =>
                                                     Int32.Parse(context.User.Claims.First(x => x.Type == "Age").Value) > 18));
+
+                options.AddPolicy("PatientsAndAdminsOnly", policy => policy.RequireRole("Patient", "Admin"));
             });
             return services;
         }
