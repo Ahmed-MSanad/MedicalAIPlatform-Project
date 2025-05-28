@@ -41,5 +41,6 @@ namespace MedicalProj.Data.Contexts
         public DbSet<MedicalImage> MedicalImages { get; set; }
         public DbSet<AiAnalysis> AiAnalyses { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
     }
 }

@@ -1,0 +1,93 @@
+<div class="max-w-4xl mx-auto p-6 bg-gray-50">
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Notifications</h1>
+        <p class="text-gray-600">Stay updated with your latest messages and alerts</p>
+    </div>
+
+    <div class="space-y-4">
+        @for(notification of Notifications ; track $index){
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group">
+                <!-- Notification Header -->
+                <div class="flex items-start p-6 border-b border-gray-100">
+                    <div class="flex-shrink-0 mr-4">
+                        <div [class]="getNotificationIconClass(notification.type)"
+                            class="w-12 h-12 rounded-full flex items-center justify-center">
+                            <svg [class]="getNotificationIconColor(notification.type)" class="w-6 h-6" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path *ngIf="getNotificationType(notification.type) === 'success'" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                <path *ngIf="getNotificationType(notification.type) === 'alert'" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16c-.77.833.192 2.5 1.732 2.5z">
+                                </path>
+                                <path *ngIf="getNotificationType(notification.type) === 'reminder'" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+    
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between mb-1">
+                            <h3 class="text-lg font-semibold text-gray-900 truncate">
+                                {{ notification.subject }}
+                            </h3>
+                            <span [class]="getNotificationBadgeClass(notification.type)"
+                                class="px-3 py-1 rounded-full text-xs font-medium">
+                                {{ getNotificationTypeLabel(notification.type) }}
+                            </span>
+                        </div>
+    
+                        <p class="text-gray-700 text-sm leading-relaxed mb-3">
+                            {{ notification.message }}
+                        </p>
+    
+                        <div class="flex items-center justify-between text-xs text-gray-500">
+                            <div class="flex items-center space-x-4">
+                                <span class="flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207">
+                                        </path>
+                                    </svg>
+                                    From: {{ notification.from }}
+                                </span>
+                                <span class="flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    {{ formatDate(notification.submittedAt) }}
+                                </span>
+                            </div>
+    
+                            <div class="flex items-center space-x-2">
+                                <button
+                                    class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                                    (click)="RemoveNotification(notification.id)">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="Notifications.length === 0" class="text-center py-16">
+        <div class="w-24 h-24 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+            <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 17h5l-5 5-5-5h5v-7a1 1 0 011-1h2a1 1 0 011 1v7zM9 3v7H4l5 5 5-5H9V3z"></path>
+            </svg>
+        </div>
+        <h3 class="text-lg font-medium text-gray-900 mb-2">No notifications yet</h3>
+        <p class="text-gray-500">When you receive notifications, they'll appear here.</p>
+    </div>
+</div>

@@ -38,7 +38,8 @@ export const routes: Routes = [
         {path: 'PatientAppointment', component: PatientAppointmentComponent, data: {claimReq : claimReq.patientOnly}},
         {path: 'forbidden', component: ForbiddenComponent},
 
-        {path: "feedback", loadComponent: () => import("./Components/feedback/feedback.component").then((c) => c.FeedbackComponent) }
+        {path: "feedback", loadComponent: () => import("./Components/feedback/feedback.component").then((c) => c.FeedbackComponent) },
+        {path: "notification", loadComponent: () => import("./Components/notification/notification.component").then((c) => c.NotificationComponent) }
     ]},
     {path: "**", component: NotFoundComponent }
 ];
