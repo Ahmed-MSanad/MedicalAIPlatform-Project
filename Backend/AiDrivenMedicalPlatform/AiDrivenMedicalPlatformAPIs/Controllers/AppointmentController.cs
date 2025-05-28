@@ -264,7 +264,7 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             var endOfDay = startOfDay.AddDays(1);
 
             var bookedSlots = await _context.Appointments
-                                            .Where(a => a.Did == id && a.Date >= startOfDay && a.Date < endOfDay && a.Status != AppointmentStatus.Cancelled)
+                                            .Where(a => a.Did == id && a.Date >= startOfDay && a.Date < endOfDay && a.Status == AppointmentStatus.Scheduled)
                                             .Select(a => a.Date.TimeOfDay)
                                             .ToListAsync();
 
