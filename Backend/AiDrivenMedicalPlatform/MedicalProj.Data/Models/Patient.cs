@@ -21,5 +21,6 @@ namespace MedicalProj.Data.Models
         public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>(); // Patient(1:Optional) - Appointment(0..N:Mandatory)
         public ICollection<MedicalImage>? MedicalImages { get; set; } = new List<MedicalImage>(); // Patient(1:Optional) - MedicalImage(0..N:Mandatory)
         public ICollection<Feedback>? Feedbacks { get; set; } = new List<Feedback>();
+        public ICollection<Notification>? Notifications { get; set; }
     }
 }

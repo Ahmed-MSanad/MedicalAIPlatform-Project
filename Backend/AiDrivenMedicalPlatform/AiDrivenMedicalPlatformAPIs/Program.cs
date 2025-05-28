@@ -4,6 +4,8 @@ using MedicalProj.Data.Contexts.Contracts.Interfaces;
 using MedicalProj.Data.Contexts.Contracts.Classes;
 using MedicalProj.Data.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using static AiDrivenMedicalPlatformAPIs.Services.NotificationService;
 
 namespace AiDrivenMedicalPlatformAPIs
 {
@@ -22,18 +24,23 @@ namespace AiDrivenMedicalPlatformAPIs
                             .ConfigureIdentityOptions() // Adjust Validators => ** ConfigureIdentityOptions is an Extension Method ** 
                             .AddIdentityAuth(builder.Configuration); // Adding Login Authentication Needed => ** AddIdentityAuth is an Extension Method **
 
+            builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
+            //builder.Services.AddSingleton<IEmailService, EmailService>();
+
 
             builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 
             var app = builder.Build();
 
             await SeedDbAsync(app);
+
+            app.UseHttpsRedirection();
+
             // Configure Swagger (the HTTP request pipeline) => ConfiguerSwaggerExplorer is a custom extension method => 
             app.ConfiguerSwaggerExplorer()
                .ConfigureCORS(builder.Configuration) // ConfigureCORS is a custom extension method => Config CORS
                .AddIdentityAuthMiddleWares(); // Adding Identity Authentication Middlewares => ** AddIdentityAuthMiddleWares is an Extension Method **
 
-            app.UseHttpsRedirection();
 
             app.MapControllers();
 
