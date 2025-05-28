@@ -71,6 +71,17 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
         [HttpGet]
         public async Task<ActionResult<DoctorInfoDto>> GetDoctorInfo([FromQuery] string id)
         {
+            var schedule = await _context.DoctorSchedules
+                                 .Where(s => s.DoctorId == id)
+                                 .OrderBy(s => s.Day)
+                                 .Select(s => new ScheduleDto
+                                 {
+                                     Day = s.Day,
+                                     From = s.From.ToString(),
+                                     To = s.To.ToString()
+                                 })
+                                 .ToListAsync();
+
             var doctor = await _context.Doctors.Include(d => d.DoctorPhones)
                                                .Include(d => d.DoctorSchedule)
                                                .Where(d => d.Id == id)
@@ -83,12 +94,7 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
                                                    Rate = d.Rate,
                                                    Image = d.Image,
                                                    DoctorPhones = d.DoctorPhones.Select(p => p.Phone).ToList(),
-                                                   DoctorSchedule = new DoctorScheduleDto
-                                                   {
-                                                       Day = d.DoctorSchedule.Day,
-                                                       From = d.DoctorSchedule.From,
-                                                       To = d.DoctorSchedule.To,
-                                                   }
+                                                   DoctorSchedule = schedule
                                                })
                                                .FirstOrDefaultAsync();
             if (doctor == null)
@@ -114,7 +120,8 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             }
 
             doctor.TotalRating += rate;
-            doctor.Rate = rate;
+            doctor.NumberOfRaters++;
+            doctor.Rate = (decimal) doctor.TotalRating / doctor.NumberOfRaters;
 
             try
             {
@@ -192,6 +199,10 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             {
                 return NotFound(new { Message = "Appointment Not Found." });
             }
+            if(appointment.Date < DateTime.UtcNow)
+            {
+                return BadRequest(new { Message = "Can't complete an appointment before its time" });
+            }
             appointment.Status = AppointmentStatus.Completed;
             try
             {
@@ -208,11 +219,11 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
 
         [Authorize]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AppointmentDto>>> GetAppointments()
+        public async Task<ActionResult<IEnumerable<AppointmentDto>>> GetAppointments([FromBody] int status)
         {
             string userId = User.Claims.First(x => x.Type == "UserID").Value;
 
-            var appointments = _context.Appointments.Where(appointment => (appointment.Did == userId ||  appointment.Pid == userId) && (appointment.Status == AppointmentStatus.Scheduled))
+            var appointments = _context.Appointments.Where(appointment => (appointment.Did == userId ||  appointment.Pid == userId) && (appointment.Status == (AppointmentStatus) status))
                                                     .Select(appointment => new AppointmentDto
                                                     {
                                                         Date = appointment.Date,
@@ -225,6 +236,48 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             
             return Ok(appointments);
         }
-        
+
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult<AppointmentInfoDto>> GetAvailableTimeSlots([FromQuery] string id, [FromQuery] DateTime day)
+        {
+            string dayOfWeek = day.DayOfWeek.ToString();
+
+            var schedule = await _context.DoctorSchedules
+                                 .Where(s => s.DoctorId == id && s.Day == dayOfWeek)
+                                 .FirstOrDefaultAsync();
+
+            if (schedule == null)
+            {
+                return NotFound(new { Message = "Doctor has no schedule on this day." });
+            }
+
+            var slots = new List<TimeSpan>();
+            var current = schedule.From;
+            while (current + TimeSpan.FromMinutes(15) <= schedule.To)
+            {
+                slots.Add(current);
+                current = current.Add(TimeSpan.FromMinutes(15));
+            }
+
+            var startOfDay = day.Date;
+            var endOfDay = startOfDay.AddDays(1);
+
+            var bookedSlots = await _context.Appointments
+                                            .Where(a => a.Did == id && a.Date >= startOfDay && a.Date < endOfDay && a.Status == AppointmentStatus.Scheduled)
+                                            .Select(a => a.Date.TimeOfDay)
+                                            .ToListAsync();
+
+            var availableSlots = slots.Except(bookedSlots).OrderBy(t => t).ToList();
+
+            if (day.Date == DateTime.Today)
+            {
+                var currentTime = DateTime.Now.TimeOfDay;
+                availableSlots = availableSlots.Where(slot => slot > currentTime).ToList();
+            }
+
+            return Ok(availableSlots);
+        }
+
     }
 }

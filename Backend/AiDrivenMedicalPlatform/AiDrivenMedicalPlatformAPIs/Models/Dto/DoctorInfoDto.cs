@@ -10,14 +10,8 @@ namespace AiDrivenMedicalPlatformAPIs.Models.Dto
         public decimal Fee { get; set; }
         public decimal? Rate { get; set; }
         public byte[]? Image { get; set; }
-        public DoctorScheduleDto DoctorSchedule { get; set; }
+        public ICollection<ScheduleDto> DoctorSchedule { get; set; } = new List<ScheduleDto>();
         public ICollection<string> DoctorPhones { get; set; } = new List<string>();
-    }
-    public class DoctorScheduleDto
-    {
-        public string Day { get; set; }
-        public TimeSpan From { get; set; }
-        public TimeSpan To { get; set; }
     }
 
 }

@@ -16,6 +16,7 @@ import { ForbiddenComponent } from './Components/forbidden/forbidden.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { DoctorScheduleComponent } from './Components/doctor/doctor-schedule/doctor-schedule.component';
 import { claimReq } from './Core/utils/claimReq-utils';
+import { PatientAppointmentComponent } from './Components/patient/patient-appointment/patient-appointment.component';
 
 export const routes: Routes = [
     {path: '', component: AuthLayoutComponent, canActivate:[stopLoggedInUserGuard], children:[
@@ -34,6 +35,7 @@ export const routes: Routes = [
 
         {path: 'PatientProfile', component: PatientProfileComponent, data: {claimReq : claimReq.patientOnly}},
         {path: 'PatientDashboard', component: PatientDashboardComponent, data: {claimReq : claimReq.patientOnly}},
+        {path: 'PatientAppointment', component: PatientAppointmentComponent, data: {claimReq : claimReq.patientOnly}},
         {path: 'forbidden', component: ForbiddenComponent},
 
         {path: "feedback", loadComponent: () => import("./Components/feedback/feedback.component").then((c) => c.FeedbackComponent) }

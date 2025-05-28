@@ -63,13 +63,6 @@ export class AppointmentService {
     return this._http.get(`${environment.apiBaseURL}/Appointment/GetAppointmentInfo`,{params});
   }
 
-  GetDoctorSchedule(id:string){
-    let params = new HttpParams();
-    if(id) params = params.set('id',id);
-    
-    return this._http.get(`${environment.apiBaseURL}/Appointment/GetDoctorSchedule`,{params});
-  }
-
   getAvailableTimeSlots(id: string, day: Date) {
     let params = new HttpParams().set('id', id)
                                  .set('day',day.toString());

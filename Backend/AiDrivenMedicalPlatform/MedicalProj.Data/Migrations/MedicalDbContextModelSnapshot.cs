@@ -34,7 +34,7 @@ namespace MedicalProj.Data.Migrations
 
                     b.HasIndex("AdminId");
 
-                    b.ToTable("AdminPhones", (string)null);
+                    b.ToTable("AdminPhones");
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.AiAnalysis", b =>
@@ -71,7 +71,7 @@ namespace MedicalProj.Data.Migrations
                     b.HasIndex("MedicalImageId")
                         .IsUnique();
 
-                    b.ToTable("AiAnalyses", (string)null);
+                    b.ToTable("AiAnalyses");
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.AppUser", b =>
@@ -200,7 +200,7 @@ namespace MedicalProj.Data.Migrations
 
                     b.HasIndex("Pid");
 
-                    b.ToTable("Appointments", (string)null);
+                    b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.DoctorPhone", b =>
@@ -215,7 +215,7 @@ namespace MedicalProj.Data.Migrations
 
                     b.HasIndex("DoctorId");
 
-                    b.ToTable("DoctorPhones", (string)null);
+                    b.ToTable("DoctorPhones");
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.DoctorSchedule", b =>
@@ -236,7 +236,7 @@ namespace MedicalProj.Data.Migrations
 
                     b.HasIndex("DoctorId");
 
-                    b.ToTable("DoctorSchedules", (string)null);
+                    b.ToTable("DoctorSchedules");
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.Feedback", b =>
@@ -276,7 +276,7 @@ namespace MedicalProj.Data.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Feedbacks", (string)null);
+                    b.ToTable("Feedbacks");
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.MedicalImage", b =>
@@ -308,7 +308,7 @@ namespace MedicalProj.Data.Migrations
 
                     b.HasIndex("Pid");
 
-                    b.ToTable("MedicalImages", (string)null);
+                    b.ToTable("MedicalImages");
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.PatientPhone", b =>
@@ -323,7 +323,7 @@ namespace MedicalProj.Data.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("PatientPhones", (string)null);
+                    b.ToTable("PatientPhones");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -492,6 +492,9 @@ namespace MedicalProj.Data.Migrations
                     b.Property<string>("MedicalLicenseNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumberOfRaters")
+                        .HasColumnType("int");
 
                     b.Property<decimal?>("Rate")
                         .HasColumnType("decimal(18,2)");

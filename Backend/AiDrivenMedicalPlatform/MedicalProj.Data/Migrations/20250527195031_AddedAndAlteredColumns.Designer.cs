@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalProj.Data.Migrations
 {
     [DbContext(typeof(MedicalDbContext))]
-    [Migration("20250524234134_RenamedColumn")]
-    partial class RenamedColumn
+    [Migration("20250527195031_AddedAndAlteredColumns")]
+    partial class AddedAndAlteredColumns
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -251,7 +251,6 @@ namespace MedicalProj.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeedbackId"));
 
                     b.Property<string>("AdminId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Message")
@@ -265,11 +264,10 @@ namespace MedicalProj.Data.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("RespondedAt")
+                    b.Property<DateTime?>("RespondedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ResponseMessage")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("SubmittedAt")
@@ -498,6 +496,9 @@ namespace MedicalProj.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("NumberOfRaters")
+                        .HasColumnType("int");
+
                     b.Property<decimal?>("Rate")
                         .HasColumnType("decimal(18,2)");
 
@@ -610,8 +611,7 @@ namespace MedicalProj.Data.Migrations
                     b.HasOne("MedicalProj.Data.Models.Admin", "Admin")
                         .WithMany("Feedbacks")
                         .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("MedicalProj.Data.Models.Patient", "Patient")
                         .WithMany("Feedbacks")
