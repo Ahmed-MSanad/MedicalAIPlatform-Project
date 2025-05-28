@@ -2,8 +2,8 @@
 {
     public class ScheduleDto
     {
-        public DayOfWeek Day {  get; set; }
-        public TimeSpan From { get; set; }
-        public TimeSpan To { get; set; }
+        public string Day {  get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MedicalProj.Data.Models;
 using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AiDrivenMedicalPlatformAPIs.Models.Dto
@@ -25,6 +26,13 @@ namespace AiDrivenMedicalPlatformAPIs.Models.Dto
         public string Specialisation { get; set; }
         [PersonalData]
         public string WorkPlace { get; set; }
+        [PersonalData]
+        [Range(0, double.MaxValue)]
+        public decimal Fee { get; set; }
+        [PersonalData]
+        [Range(1, 5)]
+        [DisplayFormat(DataFormatString = "{0:F1}")]
+        public decimal? Rate { get; set; }
         public string? Image { get; set; }
     }
 }

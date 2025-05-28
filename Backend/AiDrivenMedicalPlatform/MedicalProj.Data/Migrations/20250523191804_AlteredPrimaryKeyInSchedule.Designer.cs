@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalProj.Data.Migrations
 {
     [DbContext(typeof(MedicalDbContext))]
-    [Migration("20250525180408_ChangeSomeFeedbackPropertiesToAcceptNull")]
-    partial class ChangeSomeFeedbackPropertiesToAcceptNull
+    [Migration("20250523191804_AlteredPrimaryKeyInSchedule")]
+    partial class AlteredPrimaryKeyInSchedule
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -235,10 +235,7 @@ namespace MedicalProj.Data.Migrations
                     b.Property<TimeSpan>("To")
                         .HasColumnType("time");
 
-                    b.HasKey("DoctorId", "Day");
-
-                    b.HasIndex("DoctorId")
-                        .IsUnique();
+                    b.HasKey("DoctorId");
 
                     b.ToTable("DoctorSchedules");
                 });
@@ -252,6 +249,7 @@ namespace MedicalProj.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeedbackId"));
 
                     b.Property<string>("AdminId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Message")
@@ -265,10 +263,11 @@ namespace MedicalProj.Data.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("RespondedAt")
+                    b.Property<DateTime>("RespondedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ResponseMessage")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("SubmittedAt")
@@ -600,7 +599,8 @@ namespace MedicalProj.Data.Migrations
                     b.HasOne("MedicalProj.Data.Models.Admin", "Admin")
                         .WithMany("Feedbacks")
                         .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.HasOne("MedicalProj.Data.Models.Patient", "Patient")
                         .WithMany("Feedbacks")

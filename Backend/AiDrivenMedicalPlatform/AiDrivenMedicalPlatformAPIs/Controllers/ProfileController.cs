@@ -31,7 +31,7 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
 
             if (userDetails == null)
             {
-                return NotFound("Patient not found.");
+                return NotFound(new { Message = "Patient not found." });
             }
 
             return Ok(
@@ -60,6 +60,10 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
         {
             string userId = User.Claims.First(x => x.Type == "UserID").Value;
             var userDetails = await context.Doctors.Include(d => d.DoctorPhones).FirstOrDefaultAsync(d => d.Id == userId);
+            if (userDetails == null)
+            {
+                return NotFound(new { Message = "Doctor not found." });
+            }
             return Ok(
                 new
                 {
@@ -74,6 +78,8 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
                     MedicalLicenseNumber = userDetails?.MedicalLicenseNumber,
                     Specialisation = userDetails?.Specialisation,
                     WorkPlace = userDetails?.WorkPlace,
+                    Fee = userDetails?.Fee,
+                    Rate = userDetails?.Rate,
                 }
             );
         }
@@ -85,6 +91,10 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
         {
             string userId = User.Claims.First(x => x.Type == "UserID").Value;
             var userDetails = await context.Admins.Include(p => p.AdminPhones).FirstOrDefaultAsync(a => a.Id == userId);
+            if (userDetails == null)
+            {
+                return NotFound(new { Message = "Admin not found." });
+            }
             return Ok(
                 new
                 {
@@ -93,7 +103,7 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
                     DateOfBirth = userDetails?.DateOfBirth,
                     Gender = userDetails?.Gender,
                     Address = userDetails?.Address,
-                    AdminPhones = userDetails?.AdminPhones,
+                    AdminPhones = userDetails?.AdminPhones.Select(p => p.Phone).ToList(),
                     Image = userDetails?.Image,
                     IdentificationNumber = userDetails?.IdentificationNumber,
                     MedicalLicenseNumber = userDetails?.MedicalLicenseNumber,
@@ -109,12 +119,12 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
         {
             string userId = User.Claims.First(x => x.Type == "UserID").Value;
             var userDetails = await userManager.FindByIdAsync(userId);
-            if (userDetails == null) return NotFound("User not found");
+            if (userDetails == null) return NotFound( new{Message="User not found"});
 
             var result = await userManager.DeleteAsync(userDetails);
             if (result.Succeeded)
             {
-                return Ok("User deleted successfully");
+                return Ok( new { Message = "User deleted successfully" });
             }
             else
             {
@@ -135,7 +145,7 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             var userIdClaim = User.Claims.FirstOrDefault(x => x.Type == "UserID");
             if (userIdClaim == null)
             {
-                return Unauthorized("User ID claim not found in token.");
+                return Unauthorized(new { Message= "User ID claim not found in token." });
             }
             string userId = userIdClaim.Value;
 
@@ -143,7 +153,7 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             var patient = await context.Patients.FirstOrDefaultAsync(p => p.Id == userId);
             if (patient == null)
             {
-                return NotFound("Patient profile not found");
+                return NotFound(new { Message = "Patient profile not found" });
             }
 
 
@@ -170,6 +180,8 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             }
 
             patient.PatientPhones.Clear();
+            var existingPhones = context.PatientPhones.Where(p => p.PatientId == patient.Id);
+            context.PatientPhones.RemoveRange(existingPhones);
             patient.PatientPhones = updateRequest.PatientPhones.Select(phone => new PatientPhone
             {
                 Phone = phone
@@ -178,11 +190,11 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             try
             {
                 await context.SaveChangesAsync();
-                return Ok("Profile updated successfully");
+                return Ok(new { Message = "Profile updated successfully" });
             }
             catch (Exception ex)
             {
-                return BadRequest($"Failed to update profile: {ex.Message}");
+                return BadRequest(new { Message = $"Failed to update profile: {ex.Message}" });
             }
         }
 
@@ -199,7 +211,7 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             var userIdClaim = User.Claims.FirstOrDefault(x => x.Type == "UserID");
             if (userIdClaim == null)
             {
-                return Unauthorized("User ID claim not found in token.");
+                return Unauthorized(new { Message = "User ID claim not found in token." });
             }
             string userId = userIdClaim.Value;
 
@@ -207,8 +219,12 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             var doctor = await context.Doctors.FirstOrDefaultAsync(d => d.Id == userId);
             if (doctor == null)
             {
-                return NotFound("User not found");
+                return NotFound(new { Message = "User not found" });
             }
+
+
+            var existingPhones = context.DoctorPhones.Where(p => p.DoctorId == doctor.Id);
+            context.DoctorPhones.RemoveRange(existingPhones);
 
             doctor.FullName = updateRequest.FullName;
             doctor.DateOfBirth = updateRequest.DateOfBirth;
@@ -223,6 +239,8 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             doctor.MedicalLicenseNumber = updateRequest.MedicalLicenseNumber;
             doctor.Specialisation = updateRequest.Specialisation;
             doctor.WorkPlace = updateRequest.WorkPlace;
+            doctor.Fee = updateRequest.Fee;
+
 
 
             try // this works for testing on swagger -> if not over the front end we'll return it back to byte[]
@@ -240,11 +258,11 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             try
             {
                 await context.SaveChangesAsync();
-                return Ok("Profile updated successfully");
+                return Ok(new { Message = "Profile updated successfully" });
             }
             catch (Exception ex)
             {
-                return BadRequest($"Failed to update profile: {ex.Message}");
+                return BadRequest(new { Message = $"Failed to update profile: {ex.Message}" });
             }
         }
 
@@ -261,7 +279,7 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             var userIdClaim = User.Claims.FirstOrDefault(x => x.Type == "UserID");
             if (userIdClaim == null)
             {
-                return Unauthorized("User ID claim not found in token.");
+                return Unauthorized(new { Message = "User ID claim not found in token." });
             }
             string userId = userIdClaim.Value;
 
@@ -269,7 +287,7 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             var admin = await context.Admins.FirstOrDefaultAsync(a => a.Id == userId);
             if (admin == null)
             {
-                return NotFound("Patient profile not found");
+                return NotFound(new { Message = "User not found" });
             }
 
 
@@ -294,6 +312,9 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             }
 
             admin.AdminPhones.Clear();
+            var existingPhones = context.AdminPhones.Where(p => p.AdminId == admin.Id);
+            context.AdminPhones.RemoveRange(existingPhones);
+
             admin.AdminPhones = updateRequest.AdminPhones.Select(phone => new AdminPhone
             {
                 Phone = phone
@@ -302,11 +323,11 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             try
             {
                 await context.SaveChangesAsync();
-                return Ok("Profile updated successfully");
+                return Ok(new { Message = "Profile updated successfully" });
             }
             catch (Exception ex)
             {
-                return BadRequest($"Failed to update profile: {ex.Message}");
+                return BadRequest(new { Message = $"Failed to update profile: {ex.Message}" });
             }
 
         }

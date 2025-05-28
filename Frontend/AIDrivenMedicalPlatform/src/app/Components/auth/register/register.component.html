@@ -380,6 +380,22 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="w-full md:w-1/2 px-5">
+                                    <label for="fee" class="text-white">Medical Examination Fees</label>
+                                    <div class="mb-3">
+                                        <div class="relative">
+                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-dollar-sign"></i></span>
+                                            <input formControlName="fee" id="fee" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Write your Medical Examination Fees here">
+                                        </div>
+                                        <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.fee.touched) && registerForm.controls.fee.getError('required')">
+                                            Medical Examination Fees is required !!
+                                        </div>
+                                        <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.fee.touched) && registerForm.controls.fee.getError('min')">
+                                            Medical Examination Fees must be equal or more than 0
+                                        </div>
+                                    </div>
+                                </div>
                             }
                             <div class="w-full md:w-1/2 px-5">
                                 <label for="role" class="text-white">Role</label>

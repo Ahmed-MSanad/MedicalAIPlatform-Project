@@ -97,12 +97,6 @@ export class NotificationComponent implements OnInit{
     const now = new Date();
     const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
 
-    // Debug log to see what's happening
-    console.log('Original string:', dateString);
-    console.log('Parsed date:', date);
-    console.log('Current time:', now);
-    console.log('Difference in seconds:', diffInSeconds);
-
     if (diffInSeconds < 0) {
       // Future date
       return 'Just now';

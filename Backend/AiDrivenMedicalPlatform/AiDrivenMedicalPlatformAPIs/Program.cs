@@ -2,10 +2,6 @@ using AiDrivenMedicalPlatformAPIs.Extensions;
 using AiDrivenMedicalPlatformAPIs.Controllers;
 using MedicalProj.Data.Contexts.Contracts.Interfaces;
 using MedicalProj.Data.Contexts.Contracts.Classes;
-using MedicalProj.Data.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
-using static AiDrivenMedicalPlatformAPIs.Services.NotificationService;
 
 namespace AiDrivenMedicalPlatformAPIs
 {
@@ -49,7 +45,9 @@ namespace AiDrivenMedicalPlatformAPIs
 
             app.MapGroup("/api")
                .MapIdentityUserEndPoints() // Registration + Login
-               .MapAuthorizationEndPoints();
+               .MapAuthorizationEndPoints()
+               .MapScheduleEndpoints();
+               
 
 
             app.Run();

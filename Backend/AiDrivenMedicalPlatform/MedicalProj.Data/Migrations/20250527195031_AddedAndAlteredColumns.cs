@@ -6,11 +6,15 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MedicalProj.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class ChangeSomeFeedbackPropertiesToAcceptNull : Migration
+    public partial class AddedAndAlteredColumns : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropIndex(
+                name: "IX_DoctorSchedules_DoctorId",
+                table: "DoctorSchedules");
+
             migrationBuilder.AlterColumn<string>(
                 name: "ResponseMessage",
                 table: "Feedbacks",
@@ -34,11 +38,63 @@ namespace MedicalProj.Data.Migrations
                 nullable: true,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(450)");
+
+            migrationBuilder.AddColumn<decimal>(
+                name: "Fee",
+                table: "Doctors",
+                type: "decimal(18,2)",
+                nullable: false,
+                defaultValue: 0m);
+
+            migrationBuilder.AddColumn<int>(
+                name: "NumberOfRaters",
+                table: "Doctors",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
+
+            migrationBuilder.AddColumn<decimal>(
+                name: "Rate",
+                table: "Doctors",
+                type: "decimal(18,2)",
+                nullable: true);
+
+            migrationBuilder.AddColumn<int>(
+                name: "TotalRating",
+                table: "Doctors",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DoctorSchedules_DoctorId",
+                table: "DoctorSchedules",
+                column: "DoctorId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropIndex(
+                name: "IX_DoctorSchedules_DoctorId",
+                table: "DoctorSchedules");
+
+            migrationBuilder.DropColumn(
+                name: "Fee",
+                table: "Doctors");
+
+            migrationBuilder.DropColumn(
+                name: "NumberOfRaters",
+                table: "Doctors");
+
+            migrationBuilder.DropColumn(
+                name: "Rate",
+                table: "Doctors");
+
+            migrationBuilder.DropColumn(
+                name: "TotalRating",
+                table: "Doctors");
+
             migrationBuilder.AlterColumn<string>(
                 name: "ResponseMessage",
                 table: "Feedbacks",
@@ -68,6 +124,12 @@ namespace MedicalProj.Data.Migrations
                 oldClrType: typeof(string),
                 oldType: "nvarchar(450)",
                 oldNullable: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DoctorSchedules_DoctorId",
+                table: "DoctorSchedules",
+                column: "DoctorId",
+                unique: true);
         }
     }
 }

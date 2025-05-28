@@ -36,6 +36,14 @@
                         <i class="fa-solid fa-table-columns"></i>
                     </div>
                 </li>
+                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'PatientAppointment'" routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.patientOnly">
+                    <div>
+                        Make An Appointment
+                    </div>
+                    <div class="text-3xl flex items-center">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                </li>
                 <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="userClaims.role+'Profile'" routerLinkActive="bg-gray-400">
                     <div>
                         {{userClaims.role}} Profile

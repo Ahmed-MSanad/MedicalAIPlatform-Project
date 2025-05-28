@@ -7,7 +7,6 @@ using MimeKit;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Authorization;
 using AiDrivenMedicalPlatformAPIs.Models.Dto;
-using System.Linq.Expressions;
 
 namespace AiDrivenMedicalPlatformAPIs.Controllers
 {
@@ -51,11 +50,11 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
                         break;
                     case NotificationType.Reminder:
                         subject = "Reminder Notification";
-                        message = "This is a reminder for your upcoming task.";
+                        message = "This is a reminder for your upcoming Appoinment.";
                         break;
                     case NotificationType.Success:
                         subject = "Success Notification";
-                        message = "Your action was completed successfully!";
+                        message = "Your Appoinment has been reserved successfully!";
                         break;
                     default:
                         throw new ArgumentException("Invalid notification type. Use 'alert', 'reminder', or 'success'.");
@@ -90,7 +89,7 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
                 await dbContext.Notifications.AddAsync(notification);
                 await dbContext.SaveChangesAsync();
 
-                return Ok("Email sent successfully");
+                return Ok(new { message = "Email sent successfully" });
             }
             catch (Exception ex)
             {
