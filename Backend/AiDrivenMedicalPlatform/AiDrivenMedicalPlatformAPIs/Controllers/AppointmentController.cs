@@ -105,15 +105,19 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
         }
 
         [Authorize]
-        [HttpPut]
-        public async Task<ActionResult> AddRate([FromQuery]string id, [FromBody]int rate)
+        [HttpPatch]
+        public async Task<ActionResult> AddRate([FromQuery]string id, [FromQuery] int appointmentId, [FromQuery]int rate)
         {
             var doctor = _context.Doctors.Where(d => d.Id == id).FirstOrDefault();
+            var appointment = _context.Appointments.Where(a => a.AppointmentId == appointmentId).FirstOrDefault();
             if (doctor == null)
             {
                 return NotFound(new { Message = "Doctor not found." });
             }
-
+            if(appointment == null)
+            {
+                return NotFound(new { Message = "Appointment not Found." });
+            }
             if (rate < 1 || rate > 5)
             {
                 return BadRequest(new { Message = "Rating Should Be from 1 to 5" });
@@ -122,7 +126,7 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             doctor.TotalRating += rate;
             doctor.NumberOfRaters++;
             doctor.Rate = (decimal) doctor.TotalRating / doctor.NumberOfRaters;
-
+            appointment.IsRated = true;
             try
             {
                 await _context.SaveChangesAsync();
@@ -168,7 +172,7 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
         }
 
         [Authorize]
-        [HttpPatch]
+        [HttpDelete]
         public async Task<ActionResult> CancelAppointment([FromQuery] int appointmentId)
         {
            var appointment = await _context.Appointments.Where(appointment => appointment.AppointmentId == appointmentId).FirstOrDefaultAsync();
@@ -176,11 +180,9 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
             {
                 return NotFound(new { Message = "Appointment Not Found." });
             }
-           appointment.CreatedAt = DateTime.UtcNow;
-           appointment.Status = AppointmentStatus.Cancelled;
             try
             {
-                _context.Appointments.Update(appointment);
+                _context.Appointments.Remove(appointment);
                 await _context.SaveChangesAsync();
 
                 return Ok( new { Message = "Appointment Cancelled Successfully" });
@@ -219,27 +221,59 @@ namespace AiDrivenMedicalPlatformAPIs.Controllers
 
         [Authorize]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AppointmentDto>>> GetAppointments([FromBody] int status)
+        public async Task<ActionResult<IEnumerable<AppointmentDto>>> GetAppointments([FromQuery] int status)
         {
             string userId = User.Claims.First(x => x.Type == "UserID").Value;
 
-            var appointments = _context.Appointments.Where(appointment => (appointment.Did == userId ||  appointment.Pid == userId) && (appointment.Status == (AppointmentStatus) status))
-                                                    .Select(appointment => new AppointmentDto
-                                                    {
-                                                        Date = appointment.Date,
-                                                        Cost = appointment.Cost,
-                                                        Location = appointment.Location,
-                                                        PatientName = appointment.Patient.FullName,
-                                                        DoctorName = appointment.Doctor.FullName,
-                                                    })
-                                                    .ToListAsync();
-            
+            var appointments = await _context.Appointments.Where(appointment =>
+                                                                (appointment.Did == userId || appointment.Pid == userId) &&
+                                                                appointment.Status == (AppointmentStatus)status)
+                                                          .Include(a => a.Patient)
+                                                          .Include(a => a.Doctor)
+                                                          .Select(appointment => new AppointmentDto
+                                                            {
+                                                              Id = appointment.AppointmentId,
+                                                                Date = appointment.Date,
+                                                                Cost = appointment.Cost,
+                                                                Location = appointment.Location,
+                                                                PatientName = appointment.Patient.FullName,
+                                                                DoctorName = appointment.Doctor.FullName,
+                                                                IsRated = appointment.IsRated,
+                                                                Did = appointment.Did,
+                                                            })
+                                                          .ToListAsync();
+
+
             return Ok(appointments);
         }
 
         [Authorize]
         [HttpGet]
-        public async Task<ActionResult<AppointmentInfoDto>> GetAvailableTimeSlots([FromQuery] string id, [FromQuery] DateTime day)
+        public async Task<ActionResult<AppointmentInfoDto>> GetAppointmentInfo([FromQuery] int id)
+        {
+            var appointment = await _context.Appointments.Where(appointment => appointment.AppointmentId == id)
+                                                          .Include(a => a.Patient)
+                                                          .Include(a => a.Doctor)
+                                                          .Select(appointment => new AppointmentInfoDto
+                                                          {
+                                                              Date = appointment.Date,
+                                                              Cost = appointment.Cost,
+                                                              Location = appointment.Location,
+                                                              PatientName = appointment.Patient.FullName,
+                                                              DoctorName = appointment.Doctor.FullName,
+                                                              Description = appointment.Description,
+                                                          })
+                                                          .FirstOrDefaultAsync();
+            if(appointment is null)
+            {
+                return NotFound(new { Message="Appointment not Found" });
+            }
+            return Ok(appointment);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult> GetAvailableTimeSlots([FromQuery] string id, [FromQuery] DateTime day)
         {
             string dayOfWeek = day.DayOfWeek.ToString();
 

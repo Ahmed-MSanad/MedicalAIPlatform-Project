@@ -13,7 +13,7 @@ namespace MedicalProj.Data.Models
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public string Did { get; set; }
         public string Pid { get; set; }
-
+        public bool IsRated { get; set; } = false;
         // Navigation properties :
         public Doctor Doctor { get; set; } = null!;
         public Patient Patient { get; set; } = null!;

@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
-
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 .spinner-container {
     @apply flex flex-col items-center justify-center h-full;
 }

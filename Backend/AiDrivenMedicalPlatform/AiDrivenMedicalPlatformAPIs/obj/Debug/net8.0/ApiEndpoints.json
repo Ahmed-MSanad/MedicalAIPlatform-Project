@@ -39,7 +39,7 @@
     "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AppointmentController",
     "Method": "AddRate",
     "RelativePath": "api/Appointment/AddRate",
-    "HttpMethod": "PUT",
+    "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -49,9 +49,14 @@
         "IsRequired": false
       },
       {
+        "Name": "appointmentId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
         "Name": "rate",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -60,7 +65,7 @@
     "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AppointmentController",
     "Method": "CancelAppointment",
     "RelativePath": "api/Appointment/CancelAppointment",
-    "HttpMethod": "PATCH",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -106,6 +111,32 @@
   },
   {
     "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AppointmentController",
+    "Method": "GetAppointmentInfo",
+    "RelativePath": "api/Appointment/GetAppointmentInfo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "AiDrivenMedicalPlatformAPIs.Models.Dto.AppointmentInfoDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AppointmentController",
     "Method": "GetAppointments",
     "RelativePath": "api/Appointment/GetAppointments",
     "HttpMethod": "GET",
@@ -115,7 +146,7 @@
       {
         "Name": "status",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -149,17 +180,7 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "AiDrivenMedicalPlatformAPIs.Models.Dto.AppointmentInfoDto",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AppointmentController",
