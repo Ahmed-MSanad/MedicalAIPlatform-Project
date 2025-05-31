@@ -11,16 +11,16 @@
       "RelativeMoniker": "D:0:0:{E21912A0-53C9-4E37-8000-F6189AEAF8EE}|AiDrivenMedicalPlatformAPIs\\AiDrivenMedicalPlatformAPIs.csproj|solutionrelative:aidrivenmedicalplatformapis\\models\\dto\\appointmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\MedicalProj.Data\\Migrations\\20250530143234_AddedIsRatedColumnInAppointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MedicalProj.Data\\Migrations\\20250530143234_AddedIsRatedColumnInAppointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A6164DAD-260E-48AE-9800-03DC7259FFF7}|MedicalProj.Data\\MedicalProj.Data.csproj|d:\\projects\\medicalapp\\medicalaiplatform-project\\backend\\aidrivenmedicalplatform\\medicalproj.data\\models\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A6164DAD-260E-48AE-9800-03DC7259FFF7}|MedicalProj.Data\\MedicalProj.Data.csproj|solutionrelative:medicalproj.data\\models\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A6164DAD-260E-48AE-9800-03DC7259FFF7}|MedicalProj.Data\\MedicalProj.Data.csproj|d:\\projects\\medicalapp\\medicalaiplatform-project\\backend\\aidrivenmedicalplatform\\medicalproj.data\\migrations\\20250527195031_addedandalteredcolumns.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A6164DAD-260E-48AE-9800-03DC7259FFF7}|MedicalProj.Data\\MedicalProj.Data.csproj|solutionrelative:medicalproj.data\\migrations\\20250527195031_addedandalteredcolumns.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6164DAD-260E-48AE-9800-03DC7259FFF7}|MedicalProj.Data\\MedicalProj.Data.csproj|d:\\projects\\medicalapp\\medicalaiplatform-project\\backend\\aidrivenmedicalplatform\\medicalproj.data\\migrations\\20250530143234_addedisratedcolumninappointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6164DAD-260E-48AE-9800-03DC7259FFF7}|MedicalProj.Data\\MedicalProj.Data.csproj|solutionrelative:medicalproj.data\\migrations\\20250530143234_addedisratedcolumninappointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +38,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "20250530143234_AddedIsRatedColumnInAppointment.cs",
               "DocumentMoniker": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\MedicalProj.Data\\Migrations\\20250530143234_AddedIsRatedColumnInAppointment.cs",
               "RelativeDocumentMoniker": "MedicalProj.Data\\Migrations\\20250530143234_AddedIsRatedColumnInAppointment.cs",
@@ -46,12 +46,11 @@
               "RelativeToolTip": "MedicalProj.Data\\Migrations\\20250530143234_AddedIsRatedColumnInAppointment.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-30T14:32:37.487Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-30T14:32:37.487Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Appointment.cs",
               "DocumentMoniker": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\MedicalProj.Data\\Models\\Appointment.cs",
               "RelativeDocumentMoniker": "MedicalProj.Data\\Models\\Appointment.cs",
@@ -59,8 +58,7 @@
               "RelativeToolTip": "MedicalProj.Data\\Models\\Appointment.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAAswA8AAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-30T14:19:46.718Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-30T14:19:46.718Z"
             },
             {
               "$type": "Document",
@@ -72,8 +70,7 @@
               "RelativeToolTip": "AiDrivenMedicalPlatformAPIs\\Models\\Dto\\AppointmentDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-29T17:16:47.94Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-29T17:16:47.94Z"
             },
             {
               "$type": "Document",
@@ -90,7 +87,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "20250527195031_AddedAndAlteredColumns.cs",
               "DocumentMoniker": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\MedicalProj.Data\\Migrations\\20250527195031_AddedAndAlteredColumns.cs",
               "RelativeDocumentMoniker": "MedicalProj.Data\\Migrations\\20250527195031_AddedAndAlteredColumns.cs",

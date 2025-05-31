@@ -53,11 +53,10 @@ export class AppointmentService {
     let params = new HttpParams();
     if (appointmentId) params = params.set('appointmentId', appointmentId);
 
-    return this._http.patch(`${environment.apiBaseURL}/Appointment/CompleteAppointment`, { params });
+    return this._http.patch(`${environment.apiBaseURL}/Appointment/CompleteAppointment`,null, { params });
   }
 
-  GetAppointments(status: number): Observable<any> {
-    
+  GetAppointments(status: number): Observable<any> {    
   const params = new HttpParams().set('status', status.toString());
   return this._http.get<any>(`${environment.apiBaseURL}/Appointment/GetAppointments`, { params });
 }
