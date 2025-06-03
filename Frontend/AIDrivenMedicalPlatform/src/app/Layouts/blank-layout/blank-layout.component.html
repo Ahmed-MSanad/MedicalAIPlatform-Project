@@ -41,7 +41,15 @@
                         Make An Appointment
                     </div>
                     <div class="text-3xl flex items-center">
-                        <i class="fa-solid fa-calendar-check"></i>
+                        <i class="fa-solid fa-calendar"></i>
+                    </div>
+                </li>
+                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'DoctorAppointments'" routerLinkActive="bg-gray-400">
+                    <div>
+                         My Appointments
+                    </div>
+                    <div class="text-3xl flex items-center">
+                        <i class="fa-solid fa-calendar"></i>
                     </div>
                 </li>
                 <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="userClaims.role+'Profile'" routerLinkActive="bg-gray-400">
@@ -50,14 +58,6 @@
                     </div>
                     <div class="text-3xl flex items-center">
                         <i class="fa-solid fa-address-card"></i>
-                    </div>
-                </li>
-                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'DoctorSchedule'" routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.doctorOnly">
-                    <div>
-                        Doctor Schedule
-                    </div>
-                    <div class="text-3xl flex items-center">
-                        <i class="fa-solid fa-calendar-check"></i>
                     </div>
                 </li>
                 <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="['/feedback']" routerLinkActive="bg-gray-400">

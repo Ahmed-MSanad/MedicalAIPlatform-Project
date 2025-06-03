@@ -4,6 +4,7 @@ using MedicalProj.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalProj.Data.Migrations
 {
     [DbContext(typeof(MedicalDbContext))]
-    partial class MedicalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250530143234_AddedIsRatedColumnInAppointment")]
+    partial class AddedIsRatedColumnInAppointment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -312,47 +315,6 @@ namespace MedicalProj.Data.Migrations
                     b.HasIndex("Pid");
 
                     b.ToTable("MedicalImages");
-                });
-
-            modelBuilder.Entity("MedicalProj.Data.Models.Notification", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("From")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PatientId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Subject")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("SubmittedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("To")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.PatientPhone", b =>
@@ -684,17 +646,6 @@ namespace MedicalProj.Data.Migrations
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("MedicalProj.Data.Models.Notification", b =>
-                {
-                    b.HasOne("MedicalProj.Data.Models.Patient", "Patient")
-                        .WithMany("Notifications")
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Patient");
-                });
-
             modelBuilder.Entity("MedicalProj.Data.Models.PatientPhone", b =>
                 {
                     b.HasOne("MedicalProj.Data.Models.Patient", "Patient")
@@ -816,8 +767,6 @@ namespace MedicalProj.Data.Migrations
                     b.Navigation("Feedbacks");
 
                     b.Navigation("MedicalImages");
-
-                    b.Navigation("Notifications");
 
                     b.Navigation("PatientPhones");
                 });

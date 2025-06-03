@@ -12,9 +12,9 @@ import { AdminProfileComponent } from './Components/admin/admin-profile/admin-pr
 import { PatientDashboardComponent } from './Components/patient/patient-dashboard/patient-dashboard.component';
 import { AdminDashboardComponent } from './Components/admin/admin-dashboard/admin-dashboard.component';
 import { DoctorDashboardComponent } from './Components/doctor/doctor-dashboard/doctor-dashboard.component';
+import { DoctorAppointmentsComponent } from './Components/doctor/doctor-appointments/doctor-appointments.component';
 import { ForbiddenComponent } from './Components/forbidden/forbidden.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
-import { DoctorScheduleComponent } from './Components/doctor/doctor-schedule/doctor-schedule.component';
 import { claimReq } from './Core/utils/claimReq-utils';
 import { PatientAppointmentComponent } from './Components/patient/patient-appointment/patient-appointment.component';
 import { MainPageComponent } from './Components/main-page/main-page.component';
@@ -34,7 +34,8 @@ export const routes: Routes = [
 
         {path: 'DoctorProfile', component: DoctorProfileComponent, data: {claimReq : claimReq.doctorOnly}},
         {path: 'DoctorDashboard', component: DoctorDashboardComponent, data: {claimReq : claimReq.doctorOnly}},
-        {path: 'DoctorSchedule', component: DoctorScheduleComponent, data: {claimReq : claimReq.doctorOnly}},
+        {path: 'DoctorAppointments', component: DoctorAppointmentsComponent, data: {claimReq : claimReq.doctorOnly}},
+
 
         {path: 'PatientProfile', component: PatientProfileComponent, data: {claimReq : claimReq.patientOnly}},
         {path: 'PatientDashboard', component: PatientDashboardComponent, data: {claimReq : claimReq.patientOnly}},
