@@ -117,7 +117,7 @@ export class DoctorAppointmentsComponent {
         this.isLoading = false;
       },
       error: (err) => {
-        this._toastr.error(err.message);
+        this._toastr.error("Can't complete this appointment until the scheduled time has passed.");
         this.isLoading = false;
       }
     })

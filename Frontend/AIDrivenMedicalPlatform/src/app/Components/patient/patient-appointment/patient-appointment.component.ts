@@ -4,6 +4,8 @@ import { AppointmentService } from '../../../Core/Services/appointment.service';
 import { FormsModule } from '@angular/forms';
 import { DoctorInfo } from '../../../Core/Interfaces/doctor-info';
 import { ToastrService } from 'ngx-toastr';
+import { NotificationService } from '../../../Core/Services/notification.service';
+import { ENotificationType } from '../../../Core/Enums/enotification-type';
 
 @Component({
   selector: 'app-patient-appointment',
@@ -119,6 +121,8 @@ export class PatientAppointmentComponent {
     this.maxDate = futureDate.toISOString().split('T')[0];
   }
 
+
+  notificationService = inject(NotificationService);
   bookAppointment() {
 
     if (this.time && this.date) {
@@ -146,6 +150,16 @@ export class PatientAppointmentComponent {
           this.time = undefined;
           this.date = undefined;
           this.description = undefined;
+          this.notificationService.sendNotification(ENotificationType.Success).subscribe({
+            next: (res) => {
+              this._toastr.success(res.message);
+              console.log(res.message);
+            },
+            error:(error) => {
+              this._toastr.error(error.error);
+              console.log(error.error);
+            }
+          });
         },
         error: (err) => {
           this._toastr.error(err.message);

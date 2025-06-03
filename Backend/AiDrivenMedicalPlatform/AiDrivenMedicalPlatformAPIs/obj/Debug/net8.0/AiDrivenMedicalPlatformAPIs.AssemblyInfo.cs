@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AiDrivenMedicalPlatformAPIs")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+009f7a264676243e26b746c42f8ca54d74b73851")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+59e8d3b39c3b239ee57ad162729daf040fa8d3f2")]
 [assembly: System.Reflection.AssemblyProductAttribute("AiDrivenMedicalPlatformAPIs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AiDrivenMedicalPlatformAPIs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -17,15 +17,18 @@ import { ForbiddenComponent } from './Components/forbidden/forbidden.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { claimReq } from './Core/utils/claimReq-utils';
 import { PatientAppointmentComponent } from './Components/patient/patient-appointment/patient-appointment.component';
+import { MainPageComponent } from './Components/main-page/main-page.component';
 
 export const routes: Routes = [
     {path: '', component: AuthLayoutComponent, canActivate:[stopLoggedInUserGuard], children:[
-        {path: "", redirectTo: "register", pathMatch: 'full'},
-        {path: "register", component: RegisterComponent},
-        {path: "login", component: LoginComponent}
+        {path: "", redirectTo: "home", pathMatch: 'full'},
+        {path: "home", component: MainPageComponent },
+        {path: "register", loadComponent: () => import("./Components/auth/register/register.component").then((c) => c.RegisterComponent)},
+        {path: "login", loadComponent: () => import("./Components/auth/login/login.component").then((c) => c.LoginComponent)}
     ]},
     {path:'', component: BlankLayoutComponent, canActivate:[authGuard], canActivateChild:[authGuard] , children:[
         {path: "", redirectTo: "AdminDashboard", pathMatch: 'full'},
+
         {path: 'AdminProfile', component: AdminProfileComponent, data: {claimReq : claimReq.adminOnly}},
         {path: 'AdminDashboard', component: AdminDashboardComponent, data: {claimReq : claimReq.adminOnly}},
 
@@ -39,7 +42,8 @@ export const routes: Routes = [
         {path: 'PatientAppointment', component: PatientAppointmentComponent, data: {claimReq : claimReq.patientOnly}},
         {path: 'forbidden', component: ForbiddenComponent},
 
-        {path: "feedback", loadComponent: () => import("./Components/feedback/feedback.component").then((c) => c.FeedbackComponent) }
+        {path: "feedback", loadComponent: () => import("./Components/feedback/feedback.component").then((c) => c.FeedbackComponent) },
+        {path: "notification", loadComponent: () => import("./Components/notification/notification.component").then((c) => c.NotificationComponent) }
     ]},
     {path: "**", component: NotFoundComponent }
 ];

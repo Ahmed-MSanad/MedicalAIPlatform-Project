@@ -367,6 +367,48 @@
     ]
   },
   {
+    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.NotificationController",
+    "Method": "getNotifications",
+    "RelativePath": "api/Notification/getNotifications",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.NotificationController",
+    "Method": "removeNotification",
+    "RelativePath": "api/Notification/removeNotification/{NotificationId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NotificationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.NotificationController",
+    "Method": "SendEmail",
+    "RelativePath": "api/Notification/SendEmail/{NotificationType}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NotificationType",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AutorizationEndPoints",
     "Method": "PatientDashboard",
     "RelativePath": "api/PatientDashboard",

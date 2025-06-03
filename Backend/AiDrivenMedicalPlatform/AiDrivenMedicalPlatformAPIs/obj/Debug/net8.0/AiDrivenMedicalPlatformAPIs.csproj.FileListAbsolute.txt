@@ -446,9 +446,9 @@ E:\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFil
 E:\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\obj\Debug\net8.0\AiDrivenMedicalPlatformAPIs.genruntimeconfig.cache
 E:\MedicalAIPlatform-Project-OrganizeFiles\MedicalAIPlatform-Project-OrganizeFiles\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\obj\Debug\net8.0\ref\AiDrivenMedicalPlatformAPIs.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\appsettings.Development.json
-D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\appsettings.json
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\userDetails.json
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\AiDrivenMedicalPlatformAPIs.staticwebassets.endpoints.json
+D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\appsettings.json
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\AiDrivenMedicalPlatformAPIs.exe
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\AiDrivenMedicalPlatformAPIs.deps.json
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\AiDrivenMedicalPlatformAPIs.runtimeconfig.json
@@ -456,7 +456,9 @@ D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\AiDrivenMedicalPlatformAPIs.pdb
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\Azure.Core.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\Azure.Identity.dll
+D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\Humanizer.dll
+D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\MailKit.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
@@ -487,6 +489,7 @@ D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\Microsoft.OpenApi.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\MimeKit.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\Mono.TextTemplating.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
@@ -502,6 +505,7 @@ D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\System.Memory.Data.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\System.Runtime.Caching.dll
+D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\System.Security.Permissions.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\System.Windows.Extensions.dll
@@ -567,6 +571,7 @@ D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 D:\Projects\MedicalApp\MedicalAIPlatform-Project\Backend\AiDrivenMedicalPlatform\AiDrivenMedicalPlatformAPIs\bin\Debug\net8.0\MedicalProj.Data.dll

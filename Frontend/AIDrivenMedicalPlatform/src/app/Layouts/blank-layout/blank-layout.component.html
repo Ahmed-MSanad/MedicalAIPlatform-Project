@@ -68,6 +68,14 @@
                         <i class="fa-regular fa-comments"></i>
                     </div>
                 </li>
+                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'notification'" routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.patientOnly">
+                    <div>
+                        Notifications
+                    </div>
+                    <div class="text-3xl flex items-center">
+                        <i class="fa-solid fa-bell"></i>
+                    </div>
+                </li>
             </ul>
         </aside>
         <div [@toggleNavAnimation]="SideNavState()" class="p-4">

@@ -1,5 +1,4 @@
 ﻿using AiDrivenMedicalPlatformAPIs.Models.Dto;
-using Azure.Core;
 using MedicalProj.Data.Contexts;
 using MedicalProj.Data.Models;
 using MedicalProj.Data.Types;
@@ -7,7 +6,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AiDrivenMedicalPlatformAPIs.Controllers
 {
