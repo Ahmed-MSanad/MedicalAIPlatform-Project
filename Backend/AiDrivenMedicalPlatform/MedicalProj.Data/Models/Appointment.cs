@@ -1,4 +1,4 @@
-﻿using MedicalProj.Data.Types;
+﻿using Shared.AppointmentDtos;
 
 namespace MedicalProj.Data.Models
 {

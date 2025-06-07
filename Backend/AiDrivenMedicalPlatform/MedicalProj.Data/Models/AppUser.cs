@@ -1,5 +1,5 @@
-﻿using MedicalProj.Data.Types;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using Shared;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedicalProj.Data.Models

@@ -11,15 +11,15 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   createUser(formData : any){
-    return this.http.post(`${environment.apiBaseURL}/signup/${`${formData.role}`.toLowerCase()}`, formData);
+    return this.http.post(`${environment.apiBaseURL}/Authentication/${formData.role.charAt(0).toUpperCase() + formData.role.slice(1).toLowerCase()}Signup`, formData);
   }
 
   checkEmail(formData : any){
-    return this.http.post(environment.apiBaseURL+'/usercheck/check-email', formData);
+    return this.http.post(environment.apiBaseURL+'/Authentication/CheckEmail', formData);
   }
 
   signIn(formData : any){
-    return this.http.post(environment.apiBaseURL+'/signin' ,formData);
+    return this.http.post(environment.apiBaseURL+'/Authentication/SignInUser' ,formData);  
   }
 
   isLoggedIn() : boolean{

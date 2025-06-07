@@ -9,10 +9,10 @@ export class PatientService {
   constructor(private _http : HttpClient) { }
 
   getPatientProfile(){
-    return this._http.get(environment.apiBaseURL+'/profile/GetPatientProfile');
+    return this._http.get(environment.apiBaseURL+'/Profile/GetPatientProfile');
   }
   updatePatientProfile(updatedUser: any) {
-    return this._http.put(environment.apiBaseURL + '/profile/EditPatientProfile', updatedUser);
+    return this._http.put(environment.apiBaseURL + '/Profile/EditPatientProfile', updatedUser);
   }
   
 }
