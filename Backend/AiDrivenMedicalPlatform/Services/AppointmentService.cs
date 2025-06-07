@@ -6,7 +6,6 @@ using Services.Abstraction;
 using Services.Specifications;
 using Shared.AppointmentDtos;
 using Shared.DoctorDtos;
-using Shared.ScheduleDtos;
 
 namespace Services
 {
@@ -44,19 +43,25 @@ namespace Services
             return doctorInfoDto;
         }
 
-        public async Task AddRateService(string id, int rate)
+        public async Task AddRateService(string id, int appointmentId, int rate)
         {
             var specification = new DoctorWithFilterSpecification(id);
-
             var doctor = await unitOfWork.GetRepository<Doctor, string>().GetByIdAsync(specification);
             if (doctor == null)
             {
                 throw new Exception("Doctor not found in Add Rate Service");
             }
 
+            var appointment = await unitOfWork.GetRepository<Appointment, int>().GetByIdAsync(appointmentId);
+            if (appointment == null)
+            {
+                throw new Exception("Appointment not Found in Add Rate Service.");
+            }
+
             doctor.TotalRating += rate;
             doctor.NumberOfRaters++;
-            doctor.Rate = (decimal)doctor.TotalRating / doctor.NumberOfRaters;
+            doctor.Rate = (decimal) doctor.TotalRating / doctor.NumberOfRaters;
+            appointment.IsRated = true;
 
             await unitOfWork.SaveChangesAsync();
         }

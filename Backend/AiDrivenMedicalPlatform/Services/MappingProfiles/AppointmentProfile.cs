@@ -12,7 +12,8 @@ namespace Services.MappingProfiles
 
             CreateMap<Appointment, AppointmentDto>()
                 .ForMember(adto => adto.DoctorName, options => options.MapFrom(a => !string.IsNullOrEmpty(a.Doctor.FullName) ? a.Doctor.FullName : string.Empty))
-                .ForMember(adto => adto.PatientName, options => options.MapFrom(a => !string.IsNullOrEmpty(a.Patient.FullName) ? a.Patient.FullName : string.Empty));
+                .ForMember(adto => adto.PatientName, options => options.MapFrom(a => !string.IsNullOrEmpty(a.Patient.FullName) ? a.Patient.FullName : string.Empty))
+                .ForMember(adto => adto.Id, options => options.MapFrom((src, dest) => src.AppointmentId));
         }
     }
 }

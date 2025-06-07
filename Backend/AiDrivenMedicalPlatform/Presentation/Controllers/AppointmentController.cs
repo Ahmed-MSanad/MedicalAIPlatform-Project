@@ -29,14 +29,14 @@ namespace Presentation.Controllers
 
         [Authorize]
         [HttpPut]
-        public async Task<ActionResult> AddRate([FromQuery]string id, [FromBody]int rate)
+        public async Task<ActionResult> AddRate([FromQuery]string id, [FromQuery] int appointmentId, [FromBody]int rate)
         {
             if (rate < 1 || rate > 5)
             {
                 return BadRequest(new { Message = "Rating Should Be from 1 to 5" });
             }
 
-            await serviceManager.AppointmentService.AddRateService(id, rate);
+            await serviceManager.AppointmentService.AddRateService(id, appointmentId, rate);
 
             return Ok(new { Message = "Rating added successfully." });
         }
