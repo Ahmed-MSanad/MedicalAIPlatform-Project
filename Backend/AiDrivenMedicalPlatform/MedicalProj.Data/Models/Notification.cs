@@ -1,4 +1,6 @@
-﻿namespace MedicalProj.Data.Models
+﻿using Shared;
+
+namespace MedicalProj.Data.Models
 {
     public class Notification
     {
@@ -12,12 +14,5 @@
 
         public string PatientId { get; set; } = null!;
         public Patient Patient { get; set; } = null!;
-    }
-
-    public enum NotificationType
-    {
-        Success,
-        Alert,
-        Reminder
     }
 }

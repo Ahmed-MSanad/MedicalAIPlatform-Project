@@ -10,9 +10,9 @@ export class AdminService {
   constructor(private _http:HttpClient) { }
 
   getAdminProfile(){
-      return this._http.get(environment.apiBaseURL+'/profile/GetAdminProfile');
+      return this._http.get(environment.apiBaseURL+'/Profile/GetAdminProfile');
     }
     updateAdminProfile(updatedUser: any) {
-      return this._http.put(environment.apiBaseURL + '/profile/EditAdminProfile', updatedUser);
+      return this._http.put(environment.apiBaseURL + '/Profile/EditAdminProfile', updatedUser);
     }
 }

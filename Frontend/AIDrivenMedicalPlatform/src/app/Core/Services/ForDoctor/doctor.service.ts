@@ -16,9 +16,9 @@ export class DoctorService {
   }
 
   getDoctorProfile(){
-    return this._http.get(environment.apiBaseURL+'/profile/GetDoctorProfile');
+    return this._http.get(environment.apiBaseURL+'/Profile/GetDoctorProfile');
   }
   updateDoctorProfile(updatedUser: any) {
-    return this._http.put(environment.apiBaseURL + '/profile/EditDoctorProfile', updatedUser);
+    return this._http.put(environment.apiBaseURL + '/Profile/EditDoctorProfile', updatedUser);
   }
 }

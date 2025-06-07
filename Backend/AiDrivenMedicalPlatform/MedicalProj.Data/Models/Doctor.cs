@@ -26,7 +26,7 @@ namespace MedicalProj.Data.Models
         // Navigation properties :
         public ICollection<DoctorPhone> DoctorPhones { get; set; } = new List<DoctorPhone>(); // Doctor(1:Optional) - DoctorPhone(0..N:Mandatory)
         public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>(); // Doctor(1:Optional) - Appointment(0..N:Mandatory)
-        public DoctorSchedule DoctorSchedule { get; set; } = null!; // Doctor(1:Mandatory) - DoctorSchedule(1:Mandatory)
+        public ICollection<DoctorSchedule> DoctorSchedule { get; set; } = null!; // Doctor(1:Optionally) - DoctorSchedule(0..N:Mandatory)
         public ICollection<MedicalImage>? MedicalImages { get; set; } = new List<MedicalImage>(); // Doctor(1:Optional) - MedicalImage(0..N:Mandatory)
 
         public static implicit operator Doctor(ValueTask<Doctor?> v)
