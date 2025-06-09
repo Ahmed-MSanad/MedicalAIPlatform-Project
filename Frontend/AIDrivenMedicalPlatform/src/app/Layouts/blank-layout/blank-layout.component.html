@@ -1,22 +1,4 @@
 <header>
-    <nav [@toggleNavAnimation]="SideNavState()" class="flex justify-between px-8 bg-cyan-600 items-center min-h-16 ms-80">
-        <div>
-            <form class="flex items-center max-w-md">
-                <label for="simple-search" class="sr-only">Search</label>
-                <div class="relative w-full">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <span class="text-white"><i class="fa-brands fa-searchengin"></i></span>
-                    </div>
-                    <input type="text" id="simple-search" class="focus:outline-0 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search branch name..." required />
-                </div>
-                <button type="submit" class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <i class="fa-solid fa-search"></i>
-                    <span class="sr-only">Search</span>
-                </button>
-            </form>
-        </div>
-        <button class="px-6 py-2.5 bg-gray-600 text-white rounded-lg cursor-pointer" (click)="onLogOut()">Log Out</button>
-    </nav>
     <div class="">
         <aside [@toggleSideNavAnimation]="SideNavState()" class="w-80 fixed top-0 left-0 bottom-0 bg-gray-600 z-[9999]">
             <ul>
@@ -25,10 +7,12 @@
                         {{userClaims.role}} Services<i class="fa-solid fa-user-tie"></i>
                     </div>
                     <button class="cursor-pointer" (click)="toggleSideNav()">
-                        <i class="fa-solid" [ngClass]="{'fa-arrow-left': SideNavState() === 'open', 'fa-arrow-right': SideNavState() === 'close'}"></i>
+                        <i class="fa-solid"
+                            [ngClass]="{'fa-arrow-left': SideNavState() === 'open', 'fa-arrow-right': SideNavState() === 'close'}"></i>
                     </button>
                 </li>
-                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="userClaims.role+'Dashboard'" routerLinkActive="bg-gray-400">
+                <li class="text-white py-5 cursor-pointer flex justify-between px-6"
+                    [routerLink]="userClaims.role+'Dashboard'" routerLinkActive="bg-gray-400">
                     <div>
                         {{userClaims.role}} Dashboard
                     </div>
@@ -36,7 +20,8 @@
                         <i class="fa-solid fa-table-columns"></i>
                     </div>
                 </li>
-                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'PatientAppointment'" routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.patientOnly">
+                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'PatientAppointment'"
+                    routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.patientOnly">
                     <div>
                         Make An Appointment
                     </div>
@@ -44,15 +29,17 @@
                         <i class="fa-solid fa-calendar"></i>
                     </div>
                 </li>
-                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'DoctorAppointments'" routerLinkActive="bg-gray-400">
+                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'DoctorAppointments'"
+                    routerLinkActive="bg-gray-400">
                     <div>
-                         My Appointments
+                        My Appointments
                     </div>
                     <div class="text-3xl flex items-center">
                         <i class="fa-solid fa-calendar"></i>
                     </div>
                 </li>
-                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="userClaims.role+'Profile'" routerLinkActive="bg-gray-400">
+                <li class="text-white py-5 cursor-pointer flex justify-between px-6"
+                    [routerLink]="userClaims.role+'Profile'" routerLinkActive="bg-gray-400">
                     <div>
                         {{userClaims.role}} Profile
                     </div>
@@ -60,7 +47,8 @@
                         <i class="fa-solid fa-address-card"></i>
                     </div>
                 </li>
-                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="['/feedback']" routerLinkActive="bg-gray-400">
+                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="['/feedback']"
+                    routerLinkActive="bg-gray-400">
                     <div>
                         Feedback
                     </div>
@@ -68,12 +56,19 @@
                         <i class="fa-regular fa-comments"></i>
                     </div>
                 </li>
-                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'notification'" routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.patientOnly">
+                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'notification'"
+                    routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.patientOnly">
                     <div>
                         Notifications
                     </div>
                     <div class="text-3xl flex items-center">
                         <i class="fa-solid fa-bell"></i>
+                    </div>
+                </li>
+                <li class="text-white py-5 cursor-pointer flex justify-between px-6 mt-auto" (click)="onLogOut()">
+                    <div>Logout</div>
+                    <div class="text-3xl flex items-center">
+                        <i class="fa-solid fa-right-from-bracket"></i>
                     </div>
                 </li>
             </ul>
