@@ -1,10 +1,11 @@
 <header>
     <div class="">
-        <aside [@toggleSideNavAnimation]="SideNavState()" class="w-80 fixed top-0 left-0 bottom-0 bg-gray-600 z-[9999]">
+        <aside [@toggleSideNavAnimation]="SideNavState()"
+            class="w-80 fixed top-0 left-0 bottom-0 bg-gray-600 z-[9999] flex flex-col justify-between">
             <ul>
                 <li class="text-white py-5 flex justify-between mx-6">
-                    <div class="">
-                        {{userClaims.role}} Services<i class="fa-solid fa-user-tie"></i>
+                    <div class="text-2xl font-bold">
+                        {{userClaims.role}} Services <i class="fa-solid fa-user-tie"></i>
                     </div>
                     <button class="cursor-pointer" (click)="toggleSideNav()">
                         <i class="fa-solid"
@@ -17,7 +18,7 @@
                         {{userClaims.role}} Dashboard
                     </div>
                     <div class="text-3xl flex items-center">
-                        <i class="fa-solid fa-table-columns"></i>
+                        <i class="fa-solid w-5 fa-table-columns"></i>
                     </div>
                 </li>
                 <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'PatientAppointment'"
@@ -26,25 +27,16 @@
                         Make An Appointment
                     </div>
                     <div class="text-3xl flex items-center">
-                        <i class="fa-solid fa-calendar"></i>
+                        <i class="fa-solid w-5 fa-calendar"></i>
                     </div>
                 </li>
                 <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'DoctorAppointments'"
-                    routerLinkActive="bg-gray-400">
+                    [appHideIfClaimsNotMet]="claimReq.doctorOnly" routerLinkActive="bg-gray-400">
                     <div>
                         My Appointments
                     </div>
                     <div class="text-3xl flex items-center">
-                        <i class="fa-solid fa-calendar"></i>
-                    </div>
-                </li>
-                <li class="text-white py-5 cursor-pointer flex justify-between px-6"
-                    [routerLink]="userClaims.role+'Profile'" routerLinkActive="bg-gray-400">
-                    <div>
-                        {{userClaims.role}} Profile
-                    </div>
-                    <div class="text-3xl flex items-center">
-                        <i class="fa-solid fa-address-card"></i>
+                        <i class="fa-solid w-5 fa-calendar"></i>
                     </div>
                 </li>
                 <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="['/feedback']"
@@ -53,7 +45,7 @@
                         Feedback
                     </div>
                     <div class="text-3xl flex items-center">
-                        <i class="fa-regular fa-comments"></i>
+                        <i class="fa-regular w-5 fa-comments"></i>
                     </div>
                 </li>
                 <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'notification'"
@@ -62,13 +54,24 @@
                         Notifications
                     </div>
                     <div class="text-3xl flex items-center">
-                        <i class="fa-solid fa-bell"></i>
+                        <i class="fa-solid w-5 fa-bell"></i>
                     </div>
                 </li>
+                <li class="text-white py-5 cursor-pointer flex justify-between px-6"
+                    [routerLink]="userClaims.role+'Profile'" routerLinkActive="bg-gray-400">
+                    <div>
+                        {{userClaims.role}} Profile
+                    </div>
+                    <div class="text-3xl flex items-center">
+                        <i class="fa-solid w-5 fa-address-card"></i>
+                    </div>
+                </li>
+            </ul>
+            <ul>
                 <li class="text-white py-5 cursor-pointer flex justify-between px-6 mt-auto" (click)="onLogOut()">
                     <div>Logout</div>
                     <div class="text-3xl flex items-center">
-                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <i class="fa-solid w-5 fa-right-from-bracket"></i>
                     </div>
                 </li>
             </ul>
