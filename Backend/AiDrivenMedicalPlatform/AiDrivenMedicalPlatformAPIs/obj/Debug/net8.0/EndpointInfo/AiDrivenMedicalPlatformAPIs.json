@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/Appointment/GetDoctorsInfo": {
+    "/Appointment/GetDoctorsInfo": {
       "get": {
         "tags": [
           "Appointment"
@@ -82,7 +82,7 @@
         }
       }
     },
-    "/api/Appointment/GetDoctorInfo": {
+    "/Appointment/GetDoctorInfo": {
       "get": {
         "tags": [
           "Appointment"
@@ -120,7 +120,7 @@
         }
       }
     },
-    "/api/Appointment/AddRate": {
+    "/Appointment/AddRate": {
       "patch": {
         "tags": [
           "Appointment"
@@ -157,7 +157,7 @@
         }
       }
     },
-    "/api/Appointment/CreateAppointment": {
+    "/Appointment/CreateAppointment": {
       "post": {
         "tags": [
           "Appointment"
@@ -188,7 +188,7 @@
         }
       }
     },
-    "/api/Appointment/CancelAppointment": {
+    "/Appointment/CancelAppointment": {
       "delete": {
         "tags": [
           "Appointment"
@@ -210,7 +210,7 @@
         }
       }
     },
-    "/api/Appointment/CompleteAppointment": {
+    "/Appointment/CompleteAppointment": {
       "patch": {
         "tags": [
           "Appointment"
@@ -232,7 +232,7 @@
         }
       }
     },
-    "/api/Appointment/GetAppointments": {
+    "/Appointment/GetAppointments": {
       "get": {
         "tags": [
           "Appointment"
@@ -280,46 +280,7 @@
         }
       }
     },
-    "/api/Appointment/GetAppointmentInfo": {
-      "get": {
-        "tags": [
-          "Appointment"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/AppointmentInfoDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AppointmentInfoDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AppointmentInfoDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Appointment/GetAvailableTimeSlots": {
+    "/Appointment/GetAvailableTimeSlots": {
       "get": {
         "tags": [
           "Appointment"
@@ -343,126 +304,223 @@
         ],
         "responses": {
           "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentInfoDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentInfoDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentInfoDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Appointment/GetAppointmentInfo": {
+      "get": {
+        "tags": [
+          "Appointment"
+        ],
+        "parameters": [
+          {
+            "name": "appointmentId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentInfoDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentInfoDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentInfoDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Authentication/PatientSignup": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatientRegistrationModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatientRegistrationModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatientRegistrationModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
             "description": "OK"
           }
         }
       }
     },
-    "/api/AdminDashboard": {
-      "get": {
+    "/Authentication/DoctorSignup": {
+      "post": {
         "tags": [
-          "AutorizationEndPoints"
+          "Authentication"
         ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DoctorRegistrationModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DoctorRegistrationModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DoctorRegistrationModel"
               }
             }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
     },
-    "/api/PatientDashboard": {
-      "get": {
+    "/Authentication/AdminSignup": {
+      "post": {
         "tags": [
-          "AutorizationEndPoints"
+          "Authentication"
         ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminRegistrationModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminRegistrationModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminRegistrationModel"
               }
             }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
     },
-    "/api/HospitalMembersOnly": {
-      "get": {
+    "/Authentication/SignInUser": {
+      "post": {
         "tags": [
-          "AutorizationEndPoints"
+          "Authentication"
         ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginModel"
               }
             }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
     },
-    "/api/FemaleOnly": {
-      "get": {
+    "/Authentication/CheckEmail": {
+      "post": {
         "tags": [
-          "AutorizationEndPoints"
+          "Authentication"
         ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckEmailRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckEmailRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckEmailRequest"
               }
             }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
     },
-    "/api/ForFemaleDoctorOnly": {
-      "get": {
-        "tags": [
-          "AutorizationEndPoints"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Above18": {
-      "get": {
-        "tags": [
-          "AutorizationEndPoints"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Feedback/patientFeedback": {
+    "/Feedback/patientFeedback": {
       "post": {
         "tags": [
           "Feedback"
@@ -488,12 +546,29 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackDto"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/api/Feedback/adminResponse": {
+    "/Feedback/adminResponse": {
       "put": {
         "tags": [
           "Feedback"
@@ -519,24 +594,67 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackDto"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/api/Feedback/getPatientFeedBacks": {
+    "/Feedback/getPatientFeedBacks": {
       "get": {
         "tags": [
           "Feedback"
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FeedbackDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FeedbackDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FeedbackDto"
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
-    "/api/Feedback/removeFeedBack/{feedbackId}": {
+    "/Feedback/removeFeedBack/{feedbackId}": {
       "delete": {
         "tags": [
           "Feedback"
@@ -559,95 +677,7 @@
         }
       }
     },
-    "/api/signup/patient": {
-      "post": {
-        "tags": [
-          "IdentityUserEndPoints"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PatientRegistrationModel"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/signup/doctor": {
-      "post": {
-        "tags": [
-          "IdentityUserEndPoints"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DoctorRegistrationModel"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/signup/admin": {
-      "post": {
-        "tags": [
-          "IdentityUserEndPoints"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AdminRegistrationModel"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/signin": {
-      "post": {
-        "tags": [
-          "IdentityUserEndPoints"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LoginModel"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Notification/SendEmail/{NotificationType}": {
+    "/Notification/SendEmail/{NotificationType}": {
       "post": {
         "tags": [
           "Notification"
@@ -669,19 +699,45 @@
         }
       }
     },
-    "/api/Notification/getNotifications": {
+    "/Notification/getNotifications": {
       "get": {
         "tags": [
           "Notification"
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NotificationDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NotificationDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NotificationDto"
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
-    "/api/Notification/removeNotification/{NotificationId}": {
+    "/Notification/removeNotification/{NotificationId}": {
       "delete": {
         "tags": [
           "Notification"
@@ -704,7 +760,7 @@
         }
       }
     },
-    "/api/Profile/GetPatientProfile": {
+    "/Profile/GetPatientProfile": {
       "get": {
         "tags": [
           "Profile"
@@ -733,7 +789,7 @@
         }
       }
     },
-    "/api/Profile/GetDoctorProfile": {
+    "/Profile/GetDoctorProfile": {
       "get": {
         "tags": [
           "Profile"
@@ -762,7 +818,7 @@
         }
       }
     },
-    "/api/Profile/GetAdminProfile": {
+    "/Profile/GetAdminProfile": {
       "get": {
         "tags": [
           "Profile"
@@ -791,7 +847,7 @@
         }
       }
     },
-    "/api/Profile/DeleteUserProfile": {
+    "/Profile/DeleteUserProfile": {
       "delete": {
         "tags": [
           "Profile"
@@ -803,7 +859,7 @@
         }
       }
     },
-    "/api/Profile/EditPatientProfile": {
+    "/Profile/EditPatientProfile": {
       "put": {
         "tags": [
           "Profile"
@@ -834,7 +890,7 @@
         }
       }
     },
-    "/api/Profile/EditDoctorProfile": {
+    "/Profile/EditDoctorProfile": {
       "put": {
         "tags": [
           "Profile"
@@ -865,7 +921,7 @@
         }
       }
     },
-    "/api/Profile/EditAdminProfile": {
+    "/Profile/EditAdminProfile": {
       "put": {
         "tags": [
           "Profile"
@@ -896,20 +952,39 @@
         }
       }
     },
-    "/api/schedule": {
+    "/Schedule/GetDoctorSchedule": {
       "get": {
         "tags": [
-          "ScheduleEndPoints"
+          "Schedule"
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleDto"
+                }
+              }
+            }
           }
         }
-      },
+      }
+    },
+    "/Schedule/EditDoctorSchedule": {
       "put": {
         "tags": [
-          "ScheduleEndPoints"
+          "Schedule"
         ],
         "requestBody": {
           "content": {
@@ -920,37 +995,21 @@
                   "$ref": "#/components/schemas/ScheduleDto"
                 }
               }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/UserCheck/check-email": {
-      "post": {
-        "tags": [
-          "UserCheck"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CheckEmailRequest"
-              }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CheckEmailRequest"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ScheduleDto"
+                }
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CheckEmailRequest"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ScheduleDto"
+                }
               }
             }
           }
@@ -969,6 +1028,10 @@
         "type": "object",
         "properties": {
           "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
             "type": "string",
             "nullable": true
           },
@@ -1005,6 +1068,7 @@
           },
           "image": {
             "type": "string",
+            "format": "byte",
             "nullable": true
           }
         },
@@ -1102,6 +1166,10 @@
       "AppointmentInfoDto": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
           "date": {
             "type": "string",
             "format": "date-time"
@@ -1119,6 +1187,13 @@
             "nullable": true
           },
           "doctorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isRated": {
+            "type": "boolean"
+          },
+          "did": {
             "type": "string",
             "nullable": true
           },
@@ -1172,6 +1247,10 @@
             "type": "string",
             "nullable": true
           },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
           "dateOfBirth": {
             "type": "string",
             "format": "date"
@@ -1221,6 +1300,7 @@
           },
           "image": {
             "type": "string",
+            "format": "byte",
             "nullable": true
           }
         },
@@ -1368,6 +1448,45 @@
         },
         "additionalProperties": false
       },
+      "FeedbackDto": {
+        "type": "object",
+        "properties": {
+          "feedbackId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "rating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "submittedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "respondedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "responseMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "patientId": {
+            "type": "string",
+            "nullable": true
+          },
+          "adminId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "FeedbackMessageDto": {
         "type": "object",
         "properties": {
@@ -1418,6 +1537,39 @@
         },
         "additionalProperties": false
       },
+      "NotificationDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "from": {
+            "type": "string",
+            "nullable": true
+          },
+          "to": {
+            "type": "string",
+            "nullable": true
+          },
+          "subject": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/NotificationType"
+          },
+          "submittedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
       "NotificationType": {
         "enum": [
           0,
@@ -1431,6 +1583,10 @@
         "type": "object",
         "properties": {
           "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
             "type": "string",
             "nullable": true
           },
@@ -1475,6 +1631,7 @@
           },
           "image": {
             "type": "string",
+            "format": "byte",
             "nullable": true
           }
         },

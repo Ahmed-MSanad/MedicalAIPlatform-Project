@@ -32,8 +32,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\MedicalProj.Data\\MedicalProj.Data.csproj": {
-                "projectPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\MedicalProj.Data\\MedicalProj.Data.csproj"
+              "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Persistence\\Persistence.csproj": {
+                "projectPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Persistence\\Persistence.csproj"
+              },
+              "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Presentation\\Presentation.csproj": {
+                "projectPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Presentation\\Presentation.csproj"
               }
             }
           }
@@ -123,7 +126,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Shared\\Shared.csproj": {
+                "projectPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Shared\\Shared.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -153,6 +160,376 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Persistence\\Persistence.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Persistence\\Persistence.csproj",
+        "projectName": "Persistence",
+        "projectPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Persistence\\Persistence.csproj",
+        "packagesPath": "C:\\Users\\Coompu Art Store\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Persistence\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Coompu Art Store\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Services\\Services.csproj": {
+                "projectPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Services\\Services.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Presentation\\Presentation.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Presentation\\Presentation.csproj",
+        "projectName": "Presentation",
+        "projectPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Presentation\\Presentation.csproj",
+        "packagesPath": "C:\\Users\\Coompu Art Store\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Presentation\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Coompu Art Store\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Services.Abstraction\\Services.Abstraction.csproj": {
+                "projectPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Services.Abstraction\\Services.Abstraction.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Services.Abstraction\\Services.Abstraction.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Services.Abstraction\\Services.Abstraction.csproj",
+        "projectName": "Services.Abstraction",
+        "projectPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Services.Abstraction\\Services.Abstraction.csproj",
+        "packagesPath": "C:\\Users\\Coompu Art Store\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Services.Abstraction\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Coompu Art Store\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Shared\\Shared.csproj": {
+                "projectPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Shared\\Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Services\\Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Services\\Services.csproj",
+        "projectName": "Services",
+        "projectPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Services\\Services.csproj",
+        "packagesPath": "C:\\Users\\Coompu Art Store\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Coompu Art Store\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\MedicalProj.Data\\MedicalProj.Data.csproj": {
+                "projectPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\MedicalProj.Data\\MedicalProj.Data.csproj"
+              },
+              "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Services.Abstraction\\Services.Abstraction.csproj": {
+                "projectPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Services.Abstraction\\Services.Abstraction.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[14.0.0, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.12.1, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Shared\\Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Shared\\Shared.csproj",
+        "projectName": "Shared",
+        "projectPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Shared\\Shared.csproj",
+        "packagesPath": "C:\\Users\\Coompu Art Store\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\MedicalApp\\MedicalAIPlatform-Project\\Backend\\AiDrivenMedicalPlatform\\Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Coompu Art Store\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.Identity.Core": {
               "target": "Package",
               "version": "[8.0.8, )"
             }

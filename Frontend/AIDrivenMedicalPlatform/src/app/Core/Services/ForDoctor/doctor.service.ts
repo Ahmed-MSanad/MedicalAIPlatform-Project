@@ -9,10 +9,10 @@ export class DoctorService {
   constructor(private _http:HttpClient) { }
 
   getDoctorSchedule(){
-    return this._http.get(environment.apiBaseURL + '/schedule')
+    return this._http.get(environment.apiBaseURL + '/Schedule/GetDoctorSchedule')
   }
   updateDoctorSchedule(updatedSchedule: any){
-    return this._http.put(environment.apiBaseURL + '/schedule', updatedSchedule)
+    return this._http.put(environment.apiBaseURL + '/Schedule/EditDoctorSchedule', updatedSchedule)
   }
 
   getDoctorProfile(){

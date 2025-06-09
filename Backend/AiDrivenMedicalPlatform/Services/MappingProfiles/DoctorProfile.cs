@@ -32,22 +32,8 @@ namespace Services.MappingProfiles
                 .ForMember(dest => dest.DoctorPhones, options => options.MapFrom((src, dest) => src.DoctorPhones.Select(phone => new DoctorPhone
                 {
                     Phone = phone
-                }).ToList()))
-                .ForMember(dest => dest.Image, options => options.Ignore())
-                .AfterMap((src, dest) =>
-                {
-                    try // this works for testing on swagger -> if not over the front end we'll return it back to byte[]
-                    {
-                        dest.Image = string.IsNullOrEmpty(src.Image)
-                            ? null
-                            : Convert.FromBase64String(src.Image);
-                    }
-                    catch (FormatException)
-                    {
-                        throw new Exception("Invalid base64 string for image in Edit Doctor Profile Service");
-                    }
-                });
-
+                }).ToList()));
+                
 
             CreateMap<Doctor, DoctorResponseDto>();
 

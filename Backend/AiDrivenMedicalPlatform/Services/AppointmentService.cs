@@ -19,7 +19,7 @@ namespace Services
 
             if (doctors == null || !doctors.Any())
             {
-                throw new Exception("No doctors found in Get Doctors Info");
+                return Enumerable.Empty<DoctorResponseDto>();
             }
 
             var doctorsResponseDtos = mapper.Map<IEnumerable<DoctorResponseDto>>(doctors);
@@ -85,10 +85,7 @@ namespace Services
                 throw new Exception("Appointment Not Found in Cancel Appointment Service");
             }
 
-            appointment.CreatedAt = DateTime.UtcNow;
-            appointment.Status = AppointmentStatus.Cancelled;
-
-            unitOfWork.GetRepository<Appointment, int>().Update(appointment);
+            unitOfWork.GetRepository<Appointment, int>().Delete(appointment);
 
             await unitOfWork.SaveChangesAsync();
         }
@@ -120,7 +117,7 @@ namespace Services
 
             if (appointments == null || !appointments.Any())
             {
-                throw new Exception("No appointments found in Get Appointments");
+                return Enumerable.Empty<AppointmentDto>();
             }
 
             var appointmentsDto = mapper.Map<IEnumerable<AppointmentDto>>(appointments);
@@ -164,6 +161,23 @@ namespace Services
             }
 
             return availableSlots;
+        }
+
+        public async Task<AppointmentInfoDto> GetAppointmentInfoService(int appointmentId)
+        {
+
+            var specification = new AppointmentWithFilterSpecification(appointmentId);
+
+            var appointment = await unitOfWork.GetRepository<Appointment, int>().GetByIdAsync(specification);
+            
+            if(appointment is null)
+            {
+                throw new Exception("Appointment Not Found.");
+            }
+
+            var appointmentInfo = mapper.Map<AppointmentInfoDto>(appointment);
+
+            return appointmentInfo;
         }
     }
 }

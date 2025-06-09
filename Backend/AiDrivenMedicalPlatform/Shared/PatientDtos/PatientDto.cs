@@ -9,6 +9,8 @@ namespace Shared.PatientDtos
         [Column(TypeName = "nvarchar(150)")]
         public string FullName { get; set; }
         [PersonalData]
+        public string Email { get; set; }
+        [PersonalData]
         public DateOnly DateOfBirth { get; set; }
         [PersonalData]
         public int Gender { get; set; }
@@ -27,6 +29,6 @@ namespace Shared.PatientDtos
         [PersonalData]
         public string PastMedicalHistory { get; set; }
         [PersonalData]
-        public string? Image {  get; set; }
+        public byte[]? Image {  get; set; }
     }
 }

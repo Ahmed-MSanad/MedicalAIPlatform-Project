@@ -13,5 +13,6 @@ namespace Services.Abstraction
         public Task CompleteAppointmentService(int appointmentId);
         public Task<IEnumerable<AppointmentDto>> GetAppointmentsService(int status, string userId);
         public Task<List<TimeSpan>> GetAvailableTimeSlotsService(string id, DateTime day);
+        public Task<AppointmentInfoDto> GetAppointmentInfoService (int appointmentId);
     }
 }

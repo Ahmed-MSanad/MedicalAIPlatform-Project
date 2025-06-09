@@ -1,44 +1,8 @@
 [
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AutorizationEndPoints",
-    "Method": "Above18",
-    "RelativePath": "api/Above18",
-    "HttpMethod": "GET",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.String",
-        "MediaTypes": [
-          "text/plain"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AutorizationEndPoints",
-    "Method": "AdminDashboard",
-    "RelativePath": "api/AdminDashboard",
-    "HttpMethod": "GET",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.String",
-        "MediaTypes": [
-          "text/plain"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AppointmentController",
+    "ContainingType": "Presentation.Controllers.AppointmentController",
     "Method": "AddRate",
-    "RelativePath": "api/Appointment/AddRate",
+    "RelativePath": "Appointment/AddRate",
     "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
@@ -62,9 +26,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AppointmentController",
+    "ContainingType": "Presentation.Controllers.AppointmentController",
     "Method": "CancelAppointment",
-    "RelativePath": "api/Appointment/CancelAppointment",
+    "RelativePath": "Appointment/CancelAppointment",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -78,9 +42,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AppointmentController",
+    "ContainingType": "Presentation.Controllers.AppointmentController",
     "Method": "CompleteAppointment",
-    "RelativePath": "api/Appointment/CompleteAppointment",
+    "RelativePath": "Appointment/CompleteAppointment",
     "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
@@ -94,38 +58,38 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AppointmentController",
+    "ContainingType": "Presentation.Controllers.AppointmentController",
     "Method": "CreateAppointment",
-    "RelativePath": "api/Appointment/CreateAppointment",
+    "RelativePath": "Appointment/CreateAppointment",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "appointmentDto",
-        "Type": "AiDrivenMedicalPlatformAPIs.Models.Dto.CreatedAppointmentDto",
+        "Type": "Shared.AppointmentDtos.CreatedAppointmentDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AppointmentController",
+    "ContainingType": "Presentation.Controllers.AppointmentController",
     "Method": "GetAppointmentInfo",
-    "RelativePath": "api/Appointment/GetAppointmentInfo",
+    "RelativePath": "Appointment/GetAppointmentInfo",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "appointmentId",
         "Type": "System.Int32",
         "IsRequired": false
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "AiDrivenMedicalPlatformAPIs.Models.Dto.AppointmentInfoDto",
+        "Type": "Shared.AppointmentDtos.AppointmentInfoDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -136,9 +100,9 @@
     ]
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AppointmentController",
+    "ContainingType": "Presentation.Controllers.AppointmentController",
     "Method": "GetAppointments",
-    "RelativePath": "api/Appointment/GetAppointments",
+    "RelativePath": "Appointment/GetAppointments",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -151,7 +115,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[AiDrivenMedicalPlatformAPIs.Models.Dto.AppointmentDto, AiDrivenMedicalPlatformAPIs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shared.AppointmentDtos.AppointmentDto, Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -162,9 +126,9 @@
     ]
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AppointmentController",
+    "ContainingType": "Presentation.Controllers.AppointmentController",
     "Method": "GetAvailableTimeSlots",
-    "RelativePath": "api/Appointment/GetAvailableTimeSlots",
+    "RelativePath": "Appointment/GetAvailableTimeSlots",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -180,12 +144,22 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Shared.AppointmentDtos.AppointmentInfoDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AppointmentController",
+    "ContainingType": "Presentation.Controllers.AppointmentController",
     "Method": "GetDoctorInfo",
-    "RelativePath": "api/Appointment/GetDoctorInfo",
+    "RelativePath": "Appointment/GetDoctorInfo",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -198,7 +172,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "AiDrivenMedicalPlatformAPIs.Models.Dto.DoctorInfoDto",
+        "Type": "Shared.DoctorDtos.DoctorInfoDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -209,9 +183,9 @@
     ]
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AppointmentController",
+    "ContainingType": "Presentation.Controllers.AppointmentController",
     "Method": "GetDoctorsInfo",
-    "RelativePath": "api/Appointment/GetDoctorsInfo",
+    "RelativePath": "Appointment/GetDoctorsInfo",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -244,7 +218,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[AiDrivenMedicalPlatformAPIs.Models.Dto.DoctorResponseDto, AiDrivenMedicalPlatformAPIs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shared.DoctorDtos.DoctorResponseDto, Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -255,51 +229,161 @@
     ]
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.FeedbackController",
+    "ContainingType": "Presentation.Controllers.AuthenticationController",
+    "Method": "AdminSignup",
+    "RelativePath": "Authentication/AdminSignup",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "adminRegistrationModel",
+        "Type": "Shared.AuthenticationDtos.AdminRegistrationModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.AuthenticationController",
+    "Method": "CheckEmail",
+    "RelativePath": "Authentication/CheckEmail",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Shared.CheckEmailRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.AuthenticationController",
+    "Method": "DoctorSignup",
+    "RelativePath": "Authentication/DoctorSignup",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doctorRegistrationModel",
+        "Type": "Shared.AuthenticationDtos.DoctorRegistrationModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.AuthenticationController",
+    "Method": "PatientSignup",
+    "RelativePath": "Authentication/PatientSignup",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "patientRegistrationModel",
+        "Type": "Shared.AuthenticationDtos.PatientRegistrationModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.AuthenticationController",
+    "Method": "SignInUser",
+    "RelativePath": "Authentication/SignInUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginModel",
+        "Type": "Shared.AuthenticationDtos.LoginModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.FeedbackController",
     "Method": "adminResponse",
-    "RelativePath": "api/Feedback/adminResponse",
+    "RelativePath": "Feedback/adminResponse",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "responseDto",
-        "Type": "AiDrivenMedicalPlatformAPIs.Models.Dto.FeedbackResponseDto",
+        "Type": "Shared.FeedbackDtos.FeedbackResponseDto",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Shared.FeedbackDtos.FeedbackDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.FeedbackController",
+    "ContainingType": "Presentation.Controllers.FeedbackController",
     "Method": "getPatientFeedBacks",
-    "RelativePath": "api/Feedback/getPatientFeedBacks",
+    "RelativePath": "Feedback/getPatientFeedBacks",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shared.FeedbackDtos.FeedbackDto, Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.FeedbackController",
+    "ContainingType": "Presentation.Controllers.FeedbackController",
     "Method": "patientFeedback",
-    "RelativePath": "api/Feedback/patientFeedback",
+    "RelativePath": "Feedback/patientFeedback",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "feedbackDto",
-        "Type": "AiDrivenMedicalPlatformAPIs.Models.Dto.FeedbackMessageDto",
+        "Type": "Shared.FeedbackDtos.FeedbackMessageDto",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Shared.FeedbackDtos.FeedbackDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.FeedbackController",
+    "ContainingType": "Presentation.Controllers.FeedbackController",
     "Method": "removeFeedBack",
-    "RelativePath": "api/Feedback/removeFeedBack/{feedbackId}",
+    "RelativePath": "Feedback/removeFeedBack/{feedbackId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -313,73 +397,29 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AutorizationEndPoints",
-    "Method": "ForFemaleOnly",
-    "RelativePath": "api/FemaleOnly",
-    "HttpMethod": "GET",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.String",
-        "MediaTypes": [
-          "text/plain"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AutorizationEndPoints",
-    "Method": "ForFemaleDoctorOnly",
-    "RelativePath": "api/ForFemaleDoctorOnly",
-    "HttpMethod": "GET",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.String",
-        "MediaTypes": [
-          "text/plain"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AutorizationEndPoints",
-    "Method": "HospitalMembersOnly",
-    "RelativePath": "api/HospitalMembersOnly",
-    "HttpMethod": "GET",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.String",
-        "MediaTypes": [
-          "text/plain"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.NotificationController",
+    "ContainingType": "Presentation.Controllers.NotificationController",
     "Method": "getNotifications",
-    "RelativePath": "api/Notification/getNotifications",
+    "RelativePath": "Notification/getNotifications",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shared.NotificationDtos.NotificationDto, Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.NotificationController",
+    "ContainingType": "Presentation.Controllers.NotificationController",
     "Method": "removeNotification",
-    "RelativePath": "api/Notification/removeNotification/{NotificationId}",
+    "RelativePath": "Notification/removeNotification/{NotificationId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -393,9 +433,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.NotificationController",
+    "ContainingType": "Presentation.Controllers.NotificationController",
     "Method": "SendEmail",
-    "RelativePath": "api/Notification/SendEmail/{NotificationType}",
+    "RelativePath": "Notification/SendEmail/{NotificationType}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -409,27 +449,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.AutorizationEndPoints",
-    "Method": "PatientDashboard",
-    "RelativePath": "api/PatientDashboard",
-    "HttpMethod": "GET",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.String",
-        "MediaTypes": [
-          "text/plain"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.ProfileController",
+    "ContainingType": "Presentation.Controllers.ProfileController",
     "Method": "DeleteUserProfile",
-    "RelativePath": "api/Profile/DeleteUserProfile",
+    "RelativePath": "Profile/DeleteUserProfile",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -437,64 +459,64 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.ProfileController",
+    "ContainingType": "Presentation.Controllers.ProfileController",
     "Method": "EditAdminProfile",
-    "RelativePath": "api/Profile/EditAdminProfile",
+    "RelativePath": "Profile/EditAdminProfile",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "updateRequest",
-        "Type": "AiDrivenMedicalPlatformAPIs.Models.Dto.AdminDto",
+        "Type": "shared.AdminDtos.AdminDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.ProfileController",
+    "ContainingType": "Presentation.Controllers.ProfileController",
     "Method": "EditDoctorProfile",
-    "RelativePath": "api/Profile/EditDoctorProfile",
+    "RelativePath": "Profile/EditDoctorProfile",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "updateRequest",
-        "Type": "AiDrivenMedicalPlatformAPIs.Models.Dto.DoctorDto",
+        "Type": "Shared.DoctorDtos.DoctorDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.ProfileController",
+    "ContainingType": "Presentation.Controllers.ProfileController",
     "Method": "EditPatientProfile",
-    "RelativePath": "api/Profile/EditPatientProfile",
+    "RelativePath": "Profile/EditPatientProfile",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "updateRequest",
-        "Type": "AiDrivenMedicalPlatformAPIs.Models.Dto.PatientDto",
+        "Type": "Shared.PatientDtos.PatientDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.ProfileController",
+    "ContainingType": "Presentation.Controllers.ProfileController",
     "Method": "GetAdminProfile",
-    "RelativePath": "api/Profile/GetAdminProfile",
+    "RelativePath": "Profile/GetAdminProfile",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "AiDrivenMedicalPlatformAPIs.Models.Dto.AdminDto",
+        "Type": "shared.AdminDtos.AdminDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -505,16 +527,16 @@
     ]
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.ProfileController",
+    "ContainingType": "Presentation.Controllers.ProfileController",
     "Method": "GetDoctorProfile",
-    "RelativePath": "api/Profile/GetDoctorProfile",
+    "RelativePath": "Profile/GetDoctorProfile",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "AiDrivenMedicalPlatformAPIs.Models.Dto.DoctorDto",
+        "Type": "Shared.DoctorDtos.DoctorDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -525,16 +547,16 @@
     ]
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.ProfileController",
+    "ContainingType": "Presentation.Controllers.ProfileController",
     "Method": "GetPatientProfile",
-    "RelativePath": "api/Profile/GetPatientProfile",
+    "RelativePath": "Profile/GetPatientProfile",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "AiDrivenMedicalPlatformAPIs.Models.Dto.PatientDto",
+        "Type": "Shared.PatientDtos.PatientDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -545,145 +567,39 @@
     ]
   },
   {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.ScheduleEndPoints",
-    "Method": "GetDoctorSchedule",
-    "RelativePath": "api/schedule",
-    "HttpMethod": "GET",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.ScheduleEndPoints",
+    "ContainingType": "Presentation.Controllers.ScheduleController",
     "Method": "EditDoctorSchedule",
-    "RelativePath": "api/schedule",
+    "RelativePath": "Schedule/EditDoctorSchedule",
     "HttpMethod": "PUT",
-    "IsController": false,
+    "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "schedules",
-        "Type": "System.Collections.Generic.List\u00601[[AiDrivenMedicalPlatformAPIs.Models.Dto.ScheduleDto, AiDrivenMedicalPlatformAPIs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.IdentityUserEndPoints",
-    "Method": "SignInUser",
-    "RelativePath": "api/signin",
-    "HttpMethod": "POST",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "loginModel",
-        "Type": "AiDrivenMedicalPlatformAPIs.Controllers.IdentityUserEndPoints\u002BLoginModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.IdentityUserEndPoints",
-    "Method": "CreateAdmin",
-    "RelativePath": "api/signup/admin",
-    "HttpMethod": "POST",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "adminRegistrationModel",
-        "Type": "AiDrivenMedicalPlatformAPIs.Controllers.AdminRegistrationModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.IdentityUserEndPoints",
-    "Method": "CreateDoctor",
-    "RelativePath": "api/signup/doctor",
-    "HttpMethod": "POST",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "doctorRegistrationModel",
-        "Type": "AiDrivenMedicalPlatformAPIs.Controllers.DoctorRegistrationModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.IdentityUserEndPoints",
-    "Method": "CreatePatient",
-    "RelativePath": "api/signup/patient",
-    "HttpMethod": "POST",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "patientRegistrationModel",
-        "Type": "AiDrivenMedicalPlatformAPIs.Controllers.PatientRegistrationModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "AiDrivenMedicalPlatformAPIs.Controllers.UserCheckController",
-    "Method": "CheckEmail",
-    "RelativePath": "api/UserCheck/check-email",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "AiDrivenMedicalPlatformAPIs.Models.CheckEmailRequest",
+        "Type": "System.Collections.Generic.List\u00601[[Shared.ScheduleDtos.ScheduleDto, Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.ScheduleController",
+    "Method": "GetDoctorSchedule",
+    "RelativePath": "Schedule/GetDoctorSchedule",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Shared.ScheduleDtos.ScheduleDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

@@ -18,5 +18,13 @@ namespace Services.Specifications
         {
 
         }
+
+        public AppointmentWithFilterSpecification(int appointmentId) :
+            base(a => a.AppointmentId == appointmentId)
+        {
+            AddInclude(appointment => appointment.Doctor);
+            AddInclude(appointment => appointment.Patient);
+        }
+
     }
 }

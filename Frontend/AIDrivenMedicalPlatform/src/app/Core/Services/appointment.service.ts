@@ -63,7 +63,7 @@ export class AppointmentService {
 
   GetAppointmentInfo(id: number) {
     let params = new HttpParams();
-    if (id) params = params.set('id', id);
+    if (id) params = params.set('appointmentId', id);
 
     return this._http.get(`${environment.apiBaseURL}/Appointment/GetAppointmentInfo`, { params });
   }

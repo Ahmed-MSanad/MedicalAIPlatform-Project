@@ -18,21 +18,7 @@ namespace Services.MappingProfiles
                 .ForMember(dest => dest.PatientPhones, options => options.MapFrom((src, dest) => src.PatientPhones.Select(phone => new PatientPhone
                 {
                     Phone = phone
-                }).ToList()))
-                .ForMember(dest => dest.Image, options => options.Ignore())
-                .AfterMap((src, dest) =>
-                {
-                    try // this works for testing on swagger -> if not over the front end we'll return it back to byte[]
-                    {
-                        dest.Image = string.IsNullOrEmpty(src.Image)
-                            ? null
-                            : Convert.FromBase64String(src.Image);
-                    }
-                    catch (FormatException)
-                    {
-                        throw new Exception("Invalid base64 string for image in Edit Patient Profile Service");
-                    }
-                });
+                }).ToList()));
 
             CreateMap<PatientRegistrationModel, Patient>()
                 .ForMember(p => p.UserName, options => options.MapFrom(prm => prm.Email))

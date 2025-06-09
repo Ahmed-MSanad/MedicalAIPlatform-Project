@@ -72,6 +72,13 @@
                                 </td>
                             </tr>
                             }
+                            @empty {
+                            <tr class="border-t border-gray-200">
+                                <td colspan="3" class="px-6 py-4 text-center text-sm text-gray-500">
+                                    No schedules available.
+                                </td>
+                            </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -114,22 +121,25 @@
                 <div class="flex flex-col justify-between md:flex-row w-full mt-3">
                     <div>
                         <h3>Select Date</h3>
-                        <input type="date" name="date"[min]="minDate" [max]="maxDate" class="bg-gray-200 rounded-md" id="date" [(ngModel)]="date" (change)="getTimeSlots()">
+                        <input type="date" name="date" [min]="minDate" [max]="maxDate" class="bg-gray-200 rounded-md"
+                            id="date" [(ngModel)]="date" (change)="getTimeSlots()">
                     </div>
                     @if (date) {
                     <div class="mt-2">
                         <h3>Select Time</h3>
                         <select [(ngModel)]="time" class="bg-gray-200 rounded-md" name="time" id="time">
                             @for (time of timeSlots; track $index) {
-                                <option [value]="time.split(':').slice(0,2).join(':')">{{time.split(':').slice(0,2).join(':')}}</option>
+                            <option [value]="time.split(':').slice(0,2).join(':')">
+                                {{time.split(':').slice(0,2).join(':')}}</option>
                             }
                         </select>
                     </div>
-                }
+                    }
                 </div>
                 <div class="w-full">
                     <h3 class="my-2">Description (Optional)</h3>
-                    <textarea [(ngModel)]="description" class="w-full bg-gray-200 rounded-lg p-2" placeholder="Description (Optional)" name="description" id="description"></textarea>
+                    <textarea [(ngModel)]="description" class="w-full bg-gray-200 rounded-lg p-2"
+                        placeholder="Description (Optional)" name="description" id="description"></textarea>
                 </div>
             </div>
 
@@ -141,7 +151,8 @@
                 class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 cursor-pointer">
                 Close
             </button>
-            <button class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 cursor-pointer" (click)="bookAppointment()">
+            <button class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 cursor-pointer"
+                (click)="bookAppointment()">
                 Book Appointment
             </button>
         </div>
