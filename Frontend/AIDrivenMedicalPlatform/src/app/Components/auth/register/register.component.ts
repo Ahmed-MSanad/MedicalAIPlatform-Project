@@ -57,7 +57,7 @@ export class RegisterComponent {
     specialisation: ['', [Validators.required]],
     workPlace: ['', [Validators.required]],
     fee:[null,[Validators.required, Validators.min(0)]], 
-    role: ['Patient', [Validators.required, Validators.pattern(/(Doctor|Admin|Patient)/)] ]
+    role: ['', [Validators.required, Validators.pattern(/(Doctor|Admin|Patient)/)] ]
   }, {validators: [this.confirmThePassword]});
 
 

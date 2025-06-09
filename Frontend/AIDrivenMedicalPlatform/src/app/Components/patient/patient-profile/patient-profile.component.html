@@ -1,3 +1,5 @@
+<app-background-layout></app-background-layout>
+
 <div class="fixed inset-0 bg-black/30 flex items-center justify-center z-50" [class.hidden]="!isLoading">
   <svg aria-hidden="true" class="w-12 h-12 text-gray-300 animate-spin dark:text-gray-500 fill-blue-600"
     viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -53,11 +55,19 @@
 
 
 
-<div class="container shadow-2xl mx-auto  pt-10 rounded-lg bg-gradient-to-l from-[#000000] to-[#0000FF]">
+<div class="container shadow-2xl mx-auto  pt-10 rounded-lg bg-gradient-to-l from-[#000000] to-[#4444FF]">
   <div class="bg-white flex flex-col md:flex-row mx-auto space-y-4 justify-between p-5 pb-0">
     <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 items-center">
       <div class="relative w-20 h-20 overflow-hidden rounded-full">
-        <img [src]="imageSrc|| './Default.png'" class="w-full h-full object-cover rounded-full" alt="Profile Pic">
+        @if(imageSrc){
+        <img [src]="imageSrc" class="w-full h-full object-cover rounded-full" alt="Profile Pic">
+        }
+        @else{
+        <div
+          class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center text-2xl font-bold text-gray-500">
+          {{ this.profileForm.get("fullName")?.value?.charAt(0) }}
+        </div>
+        }
         @if(isEdit){
         <div class="absolute inset-0 flex items-center justify-center bg-gray-500/50 rounded-full">
           <label class="cursor-pointer flex flex-col items-center justify-center text-white">
@@ -159,51 +169,45 @@
         }
       </div>
       <div class="md:w-1/2 w-full md:mt-0 mt-2 px-4">
-  <h2 class="font-bold text-2xl">Phone Numbers</h2>
-  @if (!isEdit) {
-    <div class="mt-2 mx-4">
-      @for (phone of patientPhones.value; track $index) {
-        <div class="p-1">{{phone}}</div>
-      }
-    </div>
-  }
-  @else {
-    <div class="mt-2 mx-4 space-y-2">
-      @for (phoneControl of patientPhones.controls; track $index) {
-        <div class="flex flex-col">
-          <div class="flex items-center">
-            <input type="text" 
-                   [formControl]="getPhoneControl($index)"
-                   class="bg-gray-200 p-1 rounded-lg flex-grow"
-                   (input)="validatePhone(getPhoneControl($index), $index)">
-            <button type="button" 
-                    (click)="removePhone($index)" 
-                    class="ml-2 text-red-500 hover:text-red-700"
-                    [class.opacity-50]="patientPhones.length === 1"
-                    [disabled]="patientPhones.length === 1">
-              <i class="fa fa-minus-circle"></i>
-            </button>
-          </div>
-          @if (getPhoneControl($index).invalid && (getPhoneControl($index).dirty || getPhoneControl($index).touched)) {
-            <div class="text-red-500 text-sm mt-1 ml-1">
-              @if (getPhoneControl($index).errors?.['required']) {
-                <div>Phone number is required</div>
-              }
-              @if (getPhoneControl($index).errors?.['pattern']) {
-                <div>Please enter a valid Egyptian phone number (e.g., 01012345678)</div>
-              }
-            </div>
+        <h2 class="font-bold text-2xl">Phone Numbers</h2>
+        @if (!isEdit) {
+        <div class="mt-2 mx-4">
+          @for (phone of patientPhones.value; track $index) {
+          <div class="p-1">{{phone}}</div>
           }
         </div>
-      }
-      <button type="button" 
-              (click)="addPhone()" 
-              class="text-blue-500 hover:text-blue-700 flex items-center mt-2">
-        <i class="fa fa-plus-circle mr-1"></i> Add Phone Number
-      </button>
-    </div>
-  }
-</div>
+        }
+        @else {
+        <div class="mt-2 mx-4 space-y-2">
+          @for (phoneControl of patientPhones.controls; track $index) {
+          <div class="flex flex-col">
+            <div class="flex items-center">
+              <input type="text" [formControl]="getPhoneControl($index)" class="bg-gray-200 p-1 rounded-lg flex-grow"
+                (input)="validatePhone(getPhoneControl($index), $index)">
+              <button type="button" (click)="removePhone($index)" class="ml-2 text-red-500 hover:text-red-700"
+                [class.opacity-50]="patientPhones.length === 1" [disabled]="patientPhones.length === 1">
+                <i class="fa fa-minus-circle"></i>
+              </button>
+            </div>
+            @if (getPhoneControl($index).invalid && (getPhoneControl($index).dirty || getPhoneControl($index).touched))
+            {
+            <div class="text-red-500 text-sm mt-1 ml-1">
+              @if (getPhoneControl($index).errors?.['required']) {
+              <div>Phone number is required</div>
+              }
+              @if (getPhoneControl($index).errors?.['pattern']) {
+              <div>Please enter a valid Egyptian phone number (e.g., 01012345678)</div>
+              }
+            </div>
+            }
+          </div>
+          }
+          <button type="button" (click)="addPhone()" class="text-blue-500 hover:text-blue-700 flex items-center mt-2">
+            <i class="fa fa-plus-circle mr-1"></i> Add Phone Number
+          </button>
+        </div>
+        }
+      </div>
       <div class="md:w-1/2 w-full md:mt-0 mt-2 px-4">
         <h2 class="font-bold text-2xl">Emergency Contact Name</h2>
         @if (!isEdit) {

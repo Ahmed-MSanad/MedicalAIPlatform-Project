@@ -1,3 +1,5 @@
+<app-background-layout></app-background-layout>
+
 <div class="fixed inset-0 bg-black/30 flex items-center justify-center z-50" [class.hidden]="!isLoading">
   <svg aria-hidden="true" class="w-12 h-12 text-gray-300 animate-spin dark:text-gray-500 fill-blue-600"
     viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -53,11 +55,19 @@
 
 
 
-<div class="container shadow-2xl mx-auto  pt-10 rounded-lg bg-gradient-to-l from-[#000000] to-[#0000FF]">
+<div class="container shadow-2xl mx-auto  pt-10 rounded-lg bg-gradient-to-l from-[#000000] to-[#4444FF]">
   <div class="bg-white flex flex-col md:flex-row mx-auto space-y-4 justify-between p-5 pb-0">
     <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 items-center">
       <div class="relative w-20 h-20 overflow-hidden rounded-full">
-        <img [src]="imageSrc|| './Default.png'" class="w-full h-full object-cover rounded-full" alt="Profile Pic">
+        @if(imageSrc){
+        <img [src]="imageSrc" class="w-full h-full object-cover rounded-full" alt="Profile Pic">
+        }
+        @else{
+        <div
+          class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center text-2xl font-bold text-gray-500">
+          {{ this.profileForm.get("fullName")?.value?.charAt(0) }}
+        </div>
+        }
         @if(isEdit){
         <div class="absolute inset-0 flex items-center justify-center bg-gray-500/50 rounded-full">
           <label class="cursor-pointer flex flex-col items-center justify-center text-white">

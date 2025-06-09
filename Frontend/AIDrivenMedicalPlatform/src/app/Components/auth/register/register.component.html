@@ -17,7 +17,7 @@
                                 <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-user"></i></span>
                                 <input formControlName="fullName" id="Fullname" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Ex: Ahmed Sanad">
                             </div>
-                            <div class="bg-red-300 p-4 rounded-lg" 
+                            <div class="text-red-500 p-4 rounded-lg" 
                                     *ngIf="
                                         (registerForm.controls.fullName.touched || 
                                         registerForm.controls.fullName.dirty) &&
@@ -34,7 +34,7 @@
                                 <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-envelope"></i></span>
                                 <input formControlName="email" id="Email" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Ex: AhmedSanad@gmail.com">
                             </div>
-                            <div class="bg-red-300 p-4 rounded-lg" 
+                            <div class="text-red-500 p-4 rounded-lg" 
                                     *ngIf="
                                         (registerForm.controls.email.touched || 
                                         registerForm.controls.email.dirty) &&
@@ -42,7 +42,7 @@
                                     ">
                                 Email is Required !!
                             </div>
-                            <div class="bg-red-300 p-4 rounded-lg" 
+                            <div class="text-red-500 p-4 rounded-lg" 
                                     *ngIf="
                                         (registerForm.controls.email.touched || 
                                         registerForm.controls.email.dirty) &&
@@ -59,7 +59,7 @@
                                 <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-phone"></i></span>
                                 <input formControlName="phoneNumber" type="tel" id="phone_Number" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="+01">
                             </div>
-                            <div class="bg-red-300 p-4 rounded-lg" 
+                            <div class="text-red-500 p-4 rounded-lg" 
                                     *ngIf="
                                         (registerForm.controls.phoneNumber.touched || 
                                         registerForm.controls.phoneNumber.dirty) &&
@@ -67,7 +67,7 @@
                                     ">
                                 Phone Number is Required !!
                             </div>
-                            <div class="bg-red-300 p-4 rounded-lg" 
+                            <div class="text-red-500 p-4 rounded-lg" 
                                     *ngIf="
                                         (registerForm.controls.phoneNumber.touched || 
                                         registerForm.controls.phoneNumber.dirty) &&
@@ -124,7 +124,7 @@
                                 <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-user"></i></span>
                                 <input formControlName="fullName" [value]="registerForm.controls.fullName" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Ex: Ahmed Sanad">
                             </div>
-                            <div class="bg-red-300 p-4 rounded-lg" 
+                            <div class="text-red-500 p-4 rounded-lg" 
                                     *ngIf="
                                         (registerForm.controls.fullName.touched || 
                                         registerForm.controls.fullName.dirty) &&
@@ -142,7 +142,7 @@
                                         <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-envelope"></i></span>
                                         <input formControlName="email" id="email" [value]="registerForm.controls.email" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Ex: AhmedSanad@gmail.com">
                                     </div>
-                                    <div class="bg-red-300 p-4 rounded-lg" 
+                                    <div class="text-red-500 p-4 rounded-lg" 
                                             *ngIf="
                                                 (registerForm.controls.email.touched || 
                                                 registerForm.controls.email.dirty) &&
@@ -150,7 +150,7 @@
                                             ">
                                         Email is Required !!
                                     </div>
-                                    <div class="bg-red-300 p-4 rounded-lg" 
+                                    <div class="text-red-500 p-4 rounded-lg" 
                                             *ngIf="
                                                 (registerForm.controls.email.touched || 
                                                 registerForm.controls.email.dirty) &&
@@ -167,7 +167,7 @@
                                         <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-phone"></i></span>
                                         <input formControlName="phoneNumber" id="phoneNumber" type="tel" [value]="registerForm.controls.phoneNumber" id="phoneNumber" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="+01">
                                     </div>
-                                    <div class="bg-red-300 p-4 rounded-lg" 
+                                    <div class="text-red-500 p-4 rounded-lg" 
                                             *ngIf="
                                                 (registerForm.controls.phoneNumber.touched || 
                                                 registerForm.controls.phoneNumber.dirty) &&
@@ -175,7 +175,7 @@
                                             ">
                                         Phone Number is Required !!
                                     </div>
-                                    <div class="bg-red-300 p-4 rounded-lg" 
+                                    <div class="text-red-500 p-4 rounded-lg" 
                                             *ngIf="
                                                 (registerForm.controls.phoneNumber.touched || 
                                                 registerForm.controls.phoneNumber.dirty) &&
@@ -199,7 +199,7 @@
                                         <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-lock"></i></span>
                                         <input formControlName="password" [value]="registerForm.controls.password" [type]="showPasswordOffOn['Password'] ? 'text' : 'password'" id="password" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Password">
                                     </div>
-                                    <div class="bg-red-300 rounded-lg">
+                                    <div class="text-red-500 rounded-lg">
                                         @if(registerForm.controls.password.touched || registerForm.controls.password.dirty)
                                         {
                                             @if(registerForm.controls.password.hasError('minlength')){
@@ -228,7 +228,7 @@
                                         <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-lock"></i></span>
                                         <input formControlName="confirmPassword" [value]="registerForm.controls.confirmPassword" [type]="showPasswordOffOn['ConfirmPassword'] ? 'text' : 'password'" id="ConfirmPassword" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Confirm Password">
                                     </div>
-                                    <div class="bg-red-300 p-4 rounded-lg" *ngIf="registerForm.getError('passwordMismatch')">
+                                    <div class="text-red-500 p-4 rounded-lg" *ngIf="registerForm.getError('passwordMismatch')">
                                         Confirm Password must be like the password !!
                                     </div>
                                 </div>
@@ -241,7 +241,7 @@
                                         <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-calendar"></i></span>
                                         <input formControlName="dateOfBirth" type="date" id="dateOfBirth" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="00/00/0000">
                                     </div>
-                                    <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.dateOfBirth.dirty || registerForm.controls.dateOfBirth.touched) && registerForm.controls.dateOfBirth.getError('required')">
+                                    <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.dateOfBirth.dirty || registerForm.controls.dateOfBirth.touched) && registerForm.controls.dateOfBirth.getError('required')">
                                         Date is Required !!
                                     </div>
                                 </div>
@@ -269,9 +269,27 @@
                                         <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
                                         <input formControlName="address" id="Address" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="14-street-Cairo-5302">
                                     </div>
-                                    <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
+                                    <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
                                         Address is required !!
                                     </div>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 px-5">
+                                <label for="role" class="text-white">Role</label>
+                                <div class="mb-3">
+                                    <div class="relative">
+                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-regular fa-hand-pointer"></i></span>
+                                        <select formControlName="role" name="role" id="role" class="w-full bg-black text-white ps-8 p-2 rounded-lg border-1">
+                                            <option value="" disabled selected>Choose Role</option>
+                                            <option value="Doctor">Doctor</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Patient">Patient</option>
+                                        </select>
+                                    </div>
+                                    <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.role.touched || registerForm.controls.role.dirty) && registerForm.controls.role.invalid">
+                                            Please Select a Role !!
+                                        </div>
+                                    
                                 </div>
                             </div>
                             @if(registerForm.controls.role.value === "Patient"){
@@ -282,7 +300,7 @@
                                             <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-briefcase"></i></span>
                                             <input formControlName="occupation" id="Occupation" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Doctor">
                                         </div>
-                                        <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.occupation.touched || registerForm.controls.occupation.dirty) && registerForm.controls.occupation.getError('required')">
+                                        <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.occupation.touched || registerForm.controls.occupation.dirty) && registerForm.controls.occupation.getError('required')">
                                             Occupation is required !!
                                         </div>
                                     </div>
@@ -295,7 +313,7 @@
                                             <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-id-badge"></i></span>
                                             <input formControlName="emergencyContactName" id="EmergencyContactName" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Ahmed">
                                         </div>
-                                        <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.emergencyContactName.touched || registerForm.controls.emergencyContactName.dirty) && registerForm.controls.emergencyContactName.getError('required')">
+                                        <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.emergencyContactName.touched || registerForm.controls.emergencyContactName.dirty) && registerForm.controls.emergencyContactName.getError('required')">
                                             Emergency Contact Name is required !!
                                         </div>
                                     </div>
@@ -308,7 +326,7 @@
                                             <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-phone"></i></span>
                                             <input formControlName="emergencyContactNumber" type="tel" [value]="registerForm.controls.emergencyContactNumber" id="EmergencyContactNumber" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="+01">
                                         </div>
-                                        <div class="bg-red-300 p-4 rounded-lg" 
+                                        <div class="text-red-500 p-4 rounded-lg" 
                                                 *ngIf="
                                                     (registerForm.controls.emergencyContactNumber.touched || 
                                                     registerForm.controls.emergencyContactNumber.dirty) &&
@@ -316,7 +334,7 @@
                                                 ">
                                             Emergency Contact Number is Required !!
                                         </div>
-                                        <div class="bg-red-300 p-4 rounded-lg" 
+                                        <div class="text-red-500 p-4 rounded-lg" 
                                                 *ngIf="
                                                     (registerForm.controls.emergencyContactNumber.touched || 
                                                     registerForm.controls.emergencyContactNumber.dirty) &&
@@ -335,7 +353,7 @@
                                             <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
                                             <input formControlName="identificationNumber" id="identificationNumber" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="ID123456789">
                                         </div>
-                                        <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
+                                        <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
                                             Identification Number is required !!
                                         </div>
                                     </div>
@@ -348,7 +366,7 @@
                                             <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
                                             <input formControlName="medicalLicenseNumber" id="medicalLicenseNumber" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="ID123456789">
                                         </div>
-                                        <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
+                                        <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
                                             MedicalLicense Number is required !!
                                         </div>
                                     </div>
@@ -361,7 +379,7 @@
                                             <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
                                             <input formControlName="specialisation" id="specialisation" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Write your specialization here">
                                         </div>
-                                        <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
+                                        <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
                                             Specialization is required !!
                                         </div>
                                     </div>
@@ -375,7 +393,7 @@
                                             <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
                                             <input formControlName="workPlace" id="workPlace" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Write your workPlace here">
                                         </div>
-                                        <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
+                                        <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
                                             Work Place is required !!
                                         </div>
                                     </div>
@@ -388,44 +406,15 @@
                                             <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-dollar-sign"></i></span>
                                             <input formControlName="fee" id="fee" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Write your Medical Examination Fees here">
                                         </div>
-                                        <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.fee.touched) && registerForm.controls.fee.getError('required')">
+                                        <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.fee.touched) && registerForm.controls.fee.getError('required')">
                                             Medical Examination Fees is required !!
                                         </div>
-                                        <div class="bg-red-300 p-4 rounded-lg" *ngIf="(registerForm.controls.fee.touched) && registerForm.controls.fee.getError('min')">
+                                        <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.fee.touched) && registerForm.controls.fee.getError('min')">
                                             Medical Examination Fees must be equal or more than 0
                                         </div>
                                     </div>
                                 </div>
                             }
-                            <div class="w-full md:w-1/2 px-5">
-                                <label for="role" class="text-white">Role</label>
-                                <div class="mb-3">
-                                    <div class="relative">
-                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-regular fa-hand-pointer"></i></span>
-                                        <select formControlName="role" name="role" id="role" class="w-full bg-black text-white ps-8 p-2 rounded-lg border-1">
-                                            <option value="Doctor">Doctor</option>
-                                            <option value="Admin">Admin</option>
-                                            <option value="Patient">Patient</option>
-                                        </select>
-                                    </div>
-                                    <div class="bg-red-300 p-4 rounded-lg" 
-                                            *ngIf="
-                                                (registerForm.controls.role.touched || 
-                                                registerForm.controls.role.dirty) &&
-                                                registerForm.controls.role.hasError('required')
-                                            ">
-                                        Emergency Contact Number is Required !!
-                                    </div>
-                                    <div class="bg-red-300 p-4 rounded-lg" 
-                                            *ngIf="
-                                                (registerForm.controls.role.touched || 
-                                                registerForm.controls.role.dirty) &&
-                                                registerForm.controls.role.hasError('pattern')
-                                            ">
-                                        Emergency Contact Number Format is wrong !!
-                                    </div>
-                                </div>
-                            </div>
                         </div>
     
                         
