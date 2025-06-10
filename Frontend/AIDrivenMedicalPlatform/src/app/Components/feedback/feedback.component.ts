@@ -8,10 +8,11 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../Core/Services/auth.service';
 import { claimReq } from '../../Core/utils/claimReq-utils';
 import { HideIfClaimsNotMetDirective } from '../../Core/directives/hide-if-claims-not-met.directive';
+import { BackgroundLayoutComponent } from "../../Layouts/background-layout/background-layout.component";
 
 @Component({
   selector: 'app-feedback',
-  imports: [NgClass, DatePipe, HideIfClaimsNotMetDirective],
+  imports: [NgClass, DatePipe, HideIfClaimsNotMetDirective, BackgroundLayoutComponent],
   templateUrl: './feedback.component.html',
   styleUrl: './feedback.component.scss'
 })

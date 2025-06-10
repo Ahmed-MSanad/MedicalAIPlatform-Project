@@ -20,7 +20,7 @@
                     }
                 </div>
                 @if((loginForm.controls.email.touched || loginForm.controls.email.dirty) && loginForm.controls.email.errors){
-                    <div class="bg-red-300 p-4 rounded-lg">
+                    <div class="text-red-500 p-4 rounded-lg">
                         @if(loginForm.controls.email.getError('required')){
                             <p>Email is required!</p>
                         }
@@ -48,7 +48,7 @@
                     }
                 </div>
                 @if((loginForm.controls.password.touched || loginForm.controls.password.dirty) && loginForm.controls.password.getError('required')){
-                    <div class="bg-red-300 p-4 rounded-lg">
+                    <div class="text-red-500 p-4 rounded-lg">
                         <p>Password is required!</p>
                     </div>
                 }

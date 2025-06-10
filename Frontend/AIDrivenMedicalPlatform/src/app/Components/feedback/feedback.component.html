@@ -1,13 +1,15 @@
+<app-background-layout></app-background-layout>
+
 <!-- Displaying Feedbacks -->
-<div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 p-6">
+<div class="min-h-screen max-w-4xl mx-auto rounded-xl bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 p-6">
     <div class="max-w-4xl mx-auto">
         <!-- Header -->
         <div class="text-center mb-8">
             <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-                Customer Feedback
+                Patient Feedback
             </h1>
-            <button type="button" class="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 cursor-pointer text-white rounded-lg shadow-lg" (click)="sendPatientFeedback()" [appHideIfClaimsNotMet]="claimReq.patientOnly">Send you're feedback now 😊</button>
-            <p class="text-gray-600 text-lg">Let's see What our customers are saying about us 👋🏼</p>
+            <button type="button" class="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 cursor-pointer text-white rounded-lg shadow-lg" (click)="sendPatientFeedback()" [appHideIfClaimsNotMet]="claimReq.patientOnly">Send your feedback now 😊</button>
+            <p class="text-gray-600 text-lg">Let's see What our patients are saying about us 👋🏼</p>
         </div>
 
         <!-- Feedback Cards -->
@@ -54,7 +56,7 @@
                         <div class="flex items-start gap-3">
                             <i class="fa-solid fa-message"></i>
                         <div>
-                            <h3 class="font-semibold text-gray-800 mb-2">Customer Feedback</h3>
+                            <h3 class="font-semibold text-gray-800 mb-2">Patient Feedback</h3>
                             <p class="text-gray-700 leading-relaxed text-sm md:text-base">
                             {{ feedback.message }}
                             </p>
