@@ -17,8 +17,8 @@
                     <div>
                         {{userClaims.role}} Dashboard
                     </div>
-                    <div class="text-3xl flex items-center">
-                        <i class="fa-solid w-5 fa-table-columns"></i>
+                    <div class="text-3xl flex justify-center w-5">
+                        <i class="fa-solid fa-table-columns"></i>
                     </div>
                 </li>
                 <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'PatientAppointment'"
@@ -26,8 +26,8 @@
                     <div>
                         Make An Appointment
                     </div>
-                    <div class="text-3xl flex items-center">
-                        <i class="fa-solid w-5 fa-calendar"></i>
+                    <div class="text-3xl flex justify-center w-5">
+                        <i class="fa-solid fa-calendar"></i>
                     </div>
                 </li>
                 <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'DoctorAppointments'"
@@ -35,8 +35,8 @@
                     <div>
                         My Appointments
                     </div>
-                    <div class="text-3xl flex items-center">
-                        <i class="fa-solid w-5 fa-calendar"></i>
+                    <div class="text-3xl flex justify-center w-5">
+                        <i class="fa-solid fa-calendar"></i>
                     </div>
                 </li>
                 <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="['/feedback']"
@@ -44,8 +44,8 @@
                     <div>
                         Feedback
                     </div>
-                    <div class="text-3xl flex items-center">
-                        <i class="fa-regular w-5 fa-comments"></i>
+                    <div class="text-3xl flex justify-center w-5">
+                        <i class="fa-regular fa-comments"></i>
                     </div>
                 </li>
                 <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'notification'"
@@ -53,8 +53,8 @@
                     <div>
                         Notifications
                     </div>
-                    <div class="text-3xl flex items-center">
-                        <i class="fa-solid w-5 fa-bell"></i>
+                    <div class="text-3xl flex justify-center w-5">
+                        <i class="fa-solid fa-bell"></i>
                     </div>
                 </li>
                 <li class="text-white py-5 cursor-pointer flex justify-between px-6"
@@ -62,16 +62,16 @@
                     <div>
                         {{userClaims.role}} Profile
                     </div>
-                    <div class="text-3xl flex items-center">
-                        <i class="fa-solid w-5 fa-address-card"></i>
+                    <div class="text-3xl flex justify-center w-5">
+                        <i class="fa-solid fa-address-card"></i>
                     </div>
                 </li>
             </ul>
             <ul>
                 <li class="text-white py-5 cursor-pointer flex justify-between px-6 mt-auto" (click)="onLogOut()">
                     <div>Logout</div>
-                    <div class="text-3xl flex items-center">
-                        <i class="fa-solid w-5 fa-right-from-bracket"></i>
+                    <div class="text-3xl flex justify-center w-5">
+                        <i class="fa-solid fa-right-from-bracket"></i>
                     </div>
                 </li>
             </ul>
