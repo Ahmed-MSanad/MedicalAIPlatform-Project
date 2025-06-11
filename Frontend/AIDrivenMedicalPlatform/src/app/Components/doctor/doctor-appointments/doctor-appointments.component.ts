@@ -5,9 +5,10 @@ import { AppointmentInfo } from '../../../Core/Interfaces/appointment-info';
 import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
+import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
 @Component({
   selector: 'app-doctor-appointments',
-  imports: [DatePipe, FormsModule],
+  imports: [DatePipe, FormsModule, BackgroundLayoutComponent],
   templateUrl: './doctor-appointments.component.html',
   styleUrl: './doctor-appointments.component.scss'
 })
@@ -22,19 +23,25 @@ export class DoctorAppointmentsComponent {
   isDelete = false;
   id?: number;
   appointmentInfo!: AppointmentInfo;
-  filteredAppointments!: Appointment[]
   showInfo = false;
   patientName = "";
   ngOnInit() {
     this.GetAppointments();
   }
 
+  get filteredAppointments(): Appointment[] {
+  if (!this.patientName || this.patientName.trim() === "") return this.appointments;
+  return this.appointments.filter(a =>
+    a.patientName.toLowerCase().includes(this.patientName.toLowerCase())
+  );
+}
+
+
   GetAppointments() {
     this.isLoading = true;
     this._appointmentService.GetAppointments(this.status).subscribe({
       next: (res: any) => {
         this.appointments = res;
-        this.filteredAppointments = res;
         this.isLoading = false;
       },
       error: (err) => {
@@ -79,17 +86,6 @@ export class DoctorAppointmentsComponent {
   CloseInfo() {
     this.showInfo = false;
     this.id = undefined;
-  }
-
-  searchPatient() {
-    console.log("changed");
-    
-    if(!this.patientName||this.patientName.trim()===""){
-      this.filteredAppointments = this.appointments
-    }
-    else{
-      this.filteredAppointments = this.appointments.filter(appointment => appointment.patientName.toLowerCase().includes(this.patientName.toLowerCase()))
-    }
   }
 
   CancelAppointment() {

@@ -1,3 +1,5 @@
+<app-background-layout></app-background-layout>
+
 <div class="fixed inset-0 bg-black/30 flex items-center justify-center z-50" [class.hidden]="!isLoading">
   <svg aria-hidden="true" class="w-12 h-12 text-gray-300 animate-spin dark:text-gray-500 fill-blue-600"
     viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -12,13 +14,11 @@
 </div>
 
 <div class="relative h-screen -m-4 overflow-hidden">
-  <img src="./Dashboard.png" alt="Dashboard" class="w-full h-full object-cover" />
-  <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent"></div>
   <div class="absolute inset-0 flex md:flex-row flex-col md:items-center pl-16">
     <div class="text-white text-center md:text-start my-5">
       <h1 class="text-4xl font-bold mb-4">Welcome Doctor 👋</h1>
       <p class="text-lg text-gray-200 mb-6">Start exploring our features and discover what you can do.</p>
-      <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow">
+      <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow" [routerLink]="['/DoctorAppointments']">
         View Appointments
       </button>
     </div>

@@ -6,9 +6,10 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { AppointmentInfo } from '../../../Core/Interfaces/appointment-info';
+import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
 @Component({
   selector: 'app-patient-dashboard',
-  imports: [RouterModule, CarouselModule, DatePipe],
+  imports: [RouterModule, CarouselModule, DatePipe, BackgroundLayoutComponent],
   templateUrl: './patient-dashboard.component.html',
   styleUrl: './patient-dashboard.component.scss'
 })
