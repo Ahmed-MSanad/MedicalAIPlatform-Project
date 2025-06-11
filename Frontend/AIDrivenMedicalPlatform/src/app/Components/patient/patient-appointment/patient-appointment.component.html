@@ -170,35 +170,35 @@
 <div>
     <h2 class="text-2xl font-bold mb-6 text-white">Find a Doctor</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6 p-4 bg-gray-50 rounded-lg">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6 p-4 rounded-lg">
         <div class="space-y-1">
-            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+            <label for="name" class="block text-sm font-medium text-white">Name</label>
             <input id="name" type="text" [(ngModel)]="filters.name"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                class="w-full bg-gray-50 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
         </div>
 
         <div class="space-y-1">
-            <label for="speciality" class="block text-sm font-medium text-gray-700">Speciality</label>
+            <label for="speciality" class="block text-sm font-medium text-white">Speciality</label>
             <input id="speciality" type="text" [(ngModel)]="filters.speciality"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                class="w-full bg-gray-50 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
         </div>
 
         <div class="space-y-1">
-            <label for="minRate" class="block text-sm font-medium text-gray-700">Min Rating</label>
+            <label for="minRate" class="block text-sm font-medium text-white">Min Rating</label>
             <input id="minRate" type="number" [(ngModel)]="filters.minRate" min="0" max="5" step="0.1"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                class="w-full bg-gray-50 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
         </div>
 
         <div class="space-y-1">
-            <label for="cost" class="block text-sm font-medium text-gray-700">Max Fee</label>
+            <label for="cost" class="block text-sm font-medium text-white">Max Fee</label>
             <input id="cost" type="number" [(ngModel)]="filters.cost" min="0" step="0.5"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                class="w-full bg-gray-50 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
         </div>
 
         <div class="space-y-1">
-            <label for="workplace" class="block text-sm font-medium text-gray-700">Workplace</label>
+            <label for="workplace" class="block text-sm font-medium text-white">Workplace</label>
             <input id="workplace" type="text" [(ngModel)]="filters.workplace"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                class="w-full bg-gray-50 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
         </div>
 
         <div class="flex items-end space-x-2 md:col-span-2 lg:col-span-1">

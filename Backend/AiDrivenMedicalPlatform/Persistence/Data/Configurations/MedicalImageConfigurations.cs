@@ -20,6 +20,11 @@ namespace Persistence.Data.Configurations
             builder.HasOne(medicalImage => medicalImage.AiAnalysis)
                    .WithOne(aiAnalysis => aiAnalysis.MedicalImage)
                    .HasForeignKey<AiAnalysis>(aiAnalysis => aiAnalysis.MedicalImageId);
+
+            builder.HasOne(medicalImage => medicalImage.Appointment)
+                   .WithOne(appointment => appointment.MedicalImage)
+                   .HasForeignKey<MedicalImage>(medicalImage => medicalImage.AppointmentId);
+
         }
     }
 }
