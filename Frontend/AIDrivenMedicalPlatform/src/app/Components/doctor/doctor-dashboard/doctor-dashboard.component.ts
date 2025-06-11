@@ -2,11 +2,14 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DoctorService } from '../../../Core/Services/ForDoctor/doctor.service';
 import { ToastrService } from 'ngx-toastr';
+import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-doctor-dashboard',
   templateUrl: './doctor-dashboard.component.html',
-  styleUrls: ['./doctor-dashboard.component.scss']
+  styleUrls: ['./doctor-dashboard.component.scss'],
+  imports: [RouterModule,BackgroundLayoutComponent]
 })
 export class DoctorDashboardComponent {
 

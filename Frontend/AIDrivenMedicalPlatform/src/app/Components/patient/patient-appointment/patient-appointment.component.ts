@@ -6,10 +6,11 @@ import { DoctorInfo } from '../../../Core/Interfaces/doctor-info';
 import { ToastrService } from 'ngx-toastr';
 import { NotificationService } from '../../../Core/Services/notification.service';
 import { ENotificationType } from '../../../Core/Enums/enotification-type';
+import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
 
 @Component({
   selector: 'app-patient-appointment',
-  imports: [FormsModule],
+  imports: [FormsModule, BackgroundLayoutComponent],
   templateUrl: './patient-appointment.component.html',
   styleUrl: './patient-appointment.component.scss'
 })
@@ -68,6 +69,8 @@ export class PatientAppointmentComponent {
     };
     this.doctors = [];
     this.error = null;
+
+    this.searchDoctors();
   }
 
   closeModal() {

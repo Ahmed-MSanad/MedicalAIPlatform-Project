@@ -19,7 +19,7 @@
 <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
 
-    <div class="fixed inset-0 z-10 w-screen ml-6 md:ml-0 overflow-y-auto">
+    <div class="fixed inset-0 z-10 w-screen ml-8 md:ml-0 overflow-y-auto">
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div
                 class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
@@ -118,7 +118,7 @@
 
 @if(showRating){
 <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
+    <div class="bg-white ml-8 md:ml-0 rounded-xl shadow-xl max-w-md w-full p-6">
 
         <div class="text-center mb-6">
             <h3 class="text-xl font-semibold text-gray-900">Rate The Doctor</h3>
@@ -238,6 +238,15 @@
                                     }
                                 </div>
                             </div>
+                        </div>
+                    </ng-template>
+                </ng-container>
+                }
+                @empty {
+                <ng-container>
+                    <ng-template carouselSlide>
+                        <div class="flex justify-center">
+                            <p class="text-sm font-bold text-white">You don't have any appointments</p>
                         </div>
                     </ng-template>
                 </ng-container>
