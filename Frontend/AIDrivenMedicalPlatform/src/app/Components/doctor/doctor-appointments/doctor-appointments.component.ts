@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
+import { MedicalImageService } from '../../../Core/Services/medical-image.service';
 @Component({
   selector: 'app-doctor-appointments',
   imports: [DatePipe, FormsModule, BackgroundLayoutComponent],
@@ -15,6 +16,7 @@ import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/ba
 export class DoctorAppointmentsComponent {
 
   private _appointmentService = inject(AppointmentService);
+  private _medicalImageService = inject(MedicalImageService)
   private _toastr = inject(ToastrService);
 
   isLoading = false;
@@ -25,16 +27,20 @@ export class DoctorAppointmentsComponent {
   appointmentInfo!: AppointmentInfo;
   showInfo = false;
   patientName = "";
+  imageSrc: string = '';
+  medicalImage: string | null = null;
+  medicalImageId !: number
+
   ngOnInit() {
     this.GetAppointments();
   }
 
   get filteredAppointments(): Appointment[] {
-  if (!this.patientName || this.patientName.trim() === "") return this.appointments;
-  return this.appointments.filter(a =>
-    a.patientName.toLowerCase().includes(this.patientName.toLowerCase())
-  );
-}
+    if (!this.patientName || this.patientName.trim() === "") return this.appointments;
+    return this.appointments.filter(a =>
+      a.patientName.toLowerCase().includes(this.patientName.toLowerCase())
+    );
+  }
 
 
   GetAppointments() {
@@ -75,7 +81,8 @@ export class DoctorAppointmentsComponent {
       next: (res: any) => {
         this.appointmentInfo = res;
         this.isLoading = false;
-        this.showInfo = true;
+        this.id = id
+        this.getMedicalImage(id);
       },
       error: (err) => {
         console.log(err);
@@ -115,6 +122,25 @@ export class DoctorAppointmentsComponent {
       error: (err) => {
         this._toastr.error("Can't complete this appointment until the scheduled time has passed.");
         this.isLoading = false;
+      }
+    })
+  }
+
+  getMedicalImage(appointmentId: number) {
+    this.isLoading = true;
+    this._medicalImageService.GetMedicalImage(appointmentId).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.medicalImageId = res.medicalImageId;
+        this.medicalImage = res.image;
+        this.imageSrc = `data:image/png;base64,${this.medicalImage}`;
+        this.isLoading = false;
+        this.showInfo = true;
+      },
+      error: (err) => {
+        console.log(err);
+        this.isLoading = false;
+        this.showInfo = true;
       }
     })
   }

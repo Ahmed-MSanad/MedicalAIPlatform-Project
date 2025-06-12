@@ -66,6 +66,17 @@
                 </div>
             </div>
 
+            @if (medicalImage) {
+            <div class="mt-4">
+                <h3 class="text-sm font-medium text-gray-500 mb-2">Medical Image:</h3>
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 flex justify-center">
+                    <div class="relative">
+                        <img [src]="imageSrc" alt="Medical image" class="max-h-64 max-w-full object-contain rounded">
+                    </div>
+                </div>
+            </div>
+            }
+
             <div class="bg-gray-50 p-4 rounded-lg">
                 <h4 class="text-sm font-medium text-gray-500 mb-2">Description</h4>
                 <p class="text-gray-800 whitespace-pre-line">{{ appointmentInfo.description || 'No description provided'
@@ -124,92 +135,83 @@
 
 <div class="relative mt-5">
 
-  <div class="flex justify-center">
-    <div class="relative flex items-center rounded-full bg-gray-200 p-1">
-      <button
-        class="relative z-10 flex h-10 items-center justify-center rounded-r-full px-6 text-sm font-medium transition-colors"
-        [class.text-white]="status == 0"
-        [class.text-gray-600]="status != 0"
-        (click)="SelectStatus(0)"
-      >
-        Scheduled
-      </button>
+    <div class="flex justify-center">
+        <div class="relative flex items-center rounded-full bg-gray-200 p-1">
+            <button
+                class="relative z-10 flex h-10 items-center justify-center rounded-r-full px-6 text-sm font-medium transition-colors"
+                [class.text-white]="status == 0" [class.text-gray-600]="status != 0" (click)="SelectStatus(0)">
+                Scheduled
+            </button>
 
-      <div class="h-6 w-px bg-gray-300"></div>
+            <div class="h-6 w-px bg-gray-300"></div>
 
-      <button
-        class="relative z-10 flex h-10 items-center justify-center rounded-l-full px-6 text-sm font-medium transition-colors"
-        [class.text-white]="status == 1"
-        [class.text-gray-600]="status != 1"
-        (click)="SelectStatus(1)"
-      >
-        Completed
-      </button>
+            <button
+                class="relative z-10 flex h-10 items-center justify-center rounded-l-full px-6 text-sm font-medium transition-colors"
+                [class.text-white]="status == 1" [class.text-gray-600]="status != 1" (click)="SelectStatus(1)">
+                Completed
+            </button>
 
-      <div
-        class="absolute left-1 top-1 h-10 rounded-full bg-blue-500 transition-all duration-300"
-        [class]="status == 1 ? 'w-[calc(50%-0.25rem)] transform translate-x-full' : 'w-[calc(50%-0.5rem)] transform -translate-x-0'"
-      ></div>
+            <div class="absolute left-1 top-1 h-10 rounded-full bg-blue-500 transition-all duration-300"
+                [class]="status == 1 ? 'w-[calc(50%-0.25rem)] transform translate-x-full' : 'w-[calc(50%-0.5rem)] transform -translate-x-0'">
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="mt-4 me-5 md:mt-0 md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2">
-    <input
-        [(ngModel)]="patientName"
-      type="text"
-      placeholder="Search For a Patient by Name"
-      class="w-full md:w-45 lg:w-64 rounded-full border border-white bg-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-  </div>
+    <div class="mt-4 me-5 md:mt-0 md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2">
+        <input [(ngModel)]="patientName" type="text" placeholder="Search For a Patient by Name"
+            class="w-full md:w-45 lg:w-64 rounded-full border border-white bg-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
 </div>
 
 
 <div class="flex flex-col md:flex-row flex-wrap justify-center items-center">
-@for (appointment of filteredAppointments; track $index) {
-<div class=" w-64 my-4 sm:w-72 rounded-xl shadow-lg overflow-hidden bg-white relative m-3 font-sans" (click)="ShowAppointmentInfo(appointment.id)">
+    @for (appointment of filteredAppointments; track $index) {
+    <div class=" w-64 my-4 sm:w-72 rounded-xl shadow-lg overflow-hidden bg-white relative m-3 font-sans"
+        (click)="ShowAppointmentInfo(appointment.id)">
 
-    <div class="flex justify-between items-center px-4 py-3 bg-gradient-to-r from-indigo-400 to-purple-500 text-white">
-        <div class="font-semibold text-sm">{{appointment.date | date:'medium'}}</div>
-        @if(status == 0){
-        <button
-            class="bg-white/20 hover:bg-white/30 transition-all w-6 h-6 rounded-full flex items-center justify-center text-white font-bold text-xs"
-            (click)="OpenDelete($event,appointment.id)">
-            X
-        </button>
+        <div
+            class="flex justify-between items-center px-4 py-3 bg-gradient-to-r from-indigo-400 to-purple-500 text-white">
+            <div class="font-semibold text-sm">{{appointment.date | date:'medium'}}</div>
+            @if(status == 0){
+            <button
+                class="bg-white/20 hover:bg-white/30 transition-all w-6 h-6 rounded-full flex items-center justify-center text-white font-bold text-xs"
+                (click)="OpenDelete($event,appointment.id)">
+                X
+            </button>
+            }
+        </div>
+
+        <div class="p-4">
+
+            <div class="mb-4">
+                <div class="text-lg font-semibold mb-1">{{appointment.patientName}}</div>
+                <div class="text-sm text-gray-600">with Dr. {{appointment.doctorName}}</div>
+            </div>
+
+            <div class="flex items-center mb-3">
+                <svg class="w-4 h-4 mr-2 text-purple-500" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" />
+                </svg>
+                <div class="text-sm">{{appointment.location}}</div>
+            </div>
+
+            <div class="flex justify-between items-center pt-3 border-t border-gray-200">
+                <div class="text-sm text-gray-600">Cost</div>
+                <div class="text-lg font-bold text-indigo-400">{{appointment.cost}} EGP</div>
+            </div>
+            @if(status == 0){
+            <div class="w-full font-bold text-white mt-2">
+                <button class="text-center rounded-lg bg-blue-500 w-full py-2 cursor-pointer hover:bg-blue-600"
+                    (click)="CompleteAppointment($event,appointment.id)">Complete The Appointment</button>
+            </div>
+            }
+        </div>
+    </div>
     }
-    </div>
-
-    <div class="p-4">
-
-        <div class="mb-4">
-            <div class="text-lg font-semibold mb-1">{{appointment.patientName}}</div>
-            <div class="text-sm text-gray-600">with Dr. {{appointment.doctorName}}</div>
-        </div>
-
-        <div class="flex items-center mb-3">
-            <svg class="w-4 h-4 mr-2 text-purple-500" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                    d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" />
-            </svg>
-            <div class="text-sm">{{appointment.location}}</div>
-        </div>
-
-        <div class="flex justify-between items-center pt-3 border-t border-gray-200">
-            <div class="text-sm text-gray-600">Cost</div>
-            <div class="text-lg font-bold text-indigo-400">{{appointment.cost}} EGP</div>
-        </div>
-        @if(status == 0){
-        <div class="w-full font-bold text-white mt-2">
-            <button class="text-center rounded-lg bg-blue-500 w-full py-2 cursor-pointer hover:bg-blue-600"
-                            (click)="CompleteAppointment($event,appointment.id)">Complete The Appointment</button>
-        </div>
-        }
-    </div>
-</div>
-}
-@empty {
+    @empty {
     <div class="mx-auto my-10 text-xl font-bold text-white">
         <p>You don't have any appointments at the moment.</p>
     </div>
-}
+    }
 </div>

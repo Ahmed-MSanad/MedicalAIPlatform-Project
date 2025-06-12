@@ -40,7 +40,7 @@ namespace Services
             await unitOfWork.SaveChangesAsync();
         }
 
-        public async Task EditMedicalImageService(int medicalImageId, byte[] newImage)
+        public async Task EditMedicalImageService(int medicalImageId, NewImageDto newImageDto)
         {
             var medicalImage = await unitOfWork.GetRepository<MedicalImage, int>().GetByIdAsync(medicalImageId);
 
@@ -58,7 +58,7 @@ namespace Services
                 unitOfWork.GetRepository<AiAnalysis,int>().Delete(aiAnalysis);
             }
 
-            medicalImage.Image = newImage;
+            medicalImage.Image = newImageDto.Image;
 
             medicalImage.UploadDate = DateTime.Now;
 

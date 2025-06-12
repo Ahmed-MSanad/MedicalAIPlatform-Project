@@ -26,9 +26,9 @@ namespace Presentation.Controllers
 
         [Authorize]
         [HttpPatch]
-        public async Task<ActionResult> EditMedicalImage([FromQuery] int medicalImageId,[FromBody] byte[] newImage)
+        public async Task<ActionResult> EditMedicalImage([FromQuery] int medicalImageId,[FromBody] NewImageDto newImageDto)
         {
-            await serviceManager.MedicalImageService.EditMedicalImageService(medicalImageId,newImage);
+            await serviceManager.MedicalImageService.EditMedicalImageService(medicalImageId,newImageDto);
 
             return StatusCode(StatusCodes.Status200OK, new { Message = "Image Updated Successfully" });
         }
@@ -39,7 +39,7 @@ namespace Presentation.Controllers
         {
             await serviceManager.MedicalImageService.DeleteMedicalImageService(medicalImageId);
 
-            return StatusCode(StatusCodes.Status200OK, new { Message = "Image Updated Successfully" });
+            return StatusCode(StatusCodes.Status200OK, new { Message = "Image Deleted Successfully" });
         }
 
         [Authorize]

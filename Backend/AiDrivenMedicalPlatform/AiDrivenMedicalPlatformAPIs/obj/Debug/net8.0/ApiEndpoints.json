@@ -397,6 +397,75 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Presentation.Controllers.MedicalImageController",
+    "Method": "AddMedicalImage",
+    "RelativePath": "MedicalImage/AddMedicalImage",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "medicalImageDto",
+        "Type": "Shared.MedicalImageDtos.CreatedMedicalImageDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.MedicalImageController",
+    "Method": "DeleteMedicalImage",
+    "RelativePath": "MedicalImage/DeleteMedicalImage",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "medicalImageId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.MedicalImageController",
+    "Method": "EditMedicalImage",
+    "RelativePath": "MedicalImage/EditMedicalImage",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "medicalImageId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "newImageDto",
+        "Type": "Shared.MedicalImageDtos.NewImageDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.MedicalImageController",
+    "Method": "GetMedicalImage",
+    "RelativePath": "MedicalImage/GetMedicalImage",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "appointmentId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Presentation.Controllers.NotificationController",
     "Method": "getNotifications",
     "RelativePath": "Notification/getNotifications",

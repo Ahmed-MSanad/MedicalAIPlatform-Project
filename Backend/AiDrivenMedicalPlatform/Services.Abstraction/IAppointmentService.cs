@@ -8,7 +8,7 @@ namespace Services.Abstraction
         public Task<IEnumerable<DoctorResponseDto>> GetDoctorsInfoService(DoctorSpecificationParams specificationParams);
         public Task<DoctorInfoDto> GetDoctorInfoService(string id);
         public Task AddRateService(string id, int appointmentId, int rate);
-        public Task CreateAppointmentService(CreatedAppointmentDto appointmentDto, string patientId);
+        public Task<int> CreateAppointmentService(CreatedAppointmentDto appointmentDto, string patientId);
         public Task CancelAppointmentService(int appointmentId);
         public Task CompleteAppointmentService(int appointmentId);
         public Task<IEnumerable<AppointmentDto>> GetAppointmentsService(int status, string userId);

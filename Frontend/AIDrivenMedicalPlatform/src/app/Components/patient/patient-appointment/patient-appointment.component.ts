@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { Doctor } from '../../../Core/Interfaces/doctor-card';
 import { AppointmentService } from '../../../Core/Services/appointment.service';
 import { FormsModule } from '@angular/forms';
@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NotificationService } from '../../../Core/Services/notification.service';
 import { ENotificationType } from '../../../Core/Enums/enotification-type';
 import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
+import { MedicalImageService } from '../../../Core/Services/medical-image.service';
 
 @Component({
   selector: 'app-patient-appointment',
@@ -17,6 +18,7 @@ import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/ba
 export class PatientAppointmentComponent {
 
   private _appointmentService = inject(AppointmentService);
+  private _medicalImageService = inject(MedicalImageService);
   private _toastr = inject(ToastrService);
 
   doctors: Doctor[] = [];
@@ -38,6 +40,13 @@ export class PatientAppointmentComponent {
   timeSlots!: string[]
   minDate!: string;
   maxDate!: string;
+
+  @ViewChild('fileInput') fileInput!: ElementRef;
+  imageSrc: string = '';
+  medicalImage: string | null = null;
+
+
+
 
   ngOnInit() {
     this.isLoading = true;
@@ -78,6 +87,8 @@ export class PatientAppointmentComponent {
     this.date = undefined;
     this.time = undefined;
     this.description = undefined;
+    this.imageSrc = ''
+    this.medicalImage = null
   }
 
   openModal(id: string) {
@@ -158,11 +169,14 @@ export class PatientAppointmentComponent {
               this._toastr.success(res.message);
               console.log(res.message);
             },
-            error:(error) => {
+            error: (error) => {
               this._toastr.error(error.error);
               console.log(error.error);
             }
           });
+          if (this.medicalImage != null) {
+            this.UploadImage(res)
+          }
         },
         error: (err) => {
           this._toastr.error(err.message);
@@ -172,5 +186,47 @@ export class PatientAppointmentComponent {
     else {
       this._toastr.error("Please Select Date and Time");
     }
+  }
+
+
+  triggerFileInput() {
+    this.fileInput.nativeElement.click();
+  }
+
+  ChangeImage(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files?.[0]) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageSrc = reader.result as string;
+        const base64 = (reader.result as string).split(',')[1];
+        this.medicalImage = base64;
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  removeMedicalImage() {
+    this.medicalImage = null;
+  }
+
+
+  UploadImage(res:any) {
+    this._medicalImageService.CreateMedicalImage({
+      Image: this.medicalImage,
+      Did: this.id,
+      AppointmentId: res.appointmentId
+    }).subscribe({
+      next:(res:any)=>{
+        console.log(res.message);
+        this.imageSrc = ''
+        this.medicalImage = null
+      },
+      error:(err)=>{
+        this._toastr.error("Couldn't Add Image")
+        this.imageSrc = ''
+        this.medicalImage = null
+      }
+    })
   }
 }
