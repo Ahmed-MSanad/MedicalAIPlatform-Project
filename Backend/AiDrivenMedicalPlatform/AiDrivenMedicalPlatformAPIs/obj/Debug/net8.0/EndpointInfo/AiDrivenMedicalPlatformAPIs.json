@@ -677,6 +677,122 @@
         }
       }
     },
+    "/MedicalImage/AddMedicalImage": {
+      "post": {
+        "tags": [
+          "MedicalImage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatedMedicalImageDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatedMedicalImageDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatedMedicalImageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/MedicalImage/EditMedicalImage": {
+      "patch": {
+        "tags": [
+          "MedicalImage"
+        ],
+        "parameters": [
+          {
+            "name": "medicalImageId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewImageDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewImageDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewImageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/MedicalImage/DeleteMedicalImage": {
+      "delete": {
+        "tags": [
+          "MedicalImage"
+        ],
+        "parameters": [
+          {
+            "name": "medicalImageId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/MedicalImage/GetMedicalImage": {
+      "get": {
+        "tags": [
+          "MedicalImage"
+        ],
+        "parameters": [
+          {
+            "name": "appointmentId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Notification/SendEmail/{NotificationType}": {
       "post": {
         "tags": [
@@ -1240,6 +1356,29 @@
         },
         "additionalProperties": false
       },
+      "CreatedMedicalImageDto": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "uploadDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "did": {
+            "type": "string",
+            "nullable": true
+          },
+          "appointmentId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "DoctorDto": {
         "type": "object",
         "properties": {
@@ -1532,6 +1671,17 @@
           },
           "password": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewImageDto": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "string",
+            "format": "byte",
             "nullable": true
           }
         },

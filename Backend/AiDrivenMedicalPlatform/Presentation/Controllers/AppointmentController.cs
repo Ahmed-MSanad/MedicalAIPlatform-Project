@@ -47,9 +47,9 @@ namespace Presentation.Controllers
         {
             string patientId = User.Claims.First(x => x.Type == "UserID").Value;
 
-            await serviceManager.AppointmentService.CreateAppointmentService(appointmentDto, patientId);
+            var appointmentId = await serviceManager.AppointmentService.CreateAppointmentService(appointmentDto, patientId);
 
-            return StatusCode(StatusCodes.Status201Created, new { Message = "Appointment created successfully" });
+            return StatusCode(StatusCodes.Status201Created, new { Message = "Appointment created successfully", AppointmentId = appointmentId});
         }
 
         [Authorize]

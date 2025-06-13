@@ -122,13 +122,13 @@
             <div class="w-full my-4">
                 <div class="flex flex-col justify-between md:flex-row w-full mt-3">
                     <div>
-                        <h3>Select Date</h3>
+                        <h3 class="text-sm font-medium text-gray-500">Select Date</h3>
                         <input type="date" name="date" [min]="minDate" [max]="maxDate" class="bg-gray-200 rounded-md"
                             id="date" [(ngModel)]="date" (change)="getTimeSlots()">
                     </div>
                     @if (date) {
                     <div class="mt-2">
-                        <h3>Select Time</h3>
+                        <h3 class="text-sm font-medium text-gray-500">Select Time</h3>
                         <select [(ngModel)]="time" class="bg-gray-200 rounded-md" name="time" id="time">
                             @for (time of timeSlots; track $index) {
                             <option [value]="time.split(':').slice(0,2).join(':')">
@@ -138,6 +138,43 @@
                     </div>
                     }
                 </div>
+
+
+                <div class="mt-4">
+                    <h3 class="text-sm font-medium text-gray-500 mb-2">Upload Medical Image (Optional)</h3>
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 flex justify-center">
+                        @if (medicalImage) {
+                        <div class="relative">
+                            <img [src]="imageSrc" alt="Medical image"
+                                class="max-h-64 max-w-full object-contain rounded">
+                            <div class="flex justify-center mt-2 gap-2">
+                                <button (click)="triggerFileInput()"
+                                    class="px-3 py-1 text-sm bg-gray-200 rounded hover:bg-gray-300">
+                                    Change
+                                </button>
+                                <button (click)="removeMedicalImage()"
+                                    class="px-3 py-1 text-sm bg-red-100 text-red-600 rounded hover:bg-red-200">
+                                    Remove
+                                </button>
+                            </div>
+                            <input #fileInput type="file" (change)="ChangeImage($event)" accept="image/*"
+                                class="hidden">
+                        </div>
+                        } @else {
+                        <label class="flex flex-col items-center justify-center cursor-pointer">
+                            <svg class="w-12 h-12 mb-3 text-gray-400" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <p class="text-sm text-gray-500">Click to upload medical image</p>
+                            <input type="file" (change)="ChangeImage($event)" accept="image/*" class="hidden">
+                        </label>
+                        }
+                    </div>
+                </div>
+
+
                 <div class="w-full">
                     <h3 class="my-2">Description (Optional)</h3>
                     <textarea [(ngModel)]="description" class="w-full bg-gray-200 rounded-lg p-2"
@@ -170,35 +207,35 @@
 <div>
     <h2 class="text-2xl font-bold mb-6 text-white">Find a Doctor</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6 p-4 bg-gray-50 rounded-lg">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6 p-4 rounded-lg">
         <div class="space-y-1">
-            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+            <label for="name" class="block text-sm font-medium text-white">Name</label>
             <input id="name" type="text" [(ngModel)]="filters.name"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                class="w-full bg-gray-50 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
         </div>
 
         <div class="space-y-1">
-            <label for="speciality" class="block text-sm font-medium text-gray-700">Speciality</label>
+            <label for="speciality" class="block text-sm font-medium text-white">Speciality</label>
             <input id="speciality" type="text" [(ngModel)]="filters.speciality"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                class="w-full bg-gray-50 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
         </div>
 
         <div class="space-y-1">
-            <label for="minRate" class="block text-sm font-medium text-gray-700">Min Rating</label>
+            <label for="minRate" class="block text-sm font-medium text-white">Min Rating</label>
             <input id="minRate" type="number" [(ngModel)]="filters.minRate" min="0" max="5" step="0.1"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                class="w-full bg-gray-50 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
         </div>
 
         <div class="space-y-1">
-            <label for="cost" class="block text-sm font-medium text-gray-700">Max Fee</label>
+            <label for="cost" class="block text-sm font-medium text-white">Max Fee</label>
             <input id="cost" type="number" [(ngModel)]="filters.cost" min="0" step="0.5"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                class="w-full bg-gray-50 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
         </div>
 
         <div class="space-y-1">
-            <label for="workplace" class="block text-sm font-medium text-gray-700">Workplace</label>
+            <label for="workplace" class="block text-sm font-medium text-white">Workplace</label>
             <input id="workplace" type="text" [(ngModel)]="filters.workplace"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                class="w-full bg-gray-50 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
         </div>
 
         <div class="flex items-end space-x-2 md:col-span-2 lg:col-span-1">

@@ -66,7 +66,7 @@ namespace Services
             await unitOfWork.SaveChangesAsync();
         }
 
-        public async Task CreateAppointmentService(CreatedAppointmentDto appointmentDto, string patientId)
+        public async Task<int> CreateAppointmentService(CreatedAppointmentDto appointmentDto, string patientId)
         {
             var appointment = mapper.Map<Appointment>(appointmentDto);
 
@@ -75,6 +75,8 @@ namespace Services
             await unitOfWork.GetRepository<Appointment, int>().AddAsync(appointment);
 
             await unitOfWork.SaveChangesAsync();
+
+            return appointment.AppointmentId;
         }
 
         public async Task CancelAppointmentService(int appointmentId)

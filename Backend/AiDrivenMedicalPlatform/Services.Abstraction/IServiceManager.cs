@@ -9,5 +9,6 @@ namespace Services.Abstraction
         public IScheduleService ScheduleService { get; }
         public IProfileService ProfileService { get; }
         public IAppointmentService AppointmentService { get; }
+        public IMedicalImageService MedicalImageService { get; }
     }
 }
