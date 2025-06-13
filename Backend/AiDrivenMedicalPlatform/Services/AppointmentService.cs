@@ -2,8 +2,10 @@
 using MedicalProj.Data.Contracts;
 using MedicalProj.Data.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Services.Abstraction;
 using Services.Specifications;
+using Shared.AiAnalysisDtos;
 using Shared.AppointmentDtos;
 using Shared.DoctorDtos;
 
@@ -164,6 +166,26 @@ namespace Services
             }
 
             return availableSlots;
+        }
+
+        public async Task SetMedicalImageAiAnalysisService(AiAnalysisDto aiAnalysisDto)
+        {
+            var mappedAiAnalysis = mapper.Map<AiAnalysis>(aiAnalysisDto);
+
+            await unitOfWork.GetRepository<AiAnalysis, int>().AddAsync(mappedAiAnalysis);
+
+            await unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task<AiAnalysisDto> GetMedicalImageAiAnalysisService(int medicalImageId)
+        {
+            var specification = new AiAnalysisWithFilterSpecification(medicalImageId);
+            
+            var aiAnalysis = await unitOfWork.GetRepository<AiAnalysis, int>().GetByIdAsync(specification);
+
+            return aiAnalysis == null
+                ? throw new Exception("AI Analysis not found for the given medical image ID in Get Medical Image AI Analysis Service")
+                : mapper.Map<AiAnalysisDto>(aiAnalysis);
         }
     }
 }

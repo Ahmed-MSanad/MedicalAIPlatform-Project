@@ -1,4 +1,6 @@
 ﻿
+using Shared.AiAnalysisDtos;
+
 namespace Services.Abstraction
 {
     public interface IServiceManager
@@ -9,5 +11,6 @@ namespace Services.Abstraction
         public IScheduleService ScheduleService { get; }
         public IProfileService ProfileService { get; }
         public IAppointmentService AppointmentService { get; }
+        
     }
 }

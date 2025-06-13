@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstraction;
+using Shared.AiAnalysisDtos;
 using Shared.AppointmentDtos;
 using Shared.DoctorDtos;
 
@@ -29,7 +30,7 @@ namespace Presentation.Controllers
 
         [Authorize]
         [HttpPut]
-        public async Task<ActionResult> AddRate([FromQuery]string id, [FromQuery] int appointmentId, [FromBody]int rate)
+        public async Task<ActionResult> AddRate([FromQuery] string id, [FromQuery] int appointmentId, [FromBody] int rate)
         {
             if (rate < 1 || rate > 5)
             {
@@ -90,5 +91,32 @@ namespace Presentation.Controllers
             return Ok(availableSlots);
         }
 
+        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult> SetMedicalImageAiAnalysis([FromBody] AiAnalysisDto aiAnalysisDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { error = ModelState });
+            }
+            try
+            {
+                await serviceManager.AppointmentService.SetMedicalImageAiAnalysisService(aiAnalysisDto);
+                return Ok(new { message = "AI analysis set successfully" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
+
+        [Authorize]
+        [HttpGet("{medicalImageId}")]
+        public async Task<ActionResult<AiAnalysisDto>> GetMedicalImageAiAnalysis([FromRoute] int medicalImageId)
+        {
+            var aiAnalysis = await serviceManager.AppointmentService.GetMedicalImageAiAnalysisService(medicalImageId);
+
+            return Ok(aiAnalysis);
+        }
     }
 }

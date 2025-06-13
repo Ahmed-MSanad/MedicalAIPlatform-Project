@@ -28,6 +28,8 @@ namespace Persistence.Data
             modelBuilder.Entity<Admin>()
                 .ToTable("Admins"); // Separate table for Admin
 
+            modelBuilder.Entity<AiAnalysis>().Property(ai => ai.image).IsRequired(false);
+
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
         public DbSet<Patient> Patients { get; set; }

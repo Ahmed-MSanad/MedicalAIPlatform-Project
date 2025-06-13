@@ -76,6 +76,23 @@
                         <i class="fa-solid fa-bell"></i>
                     </div>
                 </li>
+                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'DoctorAiModel'" routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.doctorOnly">
+                    <div>
+                        Upload to the model
+                    </div>
+                    <div class="text-3xl flex items-center">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                </li>
+
+                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'patient-doctorResponse'" routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.doctorOnly">
+                    <div>
+                        Doctor Responses
+                    </div>
+                    <div class="text-3xl flex items-center">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                </li>
             </ul>
         </aside>
         <div [@toggleNavAnimation]="SideNavState()" class="p-4">

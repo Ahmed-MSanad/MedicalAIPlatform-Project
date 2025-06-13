@@ -18,6 +18,8 @@ import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { claimReq } from './Core/utils/claimReq-utils';
 import { PatientAppointmentComponent } from './Components/patient/patient-appointment/patient-appointment.component';
 import { MainPageComponent } from './Components/main-page/main-page.component';
+import { DoctorAiModelComponent } from './Components/doctor/doctor-ai-model/doctor-ai-model.component';
+import { PatientDoctorResponseComponent } from './Components/patient/patient-doctor-response/patient-doctor-response.component';
 
 export const routes: Routes = [
     {path: '', component: AuthLayoutComponent, canActivate:[stopLoggedInUserGuard], children:[
@@ -35,11 +37,13 @@ export const routes: Routes = [
         {path: 'DoctorProfile', component: DoctorProfileComponent, data: {claimReq : claimReq.doctorOnly}},
         {path: 'DoctorDashboard', component: DoctorDashboardComponent, data: {claimReq : claimReq.doctorOnly}},
         {path: 'DoctorAppointments', component: DoctorAppointmentsComponent, data: {claimReq : claimReq.doctorOnly}},
+        {path: 'DoctorAiModel', component: DoctorAiModelComponent, data: {claimReq : claimReq.doctorOnly}},
 
 
         {path: 'PatientProfile', component: PatientProfileComponent, data: {claimReq : claimReq.patientOnly}},
         {path: 'PatientDashboard', component: PatientDashboardComponent, data: {claimReq : claimReq.patientOnly}},
         {path: 'PatientAppointment', component: PatientAppointmentComponent, data: {claimReq : claimReq.patientOnly}},
+        {path: 'patient-doctorResponse', component: PatientDoctorResponseComponent, data: {claimReq : claimReq.doctorOnly}},
         {path: 'forbidden', component: ForbiddenComponent},
 
         {path: "feedback", loadComponent: () => import("./Components/feedback/feedback.component").then((c) => c.FeedbackComponent) },
