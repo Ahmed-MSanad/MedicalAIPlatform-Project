@@ -17,7 +17,7 @@ namespace Services
 
             if(schedules == null || schedules.Count() == 0)
             {
-                throw new Exception($"No Schedules Found For this doctor");
+                Enumerable.Empty<ScheduleDto>();
             }
 
             var schedulesDtos = mapper.Map<IEnumerable<ScheduleDto>>(schedules);

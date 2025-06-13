@@ -17,5 +17,6 @@ namespace MedicalProj.Data.Models
         // Navigation properties :
         public Doctor Doctor { get; set; } = null!;
         public Patient Patient { get; set; } = null!;
+        public MedicalImage? MedicalImage { get; set; }
     }
 }

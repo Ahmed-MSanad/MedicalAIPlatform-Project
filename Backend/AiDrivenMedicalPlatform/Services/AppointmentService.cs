@@ -21,7 +21,7 @@ namespace Services
 
             if (doctors == null || !doctors.Any())
             {
-                throw new Exception("No doctors found in Get Doctors Info");
+                return Enumerable.Empty<DoctorResponseDto>();
             }
 
             var doctorsResponseDtos = mapper.Map<IEnumerable<DoctorResponseDto>>(doctors);
@@ -68,7 +68,7 @@ namespace Services
             await unitOfWork.SaveChangesAsync();
         }
 
-        public async Task CreateAppointmentService(CreatedAppointmentDto appointmentDto, string patientId)
+        public async Task<int> CreateAppointmentService(CreatedAppointmentDto appointmentDto, string patientId)
         {
             var appointment = mapper.Map<Appointment>(appointmentDto);
 
@@ -77,6 +77,8 @@ namespace Services
             await unitOfWork.GetRepository<Appointment, int>().AddAsync(appointment);
 
             await unitOfWork.SaveChangesAsync();
+
+            return appointment.AppointmentId;
         }
 
         public async Task CancelAppointmentService(int appointmentId)
@@ -87,10 +89,7 @@ namespace Services
                 throw new Exception("Appointment Not Found in Cancel Appointment Service");
             }
 
-            appointment.CreatedAt = DateTime.UtcNow;
-            appointment.Status = AppointmentStatus.Cancelled;
-
-            unitOfWork.GetRepository<Appointment, int>().Update(appointment);
+            unitOfWork.GetRepository<Appointment, int>().Delete(appointment);
 
             await unitOfWork.SaveChangesAsync();
         }
@@ -122,7 +121,7 @@ namespace Services
 
             if (appointments == null || !appointments.Any())
             {
-                throw new Exception("No appointments found in Get Appointments");
+                return Enumerable.Empty<AppointmentDto>();
             }
 
             var appointmentsDto = mapper.Map<IEnumerable<AppointmentDto>>(appointments);
@@ -180,12 +179,28 @@ namespace Services
         public async Task<AiAnalysisDto> GetMedicalImageAiAnalysisService(int medicalImageId)
         {
             var specification = new AiAnalysisWithFilterSpecification(medicalImageId);
-            
+
             var aiAnalysis = await unitOfWork.GetRepository<AiAnalysis, int>().GetByIdAsync(specification);
 
             return aiAnalysis == null
                 ? throw new Exception("AI Analysis not found for the given medical image ID in Get Medical Image AI Analysis Service")
                 : mapper.Map<AiAnalysisDto>(aiAnalysis);
+        }
+        public async Task<AppointmentInfoDto> GetAppointmentInfoService(int appointmentId)
+        {
+
+            var specification = new AppointmentWithFilterSpecification(appointmentId);
+
+            var appointment = await unitOfWork.GetRepository<Appointment, int>().GetByIdAsync(specification);
+            
+            if(appointment is null)
+            {
+                throw new Exception("Appointment Not Found.");
+            }
+
+            var appointmentInfo = mapper.Map<AppointmentInfoDto>(appointment);
+
+            return appointmentInfo;
         }
     }
 }

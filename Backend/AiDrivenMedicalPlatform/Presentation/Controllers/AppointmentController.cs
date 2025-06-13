@@ -29,8 +29,8 @@ namespace Presentation.Controllers
         }
 
         [Authorize]
-        [HttpPut]
-        public async Task<ActionResult> AddRate([FromQuery] string id, [FromQuery] int appointmentId, [FromBody] int rate)
+        [HttpPatch]
+        public async Task<ActionResult> AddRate([FromQuery]string id, [FromQuery] int appointmentId, [FromQuery]int rate)
         {
             if (rate < 1 || rate > 5)
             {
@@ -48,13 +48,13 @@ namespace Presentation.Controllers
         {
             string patientId = User.Claims.First(x => x.Type == "UserID").Value;
 
-            await serviceManager.AppointmentService.CreateAppointmentService(appointmentDto, patientId);
+            var appointmentId = await serviceManager.AppointmentService.CreateAppointmentService(appointmentDto, patientId);
 
-            return StatusCode(StatusCodes.Status201Created, new { Message = "Appointment created successfully" });
+            return StatusCode(StatusCodes.Status201Created, new { Message = "Appointment created successfully", AppointmentId = appointmentId});
         }
 
         [Authorize]
-        [HttpPatch]
+        [HttpDelete]
         public async Task<ActionResult> CancelAppointment([FromQuery] int appointmentId)
         {
             await serviceManager.AppointmentService.CancelAppointmentService(appointmentId);
@@ -89,6 +89,14 @@ namespace Presentation.Controllers
             var availableSlots = await serviceManager.AppointmentService.GetAvailableTimeSlotsService(id, day);
 
             return Ok(availableSlots);
+        }
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult<AppointmentInfoDto>> GetAppointmentInfo([FromQuery] int appointmentId)
+        {
+            var appointmentInfo = await serviceManager.AppointmentService.GetAppointmentInfoService(appointmentId);
+
+            return Ok(appointmentInfo);
         }
 
         [Authorize]

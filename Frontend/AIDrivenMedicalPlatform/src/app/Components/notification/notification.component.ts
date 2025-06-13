@@ -3,10 +3,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { INotification } from '../../Core/Interfaces/inotification';
 import { NotificationService } from '../../Core/Services/notification.service';
 import { ToastrService } from 'ngx-toastr';
+import { BackgroundLayoutComponent } from "../../Layouts/background-layout/background-layout.component";
 
 @Component({
   selector: 'app-notification',
-  imports: [CommonModule],
+  imports: [CommonModule, BackgroundLayoutComponent],
   templateUrl: './notification.component.html',
   styleUrl: './notification.component.scss'
 })

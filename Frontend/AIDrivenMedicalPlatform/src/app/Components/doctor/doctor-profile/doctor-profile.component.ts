@@ -8,10 +8,11 @@ import { FormArray, FormBuilder, FormControl, ReactiveFormsModule, Validators } 
 import { ToastrService } from 'ngx-toastr';
 import { DoctorService } from '../../../Core/Services/ForDoctor/doctor.service';
 import { CurrencyPipe } from '@angular/common';
+import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
 
 @Component({
   selector: 'app-doctor-profile',
-  imports: [GenderPipe, ReactiveFormsModule,CurrencyPipe],
+  imports: [GenderPipe, ReactiveFormsModule, CurrencyPipe, BackgroundLayoutComponent],
   templateUrl: './doctor-profile.component.html',
   styleUrl: './doctor-profile.component.scss'
 })

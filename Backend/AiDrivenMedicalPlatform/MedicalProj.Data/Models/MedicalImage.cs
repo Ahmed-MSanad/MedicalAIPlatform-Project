@@ -11,5 +11,7 @@
         public string Did { get; set; } = null!;
         public Doctor Doctor { get; set; } = null!;
         public AiAnalysis AiAnalysis { get; set; } = null!;
+        public int AppointmentId { get; set; }
+        public Appointment Appointment { get; set; } = null!;
     }
 }

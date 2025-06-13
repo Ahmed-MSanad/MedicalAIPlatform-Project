@@ -7,10 +7,11 @@ import { AuthService } from '../../../Core/Services/auth.service';
 import { FormArray, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { PatientService } from '../../../Core/Services/ForPatient/patient.service';
+import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
 
 @Component({
   selector: 'app-patient-profile',
-  imports: [GenderPipe, ReactiveFormsModule],
+  imports: [GenderPipe, ReactiveFormsModule, BackgroundLayoutComponent],
   templateUrl: './patient-profile.component.html',
   styleUrl: './patient-profile.component.scss'
 })

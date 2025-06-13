@@ -10,6 +10,8 @@ namespace Shared.DoctorDtos
         [Column(TypeName = "nvarchar(150)")]
         public string FullName { get; set; }
         [PersonalData]
+        public string Email { get; set; }
+        [PersonalData]
         public DateOnly DateOfBirth { get; set; }
         [PersonalData]
         public int Gender { get; set; }
@@ -32,6 +34,6 @@ namespace Shared.DoctorDtos
         [Range(1, 5)]
         [DisplayFormat(DataFormatString = "{0:F1}")]
         public decimal? Rate { get; set; }
-        public string? Image { get; set; }
+        public byte[]? Image { get; set; }
     }
 }

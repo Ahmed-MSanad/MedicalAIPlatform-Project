@@ -7,9 +7,10 @@ import { AuthService } from '../../../Core/Services/auth.service';
 import { FormArray, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from '../../../Core/Services/ForAdmin/admin.service';
+import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
 @Component({
   selector: 'app-admin-profile',
-  imports: [GenderPipe, ReactiveFormsModule],
+  imports: [GenderPipe, ReactiveFormsModule, BackgroundLayoutComponent],
   templateUrl: './admin-profile.component.html',
   styleUrl: './admin-profile.component.scss'
 })

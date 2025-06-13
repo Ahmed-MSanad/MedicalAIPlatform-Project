@@ -9,6 +9,8 @@ namespace shared.AdminDtos
         [Column(TypeName = "nvarchar(150)")]
         public string FullName { get; set; }
         [PersonalData]
+        public string Email { get; set; }
+        [PersonalData]
         public DateOnly DateOfBirth { get; set; }
         [PersonalData]
         public int Gender { get; set; }
@@ -22,6 +24,6 @@ namespace shared.AdminDtos
         public string MedicalLicenseNumber { get; set; }
         [PersonalData]
         public string Specialisation { get; set; }
-        public string? Image { get; set; }
+        public byte[]? Image { get; set; }
     }
 }

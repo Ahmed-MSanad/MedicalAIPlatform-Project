@@ -5,15 +5,22 @@ import { AppointmentInfo } from '../../../Core/Interfaces/appointment-info';
 import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
+import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
+import { MedicalImageService } from '../../../Core/Services/medical-image.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-doctor-appointments',
-  imports: [DatePipe, FormsModule],
+  imports: [DatePipe, FormsModule, BackgroundLayoutComponent],
   templateUrl: './doctor-appointments.component.html',
   styleUrl: './doctor-appointments.component.scss'
 })
 export class DoctorAppointmentsComponent {
 
+constructor(private http: HttpClient) {}
+
+
   private _appointmentService = inject(AppointmentService);
+  private _medicalImageService = inject(MedicalImageService)
   private _toastr = inject(ToastrService);
 
   isLoading = false;
@@ -22,19 +29,29 @@ export class DoctorAppointmentsComponent {
   isDelete = false;
   id?: number;
   appointmentInfo!: AppointmentInfo;
-  filteredAppointments!: Appointment[]
   showInfo = false;
   patientName = "";
+  imageSrc: string = '';
+  medicalImage: string | null = null;
+  medicalImageId !: number
+
   ngOnInit() {
     this.GetAppointments();
   }
+
+  get filteredAppointments(): Appointment[] {
+    if (!this.patientName || this.patientName.trim() === "") return this.appointments;
+    return this.appointments.filter(a =>
+      a.patientName.toLowerCase().includes(this.patientName.toLowerCase())
+    );
+  }
+
 
   GetAppointments() {
     this.isLoading = true;
     this._appointmentService.GetAppointments(this.status).subscribe({
       next: (res: any) => {
         this.appointments = res;
-        this.filteredAppointments = res;
         this.isLoading = false;
       },
       error: (err) => {
@@ -68,7 +85,8 @@ export class DoctorAppointmentsComponent {
       next: (res: any) => {
         this.appointmentInfo = res;
         this.isLoading = false;
-        this.showInfo = true;
+        this.id = id
+        this.getMedicalImage(id);
       },
       error: (err) => {
         console.log(err);
@@ -79,17 +97,6 @@ export class DoctorAppointmentsComponent {
   CloseInfo() {
     this.showInfo = false;
     this.id = undefined;
-  }
-
-  searchPatient() {
-    console.log("changed");
-    
-    if(!this.patientName||this.patientName.trim()===""){
-      this.filteredAppointments = this.appointments
-    }
-    else{
-      this.filteredAppointments = this.appointments.filter(appointment => appointment.patientName.toLowerCase().includes(this.patientName.toLowerCase()))
-    }
   }
 
   CancelAppointment() {
@@ -122,4 +129,62 @@ export class DoctorAppointmentsComponent {
       }
     })
   }
+
+  getMedicalImage(appointmentId: number) {
+    this.isLoading = true;
+    this._medicalImageService.GetMedicalImage(appointmentId).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.medicalImageId = res.medicalImageId;
+        this.medicalImage = res.image;
+        this.imageSrc = `data:image/png;base64,${this.medicalImage}`;
+        this.isLoading = false;
+        this.showInfo = true;
+      },
+      error: (err) => {
+        console.log(err);
+        this.isLoading = false;
+        this.showInfo = true;
+      }
+    })
+  }
+
+
+  upload(){
+    
+const blob = this.base64ToBlob(this.imageSrc, 'image/png');
+    const file = new File([blob], 'image.png', { type: 'image/png' });
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    this.http.post('http://127.0.0.1:8000/upload-image/', formData).subscribe({
+      next: (res) => {
+        console.log('Success:', res);
+      },
+      error: (err) => {
+        console.error('Error:', err);
+      }
+    });
+  }
+
+  base64ToBlob(base64: string, contentType = 'image/png'): Blob {
+    const byteCharacters = atob(base64.split(',')[1]);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+      const slice = byteCharacters.slice(offset, offset + 512);
+      const byteNumbers = new Array(slice.length);
+
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+        return new Blob(byteArrays, { type: contentType });
+  }
+
 }
+

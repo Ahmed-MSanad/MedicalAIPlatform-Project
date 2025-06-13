@@ -286,6 +286,9 @@ namespace MedicalProj.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MedicalImageId"));
 
+                    b.Property<int>("AppointmentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Did")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -302,6 +305,9 @@ namespace MedicalProj.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("MedicalImageId");
+
+                    b.HasIndex("AppointmentId")
+                        .IsUnique();
 
                     b.HasIndex("Did");
 
@@ -663,6 +669,12 @@ namespace MedicalProj.Data.Migrations
 
             modelBuilder.Entity("MedicalProj.Data.Models.MedicalImage", b =>
                 {
+                    b.HasOne("MedicalProj.Data.Models.Appointment", "Appointment")
+                        .WithOne("MedicalImage")
+                        .HasForeignKey("MedicalProj.Data.Models.MedicalImage", "AppointmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("MedicalProj.Data.Models.Doctor", "Doctor")
                         .WithMany("MedicalImages")
                         .HasForeignKey("Did")
@@ -674,6 +686,8 @@ namespace MedicalProj.Data.Migrations
                         .HasForeignKey("Pid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Appointment");
 
                     b.Navigation("Doctor");
 
@@ -778,6 +792,11 @@ namespace MedicalProj.Data.Migrations
                         .HasForeignKey("MedicalProj.Data.Models.Patient", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("MedicalProj.Data.Models.Appointment", b =>
+                {
+                    b.Navigation("MedicalImage");
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.MedicalImage", b =>

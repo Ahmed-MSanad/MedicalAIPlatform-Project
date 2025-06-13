@@ -11,6 +11,7 @@ namespace Services.Specifications
         {
             AddInclude(appointment => appointment.Doctor);
             AddInclude(appointment => appointment.Patient);
+            setOrderBy(appointment => appointment.Date);
         }
 
         public AppointmentWithFilterSpecification(string id, DateTime startOfDay, DateTime endOfDay) :
@@ -18,5 +19,13 @@ namespace Services.Specifications
         {
 
         }
+
+        public AppointmentWithFilterSpecification(int appointmentId) :
+            base(a => a.AppointmentId == appointmentId)
+        {
+            AddInclude(appointment => appointment.Doctor);
+            AddInclude(appointment => appointment.Patient);
+        }
+
     }
 }
