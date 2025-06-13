@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
 import { MedicalImageService } from '../../../Core/Services/medical-image.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-doctor-appointments',
   imports: [DatePipe, FormsModule, BackgroundLayoutComponent],
@@ -14,6 +15,9 @@ import { MedicalImageService } from '../../../Core/Services/medical-image.servic
   styleUrl: './doctor-appointments.component.scss'
 })
 export class DoctorAppointmentsComponent {
+
+constructor(private http: HttpClient) {}
+
 
   private _appointmentService = inject(AppointmentService);
   private _medicalImageService = inject(MedicalImageService)
@@ -144,4 +148,43 @@ export class DoctorAppointmentsComponent {
       }
     })
   }
+
+
+  upload(){
+    
+const blob = this.base64ToBlob(this.imageSrc, 'image/png');
+    const file = new File([blob], 'image.png', { type: 'image/png' });
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    this.http.post('http://127.0.0.1:8000/upload-image/', formData).subscribe({
+      next: (res) => {
+        console.log('Success:', res);
+      },
+      error: (err) => {
+        console.error('Error:', err);
+      }
+    });
+  }
+
+  base64ToBlob(base64: string, contentType = 'image/png'): Blob {
+    const byteCharacters = atob(base64.split(',')[1]);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+      const slice = byteCharacters.slice(offset, offset + 512);
+      const byteNumbers = new Array(slice.length);
+
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+        return new Blob(byteArrays, { type: contentType });
+  }
+
 }
+

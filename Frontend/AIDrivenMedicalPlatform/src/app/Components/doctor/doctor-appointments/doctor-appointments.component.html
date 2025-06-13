@@ -69,10 +69,16 @@
             @if (medicalImage) {
             <div class="mt-4">
                 <h3 class="text-sm font-medium text-gray-500 mb-2">Medical Image:</h3>
-                <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 flex justify-center">
-                    <div class="relative">
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 flex flex-col items-center">
+                    <div class="relative mb-4">
                         <img [src]="imageSrc" alt="Medical image" class="max-h-64 max-w-full object-contain rounded">
                     </div>
+                    <button (click)="upload()" class="px-6 py-2 rounded-md text-white font-medium tracking-wide
+                   bg-gradient-to-r from-blue-400 to-purple-500 hover:from-blue-500 hover:to-purple-600
+                   transition-all duration-200 transform hover:scale-105 hover:cursor-pointer shadow-md
+                   focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50">
+                        Analyze with AI
+                    </button>
                 </div>
             </div>
             }
