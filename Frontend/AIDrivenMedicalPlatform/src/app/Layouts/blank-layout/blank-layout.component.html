@@ -1,101 +1,186 @@
 <header>
-    <div class="">
-        <aside [@toggleSideNavAnimation]="SideNavState()"
-            class="w-80 fixed top-0 left-0 bottom-0 bg-gray-600 z-[9999] flex flex-col justify-between">
-            <ul>
-                <li class="text-white py-5 flex justify-between mx-6">
-                    <div class="text-2xl font-bold">
-                        {{userClaims.role}} Services <i class="fa-solid fa-user-tie"></i>
-                    </div>
-                    <button class="cursor-pointer" (click)="toggleSideNav()">
-                        <i class="fa-solid"
-                            [ngClass]="{'fa-arrow-left': SideNavState() === 'open', 'fa-arrow-right': SideNavState() === 'close'}"></i>
-                    </button>
-                </li>
-                <li class="text-white py-5 cursor-pointer flex justify-between px-6"
-                    [routerLink]="userClaims.role+'Dashboard'" routerLinkActive="bg-gray-400">
-                    <div>
-                        {{userClaims.role}} Dashboard
-                    </div>
-                    <div class="text-3xl flex justify-center w-5">
-                        <i class="fa-solid fa-table-columns"></i>
-                    </div>
-                </li>
-                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'PatientAppointment'"
-                    routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.patientOnly">
-                    <div>
-                        Make An Appointment
-                    </div>
-                    <div class="text-3xl flex justify-center w-5">
-                        <i class="fa-solid fa-calendar"></i>
-                    </div>
-                </li>
-                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'DoctorAppointments'"
-                    [appHideIfClaimsNotMet]="claimReq.doctorOnly" routerLinkActive="bg-gray-400">
-                    <div>
-                        My Appointments
-                    </div>
-                    <div class="text-3xl flex justify-center w-5">
-                        <i class="fa-solid fa-calendar"></i>
-                    </div>
-                </li>
-                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="['/feedback']"
-                    routerLinkActive="bg-gray-400">
-                    <div>
-                        Feedback
-                    </div>
-                    <div class="text-3xl flex justify-center w-5">
-                        <i class="fa-regular fa-comments"></i>
-                    </div>
-                </li>
-                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'notification'"
-                    routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.patientOnly">
-                    <div>
-                        Notifications
-                    </div>
-                    <div class="text-3xl flex justify-center w-5">
-                        <i class="fa-solid fa-bell"></i>
-                    </div>
-                </li>
-
-                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'DoctorAiModel'" routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.doctorOnly">
-                    <div>
-                        Upload to the model
-                    </div>
-                    <div class="text-3xl flex items-center">
-                        <i class="fa-solid fa-robot"></i>
-                    </div>
-                </li>
-
-                <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'patient-doctorResponse'" routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.doctorOnly">
-                    <div>
-                        Doctor Responses
-                    </div>
-                    <div class="text-3xl flex items-center">
-                        <i class="fas fa-user-md"></i>
-                </li>
-                
-                <li class="text-white py-5 cursor-pointer flex justify-between px-6"
-                    [routerLink]="userClaims.role+'Profile'" routerLinkActive="bg-gray-400">
-                    <div>
-                        {{userClaims.role}} Profile
-                    </div>
-                    <div class="text-3xl flex justify-center w-5">
-                        <i class="fa-solid fa-address-card"></i>
-                    </div>
-                </li>
-            </ul>
-            <ul>
-                <li class="text-white py-5 cursor-pointer flex justify-between px-6 mt-auto" (click)="onLogOut()">
-                    <div>Logout</div>
-                    <div class="text-3xl flex justify-center w-5">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                    </div>
-                </li>
-            </ul>
-        </aside>
-        <div [@toggleNavAnimation]="SideNavState()" class="p-4">
-            <router-outlet></router-outlet>
+    @if(currentWindowWidth() > 567){
+        <div class="">
+            <aside [@toggleSideNavAnimation]="SideNavState()" class="w-80 fixed top-0 left-0 bottom-0 bg-gray-600 z-[9999] flex flex-col justify-between">
+                <ul>
+                    <li class="text-white py-5 flex justify-between mx-6">
+                        <div class="text-2xl font-bold">
+                            {{userClaims.role}} Services <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <button class="cursor-pointer" (click)="toggleSideNav()">
+                            <i class="fa-solid"
+                                [ngClass]="{'fa-arrow-left': SideNavState() === 'open', 'fa-arrow-right': SideNavState() === 'close'}"></i>
+                        </button>
+                    </li>
+                    <li class="text-white py-5 cursor-pointer flex justify-between px-6"
+                        [routerLink]="userClaims.role+'Dashboard'" routerLinkActive="bg-gray-400">
+                        <div>
+                            {{userClaims.role}} Dashboard
+                        </div>
+                        <div class="text-3xl flex justify-center w-5">
+                            <i class="fa-solid fa-table-columns"></i>
+                        </div>
+                    </li>
+                    <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'PatientAppointment'"
+                        routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.patientOnly">
+                        <div>
+                            Make An Appointment
+                        </div>
+                        <div class="text-3xl flex justify-center w-5">
+                            <i class="fa-solid fa-calendar"></i>
+                        </div>
+                    </li>
+                    <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'DoctorAppointments'"
+                        [appHideIfClaimsNotMet]="claimReq.doctorOnly" routerLinkActive="bg-gray-400">
+                        <div>
+                            My Appointments
+                        </div>
+                        <div class="text-3xl flex justify-center w-5">
+                            <i class="fa-solid fa-calendar"></i>
+                        </div>
+                    </li>
+                    <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="['/feedback']"
+                        routerLinkActive="bg-gray-400">
+                        <div>
+                            Feedback
+                        </div>
+                        <div class="text-3xl flex justify-center w-5">
+                            <i class="fa-regular fa-comments"></i>
+                        </div>
+                    </li>
+                    <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'notification'"
+                        routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.patientOnly">
+                        <div>
+                            Notifications
+                        </div>
+                        <div class="text-3xl flex justify-center w-5">
+                            <i class="fa-solid fa-bell"></i>
+                        </div>
+                    </li>
+    
+                    <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'DoctorAiModel'" routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.doctorOnly">
+                        <div>
+                            Upload to the model
+                        </div>
+                        <div class="text-3xl flex items-center">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                    </li>
+                    
+                    <li class="text-white py-5 cursor-pointer flex justify-between px-6"
+                        [routerLink]="userClaims.role+'Profile'" routerLinkActive="bg-gray-400">
+                        <div>
+                            {{userClaims.role}} Profile
+                        </div>
+                        <div class="text-3xl flex justify-center w-5">
+                            <i class="fa-solid fa-address-card"></i>
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="text-white py-5 cursor-pointer flex justify-between px-6 mt-auto" (click)="onLogOut()">
+                        <div>Logout</div>
+                        <div class="text-3xl flex justify-center w-5">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </div>
+                    </li>
+                </ul>
+            </aside>
+            <div [@toggleNavAnimation]="SideNavState()" class="p-4">
+                <router-outlet></router-outlet>
+            </div>
         </div>
-    </div>
+    }
+    @else {
+        <div class="">
+            <aside [@toggleSideNavAnimation]="SideNavState()" class="w-80 fixed top-0 left-0 bottom-0 bg-gray-600 z-[9999] flex flex-col justify-between">
+                <ul>
+                    <li class="text-white py-5 flex justify-between mx-6">
+                        <div class="text-2xl font-bold">
+                            {{userClaims.role}} Services <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <button class="cursor-pointer" (click)="toggleSideNav()">
+                            <i class="fa-solid"
+                                [ngClass]="{'fa-arrow-left': SideNavState() === 'open', 'fa-arrow-right': SideNavState() === 'close'}"></i>
+                        </button>
+                    </li>
+                    <li class="text-white py-5 cursor-pointer flex justify-between px-6"
+                        [routerLink]="userClaims.role+'Dashboard'" routerLinkActive="bg-gray-400">
+                        <div>
+                            {{userClaims.role}} Dashboard
+                        </div>
+                        <div class="text-3xl flex justify-center w-5">
+                            <i class="fa-solid fa-table-columns"></i>
+                        </div>
+                    </li>
+                    <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'PatientAppointment'"
+                        routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.patientOnly">
+                        <div>
+                            Make An Appointment
+                        </div>
+                        <div class="text-3xl flex justify-center w-5">
+                            <i class="fa-solid fa-calendar"></i>
+                        </div>
+                    </li>
+                    <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'DoctorAppointments'"
+                        [appHideIfClaimsNotMet]="claimReq.doctorOnly" routerLinkActive="bg-gray-400">
+                        <div>
+                            My Appointments
+                        </div>
+                        <div class="text-3xl flex justify-center w-5">
+                            <i class="fa-solid fa-calendar"></i>
+                        </div>
+                    </li>
+                    <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="['/feedback']"
+                        routerLinkActive="bg-gray-400">
+                        <div>
+                            Feedback
+                        </div>
+                        <div class="text-3xl flex justify-center w-5">
+                            <i class="fa-regular fa-comments"></i>
+                        </div>
+                    </li>
+                    <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'notification'"
+                        routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.patientOnly">
+                        <div>
+                            Notifications
+                        </div>
+                        <div class="text-3xl flex justify-center w-5">
+                            <i class="fa-solid fa-bell"></i>
+                        </div>
+                    </li>
+    
+                    <li class="text-white py-5 cursor-pointer flex justify-between px-6" [routerLink]="'DoctorAiModel'" routerLinkActive="bg-gray-400" [appHideIfClaimsNotMet]="claimReq.doctorOnly">
+                        <div>
+                            Upload to the model
+                        </div>
+                        <div class="text-3xl flex items-center">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                    </li>
+                    
+                    <li class="text-white py-5 cursor-pointer flex justify-between px-6"
+                        [routerLink]="userClaims.role+'Profile'" routerLinkActive="bg-gray-400">
+                        <div>
+                            {{userClaims.role}} Profile
+                        </div>
+                        <div class="text-3xl flex justify-center w-5">
+                            <i class="fa-solid fa-address-card"></i>
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="text-white py-5 cursor-pointer flex justify-between px-6 mt-auto" (click)="onLogOut()">
+                        <div>Logout</div>
+                        <div class="text-3xl flex justify-center w-5">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </div>
+                    </li>
+                </ul>
+            </aside>
+            <div class="p-4 pl-17">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    }
 </header>

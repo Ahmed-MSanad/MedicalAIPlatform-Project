@@ -16,6 +16,7 @@ namespace Services
         private readonly Lazy<IProfileService> profileService;
         private readonly Lazy<IAppointmentService> appointmentService;
         private readonly Lazy<IMedicalImageService> medicalImageService;
+        private readonly Lazy<IMedicalAIDataService> medicalAIDataService;
         public ServiceManager(IUnitOfWork unitOfWork, IMapper mapper, IOptions<SmtpSettings> _smtpSettings, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager) {
             feedbackService = new Lazy<IFeedbackService>(() => new FeedbackService(unitOfWork, mapper));
             notificationService = new Lazy<INotificationService>(() => new NotificationService(unitOfWork, mapper, _smtpSettings));
@@ -24,6 +25,7 @@ namespace Services
             profileService = new Lazy<IProfileService>(() => new ProfileService(unitOfWork, mapper, userManager));
             appointmentService = new Lazy<IAppointmentService>(() => new AppointmentService(unitOfWork, mapper, userManager));
             medicalImageService = new Lazy<IMedicalImageService>(() => new MedicalImageService(unitOfWork, mapper));
+            medicalAIDataService = new Lazy<IMedicalAIDataService>(() => new MedicalAIDataService(unitOfWork, mapper));
         }
         public IFeedbackService FeedbackService => feedbackService.Value;
 
@@ -38,5 +40,7 @@ namespace Services
         public IAppointmentService AppointmentService => appointmentService.Value;
 
         public IMedicalImageService MedicalImageService => medicalImageService.Value;
+
+        public IMedicalAIDataService MedicalAIDataService => medicalAIDataService.Value;
     }
 }

@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstraction;
+using Shared;
 using Shared.AiAnalysisDtos;
 using Shared.AppointmentDtos;
 using Shared.DoctorDtos;
+using Shared.PatientDtos;
 
 namespace Presentation.Controllers
 {
@@ -97,34 +99,6 @@ namespace Presentation.Controllers
             var appointmentInfo = await serviceManager.AppointmentService.GetAppointmentInfoService(appointmentId);
 
             return Ok(appointmentInfo);
-        }
-
-        [Authorize]
-        [HttpPost]
-        public async Task<ActionResult> SetMedicalImageAiAnalysis([FromBody] AiAnalysisDto aiAnalysisDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(new { error = ModelState });
-            }
-            try
-            {
-                await serviceManager.AppointmentService.SetMedicalImageAiAnalysisService(aiAnalysisDto);
-                return Ok(new { message = "AI analysis set successfully" });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { error = ex.Message });
-            }
-        }
-
-        [Authorize]
-        [HttpGet("{medicalImageId}")]
-        public async Task<ActionResult<AiAnalysisDto>> GetMedicalImageAiAnalysis([FromRoute] int medicalImageId)
-        {
-            var aiAnalysis = await serviceManager.AppointmentService.GetMedicalImageAiAnalysisService(medicalImageId);
-
-            return Ok(aiAnalysis);
         }
     }
 }

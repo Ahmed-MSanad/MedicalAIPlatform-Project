@@ -17,9 +17,9 @@ namespace Persistence.Data.Configurations
                    .HasForeignKey(medicalImage => medicalImage.Did)
                    .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne(medicalImage => medicalImage.AiAnalysis)
+            builder.HasMany(medicalImage => medicalImage.AiAnalysis)
                    .WithOne(aiAnalysis => aiAnalysis.MedicalImage)
-                   .HasForeignKey<AiAnalysis>(aiAnalysis => aiAnalysis.MedicalImageId);
+                   .HasForeignKey(aiAnalysis => aiAnalysis.MedicalImageId);
 
             builder.HasOne(medicalImage => medicalImage.Appointment)
                    .WithOne(appointment => appointment.MedicalImage)

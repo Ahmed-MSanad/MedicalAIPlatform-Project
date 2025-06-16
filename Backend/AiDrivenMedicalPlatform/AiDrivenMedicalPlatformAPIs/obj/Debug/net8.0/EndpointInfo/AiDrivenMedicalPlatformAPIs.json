@@ -677,6 +677,126 @@
         }
       }
     },
+    "/MedicalAIData/SetMedicalImageAiAnalysis": {
+      "post": {
+        "tags": [
+          "MedicalAIData"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AiAnalysisDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AiAnalysisDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AiAnalysisDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/MedicalAIData/GetMedicalImageAiAnalysis/{medicalImageId}": {
+      "get": {
+        "tags": [
+          "MedicalAIData"
+        ],
+        "parameters": [
+          {
+            "name": "medicalImageId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AiAnalysisDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AiAnalysisDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AiAnalysisDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/MedicalAIData/GetMedicalImageOwner/{medicalImageId}": {
+      "get": {
+        "tags": [
+          "MedicalAIData"
+        ],
+        "parameters": [
+          {
+            "name": "medicalImageId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatientDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatientDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatientDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/MedicalImage/AddMedicalImage": {
       "post": {
         "tags": [
@@ -1238,6 +1358,32 @@
           "specialisation": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AiAnalysisDto": {
+        "type": "object",
+        "properties": {
+          "confidenceScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "explanationDetails": {
+            "type": "string",
+            "nullable": true
+          },
+          "diagnosis": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "medicalImageId": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

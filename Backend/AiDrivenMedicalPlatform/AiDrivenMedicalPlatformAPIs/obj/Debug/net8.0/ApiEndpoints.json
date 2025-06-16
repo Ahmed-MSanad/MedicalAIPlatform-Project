@@ -397,6 +397,74 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Presentation.Controllers.MedicalAIDataController",
+    "Method": "GetMedicalImageAiAnalysis",
+    "RelativePath": "MedicalAIData/GetMedicalImageAiAnalysis/{medicalImageId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "medicalImageId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Shared.AiAnalysisDtos.AiAnalysisDto, Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Presentation.Controllers.MedicalAIDataController",
+    "Method": "GetMedicalImageOwner",
+    "RelativePath": "MedicalAIData/GetMedicalImageOwner/{medicalImageId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "medicalImageId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Shared.PatientDtos.PatientDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Presentation.Controllers.MedicalAIDataController",
+    "Method": "SetMedicalImageAiAnalysis",
+    "RelativePath": "MedicalAIData/SetMedicalImageAiAnalysis",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "aiAnalysisDto",
+        "Type": "Shared.AiAnalysisDtos.AiAnalysisDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Presentation.Controllers.MedicalImageController",
     "Method": "AddMedicalImage",
     "RelativePath": "MedicalImage/AddMedicalImage",

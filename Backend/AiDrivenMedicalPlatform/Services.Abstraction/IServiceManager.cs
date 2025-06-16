@@ -12,5 +12,6 @@ namespace Services.Abstraction
         public IProfileService ProfileService { get; }
         public IAppointmentService AppointmentService { get; }
         public IMedicalImageService MedicalImageService { get; }
+        public IMedicalAIDataService MedicalAIDataService { get; }
     }
 }

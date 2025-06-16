@@ -1,6 +1,7 @@
 ﻿using Shared.AiAnalysisDtos;
 using Shared.AppointmentDtos;
 using Shared.DoctorDtos;
+using Shared.PatientDtos;
 
 namespace Services.Abstraction
 {
@@ -14,8 +15,6 @@ namespace Services.Abstraction
         public Task CompleteAppointmentService(int appointmentId);
         public Task<IEnumerable<AppointmentDto>> GetAppointmentsService(int status, string userId);
         public Task<List<TimeSpan>> GetAvailableTimeSlotsService(string id, DateTime day);
-        public Task SetMedicalImageAiAnalysisService(AiAnalysisDto aiAnalysisDto);
-        public Task<AiAnalysisDto> GetMedicalImageAiAnalysisService(int medicalImageId);
         public Task<AppointmentInfoDto> GetAppointmentInfoService (int appointmentId);
     }
 }

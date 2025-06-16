@@ -1,6 +1,6 @@
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { AppointmentService } from '../../../Core/Services/appointment.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Appointment } from '../../../Core/Interfaces/appointment';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { DatePipe } from '@angular/common';
@@ -19,7 +19,7 @@ export class PatientDashboardComponent {
   private _appointmentService = inject(AppointmentService);
   private _medicalImageService = inject(MedicalImageService)
   private _toastr = inject(ToastrService)
-
+  private readonly router = inject(Router);
 
   customOptions: OwlOptions = {
     loop: true,
@@ -238,5 +238,9 @@ export class PatientDashboardComponent {
         this._toastr.error("Couldn't Edit Image")
       }
     })
+  }
+
+  showDoctorResponse(medicalImageId : number){
+    this.router.navigate(['patient-doctorResponse', medicalImageId]);
   }
 }

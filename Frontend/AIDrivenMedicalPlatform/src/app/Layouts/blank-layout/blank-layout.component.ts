@@ -34,13 +34,25 @@ export class BlankLayoutComponent {
     this._router.navigateByUrl('/login');
   }
 
+  currentWindowWidth : WritableSignal<number> = signal(0);
   userClaims : any;
   ngOnInit(){
     this.userClaims = this._auth.getClaims();
+    if(typeof(window) !== 'undefined'){
+      window.addEventListener('resize', this.updateWindowWidth);
+    }
   }
+
+  updateWindowWidth = () => {
+    this.currentWindowWidth.set(window.innerWidth);
+  };
 
   SideNavState : WritableSignal<string> = signal("close");
   toggleSideNav(){
     this.SideNavState.update((state) => state === "close" ? "open" : "close");
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.updateWindowWidth);
   }
 }

@@ -37,13 +37,14 @@ export const routes: Routes = [
         {path: 'DoctorProfile', component: DoctorProfileComponent, data: {claimReq : claimReq.doctorOnly}},
         {path: 'DoctorDashboard', component: DoctorDashboardComponent, data: {claimReq : claimReq.doctorOnly}},
         {path: 'DoctorAppointments', component: DoctorAppointmentsComponent, data: {claimReq : claimReq.doctorOnly}},
+        {path: 'DoctorAiModel/:image/:id', component: DoctorAiModelComponent, data: {claimReq : claimReq.doctorOnly}},
         {path: 'DoctorAiModel', component: DoctorAiModelComponent, data: {claimReq : claimReq.doctorOnly}},
 
 
         {path: 'PatientProfile', component: PatientProfileComponent, data: {claimReq : claimReq.patientOnly}},
         {path: 'PatientDashboard', component: PatientDashboardComponent, data: {claimReq : claimReq.patientOnly}},
         {path: 'PatientAppointment', component: PatientAppointmentComponent, data: {claimReq : claimReq.patientOnly}},
-        {path: 'patient-doctorResponse', component: PatientDoctorResponseComponent, data: {claimReq : claimReq.doctorOnly}},
+        {path: 'patient-doctorResponse/:medicalImageId', component: PatientDoctorResponseComponent, data: {claimReq : claimReq.patientOnly}}, // // // //
         {path: 'forbidden', component: ForbiddenComponent},
 
         {path: "feedback", loadComponent: () => import("./Components/feedback/feedback.component").then((c) => c.FeedbackComponent) },

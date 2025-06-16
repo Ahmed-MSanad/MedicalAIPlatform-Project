@@ -37,7 +37,7 @@ namespace Services
             {
                 case NotificationType.Alert:
                     subject = "Alert Notification";
-                    message = "This is an alert message. Please take action immediately.";
+                    message = "Doctor Respond has been sent successfully!";
                     break;
                 case NotificationType.Reminder:
                     subject = "Reminder Notification";

@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { AiModelService } from './../../../Core/Services/ai-model.service';
-import { Component, inject } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 export interface AiAnalysisResponse {
   confidenceScore: number;   
@@ -17,10 +18,20 @@ export interface AiAnalysisResponse {
   templateUrl: './patient-doctor-response.component.html',
   styleUrl: './patient-doctor-response.component.scss'
 })
-export class PatientDoctorResponseComponent {
+export class PatientDoctorResponseComponent implements OnInit{
   medicalImageId : number = 0;
   private readonly aiModelService = inject(AiModelService);
-  responseData ! : AiAnalysisResponse;
+  responseData ! : AiAnalysisResponse[];
+  private readonly activatedRoute = inject(ActivatedRoute);
+
+  ngOnInit(): void {
+      this.activatedRoute.paramMap.subscribe((paramList) => {
+        this.medicalImageId = parseInt(paramList.get("medicalImageId") ?? "0");
+        console.log(`medical Image Id = ${this.medicalImageId}`);
+        this.getMedicalAiAnalysis();
+      });
+  }
+
   getMedicalAiAnalysis(){
     this.aiModelService.getMedicalImageAiAnalysis(this.medicalImageId).subscribe({
       next:(res : any) => {
