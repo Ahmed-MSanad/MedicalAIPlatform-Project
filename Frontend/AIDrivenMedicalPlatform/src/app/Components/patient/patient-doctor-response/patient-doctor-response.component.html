@@ -32,9 +32,11 @@
                                 </div>
                             </div>
 
-                            <div class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                                <span class="text-white font-semibold">{{ doctorResponse.confidenceScore }}% Confidence</span>
-                            </div>
+                            @if(doctorResponse.diagnosis !== 'normal'){
+                                <div class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+                                    <span class="text-white font-semibold">{{ doctorResponse.confidenceScore }}% Confidence</span>
+                                </div>
+                            }
                         </div>
                     </div>
 
@@ -50,22 +52,24 @@
                                     <p class="text-blue-900 text-lg font-medium leading-relaxed">{{ doctorResponse.diagnosis }}</p>
                                 </div>
 
-                                <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl border-l-4 border-green-500">
-                                    <div class="flex items-center justify-between mb-3">
-                                        <div class="flex items-center">
-                                            <i class="fas fa-chart-line text-green-600 mr-2"></i>
-                                            <h3 class="text-lg font-bold text-green-800">Confidence Level</h3>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center space-x-4">
-                                        <div class="flex-1">
-                                            <div class="w-full bg-green-200 rounded-full h-3">
-                                                <div class="bg-gradient-to-r from-green-500 to-emerald-600 h-3 rounded-full transition-all duration-700 ease-out" [style.width.%]="doctorResponse.confidenceScore"></div>
+                                @if(doctorResponse.diagnosis !== 'normal'){
+                                    <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl border-l-4 border-green-500">
+                                        <div class="flex items-center justify-between mb-3">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-chart-line text-green-600 mr-2"></i>
+                                                <h3 class="text-lg font-bold text-green-800">Confidence Level</h3>
                                             </div>
                                         </div>
-                                        <span class="text-2xl font-bold text-green-800">{{ doctorResponse.confidenceScore }}%</span>
+                                        <div class="flex items-center space-x-4">
+                                            <div class="flex-1">
+                                                <div class="w-full bg-green-200 rounded-full h-3">
+                                                    <div class="bg-gradient-to-r from-green-500 to-emerald-600 h-3 rounded-full transition-all duration-700 ease-out" [style.width.%]="doctorResponse.confidenceScore"></div>
+                                                </div>
+                                            </div>
+                                            <span class="text-2xl font-bold text-green-800">{{ doctorResponse.confidenceScore }}%</span>
+                                        </div>
                                     </div>
-                                </div>
+                                }
 
                                 <div class="mt-8">
                                     <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-xl border-l-4 border-amber-500">
