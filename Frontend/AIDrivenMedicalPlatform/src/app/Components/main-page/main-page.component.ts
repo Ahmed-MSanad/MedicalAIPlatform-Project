@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface Feature {
   title: string;
@@ -35,7 +36,7 @@ interface Partner {
 
 @Component({
   selector: 'app-main-page',
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss'
 })

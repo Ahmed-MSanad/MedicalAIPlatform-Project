@@ -3,14 +3,15 @@ import { AppointmentService } from '../../../Core/Services/appointment.service';
 import { Router, RouterModule } from '@angular/router';
 import { Appointment } from '../../../Core/Interfaces/appointment';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { AppointmentInfo } from '../../../Core/Interfaces/appointment-info';
 import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
 import { MedicalImageService } from '../../../Core/Services/medical-image.service';
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-patient-dashboard',
-  imports: [RouterModule, CarouselModule, DatePipe, BackgroundLayoutComponent],
+  imports: [RouterModule, CarouselModule, DatePipe, BackgroundLayoutComponent, TranslateModule, CommonModule],
   templateUrl: './patient-dashboard.component.html',
   styleUrl: './patient-dashboard.component.scss'
 })
@@ -34,7 +35,8 @@ export class PatientDashboardComponent {
         items: 1
       }
     },
-    nav: true
+    nav: true,
+    rtl: true
   }
 
   isLoading = false;
@@ -52,6 +54,10 @@ export class PatientDashboardComponent {
   imageSrc: string = '';
   medicalImage: string | null = null;
   medicalImageId !: number
+
+  isRtl(): boolean {
+    return localStorage.getItem('lang') === 'ar';
+  }
 
   ngOnInit() {
     this.GetAppointments();
@@ -100,7 +106,7 @@ export class PatientDashboardComponent {
       }
     })
   }
-  ShowAppointmentInfo(id: number,Did:string) {
+  ShowAppointmentInfo(id: number, Did: string) {
     this.isLoading = true;
     this._appointmentService.GetAppointmentInfo(id).subscribe({
       next: (res: any) => {
@@ -191,7 +197,7 @@ export class PatientDashboardComponent {
     this.fileInput.nativeElement.click();
   }
 
-  ChangeImage(event: Event,isEdit:boolean): void {
+  ChangeImage(event: Event, isEdit: boolean): void {
     const input = event.target as HTMLInputElement;
     if (input.files?.[0]) {
       const reader = new FileReader();
@@ -229,8 +235,8 @@ export class PatientDashboardComponent {
     })
   }
 
-  EditImage(){
-    this._medicalImageService.EditMedicalImage(this.medicalImage!,this.medicalImageId).subscribe({
+  EditImage() {
+    this._medicalImageService.EditMedicalImage(this.medicalImage!, this.medicalImageId).subscribe({
       next: (res: any) => {
         this._toastr.success(res.message)
       },
@@ -240,7 +246,7 @@ export class PatientDashboardComponent {
     })
   }
 
-  showDoctorResponse(medicalImageId : number){
+  showDoctorResponse(medicalImageId: number) {
     this.router.navigate(['patient-doctorResponse', medicalImageId]);
   }
 }

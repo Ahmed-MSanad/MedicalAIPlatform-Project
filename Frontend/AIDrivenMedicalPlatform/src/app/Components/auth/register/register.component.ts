@@ -7,11 +7,12 @@ import { animate, keyframes, style, transition, trigger } from '@angular/animati
 import Swal from 'sweetalert2';
 import { Subscription } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink,TranslateModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
   animations:[

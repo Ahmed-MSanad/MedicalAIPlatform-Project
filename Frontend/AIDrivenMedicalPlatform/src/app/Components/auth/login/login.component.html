@@ -2,12 +2,12 @@
     <div class="rounded-lg shadow-lg p-6 bg-white min-w-[30rem]">
         <form [formGroup]="loginForm" class="space-y-8" (ngSubmit)="onLogin()">
             <div>
-                <h1 class="text-4xl">Sign In</h1>
-                <span>Create New Account ?<a  class="text-blue-600" routerLink="/register">Register</a></span>
+                <h1 class="text-4xl">{{'login.Sign In' | translate}}</h1>
+                <span>{{'login.Create New Account ?' | translate}}<a  class="text-blue-600" routerLink="/register">{{'login.Register' | translate}}</a></span>
             </div>
 
             <div>
-                <label for="email">Email</label>
+                <label for="email">{{'login.Email' | translate}}</label>
                 <div class="relative">
                     <input type="email" name="email" id="email" class="w-full px-2 py-4 border-1 rounded-lg" formControlName="email" placeholder="Enter your email">
                     @if(loginForm.controls.email.touched || loginForm.controls.email.dirty){
@@ -22,10 +22,10 @@
                 @if((loginForm.controls.email.touched || loginForm.controls.email.dirty) && loginForm.controls.email.errors){
                     <div class="text-red-500 p-4 rounded-lg">
                         @if(loginForm.controls.email.getError('required')){
-                            <p>Email is required!</p>
+                            <p>{{'login.Email is required!' | translate}}</p>
                         }
                         @else if(loginForm.controls.email.getError('email')){
-                            <p>Email format is not true!</p>
+                            <p>{{'login.Email format is not true!' | translate}}</p>
                         }
                     </div>
                 }
@@ -33,7 +33,7 @@
 
             <div>
                 <div class="flex justify-between">
-                    <label for="password">Password</label>
+                    <label for="password">{{'login.Password' | translate}}</label>
                     <button type="button" (click)="togglePassword()" class="cursor-pointer"><i class="fa-solid fa-eye-low-vision"></i></button>
                 </div>
                 <div class="relative">
@@ -49,14 +49,14 @@
                 </div>
                 @if((loginForm.controls.password.touched || loginForm.controls.password.dirty) && loginForm.controls.password.getError('required')){
                     <div class="text-red-500 p-4 rounded-lg">
-                        <p>Password is required!</p>
+                        <p>{{'login.Password is required!' | translate}}</p>
                     </div>
                 }
             </div>
 
             <div>
                 <button class="bg-gradient-to-r from-black via-gray-900 to-blue-900 py-4 w-full text-white rounded-full 
-                transition duration-300 transform hover:scale-105 hover:shadow-lg hover:from-blue-900 hover:via-gray-800 hover:to-black cursor-pointer">Sign In</button>
+                transition duration-300 transform hover:scale-105 hover:shadow-lg hover:from-blue-900 hover:via-gray-800 hover:to-black cursor-pointer">{{'login.Sign In' | translate}}</button>
                 <p class="text-red-400 font-bold text-center">{{loginInErrorMessage}}</p>
             </div>
         </form>

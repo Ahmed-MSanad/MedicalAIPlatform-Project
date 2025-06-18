@@ -5,13 +5,13 @@
                 <div class="p-5">
     
                     <div class="mb-4 text-white font-bold">
-                        <h2 class="text-4xl">Hi There 🤙🏼</h2>
-                        <span class="text-gray-500">Get Started Now...</span>
+                        <h2 class="text-4xl">{{'register.Hi There 🤙🏼' | translate}}</h2>
+                        <span class="text-gray-500">{{'register.Get Started Now...' | translate}}</span>
                     </div>
                     
                     <form [formGroup]="registerForm">
                     
-                        <label for="Fullname" class="text-white">Full Name</label>
+                        <label for="Fullname" class="text-white">{{'register.Full Name' | translate}}</label>
                         <div class="mb-3">
                             <div class="relative">
                                 <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-user"></i></span>
@@ -23,12 +23,12 @@
                                         registerForm.controls.fullName.dirty) &&
                                         registerForm.controls.fullName.hasError('required')
                                     ">
-                                Full Name is Required !!
+                                {{'register.Full Name is Required !!' | translate}}
                             </div>
                         </div>
                     
     
-                        <label for="Email" class="text-white">Email</label>
+                        <label for="Email" class="text-white">{{'register.Email' | translate}}</label>
                         <div class="mb-3">
                             <div class="relative">
                                 <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-envelope"></i></span>
@@ -40,7 +40,7 @@
                                         registerForm.controls.email.dirty) &&
                                         registerForm.controls.email.hasError('required')
                                     ">
-                                Email is Required !!
+                                {{'register.Email is Required !!' | translate}}
                             </div>
                             <div class="text-red-500 p-4 rounded-lg" 
                                     *ngIf="
@@ -48,12 +48,12 @@
                                         registerForm.controls.email.dirty) &&
                                         registerForm.controls.email.hasError('email')
                                     ">
-                                Email Format is wrong !!
+                                {{'register.Email Format is wrong !!' | translate}}
                             </div>
                         </div>
                     
     
-                        <label for="phone_Number" class="text-white">Phone number</label>
+                        <label for="phone_Number" class="text-white">{{'register.Phone number' | translate}}</label>
                         <div class="mb-3">
                             <div class="relative">
                                 <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-phone"></i></span>
@@ -65,7 +65,7 @@
                                         registerForm.controls.phoneNumber.dirty) &&
                                         registerForm.controls.phoneNumber.hasError('required')
                                     ">
-                                Phone Number is Required !!
+                                {{'register.Phone Number is Required !!' | translate}}
                             </div>
                             <div class="text-red-500 p-4 rounded-lg" 
                                     *ngIf="
@@ -73,16 +73,16 @@
                                         registerForm.controls.phoneNumber.dirty) &&
                                         registerForm.controls.phoneNumber.hasError('pattern')
                                     ">
-                                Phone Number Format is wrong !!
+                                {{'register.Phone Number Format is wrong !!' | translate}}
                             </div>
                         </div>
                     
                         <div class="w-full">
-                            <button class="w-full bg-gradient-to-r from-blue-900 via-balck to-gray-800 rounded-lg text-white p-2 cursor-pointer" (click)="onGetStarted()">Get Started</button>
+                            <button class="w-full bg-gradient-to-r from-blue-900 via-balck to-gray-800 rounded-lg text-white p-2 cursor-pointer" (click)="onGetStarted()">{{'register.Get Started' | translate}}</button>
                         </div>
 
                         <div class="w-full text-center mt-5">
-                            <a class="text-blue-600 cursor-pointer" routerLink="/login">Already Have an account ?</a>
+                            <a class="text-blue-600 cursor-pointer" routerLink="/login">{{'register.Already Have an account ?' | translate}}</a>
                         </div>
                     
                     </form>
@@ -109,12 +109,12 @@
                     </button>
     
                     <div class="mb-12 text-white font-bold">
-                        <h2 class="text-4xl">Welcome <button type="button" [@shakeAnimation]="isHovered" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">👋🏼</button></h2>
-                        <span class="text-gray-500">Let's Know More About Yourself</span>
+                        <h2 class="text-4xl">{{'register.Welcome' | translate}} <button type="button" [@shakeAnimation]="isHovered" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">👋🏼</button></h2>
+                        <span class="text-gray-500">{{"register.Let's Know More About Yourself" | translate}}</span>
                     </div>
     
                     <div class="mb-4 text-white font-bold">
-                        <h2 class="text-2xl">Personal Information</h2>
+                        <h2 class="text-2xl">{{'register.Personal Information' | translate}}</h2>
                     </div>
                     
                     <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegistration()">
@@ -130,13 +130,13 @@
                                         registerForm.controls.fullName.dirty) &&
                                         registerForm.controls.fullName.hasError('required')
                                     ">
-                                Full Name is Required !!
+                                {{'register.Full Name is Required !!' | translate}}
                             </div>
                         </div>
                     
                         <div class="flex flex-wrap space-y-5">
                             <div class="w-full md:w-1/2 px-5">
-                                <label for="email" class="text-white">Email</label>
+                                <label for="email" class="text-white">{{'register.Email' | translate}}</label>
                                 <div class="mb-3">
                                     <div class="relative">
                                         <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-envelope"></i></span>
@@ -148,7 +148,7 @@
                                                 registerForm.controls.email.dirty) &&
                                                 registerForm.controls.email.hasError('required')
                                             ">
-                                        Email is Required !!
+                                        {{'register.Email is Required !!' | translate}}
                                     </div>
                                     <div class="text-red-500 p-4 rounded-lg" 
                                             *ngIf="
@@ -156,12 +156,12 @@
                                                 registerForm.controls.email.dirty) &&
                                                 registerForm.controls.email.hasError('email')
                                             ">
-                                        Email Format is wrong !!
+                                        {{'register.Email Format is wrong !!' | translate}}
                                     </div>
                                 </div>
                             </div>
                             <div class="w-full md:w-1/2 px-5">
-                                <label for="phoneNumber" class="text-white">Phone number</label>
+                                <label for="phoneNumber" class="text-white">{{'register.Phone number' | translate}}</label>
                                 <div class="mb-3">
                                     <div class="relative">
                                         <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-phone"></i></span>
@@ -173,7 +173,7 @@
                                                 registerForm.controls.phoneNumber.dirty) &&
                                                 registerForm.controls.phoneNumber.hasError('required')
                                             ">
-                                        Phone Number is Required !!
+                                        {{'register.Phone Number is Required !!' | translate}}
                                     </div>
                                     <div class="text-red-500 p-4 rounded-lg" 
                                             *ngIf="
@@ -181,14 +181,14 @@
                                                 registerForm.controls.phoneNumber.dirty) &&
                                                 registerForm.controls.phoneNumber.hasError('pattern')
                                             ">
-                                        Phone Number Format is wrong !!
+                                        {{'register.Phone Number Format is wrong !!' | translate}}
                                     </div>
                                 </div>
                             </div>
     
                             <div class="w-full md:w-1/2 px-5">
                                 <div class="flex justify-between">
-                                    <label for="password" class="text-white">Password</label>
+                                    <label for="password" class="text-white">{{'register.Password' | translate}}</label>
                                     <button type="button" class="text-white cursor-pointer" (click)="togglePassword('Password')">
                                         @if(showPasswordOffOn["Password"]){<i class="fa-solid fa-eye-low-vision"></i>}
                                         @else{<i class="fa-solid fa-eye"></i>}
@@ -203,13 +203,13 @@
                                         @if(registerForm.controls.password.touched || registerForm.controls.password.dirty)
                                         {
                                             @if(registerForm.controls.password.hasError('minlength')){
-                                                <p class="p-4">Password Must at least of length 6 !!</p>
+                                                <p class="p-4">{{'register.Password Must at least of length 6 !!' | translate}}</p>
                                             }
                                             @else if (registerForm.controls.password.hasError('pattern')){
-                                                <p class="p-4">Password has to have at least a special character</p>
+                                                <p class="p-4">{{'register.Password has to have at least a special character' | translate}}</p>
                                             }
                                             @else if(registerForm.controls.password.hasError('required')){
-                                                <p class="p-4">Password is Required !!</p>
+                                                <p class="p-4">{{'register.Password is Required !!' | translate}}</p>
                                             }
                                         }
                                     </div>
@@ -217,7 +217,7 @@
                             </div>
                             <div class="w-full md:w-1/2 px-5">
                                 <div class="flex justify-between">
-                                    <label for="ConfirmPassword" class="text-white">Confirm Password</label>
+                                    <label for="ConfirmPassword" class="text-white">{{'register.Confirm Password' | translate}}</label>
                                     <button type="button" class="text-white cursor-pointer" (click)="togglePassword('ConfirmPassword')">
                                         @if(showPasswordOffOn["ConfirmPassword"]){<i class="fa-solid fa-eye-low-vision"></i>}
                                         @else{<i class="fa-solid fa-eye"></i>}
@@ -229,98 +229,98 @@
                                         <input formControlName="confirmPassword" [value]="registerForm.controls.confirmPassword" [type]="showPasswordOffOn['ConfirmPassword'] ? 'text' : 'password'" id="ConfirmPassword" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Confirm Password">
                                     </div>
                                     <div class="text-red-500 p-4 rounded-lg" *ngIf="registerForm.getError('passwordMismatch')">
-                                        Confirm Password must be like the password !!
+                                        {{'register.Confirm Password must be like the password !!' | translate}}
                                     </div>
                                 </div>
                             </div>
     
                             <div class="w-full md:w-1/2 px-5">
-                                <label for="dateOfBirth" class="text-white">Date Of Birth</label>
+                                <label for="dateOfBirth" class="text-white">{{'register.Date Of Birth' | translate}}</label>
                                 <div class="mb-3">
                                     <div class="relative">
                                         <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-calendar"></i></span>
                                         <input formControlName="dateOfBirth" type="date" id="dateOfBirth" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="00/00/0000">
                                     </div>
                                     <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.dateOfBirth.dirty || registerForm.controls.dateOfBirth.touched) && registerForm.controls.dateOfBirth.getError('required')">
-                                        Date is Required !!
+                                        {{'register.Date is Required !!' | translate}}
                                     </div>
                                 </div>
                             </div>
                             <div class="w-full md:w-1/2 px-5">
-                                <label for="gender" class="text-white">Gender</label>
+                                <label for="gender" class="text-white">{{'register.Gender' | translate}}</label>
                                 <div class="mb-3">
                                     <div class="relative flex justify-center space-x-10">
                                         <div class="bg-black py-2 px-5 rounded-full space-x-5">
                                             <input formControlName="gender" type="radio" name="gender" id="Male" [value]="0">
-                                            <label for="gender" class="text-white">Male</label>
+                                            <label for="gender" class="text-white">{{'register.Male' | translate}}</label>
                                         </div>
                                         <div class="bg-black py-2 px-5 rounded-full space-x-5">
                                             <input formControlName="gender" type="radio" name="gender" id="Female" [value]="1">
-                                            <label for="gender" class="text-white">Female</label>
+                                            <label for="gender" class="text-white">{{'register.Female' | translate}}</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
     
                             <div class="w-full md:w-1/2 px-5">
-                                <label for="Address" class="text-white">Address</label>
+                                <label for="Address" class="text-white">{{'register.Address' | translate}}</label>
                                 <div class="mb-3">
                                     <div class="relative">
                                         <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
                                         <input formControlName="address" id="Address" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="14-street-Cairo-5302">
                                     </div>
                                     <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
-                                        Address is required !!
+                                        {{'register.Address is required !!' | translate}}
                                     </div>
                                 </div>
                             </div>
                             <div class="w-full md:w-1/2 px-5">
-                                <label for="role" class="text-white">Role</label>
+                                <label for="role" class="text-white">{{'register.Role' | translate}}</label>
                                 <div class="mb-3">
                                     <div class="relative">
                                         <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-regular fa-hand-pointer"></i></span>
                                         <select formControlName="role" name="role" id="role" class="w-full bg-black text-white ps-8 p-2 rounded-lg border-1">
-                                            <option value="" disabled selected>Choose Role</option>
-                                            <option value="Doctor">Doctor</option>
-                                            <option value="Admin">Admin</option>
-                                            <option value="Patient">Patient</option>
+                                            <option value="" disabled selected>{{'register.Choose Role' | translate}}</option>
+                                            <option value="Doctor">{{'register.Doctor' | translate}}</option>
+                                            <option value="Admin">{{'register.Admin' | translate}}</option>
+                                            <option value="Patient">{{'register.Patient' | translate}}</option>
                                         </select>
                                     </div>
                                     <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.role.touched || registerForm.controls.role.dirty) && registerForm.controls.role.invalid">
-                                            Please Select a Role !!
+                                            {{'register.Please Select a Role !!' | translate}}
                                         </div>
                                     
                                 </div>
                             </div>
                             @if(registerForm.controls.role.value === "Patient"){
                                 <div class="w-full md:w-1/2 px-5">
-                                    <label for="Occupation" class="text-white">Occupation</label>
+                                    <label for="Occupation" class="text-white">{{'register.Occupation' | translate}}</label>
                                     <div class="mb-3">
                                         <div class="relative">
                                             <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-briefcase"></i></span>
                                             <input formControlName="occupation" id="Occupation" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Doctor">
                                         </div>
                                         <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.occupation.touched || registerForm.controls.occupation.dirty) && registerForm.controls.occupation.getError('required')">
-                                            Occupation is required !!
+                                            {{'register.Occupation is required !!' | translate}}
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="w-full md:w-1/2 px-5">
-                                    <label for="EmergencyContactName" class="text-white">Emergency Contact Name</label>
+                                    <label for="EmergencyContactName" class="text-white">{{'register.Emergency Contact Name' | translate}}</label>
                                     <div class="mb-3">
                                         <div class="relative">
                                             <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-id-badge"></i></span>
                                             <input formControlName="emergencyContactName" id="EmergencyContactName" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Ahmed">
                                         </div>
                                         <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.emergencyContactName.touched || registerForm.controls.emergencyContactName.dirty) && registerForm.controls.emergencyContactName.getError('required')">
-                                            Emergency Contact Name is required !!
+                                            {{'register.Emergency Contact Name is required !!' | translate}}
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="w-full md:w-1/2 px-5">
-                                    <label for="EmergencyContactNumber" class="text-white">Emergency Contact Number</label>
+                                    <label for="EmergencyContactNumber" class="text-white">{{'register.Emergency Contact Number' | translate}}</label>
                                     <div class="mb-3">
                                         <div class="relative">
                                             <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-phone"></i></span>
@@ -332,7 +332,7 @@
                                                     registerForm.controls.emergencyContactNumber.dirty) &&
                                                     registerForm.controls.emergencyContactNumber.hasError('required')
                                                 ">
-                                            Emergency Contact Number is Required !!
+                                            {{'register.Emergency Contact Number is Required !!' | translate}}
                                         </div>
                                         <div class="text-red-500 p-4 rounded-lg" 
                                                 *ngIf="
@@ -340,77 +340,77 @@
                                                     registerForm.controls.emergencyContactNumber.dirty) &&
                                                     registerForm.controls.emergencyContactNumber.hasError('pattern')
                                                 ">
-                                            Emergency Contact Number Format is wrong !!
+                                            {{'register.Emergency Contact Number Format is wrong !!' | translate}}
                                         </div>
                                     </div>
                                 </div>
                             }
                             @if(registerForm.controls.role.value === "Admin" || registerForm.controls.role.value === "Doctor"){
                                 <div class="w-full md:w-1/2 px-5">
-                                    <label for="identificationNumber" class="text-white">Identification Number</label>
+                                    <label for="identificationNumber" class="text-white">{{'register.Identification Number' | translate}}</label>
                                     <div class="mb-3">
                                         <div class="relative">
                                             <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
                                             <input formControlName="identificationNumber" id="identificationNumber" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="ID123456789">
                                         </div>
                                         <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
-                                            Identification Number is required !!
+                                            {{'register.Identification Number is required !!' | translate}}
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="w-full md:w-1/2 px-5">
-                                    <label for="medicalLicenseNumber" class="text-white">MedicalLicense Number</label>
+                                    <label for="medicalLicenseNumber" class="text-white">{{'register.MedicalLicense Number' | translate}}</label>
                                     <div class="mb-3">
                                         <div class="relative">
                                             <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
                                             <input formControlName="medicalLicenseNumber" id="medicalLicenseNumber" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="ID123456789">
                                         </div>
                                         <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
-                                            MedicalLicense Number is required !!
+                                            {{'register.MedicalLicense Number is required !!' | translate}}
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="w-full md:w-1/2 px-5">
-                                    <label for="specialisation" class="text-white">Specialization</label>
+                                    <label for="specialisation" class="text-white">{{'register.Specialization' | translate}}</label>
                                     <div class="mb-3">
                                         <div class="relative">
                                             <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
                                             <input formControlName="specialisation" id="specialisation" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Write your specialization here">
                                         </div>
                                         <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
-                                            Specialization is required !!
+                                            {{'register.Specialization is required !!' | translate}}
                                         </div>
                                     </div>
                                 </div>
                             }
                             @if(registerForm.controls.role.value === "Doctor"){
                                 <div class="w-full md:w-1/2 px-5">
-                                    <label for="workPlace" class="text-white">Work Place</label>
+                                    <label for="workPlace" class="text-white">{{'register.Work Place' | translate}}</label>
                                     <div class="mb-3">
                                         <div class="relative">
                                             <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
                                             <input formControlName="workPlace" id="workPlace" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Write your workPlace here">
                                         </div>
                                         <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
-                                            Work Place is required !!
+                                            {{'register.Work Place is required !!' | translate}}
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="w-full md:w-1/2 px-5">
-                                    <label for="fee" class="text-white">Medical Examination Fees</label>
+                                    <label for="fee" class="text-white">{{'register.Medical Examination Fees' | translate}}</label>
                                     <div class="mb-3">
                                         <div class="relative">
                                             <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-dollar-sign"></i></span>
                                             <input formControlName="fee" id="fee" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Write your Medical Examination Fees here">
                                         </div>
                                         <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.fee.touched) && registerForm.controls.fee.getError('required')">
-                                            Medical Examination Fees is required !!
+                                            {{'register.Medical Examination Fees is required !!' | translate}}
                                         </div>
                                         <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.fee.touched) && registerForm.controls.fee.getError('min')">
-                                            Medical Examination Fees must be equal or more than 0
+                                            {{'register.Medical Examination Fees must be equal or more than 0' | translate}}
                                         </div>
                                     </div>
                                 </div>
@@ -420,11 +420,11 @@
                         
                         @if(registerForm.controls.role.value === "Patient"){
                             <div class="mb-4 text-white font-bold">
-                                <h2 class="text-2xl">Medical Information</h2>
+                                <h2 class="text-2xl">{{'register.Medical Information' | translate}}</h2>
                             </div>
                             <div class="flex flex-wrap space-y-5">
                                 <div class="w-full md:w-1/2 px-5">
-                                    <label for="familyMedicalHistory" class="text-white">Family Medical History(if relevant)</label>
+                                    <label for="familyMedicalHistory" class="text-white">{{'register.Family Medical History(if relevant)' | translate}}</label>
                                     <div class="mb-3">
                                         <div class="relative">
                                             <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-briefcase-medical"></i></span>
@@ -434,7 +434,7 @@
                                 </div>
         
                                 <div class="w-full md:w-1/2 px-5">
-                                    <label for="pastMedicalHistory" class="text-white">Past Medical History</label>
+                                    <label for="pastMedicalHistory" class="text-white">{{'register.Past Medical History' | translate}}</label>
                                     <div class="mb-3">
                                         <div class="relative">
                                             <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-briefcase-medical"></i></span>
@@ -446,7 +446,7 @@
                         }
     
                         <div class="w-full">
-                            <button class="w-full bg-gradient-to-r from-blue-900 via-balck to-gray-800 rounded-lg text-white p-2 cursor-pointer">Go ahead 😃</button>
+                            <button class="w-full bg-gradient-to-r from-blue-900 via-balck to-gray-800 rounded-lg text-white p-2 cursor-pointer">{{'register.Go ahead 😃' | translate}}</button>
                         </div>
                     
                     </form>

@@ -3,13 +3,18 @@ import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } fr
 import { provideRouter, RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideToastr } from 'ngx-toastr';
 import { requestHeaderHandlingInterceptor } from './Core/Interceptors/request-header-handling.interceptor';
-
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
+
+const httpLoaderFactory: (http: HttpClient)=> TranslateHttpLoader = (
+  http: HttpClient
+) => new TranslateHttpLoader(http, './i18n/','.json');
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,6 +29,15 @@ export const appConfig: ApplicationConfig = {
     provideToastr({positionClass: 'toast-top-center'}),
 
     provideHttpClient(withFetch(), withInterceptors([requestHeaderHandlingInterceptor])),    
+
+    provideTranslateService({
+      loader:{
+        provide: TranslateLoader,
+
+        useFactory:() => httpLoaderFactory,
+        deps:[HttpClient],
+      },
+    }),
 
     importProvidersFrom(
       NgxSpinnerModule,

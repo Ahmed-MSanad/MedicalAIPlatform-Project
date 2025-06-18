@@ -5,9 +5,9 @@ import { AppointmentInfo } from '../../../Core/Interfaces/appointment-info';
 import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
-import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
 import { MedicalImageService } from '../../../Core/Services/medical-image.service';
 import { Router } from '@angular/router';
+import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
 @Component({
   selector: 'app-doctor-appointments',
   imports: [DatePipe, FormsModule, BackgroundLayoutComponent],
