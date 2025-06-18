@@ -271,10 +271,16 @@
                         <h2 class="text-3xl font-bold text-gray-800 mb-2">Analysis Complete</h2>
                         <h3 class="text-xl font-bold text-gray-800 mb-2">
                             The AI model has completed its analysis and the result is: <br />
-                            <div
-                                class="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-full font-semibold text-lg shadow-lg">
-                                {{ classification()[i] }} with prediction probability: {{predicted_probability()[i]}}
-                            </div>
+                            @if(classification()[i] !== 'normal'){
+                                <div class="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-full font-semibold text-lg shadow-lg">
+                                    {{ classification()[i] }} with prediction probability: {{predicted_probability()[i]}}
+                                </div>
+                            }
+                            @else {
+                                <div class="inline-block align-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-full font-semibold text-lg shadow-lg">
+                                    {{ classification()[i] }}
+                                </div>
+                            }
                         </h3>
                     </div>
                 </div>
