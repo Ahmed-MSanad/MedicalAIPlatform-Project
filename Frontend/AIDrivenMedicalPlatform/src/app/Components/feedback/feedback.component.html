@@ -1,15 +1,21 @@
 <app-background-layout></app-background-layout>
 
+<div class="fixed inset-0 bg-black/30 flex items-center justify-center z-50" [class.hidden]="!isLoading">
+  <img src="./Logo.png"
+       alt="Loading"
+       class="w-48 h-48 animate-pulse drop-shadow-xl" />
+</div>
+
 <!-- Displaying Feedbacks -->
 <div class="min-h-screen max-w-4xl mx-auto rounded-xl bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 p-6">
     <div class="max-w-4xl mx-auto">
         <!-- Header -->
         <div class="text-center mb-8">
             <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-                Patient Feedback
+                {{'feedback.Patient Feedback' | translate}}
             </h1>
-            <button type="button" class="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 cursor-pointer text-white rounded-lg shadow-lg" (click)="sendPatientFeedback()" [appHideIfClaimsNotMet]="claimReq.patientOnly">Send your feedback now 😊</button>
-            <p class="text-gray-600 text-lg">Let's see What our patients are saying about us 👋🏼</p>
+            <button type="button" class="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 cursor-pointer text-white rounded-lg shadow-lg" (click)="sendPatientFeedback()" [appHideIfClaimsNotMet]="claimReq.patientOnly">{{'feedback.Send your feedback now 😊' | translate}}</button>
+            <p class="text-gray-600 text-lg">{{"feedback.Let's see What our patients are saying about us 👋🏼" | translate}}</p>
         </div>
 
         <!-- Feedback Cards -->
@@ -47,7 +53,7 @@
                         
                         <div class="flex items-center gap-2 text-gray-500 text-sm">
                             <i class="fa-solid fa-calendar"></i>
-                            <span>Submitted: {{ feedback.submittedAt | date }}</span>
+                            <span>{{'feedback.Submitted:' | translate}} {{ feedback.submittedAt | date }}</span>
                         </div>
                     </div>
 
@@ -56,7 +62,7 @@
                         <div class="flex items-start gap-3">
                             <i class="fa-solid fa-message"></i>
                         <div>
-                            <h3 class="font-semibold text-gray-800 mb-2">Patient Feedback</h3>
+                            <h3 class="font-semibold text-gray-800 mb-2">{{'feedback.Patient Feedback' | translate}}</h3>
                             <p class="text-gray-700 leading-relaxed text-sm md:text-base">
                             {{ feedback.message }}
                             </p>
@@ -72,7 +78,7 @@
                                 <i class="fa-solid fa-reply"></i>
                                 <div class="flex-1">
                                 <div class="flex items-center justify-between mb-2">
-                                    <h4 class="font-semibold text-blue-800">Our Response</h4>
+                                    <h4 class="font-semibold text-blue-800">{{'feedback.Our Response' | translate}}</h4>
                                     <div class="flex items-center gap-1.5 text-blue-600 text-xs">
                                     <i class="fa-solid fa-clock"></i>
                                     <span>{{ feedback.respondedAt! | date }}</span>
@@ -94,11 +100,11 @@
                                 <div>
                                     <i class="far fa-clock text-yellow-600"></i>
                                     <span class="text-yellow-800 font-medium">
-                                        Response pending - We'll get back to you soon!
+                                        {{"feedback.Response pending - We'll get back to you soon!" | translate}}
                                     </span>
                                 </div>
                                 <div>
-                                    <button (click)="sendAdminRespond(feedback.feedbackId)" [appHideIfClaimsNotMet]="claimReq.adminOnly" class="px-2 md:px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 cursor-pointer text-white rounded-lg shadow-lg">Respond Now</button>
+                                    <button (click)="sendAdminRespond(feedback.feedbackId)" [appHideIfClaimsNotMet]="claimReq.adminOnly" class="px-2 md:px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 cursor-pointer text-white rounded-lg shadow-lg">{{'feedback.Respond Now' | translate}}</button>
                                 </div>
                             </div>
                         </div>
@@ -115,21 +121,21 @@
                 <div class="text-3xl font-bold text-blue-600 mb-2">
                 {{ getTotalReviews() }}
                 </div>
-                <div class="text-gray-600 font-medium">Total Reviews</div>
+                <div class="text-gray-600 font-medium">{{'feedback.Total Reviews' | translate}}</div>
             </div>
             
             <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100 text-center">
                 <div class="text-3xl font-bold text-green-600 mb-2">
                 {{ getAverageRating() }}
                 </div>
-                <div class="text-gray-600 font-medium">Average Rating</div>
+                <div class="text-gray-600 font-medium">{{'feedback.Average Rating' | translate}}</div>
             </div>
             
             <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100 text-center">
                 <div class="text-3xl font-bold text-purple-600 mb-2">
                 {{ getResponseRate() }}%
                 </div>
-                <div class="text-gray-600 font-medium">Response Rate</div>
+                <div class="text-gray-600 font-medium">{{'feedback.Response Rate' | translate}}</div>
             </div>
         </div>
     </div>

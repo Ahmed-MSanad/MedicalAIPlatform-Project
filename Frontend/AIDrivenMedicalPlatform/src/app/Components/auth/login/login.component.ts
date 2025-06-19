@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../Core/Services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateModule } from '@ngx-translate/core';
+import { TranslationService } from '../../../Core/Services/translation.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent {
   private readonly _auth = inject(AuthService);
   private readonly _router = inject(Router);
   private readonly _toastr = inject(ToastrService);
+  private readonly _translate = inject(TranslationService);
   loginInErrorMessage : string = "";
 
   loginForm = this._FormBuilder.group({

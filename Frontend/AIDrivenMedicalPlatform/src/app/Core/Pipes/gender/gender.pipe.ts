@@ -6,7 +6,7 @@ import { Gender } from '../../Enums/gender';
 })
 export class GenderPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
+  transform(value: unknown, ...args: unknown[]): string {
     return value === 0 ? 'Male' : 'Female';
   }
 

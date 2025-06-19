@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
-import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { TranslationService } from '../../Core/Services/translation.service';
 
 interface Feature {
   title: string;
@@ -42,6 +43,8 @@ interface Partner {
 })
 export class MainPageComponent implements OnInit {
   
+  private readonly _transelate = inject(TranslationService)
+
   constructor(private _router: Router) { }
 
   ngOnInit(): void {

@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { Subscription } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { TranslationService } from '../../../Core/Services/translation.service';
 
 
 @Component({
@@ -34,6 +35,7 @@ export class RegisterComponent {
   isHovered = false
 
   private readonly _formBuilder = inject(FormBuilder);
+  private readonly _translate = inject(TranslationService);
 
   registerForm = this._formBuilder.group({
     fullName: ['',[Validators.required]],
