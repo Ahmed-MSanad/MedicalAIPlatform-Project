@@ -1,63 +1,137 @@
-<div class="bg-gradient-to-r from-black via-gray-900 to-blue-900 h-screen flex justify-center items-center">
-    <div class="rounded-lg shadow-lg p-6 bg-white min-w-[30rem]">
+<div class="fixed inset-0 bg-black/30 flex items-center justify-center z-50" [class.hidden]="!isLoading">
+  <img src="./Logo.png"
+       alt="Loading"
+       class="w-48 h-48 animate-pulse drop-shadow-xl" />
+</div>
+
+<div class="bg-gradient-to-r from-black via-gray-900 to-blue-900 h-screen flex justify-center items-center relative">
+    <!-- Language Selector -->
+    <div class="absolute top-4 z-10"
+        [ngClass]="{ 'right-4': currentLanguage !== 'ar', 'left-4': currentLanguage === 'ar' }">
+        <div class="relative group" #languageDropdown>
+            <button (click)="toggleLanguage()"
+                class="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white hover:bg-white/30 transition">
+                <i class="fa-solid fa-globe"></i>
+                <span class="hidden sm:inline">{{ currentLanguage === 'en' ? 'English' : 'العربية' }}</span>
+                <i class="fa-solid fa-chevron-down text-xs transition-transform duration-200"
+                    [class.rotate-180]="showLang"></i>
+            </button>
+
+            <div class="absolute mt-2 w-40 bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-200 origin-top"
+                [ngClass]="{
+           'right-0': currentLanguage !== 'ar',
+           'left-0': currentLanguage === 'ar',
+           'invisible opacity-0 scale-95': !showLang,
+           'block': showLang
+         }">
+                <!-- English Option -->
+                <button (click)="switchLanguage('en')"
+                    class="block w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2"
+                    [class.bg-blue-100]="currentLanguage === 'en'">
+                    <span>English</span>
+                </button>
+
+                <!-- Arabic Option (Egyptian Flag) -->
+                <button (click)="switchLanguage('ar')"
+                    class="block w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2"
+                    [class.bg-blue-100]="currentLanguage === 'ar'">
+                    <span>العربية</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Login Form -->
+    <div class="rounded-lg shadow-lg p-6 bg-white w-full max-w-md mx-4" [class.rtl]="currentLanguage === 'ar'">
         <form [formGroup]="loginForm" class="space-y-8" (ngSubmit)="onLogin()">
             <div>
-                <h1 class="text-4xl">{{'login.Sign In' | translate}}</h1>
-                <span>{{'login.Create New Account ?' | translate}}<a  class="text-blue-600" routerLink="/register">{{'login.Register' | translate}}</a></span>
+                <h1 class="text-4xl">{{ 'login.Sign In' | translate }}</h1>
+                <span>
+                    {{ 'login.Create New Account?' | translate }}
+                    <a class="text-blue-600" routerLink="/register">{{ 'login.Register' | translate }}</a>
+                </span>
             </div>
 
+            <!-- Email -->
             <div>
-                <label for="email">{{'login.Email' | translate}}</label>
+                <label for="email">{{ 'login.Email' | translate }}</label>
                 <div class="relative">
-                    <input type="email" name="email" id="email" class="w-full px-2 py-4 border-1 rounded-lg" formControlName="email" placeholder="Enter your email">
-                    @if(loginForm.controls.email.touched || loginForm.controls.email.dirty){
-                        @if(loginForm.controls.email.errors){
-                            <span class="text-red-500 text-xl absolute right-5 top-1/2 -translate-y-1/2"><i class="fa-solid fa-circle-xmark"></i></span>
-                        }
-                        @else {
-                            <span class="text-green-500 text-xl absolute right-5 top-1/2 -translate-y-1/2"><i class="fa-solid fa-circle-check"></i></span>
-                        }
+                    <input type="email" name="email" id="email" class="w-full px-2 py-4 border-1 rounded-lg"
+                        formControlName="email" [placeholder]="'login.Enter your email' | translate">
+
+                    @if (loginForm.controls.email.touched || loginForm.controls.email.dirty) {
+                    @if (loginForm.controls.email.errors) {
+                    <span class="text-red-500 text-xl absolute top-1/2 -translate-y-1/2"
+                        [ngClass]="{ 'right-5': currentLanguage !== 'ar', 'left-5': currentLanguage === 'ar' }">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </span>
+                    } @else {
+                    <span class="text-green-500 text-xl absolute top-1/2 -translate-y-1/2"
+                        [ngClass]="{ 'right-5': currentLanguage !== 'ar', 'left-5': currentLanguage === 'ar' }">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </span>
+                    }
                     }
                 </div>
-                @if((loginForm.controls.email.touched || loginForm.controls.email.dirty) && loginForm.controls.email.errors){
-                    <div class="text-red-500 p-4 rounded-lg">
-                        @if(loginForm.controls.email.getError('required')){
-                            <p>{{'login.Email is required!' | translate}}</p>
-                        }
-                        @else if(loginForm.controls.email.getError('email')){
-                            <p>{{'login.Email format is not true!' | translate}}</p>
-                        }
-                    </div>
+
+                @if ((loginForm.controls.email.touched || loginForm.controls.email.dirty) &&
+                loginForm.controls.email.errors) {
+                <div class="text-red-500 p-4 rounded-lg">
+                    @if (loginForm.controls.email.getError('required')) {
+                    <p>{{ 'login.Email is required!' | translate }}</p>
+                    } @else if (loginForm.controls.email.getError('email')) {
+                    <p>{{ 'login.Email format is not true!' | translate }}</p>
+                    }
+                </div>
                 }
             </div>
 
+            <!-- Password -->
             <div>
                 <div class="flex justify-between">
-                    <label for="password">{{'login.Password' | translate}}</label>
-                    <button type="button" (click)="togglePassword()" class="cursor-pointer"><i class="fa-solid fa-eye-low-vision"></i></button>
+                    <label for="password">{{ 'login.Password' | translate }}</label>
+                    <button type="button" (click)="togglePassword()" class="cursor-pointer">
+                        <i class="fa-solid fa-eye-low-vision"></i>
+                    </button>
                 </div>
+
                 <div class="relative">
-                    <input [type]="showPasswordOffOn ? 'text' : 'password'" name="password" id="password" class="w-full px-2 py-4 border-1 rounded-lg" formControlName="password" placeholder="Enter your Password">
-                    @if(loginForm.controls.password.touched || loginForm.controls.password.dirty){
-                        @if(loginForm.controls.password.errors){
-                            <span class="text-red-500 text-xl absolute right-5 top-1/2 -translate-y-1/2"><i class="fa-solid fa-circle-xmark"></i></span>
-                        }
-                        @else {
-                            <span class="text-green-500 text-xl absolute right-5 top-1/2 -translate-y-1/2"><i class="fa-solid fa-circle-check"></i></span>
-                        }
+                    <input [type]="showPasswordOffOn ? 'text' : 'password'" name="password" id="password"
+                        class="w-full px-2 py-4 border-1 rounded-lg" formControlName="password"
+                        [placeholder]="'login.Enter your Password' | translate">
+
+                    @if (loginForm.controls.password.touched || loginForm.controls.password.dirty) {
+                    @if (loginForm.controls.password.errors) {
+                    <span class="text-red-500 text-xl absolute top-1/2 -translate-y-1/2"
+                        [ngClass]="{ 'right-5': currentLanguage !== 'ar', 'left-5': currentLanguage === 'ar' }">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </span>
+                    } @else {
+                    <span class="text-green-500 text-xl absolute top-1/2 -translate-y-1/2"
+                        [ngClass]="{ 'right-5': currentLanguage !== 'ar', 'left-5': currentLanguage === 'ar' }">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </span>
+                    }
                     }
                 </div>
-                @if((loginForm.controls.password.touched || loginForm.controls.password.dirty) && loginForm.controls.password.getError('required')){
-                    <div class="text-red-500 p-4 rounded-lg">
-                        <p>{{'login.Password is required!' | translate}}</p>
-                    </div>
+
+                @if ((loginForm.controls.password.touched || loginForm.controls.password.dirty) &&
+                loginForm.controls.password.getError('required')) {
+                <div class="text-red-500 p-4 rounded-lg">
+                    <p>{{ 'login.Password is required!' | translate }}</p>
+                </div>
                 }
             </div>
 
+            <!-- Submit Button -->
             <div>
-                <button class="bg-gradient-to-r from-black via-gray-900 to-blue-900 py-4 w-full text-white rounded-full 
-                transition duration-300 transform hover:scale-105 hover:shadow-lg hover:from-blue-900 hover:via-gray-800 hover:to-black cursor-pointer">{{'login.Sign In' | translate}}</button>
-                <p class="text-red-400 font-bold text-center">{{loginInErrorMessage}}</p>
+                <button
+                    class="bg-gradient-to-r from-black via-gray-900 to-blue-900 py-4 w-full text-white rounded-full 
+                       transition duration-300 transform hover:scale-105 hover:shadow-lg hover:from-blue-900 hover:via-gray-800 hover:to-black cursor-pointer">
+                    {{ 'login.Sign In' | translate }}
+                </button>
+                <p class="text-red-400 font-bold text-center">{{ loginInErrorMessage }}</p>
             </div>
         </form>
     </div>

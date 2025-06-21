@@ -1,9 +1,15 @@
 <app-background-layout></app-background-layout>
 
+<div class="fixed inset-0 bg-black/30 flex items-center justify-center z-50" [class.hidden]="!isLoading">
+  <img src="./Logo.png"
+       alt="Loading"
+       class="w-48 h-48 animate-pulse drop-shadow-xl" />
+</div>
+
 <div class="max-w-4xl mx-auto p-6 bg-gray-50 rounded-lg">
     <div class="mb-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-2">Notifications</h1>
-        <p class="text-gray-600">Stay updated with your latest messages and alerts</p>
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">{{ 'notification.Notifications' | translate }}</h1>
+        <p class="text-gray-600">{{ 'notification.Stay updated' | translate }}</p>
     </div>
 
     <div class="space-y-4">
@@ -32,11 +38,11 @@
                     <div class="flex-1 min-w-0">
                         <div class="flex items-center justify-between mb-1">
                             <h3 class="text-lg font-semibold text-gray-900 truncate">
-                                {{ notification.subject }}
+                                {{ `notification.${notification.subject}` | translate }}
                             </h3>
                             <span [class]="getNotificationBadgeClass(notification.type)"
                                 class="px-3 py-1 rounded-full text-xs font-medium">
-                                {{ getNotificationTypeLabel(notification.type) }}
+                                {{ `notification.${getNotificationTypeLabel(notification.type)}` | translate }}
                             </span>
                         </div>
     
@@ -52,7 +58,7 @@
                                             d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207">
                                         </path>
                                     </svg>
-                                    From: {{ notification.from }}
+                                    {{ 'notification.From' | translate }}: {{ notification.from }}
                                 </span>
                                 <span class="flex items-center">
                                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -66,7 +72,8 @@
                             <div class="flex items-center space-x-2">
                                 <button
                                     class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
-                                    (click)="RemoveNotification(notification.id)">
+                                    (click)="RemoveNotification(notification.id)"
+                                    [attr.aria-label]="'notification.Delete' | translate">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
@@ -89,7 +96,7 @@
                     d="M15 17h5l-5 5-5-5h5v-7a1 1 0 011-1h2a1 1 0 011 1v7zM9 3v7H4l5 5 5-5H9V3z"></path>
             </svg>
         </div>
-        <h3 class="text-lg font-medium text-gray-900 mb-2">No notifications yet</h3>
-        <p class="text-gray-500">When you receive notifications, they'll appear here.</p>
+        <h3 class="text-lg font-medium text-gray-900 mb-2">{{ 'notification.No notifications yet' | translate }}</h3>
+        <p class="text-gray-500">{{ 'notification.Empty state message' | translate }}</p>
     </div>
 </div>

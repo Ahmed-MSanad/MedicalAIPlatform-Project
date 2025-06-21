@@ -19,44 +19,66 @@ export class LoginComponent {
   private readonly _router = inject(Router);
   private readonly _toastr = inject(ToastrService);
   private readonly _translate = inject(TranslationService);
-  loginInErrorMessage : string = "";
+  loginInErrorMessage: string = "";
+  currentLanguage: string = 'en';
+  showLang: boolean = false;
+  isLoading: boolean = false;
 
-  loginForm = this._FormBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]]
-  });
+loginForm = this._FormBuilder.group({
+  email: ['', [Validators.required, Validators.email]],
+  password: ['', [Validators.required]]
+});
 
-  onLogin(){
-    if(this.loginForm.valid){
-      console.log(this.loginForm.value);
-      this._auth.signIn(this.loginForm.value).subscribe({
-        next:(res : any) => {
-          console.log(res);
-          this._auth.saveToken(res.token);
-          const userClaims = this._auth.getClaims();
-          this._router.navigate(['/'+userClaims.role+"Dashboard"]);
-        },
-        error: (error) => {
-          if(error.status == 400){
-            this._toastr.error(error.error.message, 'Login Failed');
-            this.loginInErrorMessage = error.error.message;
-            console.log(error.error.message);
-          }
-          else{
-            this._toastr.error('Error during login !!', 'Login Failed');
-            this.loginInErrorMessage = 'Error during login !!';
-            console.log('Error during login !!');
-          }
+ngOnInit() {
+  if (localStorage.getItem('lang') == 'ar') {
+    this.currentLanguage = 'ar';
+  }
+}
+
+onLogin() {
+  if (this.loginForm.valid) {
+    console.log(this.loginForm.value);
+    this.isLoading = true;
+    this._auth.signIn(this.loginForm.value).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this._auth.saveToken(res.token);
+        const userClaims = this._auth.getClaims();
+        this.isLoading = false;
+        this._router.navigate(['/' + userClaims.role + "Dashboard"]);
+      },
+      error: (error) => {
+        if (error.status == 400) {
+          this._toastr.error(error.error.message, 'Login Failed');
+          this.loginInErrorMessage = error.error.message;
+          this.isLoading = false;
+          console.log(error.error.message);
         }
-      });
-    }
-    else{
-      this.loginForm.markAllAsTouched();
-    }
+        else {
+          this._toastr.error('Error during login !!', 'Login Failed');
+          this.loginInErrorMessage = 'Error during login !!';
+          console.log('Error during login !!');
+        }
+      }
+    });
   }
+  else {
+    this.loginForm.markAllAsTouched();
+  }
+}
 
-  showPasswordOffOn : boolean = false;
-  togglePassword(){
-    this.showPasswordOffOn = !this.showPasswordOffOn;
-  }
+showPasswordOffOn: boolean = false;
+togglePassword() {
+  this.showPasswordOffOn = !this.showPasswordOffOn;
+}
+
+toggleLanguage(){
+  this.showLang = !this.showLang;
+}
+
+switchLanguage(lang: string) {
+  this.currentLanguage = lang;
+  this._translate.changeLang(lang);
+}
+
 }
