@@ -23,12 +23,19 @@
                     <div class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white p-6">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                                    <i class="fas fa-user-md text-white text-xl"></i>
-                                </div>
+                                @if(doctorData().image != ""){
+                                    <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                                        <img [src]="getImageDataUrl(doctorData()!.image)" alt="doctor {{doctorData()!.fullName}}" class="w-full h-full object-cover rounded-full">
+                                    </div>
+                                }
+                                @else {
+                                    <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                                        <i class="fas fa-user-md text-white text-xl"></i>
+                                    </div>
+                                }
                                 <div>
-                                    <h2 class="text-xl font-bold">Doctor Analysis #{{ $index + 1 }}</h2>
-                                    <p class="text-emerald-100">Medical Evaluation</p>
+                                    <h2 class="text-xl font-bold">Doctor: {{doctorData()!.fullName}}</h2>
+                                    <p class="text-emerald-100">Analysis against {{ doctorResponse.diseaseType }}</p>
                                 </div>
                             </div>
 

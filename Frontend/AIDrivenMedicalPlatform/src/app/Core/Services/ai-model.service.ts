@@ -31,4 +31,8 @@ export class AiModelService {
   getMedicalImageOwner(medicalImageId : any){
     return this.http.get(`${environment.apiBaseURL}/MedicalAIData/GetMedicalImageOwner/${medicalImageId}`);
   }
+
+  getAiAnalysisDoctorData(doctorId : string){
+    return this.http.get(`${environment.apiBaseURL}/MedicalAIData/GetAiAnalysisDoctorData/${doctorId}`);
+  }
 }

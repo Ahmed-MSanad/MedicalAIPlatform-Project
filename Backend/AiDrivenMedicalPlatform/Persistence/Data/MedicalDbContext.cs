@@ -29,7 +29,7 @@ namespace Persistence.Data
                 .ToTable("Admins"); // Separate table for Admin
 
             modelBuilder.Entity<AiAnalysis>().Property(ai => ai.image).IsRequired(false);
-            modelBuilder.Entity<AiAnalysis>().HasIndex(a => new { a.MedicalImageId, a.Diagnosis }).IsUnique();
+            modelBuilder.Entity<AiAnalysis>().HasIndex(a => new { a.MedicalImageId, a.DiseaseType }).IsUnique();
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }

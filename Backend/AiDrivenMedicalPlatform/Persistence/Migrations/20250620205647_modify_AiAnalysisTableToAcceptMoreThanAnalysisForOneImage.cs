@@ -5,7 +5,7 @@
 namespace MedicalProj.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class modifyMedicalImageToHaveManyAnalysisForEachIllness : Migration
+    public partial class modify_AiAnalysisTableToAcceptMoreThanAnalysisForOneImage : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,18 +14,17 @@ namespace MedicalProj.Data.Migrations
                 name: "IX_AiAnalyses_MedicalImageId",
                 table: "AiAnalyses");
 
-            migrationBuilder.AlterColumn<string>(
-                name: "Diagnosis",
+            migrationBuilder.AddColumn<string>(
+                name: "DiseaseType",
                 table: "AiAnalyses",
                 type: "nvarchar(450)",
                 nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                defaultValue: "");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AiAnalyses_MedicalImageId_Diagnosis",
+                name: "IX_AiAnalyses_MedicalImageId_DiseaseType",
                 table: "AiAnalyses",
-                columns: new[] { "MedicalImageId", "Diagnosis" },
+                columns: new[] { "MedicalImageId", "DiseaseType" },
                 unique: true);
         }
 
@@ -33,16 +32,12 @@ namespace MedicalProj.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropIndex(
-                name: "IX_AiAnalyses_MedicalImageId_Diagnosis",
+                name: "IX_AiAnalyses_MedicalImageId_DiseaseType",
                 table: "AiAnalyses");
 
-            migrationBuilder.AlterColumn<string>(
-                name: "Diagnosis",
-                table: "AiAnalyses",
-                type: "nvarchar(max)",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(450)");
+            migrationBuilder.DropColumn(
+                name: "DiseaseType",
+                table: "AiAnalyses");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AiAnalyses_MedicalImageId",

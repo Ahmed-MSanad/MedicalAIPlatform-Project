@@ -240,7 +240,7 @@ export class PatientDashboardComponent {
     })
   }
 
-  showDoctorResponse(medicalImageId : number){
-    this.router.navigate(['patient-doctorResponse', medicalImageId]);
+  showDoctorResponse(medicalImageId : number, doctorId: string | undefined){
+    this.router.navigate(['patient-doctorResponse', medicalImageId, doctorId]);
   }
 }

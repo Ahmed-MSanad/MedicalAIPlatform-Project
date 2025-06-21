@@ -12,8 +12,8 @@ using Persistence.Data;
 namespace MedicalProj.Data.Migrations
 {
     [DbContext(typeof(MedicalDbContext))]
-    [Migration("20250614022945_modify-MedicalImageToHaveManyAnalysisForEachIllness")]
-    partial class modifyMedicalImageToHaveManyAnalysisForEachIllness
+    [Migration("20250620205647_modify_AiAnalysisTableToAcceptMoreThanAnalysisForOneImage")]
+    partial class modify_AiAnalysisTableToAcceptMoreThanAnalysisForOneImage
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,6 +53,10 @@ namespace MedicalProj.Data.Migrations
 
                     b.Property<string>("Diagnosis")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DiseaseType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ExplanationDetails")
@@ -67,7 +71,7 @@ namespace MedicalProj.Data.Migrations
 
                     b.HasKey("AiAnalysisId");
 
-                    b.HasIndex("MedicalImageId", "Diagnosis")
+                    b.HasIndex("MedicalImageId", "DiseaseType")
                         .IsUnique();
 
                     b.ToTable("AiAnalyses");
