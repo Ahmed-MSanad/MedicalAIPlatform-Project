@@ -225,7 +225,8 @@
         "Enter your Password": "أدخل كلمة المرور",
         "Password is required!": "كلمة المرور مطلوبة!",
         "Error during login !!": "خطأ اثناء تسجيل الدخول !!",
-        "Login Failed": "لم ينجح تسجيل الدخول"
+        "Login Failed": "لم ينجح تسجيل الدخول",
+        "Forget Password": "نسيت كلمة المرور"
     },
     "feedback": {
         "Patient Feedback": "ملاحظات المريض",
@@ -420,5 +421,36 @@
         "No contact number provided": "لم يتم إدخال رقم للتواصل",
         "Family Medical History": "التاريخ الطبي العائلي",
         "No family medical history recorded": "لا يوجد سجل للتاريخ الطبي العائلي"
+    },
+    "password": {
+        "Reset Password": "إعادة تعيين كلمة المرور",
+        "Enter your new password to secure your account": "أدخل كلمة مرور جديدة لتأمين حسابك",
+        "New Password": "كلمة المرور الجديدة",
+        "Enter new password": "أدخل كلمة المرور الجديدة",
+        "New password is required": "كلمة المرور الجديدة مطلوبة",
+        "Password must be at least 6 characters and has at least 1 special character": "يجب أن تكون كلمة المرور 6 أحرف على الأقل وتحتوي على رمز خاص واحد على الأقل",
+        "Confirm Password": "تأكيد كلمة المرور",
+        "Confirm new password": "أكد كلمة المرور الجديدة",
+        "Please confirm your password": "يرجى تأكيد كلمة المرور",
+        "Passwords do not match": "كلمتا المرور غير متطابقتين",
+        "Password Strength:": "قوة كلمة المرور:",
+        "Resetting...": "جاري إعادة التعيين...",
+        "Password reset successfully!": "تمت إعادة تعيين كلمة المرور بنجاح!",
+        "Back to Login": "العودة إلى تسجيل الدخول",
+        "Reset Email is sent": "تم إرسال بريد إعادة التعيين",
+        "Error !!": "خطأ !!"
+    },
+    "forget": {
+        "Forgot Password?": "هل نسيت كلمة المرور؟",
+        "Don't worry, we'll send you reset instructions.": "لا تقلق، سنرسل لك تعليمات إعادة التعيين.",
+        "Email Address": "البريد الإلكتروني",
+        "Enter your email address": "أدخل عنوان بريدك الإلكتروني",
+        "Email is required": "البريد الإلكتروني مطلوب",
+        "Please enter a valid email address": "يرجى إدخال بريد إلكتروني صالح",
+        "Send Reset Instructions": "إرسال تعليمات إعادة التعيين",
+        "Sending...": "جاري الإرسال...",
+        "Back to Login": "العودة إلى تسجيل الدخول",
+        "Reset Email is sent": "تم إرسال بريد إعادة التعيين",
+        "Error !!": "خطأ !!"
     }
 }

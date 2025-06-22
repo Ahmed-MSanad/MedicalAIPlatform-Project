@@ -4,23 +4,29 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../Core/Services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslationService } from '../../../Core/Services/translation.service';
 
 @Component({
   selector: 'app-reset-password',
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, TranslateModule],
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.scss'
 })
-export class ResetPasswordComponent implements OnInit{
+export class ResetPasswordComponent implements OnInit {
   resetForm: FormGroup;
   showNewPassword = false;
   showConfirmPassword = false;
   isLoading = false;
   showSuccess = false;
+  currentLanguage: string = 'en';
+  showLang: boolean = false;
   private readonly authService = inject(AuthService);
   private readonly toastr = inject(ToastrService);
   private readonly activatedRouteService = inject(ActivatedRoute);
   private readonly routerService = inject(Router);
+  private readonly translation = inject(TranslateService);
+  private readonly _translate = inject(TranslationService);
 
   constructor(private fb: FormBuilder) {
     this.resetForm = this.fb.group({
@@ -36,12 +42,17 @@ export class ResetPasswordComponent implements OnInit{
       this.resetForm.get("email")?.setValue(paramList.get("email"));
       this.resetForm.get("token")?.setValue(paramList.get("token"));
     });
+
+    if (localStorage.getItem('lang') == 'ar') {
+      this.currentLanguage = 'ar';
+    }
+
   }
 
   passwordMatchValidator(form: FormGroup) {
     const newPassword = form.get('newPassword');
     const confirmPassword = form.get('confirmPassword');
-    
+
     if (newPassword?.value !== confirmPassword?.value) {
       return { passwordMismatch: true };
     }
@@ -71,14 +82,14 @@ export class ResetPasswordComponent implements OnInit{
   getStrengthBarClass(index: number): string {
     const strength = this.calculatePasswordStrength();
     const baseClass = 'h-2 flex-1 rounded-full transition-colors duration-300';
-    
+
     if (index < strength) {
       if (strength === 1) return `${baseClass} bg-red-500`;
       if (strength === 2) return `${baseClass} bg-yellow-500`;
       if (strength === 3) return `${baseClass} bg-blue-500`;
       if (strength === 4) return `${baseClass} bg-green-500`;
     }
-    
+
     return `${baseClass} bg-gray-600`;
   }
 
@@ -93,21 +104,29 @@ export class ResetPasswordComponent implements OnInit{
       console.log(this.resetForm.value);
       this.isLoading = true;
       this.showSuccess = false;
-      
+
       this.authService.resetPassword(this.resetForm.value).subscribe({
-        next:(res : any) => {
+        next: (res: any) => {
           console.log(res);
           this.showSuccess = true;
-          this.toastr.success(res.message,"Reset Email is sent");
+          this.toastr.success(res.message, this.translation.instant("password.Reset Email is sent"));
           this.isLoading = false;
           this.routerService.navigate(['/login']);
         },
-        error:(err) => {
+        error: (err) => {
           console.log(err.error);
-          this.toastr.error(err.error.error,"Error !!");
+          this.toastr.error(err.error.error, this.translation.instant("password.Error !!"));
           this.isLoading = false;
         }
       });
     }
+  }
+  toggleLanguage() {
+    this.showLang = !this.showLang;
+  }
+
+  switchLanguage(lang: string) {
+    this.currentLanguage = lang;
+    this._translate.changeLang(lang);
   }
 }

@@ -225,7 +225,8 @@
     "Enter your Password": "Enter your Password",
     "Password is required!": "Password is required!",
     "Error during login !!": "Error during login !!",
-    "Login Failed":"Login Failed"
+    "Login Failed": "Login Failed",
+    "Forget Password": "Forget Password"
   },
   "feedback": {
     "Patient Feedback": "Patient Feedback",
@@ -398,7 +399,7 @@
     "Loading medical analysis...": "Loading medical analysis...",
     "Please wait while we process your data": "Please wait while we process your data",
     "Doctor:": "Doctor:",
-    "Analysis against":"Analysis against"
+    "Analysis against": "Analysis against"
   },
   "model": {
     "Medical Image Analysis": "Medical Image Analysis",
@@ -438,5 +439,36 @@
     "Detailed feedback helps improve patient care and AI model accuracy": "Detailed feedback helps improve patient care and AI model accuracy",
     "Save Analysis": "Save Analysis",
     "All data is encrypted and complies with HIPAA regulations": "All data is encrypted and complies with HIPAA regulations"
+  },
+  "password": {
+    "Reset Password": "Reset Password",
+    "Enter your new password to secure your account": "Enter your new password to secure your account",
+    "New Password": "New Password",
+    "Enter new password": "Enter new password",
+    "New password is required": "New password is required",
+    "Password must be at least 6 characters and has at least 1 special character": "Password must be at least 6 characters and has at least 1 special character",
+    "Confirm Password": "Confirm Password",
+    "Confirm new password": "Confirm new password",
+    "Please confirm your password": "Please confirm your password",
+    "Passwords do not match": "Passwords do not match",
+    "Password Strength:": "Password Strength:",
+    "Resetting...": "Resetting...",
+    "Password reset successfully!": "Password reset successfully!",
+    "Back to Login": "Back to Login",
+    "Reset Email is sent":"Reset Email is sent",
+    "Error !!":"Error !!"
+  },
+  "forget": {
+    "Forgot Password?": "Forgot Password?",
+    "Don't worry, we'll send you reset instructions.": "Don't worry, we'll send you reset instructions.",
+    "Email Address": "Email Address",
+    "Enter your email address": "Enter your email address",
+    "Email is required": "Email is required",
+    "Please enter a valid email address": "Please enter a valid email address",
+    "Send Reset Instructions": "Send Reset Instructions",
+    "Sending...": "Sending...",
+    "Back to Login": "Back to Login",
+    "Reset Email is sent": "Reset Email is sent",
+    "Error !!":"Error !!"
   }
 }
