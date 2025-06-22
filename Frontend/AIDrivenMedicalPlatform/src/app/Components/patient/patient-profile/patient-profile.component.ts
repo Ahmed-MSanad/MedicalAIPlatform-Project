@@ -8,7 +8,7 @@ import { FormArray, FormBuilder, FormControl, ReactiveFormsModule, Validators } 
 import { ToastrService } from 'ngx-toastr';
 import { PatientService } from '../../../Core/Services/ForPatient/patient.service';
 import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-patient-profile',
@@ -22,6 +22,7 @@ export class PatientProfileComponent {
   private readonly _router = inject(Router);
   private readonly _auth = inject(AuthService);
   private readonly _toastr = inject(ToastrService);
+  private readonly _translate = inject(TranslateService);
 
   private readonly _formBuilder = inject(FormBuilder);
   profileForm = this._formBuilder.group({
@@ -83,8 +84,8 @@ export class PatientProfileComponent {
   }
 
   get patientPhones(): FormArray {
-  return this.profileForm.get('patientPhones') as FormArray;
-}
+    return this.profileForm.get('patientPhones') as FormArray;
+  }
 
   getPhoneControl(index: number): FormControl {
     return this.patientPhones.at(index) as FormControl;
@@ -98,10 +99,10 @@ export class PatientProfileComponent {
   }
 
   removePhone(index: number): void {
-  if (this.patientPhones.length > 1) {
-    this.patientPhones.removeAt(index);
+    if (this.patientPhones.length > 1) {
+      this.patientPhones.removeAt(index);
+    }
   }
-}
 
   ToggleEdit() {
     this.isEdit = !this.isEdit;
@@ -115,14 +116,18 @@ export class PatientProfileComponent {
   }
 
   DeleteUser() {
+    this.isLoading = true;
     this._user.deleteUserProfile().subscribe({
       next: () => {
-        this._toastr.success("User deleted successfully");
+
+        this.isLoading = false;
+        this._toastr.success(this._translate.instant("profile.User deleted successfully"));
         this._auth.deleteToken();
         this._router.navigateByUrl('/login');
       },
       error: (err: any) => {
-        this._toastr.error("Failed to delete user");
+        this.isLoading = false;
+        this._toastr.error(this._translate.instant("profile.Failed to delete user"));
         console.error(err);
       }
     });
@@ -133,12 +138,12 @@ export class PatientProfileComponent {
       this.isLoading = true;
       this._patient.updatePatientProfile(this.profileForm.value).subscribe({
         next: () => {
-          this._toastr.success("Profile updated successfully");
+          this._toastr.success(this._translate.instant("profile.Profile updated successfully"));
           this.isEdit = false;
           this.isLoading = false;
         },
         error: (err: any) => {
-          this._toastr.error("Failed to update profile");
+          this._toastr.error(this._translate.instant("profile.Failed to update profile"));
           this.CancelChanges();
           console.error(err);
           this.isLoading = false;
@@ -176,8 +181,8 @@ export class PatientProfileComponent {
   }
 
   validatePhone(control: FormControl, index: number): void {
-  if (control.invalid) {
-    control.markAsTouched();
+    if (control.invalid) {
+      control.markAsTouched();
+    }
   }
-}
 }

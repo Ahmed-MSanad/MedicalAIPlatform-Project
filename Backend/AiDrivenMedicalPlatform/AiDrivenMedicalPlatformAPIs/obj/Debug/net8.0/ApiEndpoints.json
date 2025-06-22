@@ -254,7 +254,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Shared.CheckEmailRequest",
+        "Type": "Shared.AuthenticationDtos.CheckEmailRequest",
         "IsRequired": true
       }
     ],
@@ -278,6 +278,22 @@
   },
   {
     "ContainingType": "Presentation.Controllers.AuthenticationController",
+    "Method": "ForgetPassword",
+    "RelativePath": "Authentication/ForgetPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emailRequest",
+        "Type": "Shared.AuthenticationDtos.CheckEmailRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.AuthenticationController",
     "Method": "PatientSignup",
     "RelativePath": "Authentication/PatientSignup",
     "HttpMethod": "POST",
@@ -287,6 +303,22 @@
       {
         "Name": "patientRegistrationModel",
         "Type": "Shared.AuthenticationDtos.PatientRegistrationModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.AuthenticationController",
+    "Method": "ResetPassword",
+    "RelativePath": "Authentication/ResetPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "resetPasswordDto",
+        "Type": "Shared.AuthenticationDtos.ResetPasswordDto",
         "IsRequired": true
       }
     ],
@@ -395,6 +427,32 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.MedicalAIDataController",
+    "Method": "GetAiAnalysisDoctorData",
+    "RelativePath": "MedicalAIData/GetAiAnalysisDoctorData/{doctorId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doctorId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Shared.DoctorDtos.DoctorDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Presentation.Controllers.MedicalAIDataController",
