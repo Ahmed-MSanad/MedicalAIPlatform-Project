@@ -395,7 +395,9 @@
         "Doctor hasn't responded yet, please try later": "لم يقم الطبيب بالرد بعد، يرجى المحاولة لاحقًا",
         "We'll notify you when available": "سوف نعلمك عند توفر النتيجة",
         "Loading medical analysis...": "جاري تحميل التحليل الطبي...",
-        "Please wait while we process your data": "يرجى الانتظار أثناء معالجة بياناتك"
+        "Please wait while we process your data": "يرجى الانتظار أثناء معالجة بياناتك",
+        "Doctor:": "دكتور:",
+        "Analysis against": "تحليل ضد"
     },
     "model": {
         "Medical Image Analysis": "تحليل الصورة الطبية",

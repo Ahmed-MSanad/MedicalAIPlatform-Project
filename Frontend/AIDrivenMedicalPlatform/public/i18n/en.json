@@ -396,7 +396,9 @@
     "Doctor hasn't responded yet, please try later": "Doctor hasn't responded yet, please try later",
     "We'll notify you when available": "We'll notify you when available",
     "Loading medical analysis...": "Loading medical analysis...",
-    "Please wait while we process your data": "Please wait while we process your data"
+    "Please wait while we process your data": "Please wait while we process your data",
+    "Doctor:": "Doctor:",
+    "Analysis against":"Analysis against"
   },
   "model": {
     "Medical Image Analysis": "Medical Image Analysis",
