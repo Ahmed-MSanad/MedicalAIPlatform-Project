@@ -4,20 +4,25 @@ import { INotification } from '../../Core/Interfaces/inotification';
 import { NotificationService } from '../../Core/Services/notification.service';
 import { ToastrService } from 'ngx-toastr';
 import { BackgroundLayoutComponent } from "../../Layouts/background-layout/background-layout.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-notification',
-  imports: [CommonModule, BackgroundLayoutComponent],
+  imports: [CommonModule, BackgroundLayoutComponent, TranslateModule],
   templateUrl: './notification.component.html',
   styleUrl: './notification.component.scss'
 })
 export class NotificationComponent implements OnInit{
   Notifications : INotification[] = [];
-  
+  isLoading: boolean = false;
+
+
   notificationService = inject(NotificationService);
   ngOnInit(): void {
+    this.isLoading = true;
     this.notificationService.getPatientNotifications().subscribe((res) => {
       // console.log(res);
+      this.isLoading = false;
       this.Notifications = res;
       // console.log(this.Notifications);
     });

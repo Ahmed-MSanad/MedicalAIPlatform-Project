@@ -1,9 +1,15 @@
+<div class="fixed inset-0 bg-black/30 flex items-center justify-center z-50" [class.hidden]="!isLoading">
+  <img src="./Logo.png"
+       alt="Loading"
+       class="w-48 h-48 animate-pulse drop-shadow-xl" />
+</div>
+
+
 <div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-8 px-4">
     <div class="max-w-6xl mx-auto">
         <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-gray-800 mb-4">Medical Image Analysis</h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Upload your medical image and select the condition type
-                for AI-powered analysis and classification.</p>
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">{{'model.Medical Image Analysis' | translate}}</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">{{'model.Upload your medical image and select the condition type for AI-powered analysis and classification.' | translate}}</p>
         </div>
 
         <!-- File Upload Section -->
@@ -11,7 +17,7 @@
             <div class="bg-white rounded-2xl shadow-xl p-8 mb-8 border border-gray-100">
                 <div class="space-y-4">
                     <label class="block text-lg font-semibold text-gray-700 mb-3">
-                        Upload Medical Image
+                        {{'model.Upload Medical Image' | translate}}
                     </label>
                     <div class="relative">
                         <input type="file" accept="image/*" (change)="onFileSelected($event)" class="hidden" #fileInput>
@@ -24,8 +30,8 @@
                                     </path>
                                 </svg>
                                 <div>
-                                    <p class="text-lg font-medium text-gray-700">Click to upload image</p>
-                                    <p class="text-sm text-gray-500 mt-1">PNG, JPG, JPEG up to 10MB</p>
+                                    <p class="text-lg font-medium text-gray-700">{{'model.Click to upload image' | translate}}</p>
+                                    <p class="text-sm text-gray-500 mt-1">{{'model.PNG, JPG, JPEG up to 10MB' | translate}}</p>
                                 </div>
                             </div>
                         </div>
@@ -38,7 +44,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            <span>Analyze Image</span>
+                            <span>{{'model.Analyze Image' | translate}}</span>
                         </span>
                     </button>
                 </div>
@@ -64,16 +70,16 @@
                                     </div>
                                 </div>
                                 <div class="flex-1">
-                                    <h1 class="text-2xl font-bold mb-2">{{ patientDetails?.fullName || 'Patient Name' }}
+                                    <h1 class="text-2xl font-bold mb-2">{{ patientDetails?.fullName || ('model.Patient Name' | translate) }}
                                     </h1>
                                     <div class="flex flex-col space-y-1 text-blue-100 text-sm">
                                         <div class="flex items-center space-x-2">
                                             <i class="fas fa-envelope"></i>
-                                            <span>{{ patientDetails?.email || 'N/A' }}</span>
+                                            <span>{{ patientDetails?.email || ('model.N/A' |translate) }}</span>
                                         </div>
                                         <div class="flex items-center space-x-2">
                                             <i class="fas fa-birthday-cake"></i>
-                                            <span>{{ patientDetails?.dateOfBirth || 'N/A' }}</span>
+                                            <span>{{ patientDetails?.dateOfBirth  || ('model.N/A' | translate) }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +91,7 @@
                         <div class="bg-gradient-to-r from-indigo-50 to-blue-50 px-6 py-4 border-b border-gray-100">
                             <h2 class="text-xl font-semibold text-gray-800 flex items-center">
                                 <i class="fas fa-user-circle text-indigo-600 mr-3"></i>
-                                Personal Information
+                                {{'model.Personal Information' | translate}}
                             </h2>
                         </div>
                         <div class="p-6 space-y-6">
@@ -96,7 +102,7 @@
                                         <i class="fas fa-venus-mars text-pink-600"></i>
                                     </div>
                                     <div class="flex-1">
-                                        <h3 class="font-medium text-gray-900 mb-1">Gender</h3>
+                                        <h3 class="font-medium text-gray-900 mb-1">{{'model.Gender' | translate}}</h3>
                                         <p class="text-gray-600">
                                             @if(patientDetails?.gender){
                                                 <span class="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-sm">
@@ -104,7 +110,7 @@
                                                 </span>
                                             }
                                             @else {
-                                                <span class="text-gray-500">Not specified</span>
+                                                <span class="text-gray-500">{{'model.Not specified' | translate}}</span>
                                             }
                                         </p>
                                     </div>
@@ -116,8 +122,8 @@
                                         <i class="fas fa-briefcase text-green-600"></i>
                                     </div>
                                     <div class="flex-1">
-                                        <h3 class="font-medium text-gray-900 mb-1">Occupation</h3>
-                                        <p class="text-gray-600">{{ patientDetails?.occupation || 'Not specified' }}</p>
+                                        <h3 class="font-medium text-gray-900 mb-1">{{'model.Occupation' | translate}}</h3>
+                                        <p class="text-gray-600">{{ patientDetails?.occupation || ('Not specified' | translate) }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -128,8 +134,8 @@
                                     <i class="fas fa-map-marker-alt text-purple-600"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <h3 class="font-medium text-gray-900 mb-1">Address</h3>
-                                    <p class="text-gray-600 leading-relaxed">{{ patientDetails?.address || 'Not provided' }}
+                                    <h3 class="font-medium text-gray-900 mb-1">{{'model.Address' | translate}}</h3>
+                                    <p class="text-gray-600 leading-relaxed">{{ patientDetails?.address || ('modal.Not provided' | translate )}}
                                     </p>
                                 </div>
                             </div>
@@ -140,14 +146,14 @@
                                     <i class="fas fa-phone text-orange-600"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <h3 class="font-medium text-gray-900 mb-1">Phone Number</h3>
+                                    <h3 class="font-medium text-gray-900 mb-1">{{'model.Phone Number' | translate}}</h3>
                                     <div class="space-y-2">
                                         <div class="flex items-center space-x-2">
                                             <i class="fas fa-phone-alt text-orange-500 text-sm"></i>
                                             <span class="text-gray-600">{{ patientDetails.phone }}</span>
                                         </div>
                                     </div>
-                                    <p *ngIf="!patientDetails?.phone" class="text-gray-500">No phone numbers provided</p>
+                                    <p *ngIf="!patientDetails?.phone" class="text-gray-500">{{'model.No phone numbers provided' | translate}}</p>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +163,7 @@
                         <div class="bg-gradient-to-r from-red-50 to-orange-50 px-6 py-4 border-b border-gray-100">
                             <h2 class="text-xl font-semibold text-gray-800 flex items-center">
                                 <i class="fas fa-exclamation-triangle text-red-600 mr-3"></i>
-                                Emergency Contact
+                                {{'model.Emergency Contact' | translate}}
                             </h2>
                         </div>
                         <div class="p-6 space-y-4">
@@ -167,13 +173,13 @@
                                     <i class="fas fa-user-friends text-red-600 text-2xl"></i>
                                 </div>
                                 <h3 class="font-semibold text-gray-900 text-lg mb-2">
-                                    {{ patientDetails?.emergencyContactName || 'Not provided' }}
+                                    {{ patientDetails?.emergencyContactName || ('model.Not provided' | translate) }}
                                 </h3>
                                 <div class="flex items-center justify-center space-x-2 text-gray-600" *ngIf="patientDetails?.emergencyContactNumber">
                                     <i class="fas fa-phone"></i>
                                     <span>{{ patientDetails.emergencyContactNumber }}</span>
                                 </div>
-                                <p *ngIf="!patientDetails?.emergencyContactNumber" class="text-gray-500">No contact number provided</p>
+                                <p *ngIf="!patientDetails?.emergencyContactNumber" class="text-gray-500">{{'model.No contact number provided' | translate}}</p>
                             </div>
                         </div>
                     </div>
@@ -182,7 +188,7 @@
                         <div class="bg-gradient-to-r from-teal-50 to-cyan-50 px-4 py-3 border-b border-gray-100">
                             <h2 class="text-lg font-semibold text-gray-800 flex items-center">
                                 <i class="fas fa-users text-teal-600 mr-2"></i>
-                                Family Medical History
+                                {{'model.Family Medical History' | translate}}
                             </h2>
                         </div>
                         <div class="p-4">
@@ -196,7 +202,7 @@
                                             {{ patientDetails.familyMedicalHistory }}
                                         </p>
                                         <p class="text-gray-500 italic text-sm" *ngIf="!patientDetails?.familyMedicalHistory">
-                                            No family medical history recorded
+                                            {{'model.No family medical history recorded' |translate}}
                                         </p>
                                     </div>
                                 </div>
@@ -208,7 +214,7 @@
                         <div class="bg-gradient-to-r from-amber-50 to-yellow-50 px-4 py-3 border-b border-gray-100">
                             <h2 class="text-lg font-semibold text-gray-800 flex items-center">
                                 <i class="fas fa-notes-medical text-amber-600 mr-2"></i>
-                                Past Medical History
+                                {{'model.Past Medical History' |translate}}
                             </h2>
                         </div>
                         <div class="p-4">
@@ -222,7 +228,7 @@
                                             {{ patientDetails.pastMedicalHistory }}
                                         </p>
                                         <p class="text-gray-500 italic text-sm" *ngIf="!patientDetails?.pastMedicalHistory">
-                                            No past medical history recorded
+                                            {{'model.No past medical history recorded' | translate}}
                                         </p>
                                     </div>
                                 </div>
@@ -234,7 +240,7 @@
             @else{
                 <div class="flex items-center justify-center">
                     <p class="p-4 text-4xl">
-                        No Patient Details Provided Here.
+                        {{'model.No Patient Details Provided Here.' |translate}}
                     </p>
                 </div>
             }
@@ -248,7 +254,7 @@
                                 d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
                             </path>
                         </svg>
-                        Original Image
+                        {{'model.Original Image' | translate}}
                     </h3>
                 </div>
                 <div class="p-4">
@@ -268,12 +274,12 @@
                         <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
                             <i class="fas fa-check-circle text-3xl text-green-600"></i>
                         </div>
-                        <h2 class="text-3xl font-bold text-gray-800 mb-2">Analysis Complete</h2>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-2">{{'model.Analysis Complete' | translate}}</h2>
                         <h3 class="text-xl font-bold text-gray-800 mb-2">
-                            The AI model has completed its analysis and the result is: <br />
+                            {{'model.The AI model has completed its analysis and the result is:' | translate}} <br />
                             @if(classification()[i] !== 'normal'){
                                 <div class="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-full font-semibold text-lg shadow-lg">
-                                    {{ classification()[i] }} with prediction probability: {{predicted_probability()[i]}}
+                                    {{ classification()[i] }} {{'model.with prediction probability:' | translate}} {{predicted_probability()[i]}}
                                 </div>
                             }
                             @else {
@@ -295,7 +301,7 @@
                                     d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
                                 </path>
                             </svg>
-                            AI Saliency Map
+                            {{'model.AI Saliency Map' | translate}}
                         </h3>
                     </div>
                     <div class="p-4">
@@ -330,11 +336,11 @@
                             </div>
     
                             <!-- Main text -->
-                            <h3 class="text-xl font-semibold text-slate-700 mb-2">No Image Available</h3>
+                            <h3 class="text-xl font-semibold text-slate-700 mb-2">{{'model.No Image Available' | translate}}</h3>
     
                             <!-- Subtitle -->
                             <p class="text-sm text-slate-500 leading-relaxed">
-                                This case is normal so doesn't have an image
+                                {{"model.This case is normal so doesn't have an image" |translate}}
                             </p>
     
                             <!-- Decorative line -->
@@ -357,9 +363,9 @@
                     <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
                         <i class="fas fa-file-medical text-2xl text-blue-600"></i>
                     </div>
-                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Medical Analysis Review</h2>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">{{'model.Medical Analysis Review' | translate}}</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">
-                        Provide professional feedback and save the medical image analysis for patient records
+                        {{'model.Provide professional feedback and save the medical image analysis for patient records' | translate}}
                     </p>
                 </div>
     
@@ -367,7 +373,7 @@
                     <div class="space-y-4">
                         <label for="ExplanationDetails" class="block text-lg font-semibold text-gray-700 flex items-center">
                             <i class="fas fa-user-md mr-2 text-green-600"></i>
-                            Doctor's Professional Feedback
+                            {{"model.Doctor's Professional Feedback" |translate}}
                         </label>
                         <div class="relative">
                             <textarea formControlName="ExplanationDetails" name="Doctor_Feedback" id="ExplanationDetails" rows="6" placeholder="Enter your professional assessment, observations, and recommendations based on the AI analysis..." class="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-white text-gray-700 resize-none placeholder:text-gray-400 font-medium leading-relaxed"></textarea>
@@ -377,7 +383,7 @@
                         </div>
                         <p class="text-sm text-gray-500 flex items-center">
                             <i class="fas fa-info-circle mr-1 text-blue-500"></i>
-                            Detailed feedback helps improve patient care and AI model accuracy
+                            {{'model.Detailed feedback helps improve patient care and AI model accuracy' | translate}}
                         </p>
                     </div>
     
@@ -388,10 +394,10 @@
                                         transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg hover:from-blue-700 hover:to-indigo-800
                                         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none
                                         focus:outline-none focus:ring-4 focus:ring-blue-200 min-w-[200px]"
-                                [disabled]="!aiModelForm.valid">
+                                >
                                 <span class="flex items-center justify-center space-x-2">
                                     <i class="fas fa-save"></i>
-                                    <span>Save Analysis</span>
+                                    <span>{{'model.Save Analysis' | translate}}</span>
                                 </span>
                             </button>
                         </div>
@@ -401,7 +407,7 @@
                             <p
                                 class="text-sm text-gray-500 bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 inline-block">
                                 <i class="fas fa-lock mr-2 text-gray-400"></i>
-                                All data is encrypted and complies with HIPAA regulations
+                                {{'model.All data is encrypted and complies with HIPAA regulations' | translate}}
                             </p>
                         </div>
                     </div>

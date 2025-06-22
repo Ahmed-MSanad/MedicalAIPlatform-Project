@@ -19,7 +19,7 @@ namespace Services
             {
                 Enumerable.Empty<ScheduleDto>();
             }
-
+            schedules = schedules?.OrderBy(schedule => (int)Enum.Parse<DayOfWeek>(schedule.Day));
             var schedulesDtos = mapper.Map<IEnumerable<ScheduleDto>>(schedules);
 
             return schedulesDtos;

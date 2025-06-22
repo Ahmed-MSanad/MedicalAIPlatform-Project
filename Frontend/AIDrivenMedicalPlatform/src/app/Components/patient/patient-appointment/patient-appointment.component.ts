@@ -8,10 +8,11 @@ import { NotificationService } from '../../../Core/Services/notification.service
 import { ENotificationType } from '../../../Core/Enums/enotification-type';
 import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
 import { MedicalImageService } from '../../../Core/Services/medical-image.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-patient-appointment',
-  imports: [FormsModule, BackgroundLayoutComponent],
+  imports: [FormsModule, BackgroundLayoutComponent, TranslateModule],
   templateUrl: './patient-appointment.component.html',
   styleUrl: './patient-appointment.component.scss'
 })
@@ -20,6 +21,7 @@ export class PatientAppointmentComponent {
   private _appointmentService = inject(AppointmentService);
   private _medicalImageService = inject(MedicalImageService);
   private _toastr = inject(ToastrService);
+  private _translate = inject(TranslateService);
 
   doctors: Doctor[] = [];
   error: string | null = null;
@@ -49,12 +51,12 @@ export class PatientAppointmentComponent {
 
 
   ngOnInit() {
-    this.isLoading = true;
     this.searchDoctors();
     this.setDateConstraints();
   }
 
   searchDoctors() {
+    this.isLoading = true;
     this._appointmentService.GetDoctors(this.filters.name, this.filters.speciality, this.filters.minRate, this.filters.cost, this.filters.workplace).subscribe({
       next: (res: any) => {
         this.doctors = res;
@@ -114,13 +116,16 @@ export class PatientAppointmentComponent {
 
   getTimeSlots() {
     this.timeSlots = [];
+    this.isLoading = true;
     if (this.date) {
       this._appointmentService.getAvailableTimeSlots(this.id, this.date).subscribe({
         next: (res: any) => {
           this.timeSlots = res
+          this.isLoading = false;
         },
         error: (err) => {
           console.log(err)
+          this.isLoading = false;
         }
       })
     }
@@ -159,14 +164,14 @@ export class PatientAppointmentComponent {
         Did: this.id
       }).subscribe({
         next: (res: any) => {
-          this._toastr.success(res.message);
+          this._toastr.success(this._translate.instant("appointment.Appointment Created Successfully"));
           this.showModal = false;
           this.time = undefined;
           this.date = undefined;
           this.description = undefined;
           this.notificationService.sendNotification(ENotificationType.Success).subscribe({
             next: (res) => {
-              this._toastr.success(res.message);
+              this._toastr.success(this._translate.instant("appointment.Email sent successfully"));
               console.log(res.message);
             },
             error: (error) => {
@@ -184,7 +189,7 @@ export class PatientAppointmentComponent {
       })
     }
     else {
-      this._toastr.error("Please Select Date and Time");
+      this._toastr.error(this._translate.instant("appointment.Please Select Date and Time"));
     }
   }
 
@@ -223,7 +228,7 @@ export class PatientAppointmentComponent {
         this.medicalImage = null
       },
       error:(err)=>{
-        this._toastr.error("Couldn't Add Image")
+        this._toastr.error(this._translate.instant("appointment.Couldn't Add Image"))
         this.imageSrc = ''
         this.medicalImage = null
       }

@@ -8,9 +8,10 @@ import { FormArray, FormBuilder, FormControl, ReactiveFormsModule, Validators } 
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from '../../../Core/Services/ForAdmin/admin.service';
 import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-admin-profile',
-  imports: [GenderPipe, ReactiveFormsModule, BackgroundLayoutComponent],
+  imports: [GenderPipe, ReactiveFormsModule, BackgroundLayoutComponent, TranslateModule],
   templateUrl: './admin-profile.component.html',
   styleUrl: './admin-profile.component.scss'
 })
@@ -21,6 +22,7 @@ export class AdminProfileComponent {
   private readonly _router = inject(Router);
   private readonly _auth = inject(AuthService);
   private readonly _toastr = inject(ToastrService);
+  private readonly _translate = inject(TranslateService);
 
   private readonly _formBuilder = inject(FormBuilder);
   profileForm = this._formBuilder.group({
@@ -70,7 +72,7 @@ export class AdminProfileComponent {
         this.oldData = this.profileForm.value;
       },
       error: (err: any) => {
-        this._toastr.error('Failed to load profile');
+        this._toastr.error(this._translate.instant('profile.Failed to load profile'));
         console.error(err);
         this.isLoading = false;
       }
@@ -110,14 +112,17 @@ export class AdminProfileComponent {
   }
 
   DeleteUser() {
+    this.isLoading = true;
     this._user.deleteUserProfile().subscribe({
       next: () => {
-        this._toastr.success("User deleted successfully");
+        this.isLoading = false;
+        this._toastr.success(this._translate.instant("profile.User deleted successfully"));
         this._auth.deleteToken();
         this._router.navigateByUrl('/login');
       },
       error: (err: any) => {
-        this._toastr.error("Failed to delete user");
+        this.isLoading = false;
+        this._toastr.error(this._translate.instant("profile.Failed to delete user"));
         console.error(err);
       }
     });
@@ -128,19 +133,19 @@ export class AdminProfileComponent {
       this.isLoading = true;
       this._admin.updateAdminProfile(this.profileForm.value).subscribe({
         next: () => {
-          this._toastr.success("Profile updated successfully");
+          this._toastr.success(this._translate.instant("profile.Profile updated successfully"));
           this.isEdit = false;
           this.isLoading = false;
         },
         error: (err: any) => {
-          this._toastr.error("Failed to update profile");
+          this._toastr.error(this._translate.instant("profile.Failed to update profile"));
           this.CancelChanges();
           console.error(err);
           this.isLoading = false;
         }
       });
     } else {
-      this._toastr.warning("Please fill all required fields correctly");
+      this._toastr.warning(this._translate.instant("profile.Please fill all required fields correctly"));
     }
   }
 
