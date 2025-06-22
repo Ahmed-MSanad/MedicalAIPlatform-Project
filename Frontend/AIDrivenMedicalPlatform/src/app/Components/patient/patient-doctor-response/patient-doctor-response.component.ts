@@ -69,17 +69,6 @@ export class PatientDoctorResponseComponent implements OnInit{
     });
   }
 
-  getDoctorData(){
-    this.aiModelService.getAiAnalysisDoctorData(this.doctorId).subscribe({
-      next:(res : any) => {
-        this.doctorData.set(res);
-        console.log("doctorData", this.doctorData);
-      },
-      error:(err) => {
-        console.log(err.error);
-      }
-    });
-  }
 
   getImageDataUrl(base64String: string): string {
     return `data:image/png;base64,${base64String}`;
