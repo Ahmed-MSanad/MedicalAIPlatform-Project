@@ -2,16 +2,9 @@
 
 
 <div class="fixed inset-0 bg-black/30 flex items-center justify-center z-50" [class.hidden]="!isLoading">
-    <svg aria-hidden="true" class="w-12 h-12 text-gray-300 animate-spin dark:text-gray-500 fill-blue-600"
-        viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-            fill="currentColor" />
-        <path
-            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-            fill="currentFill" />
-    </svg>
-    <span class="sr-only">Loading...</span>
+  <img src="./Logo.png"
+       alt="Loading"
+       class="w-48 h-48 animate-pulse drop-shadow-xl" />
 </div>
 
 
@@ -34,18 +27,22 @@
                             </svg>
                         </div>
                         <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                            <h3 class="text-base font-semibold text-gray-900" id="modal-title">Cancel Appointment</h3>
+                            <h3 class="text-base font-semibold text-gray-900" id="modal-title">{{"dashboard.Cancel
+                                Appointment" | translate}}</h3>
                             <div class="mt-2">
-                                <p class="text-sm text-gray-500">Are you sure you want to cancel the appointment?</p>
+                                <p class="text-sm text-gray-500">{{"dashboard.Are you sure you want to cancel the
+                                    appointment?" | translate}}</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                     <button type="button" (click)="CancelAppointment()"
-                        class="inline-flex cursor-pointer w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 sm:ml-3 sm:w-auto">Delete</button>
+                        class="inline-flex cursor-pointer w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 sm:ml-3 sm:w-auto">{{"dashboard.Delete"
+                        | translate}}</button>
                     <button type="button" (click)="CloseDelete()"
-                        class="mt-3 cursor-pointer inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-100 sm:mt-0 sm:w-auto">Cancel</button>
+                        class="mt-3 cursor-pointer inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-100 sm:mt-0 sm:w-auto">{{"dashboard.Cancel"
+                        | translate}}</button>
                 </div>
             </div>
         </div>
@@ -55,10 +52,10 @@
 
 
 @if (showInfo) {
-<div class="fixed inset-0 z-50 ps-10 flex items-center justify-center p-4 bg-black bg-opacity-50">
-    <div class="bg-white ms-13 me-3 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
+    <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         <div class="flex items-center justify-between p-4 border-b border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-800">Appointment Details</h3>
+            <h3 class="text-lg font-semibold text-gray-800">{{"dashboard.Appointment Details" | translate}}</h3>
             <button (click)="CloseInfo()" class="text-gray-500 hover:text-gray-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -71,35 +68,43 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="bg-gray-50 p-4 rounded-lg">
-                    <h4 class="text-sm font-medium text-gray-500 mb-2">Patient Information</h4>
+                    <h4 class="text-sm font-medium text-gray-500 mb-2">{{"dashboard.Patient Information" | translate}}
+                    </h4>
                     <div class="space-y-2">
-                        <p class="text-gray-800"><span class="font-semibold">Name:</span> {{ appointmentInfo.patientName
+                        <p class="text-gray-800"><span class="font-semibold">{{"dashboard.Name:" | translate}}</span> {{
+                            appointmentInfo.patientName
                             }}</p>
                     </div>
                 </div>
 
                 <div class="bg-gray-50 p-4 rounded-lg">
-                    <h4 class="text-sm font-medium text-gray-500 mb-2">Doctor Information</h4>
+                    <h4 class="text-sm font-medium text-gray-500 mb-2">{{"dashboard.Doctor Information" | translate}}
+                    </h4>
                     <div class="space-y-2">
-                        <p class="text-gray-800"><span class="font-semibold">Name:</span> {{ appointmentInfo.doctorName
+                        <p class="text-gray-800"><span class="font-semibold">{{"dashboard.Name:" | translate}}</span> {{
+                            appointmentInfo.doctorName
                             }}</p>
                     </div>
                 </div>
             </div>
 
             <div class="bg-gray-50 p-4 rounded-lg">
-                <h4 class="text-sm font-medium text-gray-500 mb-2">Appointment Details</h4>
+                <h4 class="text-sm font-medium text-gray-500 mb-2">{{"dashboard.Appointment Details" | translate}}</h4>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <p class="text-gray-800"><span class="font-semibold">Date:</span> {{ appointmentInfo.date |
+                        <p class="text-gray-800"><span class="font-semibold">{{"dashboard.Date:" | translate}}</span> {{
+                            appointmentInfo.date |
                             date:'mediumDate' }}</p>
-                        <p class="text-gray-800"><span class="font-semibold">Time:</span> {{ appointmentInfo.date |
+                        <p class="text-gray-800"><span class="font-semibold">{{"dashboard.Time:" | translate}}</span> {{
+                            appointmentInfo.date |
                             date:'shortTime' }}</p>
                     </div>
                     <div>
-                        <p class="text-gray-800"><span class="font-semibold">Location:</span> {{
+                        <p class="text-gray-800"><span class="font-semibold">{{"dashboard.Location:" |
+                                translate}}</span> {{
                             appointmentInfo.location }}</p>
-                        <p class="text-gray-800"><span class="font-semibold">Cost:</span> {{ appointmentInfo.cost }} EGP
+                        <p class="text-gray-800"><span class="font-semibold">{{"dashboard.Cost:" | translate}}</span> {{
+                            appointmentInfo.cost }} EGP
                         </p>
                     </div>
                 </div>
@@ -108,51 +113,54 @@
 
             @if(status == 0){
             <div class="mt-4">
-                <h3 class="text-sm font-medium text-gray-500 mb-2">Medical Image:</h3>
-                <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 flex justify-center">
+                <h3 class="text-sm font-medium text-gray-500 mb-2">{{"dashboard.Medical Image:" |
+                    translate}}</h3>
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-4">
                     @if (medicalImage) {
-                    <div class="relative">
+                    <div class="flex flex-col items-center">
                         <img [src]="imageSrc" alt="Medical image" class="max-h-64 max-w-full object-contain rounded">
                         <div class="flex justify-center mt-2 gap-2">
                             <button (click)="triggerFileInput()"
-                                    class="inline-flex items-center px-4 py-2 text-xs font-semibold text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg shadow-lg hover:from-blue-600 hover:to-blue-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transform transition-all duration-200 hover:scale-105 active:scale-95">
+                                class="inline-flex items-center px-4 py-2 text-xs font-semibold text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg shadow-lg hover:from-blue-600 hover:to-blue-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transform transition-all duration-200 hover:scale-105 active:scale-95">
                                 <i class="fas fa-exchange-alt mr-2"></i>
-                                Change Image
+                                {{"dashboard.Change Image" | translate}}
                             </button>
 
                             <button (click)="removeMedicalImage(this.medicalImageId)"
-                                    class="inline-flex items-center px-4 py-2 text-xs font-semibold text-red-700 bg-gradient-to-r from-red-50 to-red-100 border border-red-200 rounded-lg shadow-md hover:from-red-100 hover:to-red-200 hover:border-red-300 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transform transition-all duration-200 hover:scale-105 active:scale-95">
+                                class="inline-flex items-center px-4 py-2 text-xs font-semibold text-red-700 bg-gradient-to-r from-red-50 to-red-100 border border-red-200 rounded-lg shadow-md hover:from-red-100 hover:to-red-200 hover:border-red-300 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transform transition-all duration-200 hover:scale-105 active:scale-95">
                                 <i class="fas fa-trash-alt mr-2"></i>
-                                Remove Image
+                                {{"dashboard.Remove Image" | translate}}
                             </button>
 
                             <button (click)="showDoctorResponse(this.medicalImageId, this.doctorId)"
                                     class="inline-flex items-center px-4 py-2 text-xs font-semibold text-emerald-700 bg-gradient-to-r from-emerald-50 to-emerald-100 border border-emerald-200 rounded-lg shadow-md hover:from-emerald-100 hover:to-emerald-200 hover:border-emerald-300 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transform transition-all duration-200 hover:scale-105 active:scale-95">
                                 <i class="fas fa-user-md mr-2"></i>
-                                Show Doctor Response
+                                {{"dashboard.Show Doctor Response" | translate}}
                             </button>
                         </div>
-                        <input #fileInput type="file" (change)="ChangeImage($event,true)" accept="image/*" class="hidden">
+                        <input #fileInput type="file" (change)="ChangeImage($event,true)" accept="image/*"
+                            class="hidden">
                     </div>
                     } @else {
-                    <label class="flex flex-col items-center justify-center cursor-pointer">
-                        <svg class="w-12 h-12 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        <p class="text-sm text-gray-500">Click to upload medical image</p>
-                        <input type="file" (change)="ChangeImage($event,false)" accept="image/*" class="hidden">
-                    </label>
+                    <div class="flex justify-center">
+                        <label class="flex flex-col items-center justify-center cursor-pointer">
+                            <svg class="w-12 h-12 mb-3 text-gray-400" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <p class="text-sm text-gray-500">Click to upload medical image</p>
+                            <input type="file" (change)="ChangeImage($event,false)" accept="image/*" class="hidden">
+                        </label>
+                    </div>
                     }
                 </div>
             </div>
-
-
             }
             @else {
             @if (medicalImage) {
             <div class="mt-4">
-                <h3 class="text-sm font-medium text-gray-500 mb-2">Medical Image:</h3>
+                <h3 class="text-sm font-medium text-gray-500 mb-2">{{"dashboard.Medical Image:" | translate}}</h3>
                 <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 flex justify-center">
                     <div class="relative">
                         <img [src]="imageSrc" alt="Medical image" class="max-h-64 max-w-full object-contain rounded">
@@ -164,9 +172,11 @@
 
 
             <div class="bg-gray-50 p-4 rounded-lg">
-                <h4 class="text-sm font-medium text-gray-500 mb-2">Description</h4>
-                <p class="text-gray-800 whitespace-pre-line">{{ appointmentInfo.description || 'No description provided'
-                    }}</p>
+                <h4 class="text-sm font-medium text-gray-500 mb-2">{{"dashboard.Description" | translate}}</h4>
+                <p class="text-gray-800 whitespace-pre-line">{{ appointmentInfo.description || 'dashboard.No description
+                    provided'
+                    | translate}}
+                <p>
             </div>
         </div>
     </div>
@@ -179,8 +189,8 @@
     <div class="bg-white ml-8 md:ml-0 rounded-xl shadow-xl max-w-md w-full p-6">
 
         <div class="text-center mb-6">
-            <h3 class="text-xl font-semibold text-gray-900">Rate The Doctor</h3>
-            <p class="text-gray-500 mt-1">How would you rate the doctor?</p>
+            <h3 class="text-xl font-semibold text-gray-900">{{"dashboard.Rate The Doctor" | translate}}</h3>
+            <p class="text-gray-500 mt-1">{{"dashboard.How would you rate the doctor?" | translate}}</p>
         </div>
 
         <div class="flex justify-center mb-8">
@@ -197,11 +207,11 @@
         <div class="flex justify-end space-x-3">
             <button (click)="CloseRating()"
                 class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                Cancel
+                {{"dashboard.Cancel" | translate}}
             </button>
             <button (click)="SubmitRating()" [disabled]="!rating"
                 class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed">
-                Send Rating
+                {{"dashboard.Send Rating" | translate}}
             </button>
         </div>
     </div>
@@ -211,11 +221,12 @@
 <div class="relative h-screen -m-4 overflow-hidden">
     <div class="absolute inset-0 flex flex-col md:flex-row md:items-center px-4 md:pl-16 md:pr-16">
         <div class="text-white text-center md:text-start my-5">
-            <h1 class="text-4xl font-bold mb-4">Welcome Back 👋</h1>
-            <p class="text-lg text-gray-200 mb-6">Start exploring our features and discover what you can do.</p>
+            <h1 class="text-4xl font-bold mb-4">{{"dashboard.Welcome Back 👋" | translate}}</h1>
+            <p class="text-lg text-gray-200 mb-6">{{"dashboard.Start exploring our features and discover what you can
+                do." | translate}}</p>
             <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg cursor-pointer shadow"
                 [routerLink]="['/PatientAppointment']">
-                Make an Appointment
+                {{"dashboard.Make an Appointment" | translate}}
             </button>
         </div>
 
@@ -228,7 +239,7 @@
                     <button
                         class="relative z-10 flex h-10 items-center justify-center rounded-r-full px-6 text-sm font-medium transition-colors"
                         [class.text-white]="status == 0" [class.text-gray-600]="status != 0" (click)="SelectStatus(0)">
-                        Scheduled
+                        {{"dashboard.Scheduled" | translate}}
                     </button>
 
 
@@ -238,12 +249,15 @@
                     <button
                         class="relative z-10 flex h-10 items-center justify-center rounded-l-full px-6 text-sm font-medium transition-colors"
                         [class.text-white]="status == 1" [class.text-gray-600]="status != 1" (click)="SelectStatus(1)">
-                        Completed
+                        {{"dashboard.Completed" | translate}}
                     </button>
 
-                    <div class="absolute left-1 top-1 h-10 rounded-full bg-blue-500 transition-all duration-300"
-                        [class]="status == 1 ? 'w-[calc(50%-0.25rem)] transform translate-x-full' : 'w-[calc(50%-0.5rem)] transform -translate-x-0'">
+                    <div class="absolute start-1 top-1 h-10 rounded-full bg-blue-500 transition-all duration-300"
+                        [ngClass]="status == 1 
+       ? (isRtl() ? 'w-[calc(50%-0.25rem)] -translate-x-full' : 'w-[calc(50%-0.25rem)] translate-x-full') 
+       : (isRtl() ? 'w-[calc(50%-0.5rem)] translate-x-0' : 'w-[calc(50%-0.5rem)] -translate-x-0')">
                     </div>
+
                 </div>
             </div>
 
@@ -270,7 +284,8 @@
 
                                     <div class="mb-4">
                                         <div class="text-lg font-semibold mb-1">{{appointment.patientName}}</div>
-                                        <div class="text-sm text-gray-600">with Dr. {{appointment.doctorName}}</div>
+                                        <div class="text-sm text-gray-600">{{"dashboard.with Dr." | translate}}
+                                            {{appointment.doctorName}}</div>
                                     </div>
 
                                     <div class="flex items-center mb-3">
@@ -283,15 +298,16 @@
                                     </div>
 
                                     <div class="flex justify-between items-center pt-3 border-t border-gray-200">
-                                        <div class="text-sm text-gray-600">Cost</div>
-                                        <div class="text-lg font-bold text-indigo-400">{{appointment.cost}} EGP</div>
+                                        <div class="text-sm text-gray-600">{{"dashboard.Cost" | translate}}</div>
+                                        <div class="text-lg font-bold text-indigo-400">{{appointment.cost}}
+                                            {{"dashboard.EGP" | translate}}</div>
                                     </div>
                                     @if(status == 1 && appointment.isRated==false){
                                     <div class="w-full font-bold text-white mt-2">
                                         <button
                                             class="text-center rounded-lg bg-blue-500 w-full py-2 cursor-pointer hover:bg-blue-600"
-                                            (click)="OpenRating($event,appointment.id,appointment.did)">Rate
-                                            the Doctor</button>
+                                            (click)="OpenRating($event,appointment.id,appointment.did)">{{"dashboard.Rate
+                                            the Doctor" | translate}}</button>
                                     </div>
                                     }
                                 </div>
@@ -304,7 +320,8 @@
                 <ng-container>
                     <ng-template carouselSlide>
                         <div class="flex justify-center">
-                            <p class="text-sm font-bold text-white">You don't have any appointments</p>
+                            <p class="text-sm font-bold text-white">{{"dashboard.You don't have any appointments" |
+                                translate}}</p>
                         </div>
                     </ng-template>
                 </ng-container>

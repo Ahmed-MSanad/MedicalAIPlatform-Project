@@ -9,18 +9,21 @@ import { AuthService } from '../../Core/Services/auth.service';
 import { claimReq } from '../../Core/utils/claimReq-utils';
 import { HideIfClaimsNotMetDirective } from '../../Core/directives/hide-if-claims-not-met.directive';
 import { BackgroundLayoutComponent } from "../../Layouts/background-layout/background-layout.component";
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-feedback',
-  imports: [NgClass, DatePipe, HideIfClaimsNotMetDirective, BackgroundLayoutComponent],
+  imports: [NgClass, DatePipe, HideIfClaimsNotMetDirective, BackgroundLayoutComponent, TranslateModule],
   templateUrl: './feedback.component.html',
   styleUrl: './feedback.component.scss'
 })
-export class FeedbackComponent implements OnInit{
+export class FeedbackComponent implements OnInit {
+  
+  private readonly translateService = inject(TranslateService);
 
-  constructor(private feedbackService : FeedbackServiceService){}
-
-  feedbacks : IFeedback[] = [];
+  constructor(private feedbackService: FeedbackServiceService) { }
+  isLoading: boolean = false;
+  feedbacks: IFeedback[] = [];
 
   getRatingColor(rating: number): string {
     if (rating >= 5) return 'text-emerald-500';
@@ -55,21 +58,21 @@ export class FeedbackComponent implements OnInit{
   }
 
   getAverageRating(): string {
-    if(this.feedbacks.length > 0){
+    if (this.feedbacks.length > 0) {
       const average = this.feedbacks.reduce((sum, f) => sum + f.rating, 0) / (this.feedbacks.length * 5);
       return average.toFixed(1);
     }
-    else{
+    else {
       return "0";
     }
   }
 
   getResponseRate(): number {
-    if(this.feedbacks.length > 0){
+    if (this.feedbacks.length > 0) {
       const respondedCount = this.feedbacks.filter(f => f.responseMessage).length;
       return Math.round((respondedCount / this.feedbacks.length) * 100);
     }
-    else{
+    else {
       return 0;
     }
   }
@@ -77,72 +80,74 @@ export class FeedbackComponent implements OnInit{
   // Get Patient Feedback:
   private readonly formBuilder = inject(FormBuilder);
   private readonly toastr = inject(ToastrService);
-  sendPatientFeedback(){
+  sendPatientFeedback() {
 
     Swal.fire({
-      title: "Patient Feedback Form",
+      title: this.translateService.instant("feedback.Patient Feedback Form"),
       html: `
         <form>
             <div class="space-y-4">
               <div>
-                <label for="swal-feedbackMessage">Message:</label>
+                <label for="swal-feedbackMessage">${this.translateService.instant('feedback.Message:')}</label>
                 <textarea id="swal-feedbackMessage" name="feedback" rows="5" cols="30" class="border-2 p-4 rounded-lg"></textarea>
               </div>
               <div>
-                <label for="swal-feedbackRating">Rating:</label>
+                <label for="swal-feedbackRating">${this.translateService.instant('feedback.Rating:')}</label>
                 <input id="swal-feedbackRating" type="number" class="border-2 p-4 rounded-lg" min="0" max="5"/>
               </div>
             </div>
         </form>
       `,
       showCancelButton: true,
-      confirmButtonText: "Go ahead 😃",
-      cancelButtonText: "Cancel",
+      confirmButtonText: this.translateService.instant("feedback.Go ahead 😃"),
+      cancelButtonText: this.translateService.instant("feedback.Cancel"),
       focusConfirm: false,
-      preConfirm:() => {
+      preConfirm: () => {
         const message = (document.getElementById("swal-feedbackMessage") as HTMLTextAreaElement)?.value;
         const rating = parseInt((document.getElementById("swal-feedbackRating") as HTMLInputElement)?.value);
 
-        if(!message){
-          Swal.showValidationMessage("Message is required to continue !");
+        if (!message) {
+          Swal.showValidationMessage(this.translateService.instant("feedback.Message is required to continue !"));
           setTimeout(() => {
             Swal.resetValidationMessage();
           }, 2000);
           return false;
         }
-        if(!rating){
-          Swal.showValidationMessage("Rating is required to continue !");
+        if (!rating) {
+          Swal.showValidationMessage(this.translateService.instant("feedback.Rating is required to continue !"));
           setTimeout(() => {
             Swal.resetValidationMessage();
           }, 2000);
           return false;
         }
 
-        return {message, rating};
+        return { message, rating };
       }
-    }).then((result) =>{
+    }).then((result) => {
       let errorMessage = "";
-      if(result.isConfirmed){
+      if (result.isConfirmed) {
         let patientFeedbackForm = this.formBuilder.group({
-          message : [result.value.message],
-          rating : [result.value.rating]
+          message: [result.value.message],
+          rating: [result.value.rating]
         });
-        
-        // console.log(patientFeedbackForm.value);
 
+        // console.log(patientFeedbackForm.value);
+        this.isLoading = true;
         this.feedbackService.patientFeedback(patientFeedbackForm.value).subscribe({
-          next:(res : any) => {
+          next: (res: any) => {
             // console.log(res);
-            Swal.fire('Success!', 'Feedback is Created successfully', 'success');
+            this.isLoading = false;
+            Swal.fire(this.translateService.instant('feedback.Success!'), this.translateService.instant('feedback.Feedback is Created successfully'), 'success');
             this.feedbacks = [res, ...this.feedbacks];
           },
           error: (error) => {
-            this.toastr.error(error.error.message, 'Submit feedback Failed');
+            this.isLoading = false;
+            this.toastr.error(error.error.message, this.translateService.instant('feedback.Submit feedback Failed'));
             errorMessage = error.error.message;
             // console.log(error.error.message);
 
-            if(errorMessage)
-              Swal.fire('Error!', errorMessage, 'error');
+            if (errorMessage)
+              Swal.fire(this.translateService.instant('feedback.Error!'), errorMessage, 'error');
           }
         });
       }
@@ -152,17 +157,20 @@ export class FeedbackComponent implements OnInit{
 
   // Get User Role:
   private readonly _auth = inject(AuthService);
-  userClaims : any;
+  userClaims: any;
   claimReq = claimReq;
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.feedbackService.getAllFeedbacks().subscribe({
-      next: (res : any) => {
+      next: (res: any) => {
+        this.isLoading = false;
         this.feedbacks = res;
         // console.log(this.feedbacks);
         this.feedbacks = this.feedbacks.reverse();
       },
       error: (err) => {
+        this.isLoading = false;
         console.log(err);
       }
     });
@@ -172,57 +180,59 @@ export class FeedbackComponent implements OnInit{
   }
 
   // Admin Response:
-  sendAdminRespond(IdOfFeedback : number){
+  sendAdminRespond(IdOfFeedback: number) {
 
     Swal.fire({
-      title: "Patient Feedback Form",
+      title: this.translateService.instant('feedback.Patient Feedback Form'),
       html: `
         <form>
-            <label for="swal-responseMessage">Message:</label>
+            <label for="swal-responseMessage">${this.translateService.instant('feedback.Message:')}</label>
             <textarea id="swal-responseMessage" name="feedback" rows="5" cols="30" class="border-2 p-4 rounded-lg"></textarea>
         </form>
       `,
       showCancelButton: true,
-      confirmButtonText: "Go ahead 😃",
-      cancelButtonText: "Cancel",
+      confirmButtonText: this.translateService.instant('feedback.Go ahead 😃'),
+      cancelButtonText: this.translateService.instant('feedback.Cancel'),
       focusConfirm: false,
-      preConfirm:() => {
+      preConfirm: () => {
         const responseMessage = (document.getElementById("swal-responseMessage") as HTMLTextAreaElement)?.value;
 
-        if(!responseMessage){
-          Swal.showValidationMessage("Message is required to continue !");
+        if (!responseMessage) {
+          Swal.showValidationMessage(this.translateService.instant('feedback.Message is required to continue !'));
           setTimeout(() => {
             Swal.resetValidationMessage();
           }, 2000);
           return false;
         }
 
-        return {responseMessage};
+        return { responseMessage };
       }
-    }).then((result) =>{
+    }).then((result) => {
       let errorMessage = "";
-      if(result.isConfirmed){
+      if (result.isConfirmed) {
         let adminResponseForm = this.formBuilder.group({
-          feedbackId : IdOfFeedback,
-          responseMessage : [result.value.responseMessage]
+          feedbackId: IdOfFeedback,
+          responseMessage: [result.value.responseMessage]
         });
-        
-        // console.log(adminResponseForm.value);
 
+        // console.log(adminResponseForm.value);
+        this.isLoading = true;
         this.feedbackService.adminFeedbackResponse(adminResponseForm.value).subscribe({
-          next:(res : any) => {
+          next: (res: any) => {
+            this.isLoading = false;
             console.log(res);
-            Swal.fire('Success!', "Admin Response is done successfully", 'success');
+            Swal.fire(this.translateService.instant('feedback.Success!'), this.translateService.instant('feedback.Admin Response is done successfully'), 'success');
             const index = this.feedbacks.findIndex(f => f.feedbackId === IdOfFeedback);
             if (index !== -1) this.feedbacks[index] = res; // Replace at the same index
           },
           error: (error) => {
-            this.toastr.error(error.error.message, 'Submit feedback Failed');
+            this.isLoading = false;
+            this.toastr.error(error.error.message, this.translateService.instant('feedback.Submit feedback Failed'));
             errorMessage = error.error.message;
             console.log(error.error.message);
 
-            if(errorMessage)
-              Swal.fire('Error!', errorMessage, 'error');
+            if (errorMessage)
+              Swal.fire(this.translateService.instant('feedback.Error!'), errorMessage, 'error');
           }
         });
       }
@@ -231,18 +241,21 @@ export class FeedbackComponent implements OnInit{
   }
 
   // Admin & Right Patient removes feedback:
-  removeFeedback(feedbackId : number){
+  removeFeedback(feedbackId: number) {
+    this.isLoading = true;
     this.feedbackService.removeFeedback(feedbackId).subscribe({
-      next: (res:any) => {
-        this.toastr.success(res.message);
+      next: (res: any) => {
+        this.isLoading = false;
+        this.toastr.success(this.translateService.instant(`feedback.${res.message}`));
         this.feedbacks = this.feedbacks.filter(f => f.feedbackId !== feedbackId);
       },
-      error:(err) =>{
+      error: (err) => {
+        this.isLoading = false;
         // console.log(err.error.error);
         let errorMessage = err.error.error;
         Swal.fire({
           icon: 'error',
-          title: 'Not Your feedback!!',
+          title: this.translateService.instant('feedback.Not Your feedback!!'),
           text: errorMessage,
         });
       }

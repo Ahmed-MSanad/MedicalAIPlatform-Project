@@ -4,12 +4,13 @@ import { DoctorService } from '../../../Core/Services/ForDoctor/doctor.service';
 import { ToastrService } from 'ngx-toastr';
 import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
 import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-doctor-dashboard',
   templateUrl: './doctor-dashboard.component.html',
   styleUrls: ['./doctor-dashboard.component.scss'],
-  imports: [RouterModule,BackgroundLayoutComponent]
+  imports: [RouterModule,BackgroundLayoutComponent, TranslateModule]
 })
 export class DoctorDashboardComponent {
 

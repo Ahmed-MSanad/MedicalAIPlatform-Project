@@ -3,8 +3,8 @@ import { AiModelService } from './../../../Core/Services/ai-model.service';
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { DoctorInfo } from '../../../Core/Interfaces/doctor-info';
-import { UserProfile } from '../../../Core/Interfaces/user-profile';
 
 export interface AiAnalysisResponse {
   confidenceScore: number;   
@@ -17,7 +17,7 @@ export interface AiAnalysisResponse {
 
 @Component({
   selector: 'app-patient-doctor-response',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, TranslateModule],
   templateUrl: './patient-doctor-response.component.html',
   styleUrl: './patient-doctor-response.component.scss'
 })
@@ -27,6 +27,7 @@ export class PatientDoctorResponseComponent implements OnInit{
   private readonly aiModelService = inject(AiModelService);
   responseData ! : AiAnalysisResponse[];
   private readonly activatedRoute = inject(ActivatedRoute);
+  isLoading:boolean = false;
   doctorData : WritableSignal<DoctorInfo> = signal({} as DoctorInfo);
 
   ngOnInit(): void {
@@ -40,12 +41,15 @@ export class PatientDoctorResponseComponent implements OnInit{
   }
 
   getMedicalAiAnalysis(){
+    this.isLoading = true;
     this.aiModelService.getMedicalImageAiAnalysis(this.medicalImageId).subscribe({
       next:(res : any) => {
+        this.isLoading = false;
         this.responseData = res;
         console.log(res);
       },
       error:(err) => {
+        this.isLoading = false;
         console.log(err.error);
       }
     });
@@ -58,6 +62,7 @@ export class PatientDoctorResponseComponent implements OnInit{
         console.log("doctorData", this.doctorData);
       },
       error:(err) => {
+        this.isLoading = false;
         console.log(err.error);
       }
     });

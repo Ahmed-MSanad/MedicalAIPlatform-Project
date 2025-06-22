@@ -8,10 +8,11 @@ import { FormArray, FormBuilder, FormControl, ReactiveFormsModule, Validators } 
 import { ToastrService } from 'ngx-toastr';
 import { PatientService } from '../../../Core/Services/ForPatient/patient.service';
 import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-patient-profile',
-  imports: [GenderPipe, ReactiveFormsModule, BackgroundLayoutComponent],
+  imports: [GenderPipe, ReactiveFormsModule, BackgroundLayoutComponent, TranslateModule],
   templateUrl: './patient-profile.component.html',
   styleUrl: './patient-profile.component.scss'
 })

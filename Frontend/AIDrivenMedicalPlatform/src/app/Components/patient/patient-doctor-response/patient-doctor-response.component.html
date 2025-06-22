@@ -1,11 +1,17 @@
+<div class="fixed inset-0 bg-black/30 flex items-center justify-center z-50" [class.hidden]="!isLoading">
+  <img src="./Logo.png"
+       alt="Loading"
+       class="w-48 h-48 animate-pulse drop-shadow-xl" />
+</div>
+
 <div class="container mx-auto p-6">
     <div class="max-w-8xl mx-auto" *ngIf="responseData">
 
         <div class="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 text-white p-8 rounded-t-2xl shadow-xl">
             <div class="flex items-center justify-between">
                 <div>
-                    <h1 class="text-3xl font-bold mb-2">AI Medical Analysis Report</h1>
-                    <p class="text-blue-100 text-lg">Comprehensive diagnostic evaluation</p>
+                    <h1 class="text-3xl font-bold mb-2">{{'response.AI Medical Analysis Report' | translate}}</h1>
+                    <p class="text-blue-100 text-lg">{{'response.Comprehensive diagnostic evaluation' | translate}}</p>
                 </div>
                 <div class="hidden md:block">
                     <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
@@ -34,14 +40,14 @@
                                     </div>
                                 }
                                 <div>
-                                    <h2 class="text-xl font-bold">Doctor: {{doctorData()!.fullName}}</h2>
-                                    <p class="text-emerald-100">Analysis against {{ doctorResponse.diseaseType }}</p>
+                                    <h2 class="text-xl font-bold">{{'response.Doctor:' | translate}} {{doctorData()!.fullName}}</h2>
+                                    <p class="text-emerald-100">{{'response.Analysis against' | translate}} {{ doctorResponse.diseaseType }}</p>
                                 </div>
                             </div>
 
                             @if(doctorResponse.diagnosis !== 'normal'){
                                 <div class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                                    <span class="text-white font-semibold">{{ doctorResponse.confidenceScore }}% Confidence</span>
+                                    <span class="text-white font-semibold">{{ doctorResponse.confidenceScore }}{{'response.% Confidence' | translate}}</span>
                                 </div>
                             }
                         </div>
@@ -54,7 +60,7 @@
                                 <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border-l-4 border-blue-500">
                                     <div class="flex items-center mb-3">
                                         <i class="fas fa-stethoscope text-blue-600 mr-2"></i>
-                                        <h3 class="text-lg font-bold text-blue-800">Primary Diagnosis</h3>
+                                        <h3 class="text-lg font-bold text-blue-800">{{'response.Primary Diagnosis' | translate}}</h3>
                                     </div>
                                     <p class="text-blue-900 text-lg font-medium leading-relaxed">{{ doctorResponse.diagnosis }}</p>
                                 </div>
@@ -64,7 +70,7 @@
                                         <div class="flex items-center justify-between mb-3">
                                             <div class="flex items-center">
                                                 <i class="fas fa-chart-line text-green-600 mr-2"></i>
-                                                <h3 class="text-lg font-bold text-green-800">Confidence Level</h3>
+                                                <h3 class="text-lg font-bold text-green-800">{{'response.Confidence Level' | translate}}</h3>
                                             </div>
                                         </div>
                                         <div class="flex items-center space-x-4">
@@ -82,7 +88,7 @@
                                     <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-xl border-l-4 border-amber-500">
                                         <div class="flex items-center mb-4">
                                             <i class="fas fa-info-circle text-amber-600 mr-2"></i>
-                                            <h3 class="text-lg font-bold text-amber-800">Detailed Explanation</h3>
+                                            <h3 class="text-lg font-bold text-amber-800">{{'response.Detailed Explanation' | translate}}</h3>
                                         </div>
                                         <p class="text-amber-900 leading-relaxed text-base">{{ doctorResponse.explanationDetails }}</p>
                                     </div>
@@ -106,16 +112,16 @@
             }
             @empty {
                 <h3 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4 text-center">
-                    Waiting for Response
+                    {{'response.Waiting for Response' | translate}}
                 </h3>
                 
                 <p class="text-gray-700 text-center leading-relaxed mb-6 text-lg font-medium">
-                    Doctor hasn't responded yet, please try later
+                    {{"response.Doctor hasn't responded yet, please try later" | translate}}
                 </p>
                         
                 <div class="flex items-center justify-center space-x-3 text-blue-600 bg-blue-50 px-4 py-3 rounded-full">
                     <i class="fas fa-info-circle text-lg"></i>
-                    <span class="font-medium">We'll notify you when available</span>
+                    <span class="font-medium">{{"response.We'll notify you when available" | translate}}</span>
                 </div>
             }
         </div>
@@ -125,7 +131,7 @@
         <div class="relative">
             <div class="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
         </div>
-        <p class="text-gray-600 mt-4 text-lg font-medium">Loading medical analysis...</p>
-        <p class="text-gray-400 text-sm mt-2">Please wait while we process your data</p>
+        <p class="text-gray-600 mt-4 text-lg font-medium">{{'response.Loading medical analysis...' | translate}}</p>
+        <p class="text-gray-400 text-sm mt-2">{{'response.Please wait while we process your data' | translate}}</p>
     </div>
 </div>
