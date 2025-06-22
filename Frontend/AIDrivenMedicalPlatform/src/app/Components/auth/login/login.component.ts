@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../Core/Services/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslationService } from '../../../Core/Services/translation.service';
 
 @Component({
@@ -19,6 +19,7 @@ export class LoginComponent {
   private readonly _router = inject(Router);
   private readonly _toastr = inject(ToastrService);
   private readonly _translate = inject(TranslationService);
+  private readonly translation = inject(TranslateService);
   loginInErrorMessage: string = "";
   currentLanguage: string = 'en';
   showLang: boolean = false;
@@ -49,16 +50,16 @@ onLogin() {
       },
       error: (error) => {
         if (error.status == 400) {
-          this._toastr.error(error.error.message, 'Login Failed');
+          this._toastr.error(error.error.message, this.translation.instant('login.Login Failed'));
           this.loginInErrorMessage = error.error.message;
-          this.isLoading = false;
           console.log(error.error.message);
         }
         else {
-          this._toastr.error('Error during login !!', 'Login Failed');
-          this.loginInErrorMessage = 'Error during login !!';
+          this._toastr.error(this.translation.instant('login.Error during login !!'), this.translation.instant('login.Login Failed'));
+          this.loginInErrorMessage = this.translation.instant('login.Error during login !!');
           console.log('Error during login !!');
         }
+        this.isLoading = false;
       }
     });
   }

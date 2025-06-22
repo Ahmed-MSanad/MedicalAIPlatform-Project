@@ -7,16 +7,16 @@ import { animate, keyframes, style, transition, trigger } from '@angular/animati
 import Swal from 'sweetalert2';
 import { Subscription } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslationService } from '../../../Core/Services/translation.service';
 
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, CommonModule, RouterLink,TranslateModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, TranslateModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
-  animations:[
+  animations: [
     trigger('shakeAnimation', [
       transition('false => true', [
         animate('0.5s', keyframes([
@@ -33,71 +33,75 @@ import { TranslationService } from '../../../Core/Services/translation.service';
 export class RegisterComponent {
 
   isHovered = false
-
+  isLoading = false;
+  showLang: boolean = false;
+  currentLanguage: string = 'en';
   private readonly _formBuilder = inject(FormBuilder);
   private readonly _translate = inject(TranslationService);
+  private readonly translation = inject(TranslateService);
 
   registerForm = this._formBuilder.group({
-    fullName: ['',[Validators.required]],
+    fullName: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, 
-                    Validators.minLength(6), 
-                    Validators.pattern(/[^a-zA-Z_0-9 ]+/)]], // at least 1 special character // /^$/ => ^$ are so missing 😑😑 another way --> /(?=.*[^a-zA-Z0-9 ])/
+    password: ['', [Validators.required,
+    Validators.minLength(6),
+    Validators.pattern(/[^a-zA-Z_0-9 ]+/)]], // at least 1 special character // /^$/ => ^$ are so missing 😑😑 another way --> /(?=.*[^a-zA-Z0-9 ])/
     confirmPassword: [''],
     phoneNumber: ['', [Validators.required,
-                        Validators.pattern(/^(011|010|015|012)[0-9]{8}$/)]],
+    Validators.pattern(/^(011|010|015|012)[0-9]{8}$/)]],
     dateOfBirth: ['', [Validators.required]],
     gender: [0, [Validators.required]],
     address: ['', [Validators.required]],
     occupation: ['', [Validators.required]],
     emergencyContactName: ['', Validators.required],
     emergencyContactNumber: ['', [Validators.required,
-                                  Validators.pattern(/^(011|010|015|012)[0-9]{8}$/)]],
+    Validators.pattern(/^(011|010|015|012)[0-9]{8}$/)]],
     familyMedicalHistory: [''],
     pastMedicalHistory: [''],
     identificationNumber: ['', [Validators.required]],
     medicalLicenseNumber: ['', [Validators.required]],
     specialisation: ['', [Validators.required]],
     workPlace: ['', [Validators.required]],
-    fee:[null,[Validators.required, Validators.min(0)]], 
-    role: ['', [Validators.required, Validators.pattern(/(Doctor|Admin|Patient)/)] ]
-  }, {validators: [this.confirmThePassword]});
+    fee: [null, [Validators.required, Validators.min(0)]],
+    role: ['', [Validators.required, Validators.pattern(/(Doctor|Admin|Patient)/)]]
+  }, { validators: [this.confirmThePassword] });
 
 
-  confirmThePassword(control:AbstractControl){
-    if(control.get("password")?.value === control.get("confirmPassword")?.value){
+  confirmThePassword(control: AbstractControl) {
+    if (control.get("password")?.value === control.get("confirmPassword")?.value) {
       return null;
     }
-    else{
-      return {passwordMismatch:true};
+    else {
+      return { passwordMismatch: true };
     }
   }
 
 
-  
+
   private readonly _authService$ = inject(AuthService);
   private readonly _toastr = inject(ToastrService);
   private readonly _route = inject(Router);
-  onSubmitRegistration(){
-    if(
+  onSubmitRegistration() {
+    if (
       (this.registerForm.controls.fullName.valid && this.registerForm.controls.email.valid && this.registerForm.controls.password.valid && this.registerForm.controls.confirmPassword.valid && this.registerForm.controls.gender.valid && this.registerForm.controls.address.valid && this.registerForm.controls.dateOfBirth.valid && this.registerForm.controls.phoneNumber.valid && this.registerForm.controls.role.valid) &&
       (this.registerForm.controls.role.value === 'Patient' && this.registerForm.controls.occupation.valid && this.registerForm.controls.emergencyContactName.valid && this.registerForm.controls.emergencyContactNumber.valid && this.registerForm.controls.familyMedicalHistory.valid && this.registerForm.controls.pastMedicalHistory.valid) ||
       (this.registerForm.controls.role.value === 'Doctor' && this.registerForm.controls.identificationNumber.valid && this.registerForm.controls.medicalLicenseNumber.valid && this.registerForm.controls.specialisation.valid && this.registerForm.controls.workPlace.valid) ||
       (this.registerForm.controls.role.value === 'Admin' && this.registerForm.controls.identificationNumber.valid && this.registerForm.controls.medicalLicenseNumber.valid && this.registerForm.controls.specialisation.valid)
-    ){
+    ) {
       console.log(this.registerForm.value);
-
+      this.isLoading = true;
       this._authService$.createUser(this.registerForm.value).subscribe({
-        next:(res:any) =>{
+        next: (res: any) => {
+          this.isLoading = false;
           this.registerForm.reset();
-          this._toastr.success("New User is created", "Registration Successful");
+          this._toastr.success(this.translation.instant("register.New User is created"), this.translation.instant("register.Registration Successful"));
           this._route.navigateByUrl('login');
-          console.log('response: ',res);
+          console.log('response: ', res);
         },
-        error:err =>{
-          if(err.error.errors){
-            err.error.errors.forEach((x:any) => {
-              switch(x.code){
+        error: err => {
+          if (err.error.errors) {
+            err.error.errors.forEach((x: any) => {
+              switch (x.code) {
                 case "DuplicateEmail":
                   this._toastr.error(x.description, "Registration Failed");
                   break;
@@ -110,15 +114,15 @@ export class RegisterComponent {
               }
             });
           }
-          else{
+          else {
             console.log(err);
           }
         }
       });
     }
-    else{
+    else {
       // console.log(this.registerForm.errors);
-      
+
       // console.log("Full Name valid:", this.registerForm.controls.fullName.valid);
       // console.log("Email valid:", this.registerForm.controls.email.valid);
       // console.log("Password valid:", this.registerForm.controls.password.valid);
@@ -140,73 +144,74 @@ export class RegisterComponent {
   }
 
 
-  afterGetStarted : boolean = false;
+  afterGetStarted: boolean = false;
   @ViewChild('box') box!: ElementRef;
 
-  checkEmailSubscription ! : Subscription;
+  checkEmailSubscription !: Subscription;
   onGetStarted() {
     const isValid = this.registerForm.controls.fullName.valid &&
       this.registerForm.controls.email.valid &&
       this.registerForm.controls.phoneNumber.valid;
 
-    if(isValid){
-      this.checkEmailSubscription = this._authService$.checkEmail({email: this.registerForm.controls.email.value}).subscribe({
-        next: (res : any) =>{
+    if (isValid) {
+      this.isLoading = true;
+      this.checkEmailSubscription = this._authService$.checkEmail({ email: this.registerForm.controls.email.value }).subscribe({
+        next: (res: any) => {
           console.log(res);
-
-          if(res?.isRegistered){
+          this.isLoading = false;
+          if (res?.isRegistered) {
             Swal.fire({
-              title: "This Email is Already registered before",
+              title: this.translation.instant("register.This Email is Already registered before"),
               html: `
                 <form>
-                    <label for="swal-password">Password:</label>
+                    <label for="swal-password">${this.translation.instant("register.Password:")}</label>
                     <input id="swal-password" type="password" class="border-2 p-4 rounded-lg" />
                 </form>
               `,
               showCancelButton: true,
-              confirmButtonText: "Go ahead 😃",
-              cancelButtonText: "Cancel",
+              confirmButtonText: this.translation.instant("register.Go ahead 😃"),
+              cancelButtonText: this.translation.instant("register.Cancel"),
               focusConfirm: false,
-              preConfirm:() => {
+              preConfirm: () => {
                 const password = (document.getElementById("swal-password") as HTMLInputElement)?.value;
-        
-                if(!password){
-                  Swal.showValidationMessage("Password is required to continue !");
+
+                if (!password) {
+                  Swal.showValidationMessage(this.translation.instant("register.Password is required to continue !"));
                   setTimeout(() => {
                     Swal.resetValidationMessage();
                   }, 2000);
                   return false;
                 }
-        
-                return {password};
+
+                return { password };
               }
-            }).then((result) =>{
+            }).then((result) => {
               let loginInErrorMessage = "";
-              if(result.isConfirmed){
+              if (result.isConfirmed) {
                 let loginForm = this._formBuilder.group({
                   email: [this.registerForm.controls.email.value],
                   password: [result.value.password],
                 });
                 this._authService$.signIn(loginForm.value).subscribe({
-                  next:(res : any) => {
+                  next: (res: any) => {
                     console.log(res);
                     this._authService$.saveToken(res.token);
                     const userClaims = this._authService$.getClaims();
-                    this._route.navigate(['/'+userClaims.role+"Dashboard"]);
+                    this._route.navigate(['/' + userClaims.role + "Dashboard"]);
                   },
                   error: (error) => {
-                    if(error.status == 400){
+                    if (error.status == 400) {
                       this._toastr.error(error.error.message, 'Login Failed');
                       loginInErrorMessage = error.error.message;
                       console.log(error.error.message);
                     }
-                    else{
+                    else {
                       this._toastr.error('Error during login !!', 'Login Failed');
                       loginInErrorMessage = 'Error during login !!';
                       console.log('Error during login !!');
                     }
 
-                    if(!loginInErrorMessage)
+                    if (!loginInErrorMessage)
                       Swal.fire('Success!', 'Form submitted successfully', 'success');
                     else
                       Swal.fire('Error!', loginInErrorMessage, 'error');
@@ -215,7 +220,7 @@ export class RegisterComponent {
               }
             });
           }
-          else{
+          else {
             this.toggleGetStarted();
           }
 
@@ -228,20 +233,20 @@ export class RegisterComponent {
         }
       });
     }
-    else{
+    else {
       this.registerForm.controls.fullName.markAsTouched();
       this.registerForm.controls.email.markAsTouched();
       this.registerForm.controls.phoneNumber.markAsTouched();
     }
   }
 
-  toggleGetStarted(){
+  toggleGetStarted() {
     const boxEl = this.box.nativeElement;
-    
-    if(this.afterGetStarted){
+
+    if (this.afterGetStarted) {
       boxEl.classList.remove('hidden');
     }
-    else{
+    else {
       boxEl.addEventListener('transitionend', () => {
         boxEl.classList.add('hidden');
       }, { once: true });
@@ -252,18 +257,28 @@ export class RegisterComponent {
 
 
 
-  showPasswordOffOn : {[key: string] : boolean} = {};
-  ngOnInit(){
+  showPasswordOffOn: { [key: string]: boolean } = {};
+  ngOnInit() {
+    if (localStorage.getItem('lang') == 'ar') {
+      this.currentLanguage = 'ar';
+    }
     this.showPasswordOffOn["Password"] = false;
     this.showPasswordOffOn["ConfirmPassword"] = false;
   }
-  togglePassword(state : string){
+  togglePassword(state: string) {
     this.showPasswordOffOn[state] = !this.showPasswordOffOn[state];
   }
   // ----------------------------------------------------------------------
 
-  
-  
+  toggleLanguage() {
+    this.showLang = !this.showLang;
+  }
+
+  switchLanguage(lang: string) {
+    this.currentLanguage = lang;
+    this._translate.changeLang(lang);
+  }
+
 
 
 

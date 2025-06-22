@@ -1,24 +1,64 @@
+<div class="fixed inset-0 bg-black/30 flex items-center justify-center z-50" [class.hidden]="!isLoading">
+    <img src="./Logo.png" alt="Loading" class="w-48 h-48 animate-pulse drop-shadow-xl" />
+</div>
+
 <main class="overflow-hidden bg-gradient-to-r from-black via-gray-900 to-blue-900">
-    <div #box class="min-h-screen flex bg-red-300 h-full relative left-0 z-5 transition-[left] duration-[1s]" [ngClass]="{'left-[-100%]' : afterGetStarted}">
-        <div class="w-full md:w-[50%] min-w-[20rem] px-4 bg-gradient-to-r from-black via-gray-900 to-blue-900 flex items-center">
+    <div #box class="min-h-screen flex bg-red-300 h-full relative left-0 z-5 transition-[left] duration-[1s]"
+        [ngClass]="{'left-[-100%]' : afterGetStarted}">
+        <div class="absolute top-4 z-10"
+            [ngClass]="{ 'right-4': currentLanguage !== 'ar', 'left-4': currentLanguage === 'ar' }">
+            <div class="relative group" #languageDropdown>
+                <button (click)="toggleLanguage()"
+                    class="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white hover:bg-white/30 transition">
+                    <i class="fa-solid fa-globe"></i>
+                    <span class="hidden sm:inline">{{ currentLanguage === 'en' ? 'English' : 'العربية' }}</span>
+                    <i class="fa-solid fa-chevron-down text-xs transition-transform duration-200"
+                        [class.rotate-180]="showLang"></i>
+                </button>
+
+                <div class="absolute mt-2 w-40 bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-200 origin-top"
+                    [ngClass]="{
+                    'right-0': currentLanguage !== 'ar',
+                    'left-0': currentLanguage === 'ar',
+                    'invisible opacity-0 scale-95': !showLang,
+                    'block': showLang
+                }">
+                    <button (click)="switchLanguage('en')"
+                        class="block w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2"
+                        [class.bg-blue-100]="currentLanguage === 'en'">
+                        <span>English</span>
+                    </button>
+                    <button (click)="switchLanguage('ar')"
+                        class="block w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2"
+                        [class.bg-blue-100]="currentLanguage === 'ar'">
+                        <span>العربية</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="w-full md:w-[50%] min-w-[20rem] px-4 bg-gradient-to-r from-black via-gray-900 to-blue-900 flex items-center">
             <div class="w-full px-4 rounded-lg border-0 shadow-black shadow-lg bg-black min-h-[450px]">
                 <div class="p-5">
-    
+
                     <div class="mb-4 text-white font-bold">
                         <h2 class="text-4xl">{{'register.Hi There 🤙🏼' | translate}}</h2>
                         <span class="text-gray-500">{{'register.Get Started Now...' | translate}}</span>
                     </div>
-                    
+
                     <form [formGroup]="registerForm">
-                    
+
                         <label for="Fullname" class="text-white">{{'register.Full Name' | translate}}</label>
                         <div class="mb-3">
                             <div class="relative">
-                                <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-user"></i></span>
-                                <input formControlName="fullName" id="Fullname" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Ex: Ahmed Sanad">
+                                <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                        class="fa-solid fa-user"></i></span>
+                                <input formControlName="fullName" id="Fullname"
+                                    class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                    placeholder="Ex: Ahmed Sanad">
                             </div>
-                            <div class="text-red-500 p-4 rounded-lg" 
-                                    *ngIf="
+                            <div class="text-red-500 p-4 rounded-lg" *ngIf="
                                         (registerForm.controls.fullName.touched || 
                                         registerForm.controls.fullName.dirty) &&
                                         registerForm.controls.fullName.hasError('required')
@@ -26,24 +66,25 @@
                                 {{'register.Full Name is Required !!' | translate}}
                             </div>
                         </div>
-                    
-    
+
+
                         <label for="Email" class="text-white">{{'register.Email' | translate}}</label>
                         <div class="mb-3">
                             <div class="relative">
-                                <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-envelope"></i></span>
-                                <input formControlName="email" id="Email" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Ex: AhmedSanad@gmail.com">
+                                <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                        class="fa-solid fa-envelope"></i></span>
+                                <input formControlName="email" id="Email"
+                                    class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                    placeholder="Ex: AhmedSanad@gmail.com">
                             </div>
-                            <div class="text-red-500 p-4 rounded-lg" 
-                                    *ngIf="
+                            <div class="text-red-500 p-4 rounded-lg" *ngIf="
                                         (registerForm.controls.email.touched || 
                                         registerForm.controls.email.dirty) &&
                                         registerForm.controls.email.hasError('required')
                                     ">
                                 {{'register.Email is Required !!' | translate}}
                             </div>
-                            <div class="text-red-500 p-4 rounded-lg" 
-                                    *ngIf="
+                            <div class="text-red-500 p-4 rounded-lg" *ngIf="
                                         (registerForm.controls.email.touched || 
                                         registerForm.controls.email.dirty) &&
                                         registerForm.controls.email.hasError('email')
@@ -51,24 +92,25 @@
                                 {{'register.Email Format is wrong !!' | translate}}
                             </div>
                         </div>
-                    
-    
+
+
                         <label for="phone_Number" class="text-white">{{'register.Phone number' | translate}}</label>
                         <div class="mb-3">
                             <div class="relative">
-                                <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-phone"></i></span>
-                                <input formControlName="phoneNumber" type="tel" id="phone_Number" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="+01">
+                                <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                        class="fa-solid fa-phone"></i></span>
+                                <input formControlName="phoneNumber" type="tel" id="phone_Number"
+                                    class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                    placeholder="+01">
                             </div>
-                            <div class="text-red-500 p-4 rounded-lg" 
-                                    *ngIf="
+                            <div class="text-red-500 p-4 rounded-lg" *ngIf="
                                         (registerForm.controls.phoneNumber.touched || 
                                         registerForm.controls.phoneNumber.dirty) &&
                                         registerForm.controls.phoneNumber.hasError('required')
                                     ">
                                 {{'register.Phone Number is Required !!' | translate}}
                             </div>
-                            <div class="text-red-500 p-4 rounded-lg" 
-                                    *ngIf="
+                            <div class="text-red-500 p-4 rounded-lg" *ngIf="
                                         (registerForm.controls.phoneNumber.touched || 
                                         registerForm.controls.phoneNumber.dirty) &&
                                         registerForm.controls.phoneNumber.hasError('pattern')
@@ -76,17 +118,20 @@
                                 {{'register.Phone Number Format is wrong !!' | translate}}
                             </div>
                         </div>
-                    
+
                         <div class="w-full">
-                            <button class="w-full bg-gradient-to-r from-blue-900 via-balck to-gray-800 rounded-lg text-white p-2 cursor-pointer" (click)="onGetStarted()">{{'register.Get Started' | translate}}</button>
+                            <button
+                                class="w-full bg-gradient-to-r from-blue-900 via-balck to-gray-800 rounded-lg text-white p-2 cursor-pointer"
+                                (click)="onGetStarted()">{{'register.Get Started' | translate}}</button>
                         </div>
 
                         <div class="w-full text-center mt-5">
-                            <a class="text-blue-600 cursor-pointer" routerLink="/login">{{'register.Already Have an account ?' | translate}}</a>
+                            <a class="text-blue-600 cursor-pointer" routerLink="/login">{{'register.Already Have an
+                                account ?' | translate}}</a>
                         </div>
-                    
+
                     </form>
-    
+
                 </div>
             </div>
         </div>
@@ -94,365 +139,452 @@
             <img src="./register_7.jpg" alt="medical image" class="w-auto h-full mx-auto">
         </div>
     </div>
-    
+
     @if(afterGetStarted){
-        <div class="min-w-[20rem] max-w-[70rem] min-h-screen mx-auto h-full relative z-1 transition-all duration-[1s]">
-        
-            <div class="w-full bg-red-400 rounded-lg border-0 shadow-black shadow-lg bg-gradient-to-r from-black via-gray-900 to-blue-900 min-h-[450px] px-4 flex items-center">
-                <div class="p-5">
-                    <button type="button" [@shakeAnimation]="isHovered" 
-                            (mouseenter)="isHovered = true" 
-                            (mouseleave)="isHovered = false" 
-                            class="text-xl text-white cursor-pointer transition-all" 
-                            (click)="toggleGetStarted()">
-                        <i class="fa-solid fa-hand-point-left"></i>
-                    </button>
-    
-                    <div class="mb-12 text-white font-bold">
-                        <h2 class="text-4xl">{{'register.Welcome' | translate}} <button type="button" [@shakeAnimation]="isHovered" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">👋🏼</button></h2>
-                        <span class="text-gray-500">{{"register.Let's Know More About Yourself" | translate}}</span>
-                    </div>
-    
-                    <div class="mb-4 text-white font-bold">
-                        <h2 class="text-2xl">{{'register.Personal Information' | translate}}</h2>
-                    </div>
-                    
-                    <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegistration()">
-                    
-                        <div class="mb-3">
-                            <div class="relative">
-                                <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-user"></i></span>
-                                <input formControlName="fullName" [value]="registerForm.controls.fullName" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Ex: Ahmed Sanad">
-                            </div>
-                            <div class="text-red-500 p-4 rounded-lg" 
-                                    *ngIf="
+    <div class="min-w-[20rem] max-w-[70rem] min-h-screen mx-auto h-full relative z-1 transition-all duration-[1s]">
+
+        <div
+            class="w-full bg-red-400 rounded-lg border-0 shadow-black shadow-lg bg-gradient-to-r from-black via-gray-900 to-blue-900 min-h-[450px] px-4 flex items-center">
+            <div class="p-5">
+                <button type="button" [@shakeAnimation]="isHovered" (mouseenter)="isHovered = true"
+                    (mouseleave)="isHovered = false" class="text-xl text-white cursor-pointer transition-all"
+                    (click)="toggleGetStarted()">
+                    <i class="fa-solid fa-hand-point-left"></i>
+                </button>
+
+                <div class="mb-12 text-white font-bold">
+                    <h2 class="text-4xl">{{'register.Welcome' | translate}} <button type="button"
+                            [@shakeAnimation]="isHovered" (mouseenter)="isHovered = true"
+                            (mouseleave)="isHovered = false">👋🏼</button></h2>
+                    <span class="text-gray-500">{{"register.Let's Know More About Yourself" | translate}}</span>
+                </div>
+
+                <div class="mb-4 text-white font-bold">
+                    <h2 class="text-2xl">{{'register.Personal Information' | translate}}</h2>
+                </div>
+
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegistration()">
+
+                    <div class="mb-3">
+                        <div class="relative">
+                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                    class="fa-solid fa-user"></i></span>
+                            <input formControlName="fullName" [value]="registerForm.controls.fullName"
+                                class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                placeholder="Ex: Ahmed Sanad">
+                        </div>
+                        <div class="text-red-500 p-4 rounded-lg" *ngIf="
                                         (registerForm.controls.fullName.touched || 
                                         registerForm.controls.fullName.dirty) &&
                                         registerForm.controls.fullName.hasError('required')
                                     ">
-                                {{'register.Full Name is Required !!' | translate}}
-                            </div>
+                            {{'register.Full Name is Required !!' | translate}}
                         </div>
-                    
-                        <div class="flex flex-wrap space-y-5">
-                            <div class="w-full md:w-1/2 px-5">
-                                <label for="email" class="text-white">{{'register.Email' | translate}}</label>
-                                <div class="mb-3">
-                                    <div class="relative">
-                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-envelope"></i></span>
-                                        <input formControlName="email" id="email" [value]="registerForm.controls.email" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Ex: AhmedSanad@gmail.com">
-                                    </div>
-                                    <div class="text-red-500 p-4 rounded-lg" 
-                                            *ngIf="
+                    </div>
+
+                    <div class="flex flex-wrap space-y-5">
+                        <div class="w-full md:w-1/2 px-5">
+                            <label for="email" class="text-white">{{'register.Email' | translate}}</label>
+                            <div class="mb-3">
+                                <div class="relative">
+                                    <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                            class="fa-solid fa-envelope"></i></span>
+                                    <input formControlName="email" id="email" [value]="registerForm.controls.email"
+                                        class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                        placeholder="Ex: AhmedSanad@gmail.com">
+                                </div>
+                                <div class="text-red-500 p-4 rounded-lg" *ngIf="
                                                 (registerForm.controls.email.touched || 
                                                 registerForm.controls.email.dirty) &&
                                                 registerForm.controls.email.hasError('required')
                                             ">
-                                        {{'register.Email is Required !!' | translate}}
-                                    </div>
-                                    <div class="text-red-500 p-4 rounded-lg" 
-                                            *ngIf="
+                                    {{'register.Email is Required !!' | translate}}
+                                </div>
+                                <div class="text-red-500 p-4 rounded-lg" *ngIf="
                                                 (registerForm.controls.email.touched || 
                                                 registerForm.controls.email.dirty) &&
                                                 registerForm.controls.email.hasError('email')
                                             ">
-                                        {{'register.Email Format is wrong !!' | translate}}
-                                    </div>
+                                    {{'register.Email Format is wrong !!' | translate}}
                                 </div>
                             </div>
-                            <div class="w-full md:w-1/2 px-5">
-                                <label for="phoneNumber" class="text-white">{{'register.Phone number' | translate}}</label>
-                                <div class="mb-3">
-                                    <div class="relative">
-                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-phone"></i></span>
-                                        <input formControlName="phoneNumber" id="phoneNumber" type="tel" [value]="registerForm.controls.phoneNumber" id="phoneNumber" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="+01">
-                                    </div>
-                                    <div class="text-red-500 p-4 rounded-lg" 
-                                            *ngIf="
+                        </div>
+                        <div class="w-full md:w-1/2 px-5">
+                            <label for="phoneNumber" class="text-white">{{'register.Phone number' | translate}}</label>
+                            <div class="mb-3">
+                                <div class="relative">
+                                    <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                            class="fa-solid fa-phone"></i></span>
+                                    <input formControlName="phoneNumber" id="phoneNumber" type="tel"
+                                        [value]="registerForm.controls.phoneNumber" id="phoneNumber"
+                                        class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                        placeholder="+01">
+                                </div>
+                                <div class="text-red-500 p-4 rounded-lg" *ngIf="
                                                 (registerForm.controls.phoneNumber.touched || 
                                                 registerForm.controls.phoneNumber.dirty) &&
                                                 registerForm.controls.phoneNumber.hasError('required')
                                             ">
-                                        {{'register.Phone Number is Required !!' | translate}}
-                                    </div>
-                                    <div class="text-red-500 p-4 rounded-lg" 
-                                            *ngIf="
+                                    {{'register.Phone Number is Required !!' | translate}}
+                                </div>
+                                <div class="text-red-500 p-4 rounded-lg" *ngIf="
                                                 (registerForm.controls.phoneNumber.touched || 
                                                 registerForm.controls.phoneNumber.dirty) &&
                                                 registerForm.controls.phoneNumber.hasError('pattern')
                                             ">
-                                        {{'register.Phone Number Format is wrong !!' | translate}}
+                                    {{'register.Phone Number Format is wrong !!' | translate}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-full md:w-1/2 px-5">
+                            <div class="flex justify-between">
+                                <label for="password" class="text-white">{{'register.Password' | translate}}</label>
+                                <button type="button" class="text-white cursor-pointer"
+                                    (click)="togglePassword('Password')">
+                                    @if(showPasswordOffOn["Password"]){<i class="fa-solid fa-eye-low-vision"></i>}
+                                    @else{<i class="fa-solid fa-eye"></i>}
+                                </button>
+                            </div>
+                            <div class="mb-3">
+                                <div class="relative">
+                                    <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                            class="fa-solid fa-lock"></i></span>
+                                    <input formControlName="password" [value]="registerForm.controls.password"
+                                        [type]="showPasswordOffOn['Password'] ? 'text' : 'password'" id="password"
+                                        class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                        placeholder="Password">
+                                </div>
+                                <div class="text-red-500 rounded-lg">
+                                    @if(registerForm.controls.password.touched || registerForm.controls.password.dirty)
+                                    {
+                                    @if(registerForm.controls.password.hasError('minlength')){
+                                    <p class="p-4">{{'register.Password Must at least of length 6 !!' | translate}}</p>
+                                    }
+                                    @else if (registerForm.controls.password.hasError('pattern')){
+                                    <p class="p-4">{{'register.Password has to have at least a special character' |
+                                        translate}}</p>
+                                    }
+                                    @else if(registerForm.controls.password.hasError('required')){
+                                    <p class="p-4">{{'register.Password is Required !!' | translate}}</p>
+                                    }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/2 px-5">
+                            <div class="flex justify-between">
+                                <label for="ConfirmPassword" class="text-white">{{'register.Confirm Password' |
+                                    translate}}</label>
+                                <button type="button" class="text-white cursor-pointer"
+                                    (click)="togglePassword('ConfirmPassword')">
+                                    @if(showPasswordOffOn["ConfirmPassword"]){<i
+                                        class="fa-solid fa-eye-low-vision"></i>}
+                                    @else{<i class="fa-solid fa-eye"></i>}
+                                </button>
+                            </div>
+                            <div class="mb-3">
+                                <div class="relative">
+                                    <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                            class="fa-solid fa-lock"></i></span>
+                                    <input formControlName="confirmPassword"
+                                        [value]="registerForm.controls.confirmPassword"
+                                        [type]="showPasswordOffOn['ConfirmPassword'] ? 'text' : 'password'"
+                                        id="ConfirmPassword"
+                                        class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                        placeholder="Confirm Password">
+                                </div>
+                                <div class="text-red-500 p-4 rounded-lg"
+                                    *ngIf="registerForm.getError('passwordMismatch')">
+                                    {{'register.Confirm Password must be like the password !!' | translate}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-full md:w-1/2 px-5">
+                            <label for="dateOfBirth" class="text-white">{{'register.Date Of Birth' | translate}}</label>
+                            <div class="mb-3">
+                                <div class="relative">
+                                    <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                            class="fa-solid fa-calendar"></i></span>
+                                    <input formControlName="dateOfBirth" type="date" id="dateOfBirth"
+                                        class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                        placeholder="00/00/0000">
+                                </div>
+                                <div class="text-red-500 p-4 rounded-lg"
+                                    *ngIf="(registerForm.controls.dateOfBirth.dirty || registerForm.controls.dateOfBirth.touched) && registerForm.controls.dateOfBirth.getError('required')">
+                                    {{'register.Date is Required !!' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/2 px-5">
+                            <label for="gender" class="text-white">{{'register.Gender' | translate}}</label>
+                            <div class="mb-3">
+                                <div class="relative flex justify-center space-x-10">
+                                    <div class="bg-black py-2 px-5 rounded-full space-x-5">
+                                        <input formControlName="gender" type="radio" name="gender" id="Male"
+                                            [value]="0">
+                                        <label for="gender" class="text-white">{{'register.Male' | translate}}</label>
+                                    </div>
+                                    <div class="bg-black py-2 px-5 rounded-full space-x-5">
+                                        <input formControlName="gender" type="radio" name="gender" id="Female"
+                                            [value]="1">
+                                        <label for="gender" class="text-white">{{'register.Female' | translate}}</label>
                                     </div>
                                 </div>
                             </div>
-    
-                            <div class="w-full md:w-1/2 px-5">
-                                <div class="flex justify-between">
-                                    <label for="password" class="text-white">{{'register.Password' | translate}}</label>
-                                    <button type="button" class="text-white cursor-pointer" (click)="togglePassword('Password')">
-                                        @if(showPasswordOffOn["Password"]){<i class="fa-solid fa-eye-low-vision"></i>}
-                                        @else{<i class="fa-solid fa-eye"></i>}
-                                    </button>
+                        </div>
+
+                        <div class="w-full md:w-1/2 px-5">
+                            <label for="Address" class="text-white">{{'register.Address' | translate}}</label>
+                            <div class="mb-3">
+                                <div class="relative">
+                                    <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                            class="fa-solid fa-location-dot"></i></span>
+                                    <input formControlName="address" id="Address"
+                                        class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                        placeholder="14-street-Cairo-5302">
                                 </div>
-                                <div class="mb-3">
-                                    <div class="relative">
-                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-lock"></i></span>
-                                        <input formControlName="password" [value]="registerForm.controls.password" [type]="showPasswordOffOn['Password'] ? 'text' : 'password'" id="password" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Password">
-                                    </div>
-                                    <div class="text-red-500 rounded-lg">
-                                        @if(registerForm.controls.password.touched || registerForm.controls.password.dirty)
-                                        {
-                                            @if(registerForm.controls.password.hasError('minlength')){
-                                                <p class="p-4">{{'register.Password Must at least of length 6 !!' | translate}}</p>
-                                            }
-                                            @else if (registerForm.controls.password.hasError('pattern')){
-                                                <p class="p-4">{{'register.Password has to have at least a special character' | translate}}</p>
-                                            }
-                                            @else if(registerForm.controls.password.hasError('required')){
-                                                <p class="p-4">{{'register.Password is Required !!' | translate}}</p>
-                                            }
-                                        }
-                                    </div>
+                                <div class="text-red-500 p-4 rounded-lg"
+                                    *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
+                                    {{'register.Address is required !!' | translate}}
                                 </div>
                             </div>
-                            <div class="w-full md:w-1/2 px-5">
-                                <div class="flex justify-between">
-                                    <label for="ConfirmPassword" class="text-white">{{'register.Confirm Password' | translate}}</label>
-                                    <button type="button" class="text-white cursor-pointer" (click)="togglePassword('ConfirmPassword')">
-                                        @if(showPasswordOffOn["ConfirmPassword"]){<i class="fa-solid fa-eye-low-vision"></i>}
-                                        @else{<i class="fa-solid fa-eye"></i>}
-                                    </button>
+                        </div>
+                        <div class="w-full md:w-1/2 px-5">
+                            <label for="role" class="text-white">{{'register.Role' | translate}}</label>
+                            <div class="mb-3">
+                                <div class="relative">
+                                    <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                            class="fa-regular fa-hand-pointer"></i></span>
+                                    <select formControlName="role" name="role" id="role"
+                                        class="w-full bg-black text-white ps-8 p-2 rounded-lg border-1">
+                                        <option value="" disabled selected>{{'register.Choose Role' | translate}}
+                                        </option>
+                                        <option value="Doctor">{{'register.Doctor' | translate}}</option>
+                                        <option value="Admin">{{'register.Admin' | translate}}</option>
+                                        <option value="Patient">{{'register.Patient' | translate}}</option>
+                                    </select>
                                 </div>
-                                <div class="mb-3">
-                                    <div class="relative">
-                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-lock"></i></span>
-                                        <input formControlName="confirmPassword" [value]="registerForm.controls.confirmPassword" [type]="showPasswordOffOn['ConfirmPassword'] ? 'text' : 'password'" id="ConfirmPassword" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Confirm Password">
-                                    </div>
-                                    <div class="text-red-500 p-4 rounded-lg" *ngIf="registerForm.getError('passwordMismatch')">
-                                        {{'register.Confirm Password must be like the password !!' | translate}}
-                                    </div>
-                                </div>
-                            </div>
-    
-                            <div class="w-full md:w-1/2 px-5">
-                                <label for="dateOfBirth" class="text-white">{{'register.Date Of Birth' | translate}}</label>
-                                <div class="mb-3">
-                                    <div class="relative">
-                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-calendar"></i></span>
-                                        <input formControlName="dateOfBirth" type="date" id="dateOfBirth" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="00/00/0000">
-                                    </div>
-                                    <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.dateOfBirth.dirty || registerForm.controls.dateOfBirth.touched) && registerForm.controls.dateOfBirth.getError('required')">
-                                        {{'register.Date is Required !!' | translate}}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full md:w-1/2 px-5">
-                                <label for="gender" class="text-white">{{'register.Gender' | translate}}</label>
-                                <div class="mb-3">
-                                    <div class="relative flex justify-center space-x-10">
-                                        <div class="bg-black py-2 px-5 rounded-full space-x-5">
-                                            <input formControlName="gender" type="radio" name="gender" id="Male" [value]="0">
-                                            <label for="gender" class="text-white">{{'register.Male' | translate}}</label>
-                                        </div>
-                                        <div class="bg-black py-2 px-5 rounded-full space-x-5">
-                                            <input formControlName="gender" type="radio" name="gender" id="Female" [value]="1">
-                                            <label for="gender" class="text-white">{{'register.Female' | translate}}</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-    
-                            <div class="w-full md:w-1/2 px-5">
-                                <label for="Address" class="text-white">{{'register.Address' | translate}}</label>
-                                <div class="mb-3">
-                                    <div class="relative">
-                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
-                                        <input formControlName="address" id="Address" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="14-street-Cairo-5302">
-                                    </div>
-                                    <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
-                                        {{'register.Address is required !!' | translate}}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full md:w-1/2 px-5">
-                                <label for="role" class="text-white">{{'register.Role' | translate}}</label>
-                                <div class="mb-3">
-                                    <div class="relative">
-                                        <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-regular fa-hand-pointer"></i></span>
-                                        <select formControlName="role" name="role" id="role" class="w-full bg-black text-white ps-8 p-2 rounded-lg border-1">
-                                            <option value="" disabled selected>{{'register.Choose Role' | translate}}</option>
-                                            <option value="Doctor">{{'register.Doctor' | translate}}</option>
-                                            <option value="Admin">{{'register.Admin' | translate}}</option>
-                                            <option value="Patient">{{'register.Patient' | translate}}</option>
-                                        </select>
-                                    </div>
-                                    <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.role.touched || registerForm.controls.role.dirty) && registerForm.controls.role.invalid">
-                                            {{'register.Please Select a Role !!' | translate}}
-                                        </div>
-                                    
-                                </div>
-                            </div>
-                            @if(registerForm.controls.role.value === "Patient"){
-                                <div class="w-full md:w-1/2 px-5">
-                                    <label for="Occupation" class="text-white">{{'register.Occupation' | translate}}</label>
-                                    <div class="mb-3">
-                                        <div class="relative">
-                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-briefcase"></i></span>
-                                            <input formControlName="occupation" id="Occupation" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Doctor">
-                                        </div>
-                                        <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.occupation.touched || registerForm.controls.occupation.dirty) && registerForm.controls.occupation.getError('required')">
-                                            {{'register.Occupation is required !!' | translate}}
-                                        </div>
-                                    </div>
+                                <div class="text-red-500 p-4 rounded-lg"
+                                    *ngIf="(registerForm.controls.role.touched || registerForm.controls.role.dirty) && registerForm.controls.role.invalid">
+                                    {{'register.Please Select a Role !!' | translate}}
                                 </div>
 
-                                <div class="w-full md:w-1/2 px-5">
-                                    <label for="EmergencyContactName" class="text-white">{{'register.Emergency Contact Name' | translate}}</label>
-                                    <div class="mb-3">
-                                        <div class="relative">
-                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-id-badge"></i></span>
-                                            <input formControlName="emergencyContactName" id="EmergencyContactName" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Ahmed">
-                                        </div>
-                                        <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.emergencyContactName.touched || registerForm.controls.emergencyContactName.dirty) && registerForm.controls.emergencyContactName.getError('required')">
-                                            {{'register.Emergency Contact Name is required !!' | translate}}
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+                        @if(registerForm.controls.role.value === "Patient"){
+                        <div class="w-full md:w-1/2 px-5">
+                            <label for="Occupation" class="text-white">{{'register.Occupation' | translate}}</label>
+                            <div class="mb-3">
+                                <div class="relative">
+                                    <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                            class="fa-solid fa-briefcase"></i></span>
+                                    <input formControlName="occupation" id="Occupation"
+                                        class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                        placeholder="Doctor">
                                 </div>
+                                <div class="text-red-500 p-4 rounded-lg"
+                                    *ngIf="(registerForm.controls.occupation.touched || registerForm.controls.occupation.dirty) && registerForm.controls.occupation.getError('required')">
+                                    {{'register.Occupation is required !!' | translate}}
+                                </div>
+                            </div>
+                        </div>
 
-                                <div class="w-full md:w-1/2 px-5">
-                                    <label for="EmergencyContactNumber" class="text-white">{{'register.Emergency Contact Number' | translate}}</label>
-                                    <div class="mb-3">
-                                        <div class="relative">
-                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-phone"></i></span>
-                                            <input formControlName="emergencyContactNumber" type="tel" [value]="registerForm.controls.emergencyContactNumber" id="EmergencyContactNumber" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="+01">
-                                        </div>
-                                        <div class="text-red-500 p-4 rounded-lg" 
-                                                *ngIf="
+                        <div class="w-full md:w-1/2 px-5">
+                            <label for="EmergencyContactName" class="text-white">{{'register.Emergency Contact Name' |
+                                translate}}</label>
+                            <div class="mb-3">
+                                <div class="relative">
+                                    <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                            class="fa-solid fa-id-badge"></i></span>
+                                    <input formControlName="emergencyContactName" id="EmergencyContactName"
+                                        class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                        placeholder="Ahmed">
+                                </div>
+                                <div class="text-red-500 p-4 rounded-lg"
+                                    *ngIf="(registerForm.controls.emergencyContactName.touched || registerForm.controls.emergencyContactName.dirty) && registerForm.controls.emergencyContactName.getError('required')">
+                                    {{'register.Emergency Contact Name is required !!' | translate}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-full md:w-1/2 px-5">
+                            <label for="EmergencyContactNumber" class="text-white">{{'register.Emergency Contact Number'
+                                | translate}}</label>
+                            <div class="mb-3">
+                                <div class="relative">
+                                    <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                            class="fa-solid fa-phone"></i></span>
+                                    <input formControlName="emergencyContactNumber" type="tel"
+                                        [value]="registerForm.controls.emergencyContactNumber"
+                                        id="EmergencyContactNumber"
+                                        class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                        placeholder="+01">
+                                </div>
+                                <div class="text-red-500 p-4 rounded-lg" *ngIf="
                                                     (registerForm.controls.emergencyContactNumber.touched || 
                                                     registerForm.controls.emergencyContactNumber.dirty) &&
                                                     registerForm.controls.emergencyContactNumber.hasError('required')
                                                 ">
-                                            {{'register.Emergency Contact Number is Required !!' | translate}}
-                                        </div>
-                                        <div class="text-red-500 p-4 rounded-lg" 
-                                                *ngIf="
+                                    {{'register.Emergency Contact Number is Required !!' | translate}}
+                                </div>
+                                <div class="text-red-500 p-4 rounded-lg" *ngIf="
                                                     (registerForm.controls.emergencyContactNumber.touched || 
                                                     registerForm.controls.emergencyContactNumber.dirty) &&
                                                     registerForm.controls.emergencyContactNumber.hasError('pattern')
                                                 ">
-                                            {{'register.Emergency Contact Number Format is wrong !!' | translate}}
-                                        </div>
-                                    </div>
+                                    {{'register.Emergency Contact Number Format is wrong !!' | translate}}
                                 </div>
-                            }
-                            @if(registerForm.controls.role.value === "Admin" || registerForm.controls.role.value === "Doctor"){
-                                <div class="w-full md:w-1/2 px-5">
-                                    <label for="identificationNumber" class="text-white">{{'register.Identification Number' | translate}}</label>
-                                    <div class="mb-3">
-                                        <div class="relative">
-                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
-                                            <input formControlName="identificationNumber" id="identificationNumber" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="ID123456789">
-                                        </div>
-                                        <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
-                                            {{'register.Identification Number is required !!' | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="w-full md:w-1/2 px-5">
-                                    <label for="medicalLicenseNumber" class="text-white">{{'register.MedicalLicense Number' | translate}}</label>
-                                    <div class="mb-3">
-                                        <div class="relative">
-                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
-                                            <input formControlName="medicalLicenseNumber" id="medicalLicenseNumber" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="ID123456789">
-                                        </div>
-                                        <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
-                                            {{'register.MedicalLicense Number is required !!' | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="w-full md:w-1/2 px-5">
-                                    <label for="specialisation" class="text-white">{{'register.Specialization' | translate}}</label>
-                                    <div class="mb-3">
-                                        <div class="relative">
-                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
-                                            <input formControlName="specialisation" id="specialisation" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Write your specialization here">
-                                        </div>
-                                        <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
-                                            {{'register.Specialization is required !!' | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                            @if(registerForm.controls.role.value === "Doctor"){
-                                <div class="w-full md:w-1/2 px-5">
-                                    <label for="workPlace" class="text-white">{{'register.Work Place' | translate}}</label>
-                                    <div class="mb-3">
-                                        <div class="relative">
-                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-location-dot"></i></span>
-                                            <input formControlName="workPlace" id="workPlace" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Write your workPlace here">
-                                        </div>
-                                        <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
-                                            {{'register.Work Place is required !!' | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="w-full md:w-1/2 px-5">
-                                    <label for="fee" class="text-white">{{'register.Medical Examination Fees' | translate}}</label>
-                                    <div class="mb-3">
-                                        <div class="relative">
-                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-dollar-sign"></i></span>
-                                            <input formControlName="fee" id="fee" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Write your Medical Examination Fees here">
-                                        </div>
-                                        <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.fee.touched) && registerForm.controls.fee.getError('required')">
-                                            {{'register.Medical Examination Fees is required !!' | translate}}
-                                        </div>
-                                        <div class="text-red-500 p-4 rounded-lg" *ngIf="(registerForm.controls.fee.touched) && registerForm.controls.fee.getError('min')">
-                                            {{'register.Medical Examination Fees must be equal or more than 0' | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                            }
+                            </div>
                         </div>
-    
-                        
-                        @if(registerForm.controls.role.value === "Patient"){
-                            <div class="mb-4 text-white font-bold">
-                                <h2 class="text-2xl">{{'register.Medical Information' | translate}}</h2>
-                            </div>
-                            <div class="flex flex-wrap space-y-5">
-                                <div class="w-full md:w-1/2 px-5">
-                                    <label for="familyMedicalHistory" class="text-white">{{'register.Family Medical History(if relevant)' | translate}}</label>
-                                    <div class="mb-3">
-                                        <div class="relative">
-                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-briefcase-medical"></i></span>
-                                            <input formControlName="familyMedicalHistory" type="text" [value]="registerForm.controls.familyMedicalHistory" id="familyMedicalHistory" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Mother had brain cancer, Father has hypertension">
-                                        </div>
-                                    </div>
-                                </div>
-        
-                                <div class="w-full md:w-1/2 px-5">
-                                    <label for="pastMedicalHistory" class="text-white">{{'register.Past Medical History' | translate}}</label>
-                                    <div class="mb-3">
-                                        <div class="relative">
-                                            <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i class="fa-solid fa-briefcase-medical"></i></span>
-                                            <input formControlName="pastMedicalHistory" type="text" [value]="registerForm.controls.pastMedicalHistory" id="pastMedicalHistory" class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none" placeholder="Appendectomy in 2015 Asthma diagnosis in childhood">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         }
-    
-                        <div class="w-full">
-                            <button class="w-full bg-gradient-to-r from-blue-900 via-balck to-gray-800 rounded-lg text-white p-2 cursor-pointer">{{'register.Go ahead 😃' | translate}}</button>
+                        @if(registerForm.controls.role.value === "Admin" || registerForm.controls.role.value ===
+                        "Doctor"){
+                        <div class="w-full md:w-1/2 px-5">
+                            <label for="identificationNumber" class="text-white">{{'register.Identification Number' |
+                                translate}}</label>
+                            <div class="mb-3">
+                                <div class="relative">
+                                    <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                            class="fa-solid fa-location-dot"></i></span>
+                                    <input formControlName="identificationNumber" id="identificationNumber"
+                                        class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                        placeholder="ID123456789">
+                                </div>
+                                <div class="text-red-500 p-4 rounded-lg"
+                                    *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
+                                    {{'register.Identification Number is required !!' | translate}}
+                                </div>
+                            </div>
                         </div>
-                    
-                    </form>
-                </div>
+
+                        <div class="w-full md:w-1/2 px-5">
+                            <label for="medicalLicenseNumber" class="text-white">{{'register.MedicalLicense Number' |
+                                translate}}</label>
+                            <div class="mb-3">
+                                <div class="relative">
+                                    <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                            class="fa-solid fa-location-dot"></i></span>
+                                    <input formControlName="medicalLicenseNumber" id="medicalLicenseNumber"
+                                        class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                        placeholder="ID123456789">
+                                </div>
+                                <div class="text-red-500 p-4 rounded-lg"
+                                    *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
+                                    {{'register.MedicalLicense Number is required !!' | translate}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-full md:w-1/2 px-5">
+                            <label for="specialisation" class="text-white">{{'register.Specialization' |
+                                translate}}</label>
+                            <div class="mb-3">
+                                <div class="relative">
+                                    <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                            class="fa-solid fa-location-dot"></i></span>
+                                    <input formControlName="specialisation" id="specialisation"
+                                        class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                        placeholder="Write your specialization here">
+                                </div>
+                                <div class="text-red-500 p-4 rounded-lg"
+                                    *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
+                                    {{'register.Specialization is required !!' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        @if(registerForm.controls.role.value === "Doctor"){
+                        <div class="w-full md:w-1/2 px-5">
+                            <label for="workPlace" class="text-white">{{'register.Work Place' | translate}}</label>
+                            <div class="mb-3">
+                                <div class="relative">
+                                    <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                            class="fa-solid fa-location-dot"></i></span>
+                                    <input formControlName="workPlace" id="workPlace"
+                                        class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                        placeholder="Write your workPlace here">
+                                </div>
+                                <div class="text-red-500 p-4 rounded-lg"
+                                    *ngIf="(registerForm.controls.address.touched || registerForm.controls.address.dirty) && registerForm.controls.address.getError('required')">
+                                    {{'register.Work Place is required !!' | translate}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-full md:w-1/2 px-5">
+                            <label for="fee" class="text-white">{{'register.Medical Examination Fees' |
+                                translate}}</label>
+                            <div class="mb-3">
+                                <div class="relative">
+                                    <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                            class="fa-solid fa-dollar-sign"></i></span>
+                                    <input formControlName="fee" id="fee"
+                                        class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                        placeholder="Write your Medical Examination Fees here">
+                                </div>
+                                <div class="text-red-500 p-4 rounded-lg"
+                                    *ngIf="(registerForm.controls.fee.touched) && registerForm.controls.fee.getError('required')">
+                                    {{'register.Medical Examination Fees is required !!' | translate}}
+                                </div>
+                                <div class="text-red-500 p-4 rounded-lg"
+                                    *ngIf="(registerForm.controls.fee.touched) && registerForm.controls.fee.getError('min')">
+                                    {{'register.Medical Examination Fees must be equal or more than 0' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+
+
+                    @if(registerForm.controls.role.value === "Patient"){
+                    <div class="mb-4 text-white font-bold">
+                        <h2 class="text-2xl">{{'register.Medical Information' | translate}}</h2>
+                    </div>
+                    <div class="flex flex-wrap space-y-5">
+                        <div class="w-full md:w-1/2 px-5">
+                            <label for="familyMedicalHistory" class="text-white">{{'register.Family Medical History(if
+                                relevant)' | translate}}</label>
+                            <div class="mb-3">
+                                <div class="relative">
+                                    <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                            class="fa-solid fa-briefcase-medical"></i></span>
+                                    <input formControlName="familyMedicalHistory" type="text"
+                                        [value]="registerForm.controls.familyMedicalHistory" id="familyMedicalHistory"
+                                        class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                        placeholder="Mother had brain cancer, Father has hypertension">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-full md:w-1/2 px-5">
+                            <label for="pastMedicalHistory" class="text-white">{{'register.Past Medical History' |
+                                translate}}</label>
+                            <div class="mb-3">
+                                <div class="relative">
+                                    <span class="absolute text-white top-[50%] left-2 -translate-y-[50%]"><i
+                                            class="fa-solid fa-briefcase-medical"></i></span>
+                                    <input formControlName="pastMedicalHistory" type="text"
+                                        [value]="registerForm.controls.pastMedicalHistory" id="pastMedicalHistory"
+                                        class="border-1 border-gray-200 w-full rounded-lg ps-8 p-2 bg-black text-white outline-none"
+                                        placeholder="Appendectomy in 2015 Asthma diagnosis in childhood">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                    <div class="w-full">
+                        <button
+                            class="w-full bg-gradient-to-r from-blue-900 via-balck to-gray-800 rounded-lg text-white p-2 cursor-pointer">{{'register.Go
+                            ahead 😃' | translate}}</button>
+                    </div>
+
+                </form>
             </div>
-    
         </div>
+
+    </div>
     }
 </main>

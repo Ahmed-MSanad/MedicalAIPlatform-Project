@@ -2,15 +2,16 @@ import { Component, inject } from '@angular/core';
 import { AppointmentService } from '../../../Core/Services/appointment.service';
 import { Appointment } from '../../../Core/Interfaces/appointment';
 import { AppointmentInfo } from '../../../Core/Interfaces/appointment-info';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { MedicalImageService } from '../../../Core/Services/medical-image.service';
 import { Router } from '@angular/router';
 import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-doctor-appointments',
-  imports: [DatePipe, FormsModule, BackgroundLayoutComponent],
+  imports: [DatePipe, FormsModule, BackgroundLayoutComponent, TranslateModule, CommonModule],
   templateUrl: './doctor-appointments.component.html',
   styleUrl: './doctor-appointments.component.scss'
 })
@@ -19,6 +20,7 @@ export class DoctorAppointmentsComponent {
   private _appointmentService = inject(AppointmentService);
   private _medicalImageService = inject(MedicalImageService)
   private _toastr = inject(ToastrService);
+  private _translate = inject(TranslateService)
 
   isLoading = false;
   appointments!: Appointment[]
@@ -43,7 +45,9 @@ export class DoctorAppointmentsComponent {
     );
   }
 
-
+  isRtl(): boolean {
+    return localStorage.getItem('lang') === 'ar';
+  }
   GetAppointments() {
     this.isLoading = true;
     this._appointmentService.GetAppointments(this.status).subscribe({
@@ -97,9 +101,11 @@ export class DoctorAppointmentsComponent {
   }
 
   CancelAppointment() {
+    this.isLoading = true;
     this._appointmentService.CancelAppointment(this.id!).subscribe({
       next: (res: any) => {
-        this._toastr.success(res.message);
+        this.isLoading = false;
+        this._toastr.success(this._translate.instant("doctor.Appointment Cancelled Successfully"));
         this.appointments = this.appointments.filter(a => a.id !== this.id);
         this.id = undefined;
         this.CloseDelete();
@@ -116,12 +122,12 @@ export class DoctorAppointmentsComponent {
     this.isLoading = true;
     this._appointmentService.CompleteAppointment(appointmentId).subscribe({
       next: (res: any) => {
-        this._toastr.success(res.message);
+        this._toastr.success(this._translate.instant("doctor.Appointment Completed Successfully"));
         this.appointments = this.appointments.filter(appointment => appointment.id != appointmentId)
         this.isLoading = false;
       },
       error: (err) => {
-        this._toastr.error("Can't complete this appointment until the scheduled time has passed.");
+        this._toastr.error(this._translate.instant("doctor.Can't complete this appointment until the scheduled time has passed."));
         this.isLoading = false;
       }
     })
