@@ -1,21 +1,40 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Web;
 using AutoMapper;
 using MedicalProj.Data.Contracts;
 using MedicalProj.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using MimeKit;
 using Services.Abstraction;
 using Shared;
 using Shared.AuthenticationDtos;
+using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Services
 {
-    public class AuthenticationService(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, 
-                                       IUnitOfWork unitOfWork, IMapper mapper) : IAuthenticationService
+    public class AuthenticationService : IAuthenticationService
     {
+        private readonly UserManager<AppUser> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
+        private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
+        private readonly SmtpSettings smtpSettings;
+
+        public AuthenticationService(UserManager<AppUser> _userManager, RoleManager<IdentityRole> _roleManager,
+                                       IUnitOfWork _unitOfWork, IMapper _mapper, IOptions<SmtpSettings> _smtpSettings)
+        {
+            userManager = _userManager;
+            roleManager = _roleManager;
+            unitOfWork = _unitOfWork;
+            mapper = _mapper;
+            smtpSettings = _smtpSettings.Value;
+        }
+
         public async Task<string> PatientSignupService(PatientRegistrationModel patientRegistrationModel)
         {
             AppUser user = mapper.Map<Patient>(patientRegistrationModel);
@@ -108,6 +127,41 @@ namespace Services
             var user = await userManager.FindByEmailAsync(request.Email);
 
             return user != null;
+        }
+
+        public async Task ForgetPasswordService(CheckEmailRequest emailRequest)
+        {
+            var user = await userManager.FindByEmailAsync(emailRequest.Email);
+
+            var token = await userManager.GeneratePasswordResetTokenAsync(user);
+            
+            var encodedToken = HttpUtility.UrlEncode(token);
+            
+            var callbackUrl = $"http://localhost:4200/resetPassword/{emailRequest.Email}/{encodedToken}";
+
+
+            var email = new MimeMessage();
+            email.From.Add(new MailboxAddress("MedicalAiPlatform", smtpSettings.Username));
+            email.To.Add(new MailboxAddress("", emailRequest.Email!));
+            email.Subject = "Reset Password";
+
+            var bodyBuilder = new BodyBuilder { TextBody = $"Click <a href='{callbackUrl}'>here</a> to reset your password." };
+            email.Body = bodyBuilder.ToMessageBody();
+
+            using var smtp = new SmtpClient();
+            await smtp.ConnectAsync(smtpSettings.Host, smtpSettings.Port, MailKit.Security.SecureSocketOptions.StartTls);
+            await smtp.AuthenticateAsync(smtpSettings.Username, smtpSettings.Password);
+            await smtp.SendAsync(email);
+            await smtp.DisconnectAsync(true);
+        }
+
+        public async Task<IdentityResult> ResetPasswordService(ResetPasswordDto resetPasswordDto)
+        {
+            var user = await userManager.FindByEmailAsync(resetPasswordDto.Email);
+
+            var result = await userManager.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.NewPassword);
+
+            return result;
         }
     }
 }

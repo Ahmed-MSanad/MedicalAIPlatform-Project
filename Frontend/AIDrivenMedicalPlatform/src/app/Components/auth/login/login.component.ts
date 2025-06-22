@@ -30,6 +30,7 @@ loginForm = this._FormBuilder.group({
   password: ['', [Validators.required]]
 });
 
+
 ngOnInit() {
   if (localStorage.getItem('lang') == 'ar') {
     this.currentLanguage = 'ar';

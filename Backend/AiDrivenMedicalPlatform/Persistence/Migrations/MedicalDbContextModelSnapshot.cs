@@ -34,7 +34,7 @@ namespace MedicalProj.Data.Migrations
 
                     b.HasIndex("AdminId");
 
-                    b.ToTable("AdminPhones");
+                    b.ToTable("AdminPhones", (string)null);
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.AiAnalysis", b =>
@@ -71,7 +71,7 @@ namespace MedicalProj.Data.Migrations
                     b.HasIndex("MedicalImageId", "DiseaseType")
                         .IsUnique();
 
-                    b.ToTable("AiAnalyses");
+                    b.ToTable("AiAnalyses", (string)null);
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.AppUser", b =>
@@ -203,7 +203,7 @@ namespace MedicalProj.Data.Migrations
 
                     b.HasIndex("Pid");
 
-                    b.ToTable("Appointments");
+                    b.ToTable("Appointments", (string)null);
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.DoctorPhone", b =>
@@ -218,7 +218,7 @@ namespace MedicalProj.Data.Migrations
 
                     b.HasIndex("DoctorId");
 
-                    b.ToTable("DoctorPhones");
+                    b.ToTable("DoctorPhones", (string)null);
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.DoctorSchedule", b =>
@@ -239,7 +239,7 @@ namespace MedicalProj.Data.Migrations
 
                     b.HasIndex("DoctorId");
 
-                    b.ToTable("DoctorSchedules");
+                    b.ToTable("DoctorSchedules", (string)null);
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.Feedback", b =>
@@ -279,7 +279,7 @@ namespace MedicalProj.Data.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Feedbacks");
+                    b.ToTable("Feedbacks", (string)null);
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.MedicalImage", b =>
@@ -317,7 +317,7 @@ namespace MedicalProj.Data.Migrations
 
                     b.HasIndex("Pid");
 
-                    b.ToTable("MedicalImages");
+                    b.ToTable("MedicalImages", (string)null);
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.Notification", b =>
@@ -358,7 +358,7 @@ namespace MedicalProj.Data.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Notifications");
+                    b.ToTable("Notifications", (string)null);
                 });
 
             modelBuilder.Entity("MedicalProj.Data.Models.PatientPhone", b =>
@@ -373,7 +373,7 @@ namespace MedicalProj.Data.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("PatientPhones");
+                    b.ToTable("PatientPhones", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -1,4 +1,4 @@
-﻿namespace Shared
+﻿namespace Shared.AuthenticationDtos
 {
     public class CheckEmailRequest
     {

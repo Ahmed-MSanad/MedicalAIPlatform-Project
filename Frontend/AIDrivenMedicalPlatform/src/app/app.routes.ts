@@ -26,7 +26,9 @@ export const routes: Routes = [
         {path: "", redirectTo: "home", pathMatch: 'full'},
         {path: "home", component: MainPageComponent },
         {path: "register", loadComponent: () => import("./Components/auth/register/register.component").then((c) => c.RegisterComponent)},
-        {path: "login", loadComponent: () => import("./Components/auth/login/login.component").then((c) => c.LoginComponent)}
+        {path: "login", loadComponent: () => import("./Components/auth/login/login.component").then((c) => c.LoginComponent)},
+        {path: "forgetPassword", loadComponent: () => import("./Components/auth/forget-password/forget-password.component").then((c) => c.ForgetPasswordComponent)},
+        {path: "resetPassword/:email/:token", loadComponent: () => import("./Components/auth/reset-password/reset-password.component").then((c) => c.ResetPasswordComponent)},
     ]},
     {path:'', component: BlankLayoutComponent, canActivate:[authGuard], canActivateChild:[authGuard] , children:[
         {path: "", redirectTo: "AdminDashboard", pathMatch: 'full'},

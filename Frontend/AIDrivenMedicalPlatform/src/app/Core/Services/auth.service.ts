@@ -50,4 +50,12 @@ export class AuthService {
   getClaims(){
     return JSON.parse(window.atob(this.getToken()!.split('.')[1])); // token -> header.payload.signature
   }
+
+  forgetPassword(formData : any){
+    return this.http.post(environment.apiBaseURL+'/Authentication/ForgetPassword', formData);
+  }
+
+  resetPassword(formData : any){
+    return this.http.post(environment.apiBaseURL+'/Authentication/ResetPassword', formData);
+  }
 }
