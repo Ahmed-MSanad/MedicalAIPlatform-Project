@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserProfile } from '../../../Core/Interfaces/user-profile';
 import { Gender } from '../../../Core/Enums/gender';
+import { IllnessChoices } from '../../../Core/Enums/illness-choices';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -62,7 +63,8 @@ export class DoctorAiModelComponent implements OnInit {
     Diagnosis: [""],
     image: [null as string | ArrayBuffer | null],
     ExplanationDetails: ["", [Validators.required]],
-    MedicalImageId: [0 as number, [Validators.required]]
+    MedicalImageId: [0 as number, [Validators.required]],
+    diseaseType: ["", [Validators.required]]
   });
 
   selectedFile: File | null = null;
@@ -121,8 +123,9 @@ export class DoctorAiModelComponent implements OnInit {
     }
   }
 
-  classification: WritableSignal<string[]> = signal([]);
-  predicted_probability: WritableSignal<string[]> = signal([]);
+  classification : WritableSignal<string[]> = signal([]);
+  predicted_probability : WritableSignal<string[]> = signal([]);
+  diseases : WritableSignal<string[]> = signal([]);
   modelImage: WritableSignal<string[]> = signal([]);
   forForLoop = Array.from({ length: 3 }, (_, i) => i);
   //------------------------------------------------------------
@@ -134,6 +137,7 @@ export class DoctorAiModelComponent implements OnInit {
         // console.log('Server response:', res);
         this.classification.set([...this.classification(), res.prediction]);
         this.predicted_probability.set([...this.predicted_probability(), res.predicted_probability]);
+        this.diseases.set([...this.diseases(), IllnessChoices.Atelectasis]);
 
         if (res.saliency_map) {
           this.modelImage.set([...this.modelImage(), res.saliency_map]);
@@ -153,6 +157,7 @@ export class DoctorAiModelComponent implements OnInit {
         // console.log('Server response:', res);
         this.classification.set([...this.classification(), res.prediction]);
         this.predicted_probability.set([...this.predicted_probability(), res.predicted_probability]);
+        this.diseases.set([...this.diseases(), IllnessChoices.Effusion]);
 
         if (res.saliency_map) {
           this.modelImage.set([...this.modelImage(), res.saliency_map]);
@@ -172,6 +177,7 @@ export class DoctorAiModelComponent implements OnInit {
         // console.log('Server response:', res);
         this.classification.set([...this.classification(), res.prediction]);
         this.predicted_probability.set([...this.predicted_probability(), res.predicted_probability]);
+        this.diseases.set([...this.diseases(), IllnessChoices.Infiltration]);
 
         if (res.saliency_map) {
           this.modelImage.set([...this.modelImage(), res.saliency_map]);
@@ -211,10 +217,18 @@ export class DoctorAiModelComponent implements OnInit {
 
     for (let i = 0; i < 3; i++) {
       this.aiModelForm.get("Diagnosis")?.setValue(this.classification()[i]);
+      this.aiModelForm.get("diseaseType")?.setValue(this.diseases()[i]);
       this.aiModelForm.get("ConfidenceScore")?.setValue(parseFloat(this.predicted_probability()[i].replace('%', '')));
-      const base64 = (this.modelImage()[i] as string).split(',')[1];
-      this.aiModelForm.get('image')?.setValue(base64);
+      if(this.modelImage()[i] !== ""){
+        const base64 = (this.modelImage()[i] as string).split(',')[1];
+        this.aiModelForm.get('image')?.setValue(base64);
+      }
+      else{
+        this.aiModelForm.get('image')?.setValue(null);
+      }
 
+      console.log(this.aiModelForm.value);
+      console.log(this.aiModelForm.valid);
       if (this.aiModelForm.valid) {
         this.isLoading = true;
         this.aiModelService.saveMedicalImageAiAnalysis(this.aiModelForm.value).subscribe({

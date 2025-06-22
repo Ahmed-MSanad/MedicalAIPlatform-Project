@@ -4,6 +4,7 @@ using Services.Abstraction;
 using Shared.AiAnalysisDtos;
 using Shared.PatientDtos;
 using Shared;
+using Shared.DoctorDtos;
 
 namespace Presentation.Controllers
 {
@@ -47,6 +48,15 @@ namespace Presentation.Controllers
             var patient = await serviceManager.MedicalAIDataService.GetMedicalImageOwnerService(medicalImageId);
 
             return Ok(patient);
+        }
+
+        [Authorize]
+        [HttpGet("{doctorId}")]
+        public async Task<ActionResult<DoctorDto>> GetAiAnalysisDoctorData([FromRoute] string doctorId)
+        {
+            var doctor = await serviceManager.MedicalAIDataService.GetAiAnalysisDoctorDataService(doctorId);
+
+            return Ok(doctor);
         }
     }
 }

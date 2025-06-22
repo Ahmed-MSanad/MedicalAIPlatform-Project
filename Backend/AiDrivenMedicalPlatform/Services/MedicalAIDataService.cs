@@ -3,7 +3,9 @@ using MedicalProj.Data.Contracts;
 using MedicalProj.Data.Models;
 using Services.Abstraction;
 using Services.Specifications;
+using Shared;
 using Shared.AiAnalysisDtos;
+using Shared.DoctorDtos;
 using Shared.PatientDtos;
 
 namespace Services
@@ -12,7 +14,7 @@ namespace Services
     {
         public async Task<string> SetMedicalImageAiAnalysisService(AiAnalysisDto aiAnalysisDto)
         {
-            int aiAnalysisId = await IsAiAnalysisNotExist(aiAnalysisDto.MedicalImageId, aiAnalysisDto.Diagnosis);
+            int aiAnalysisId = await IsAiAnalysisNotExist(aiAnalysisDto.MedicalImageId, aiAnalysisDto.DiseaseType);
             if (aiAnalysisId == -1)
             {
                 var mappedAiAnalysis = mapper.Map<AiAnalysis>(aiAnalysisDto);
@@ -32,17 +34,7 @@ namespace Services
             return medicalImage!.Pid;
         }
 
-        public async Task<IEnumerable<AiAnalysisDto>> GetMedicalImageAiAnalysisService(int medicalImageId)
-        {
-            var specification = new AiAnalysisWithFilterSpecification(medicalImageId);
-
-            var aiAnalysis = await unitOfWork.GetRepository<AiAnalysis, int>().GetAllAsync(specification);
-            return aiAnalysis == null
-                ? throw new Exception("AI Analysis not found for the given medical image ID in Get Medical Image AI Analysis Service")
-                : mapper.Map<IEnumerable<AiAnalysisDto>>(aiAnalysis);
-        }
-
-        private async Task<int> IsAiAnalysisNotExist(int medicalImageId, string Diagnosis)
+        private async Task<int> IsAiAnalysisNotExist(int medicalImageId, string diseaseType)
         {
             var specification = new AiAnalysisWithFilterSpecification(medicalImageId);
 
@@ -51,12 +43,22 @@ namespace Services
             int aiAnalysisId = -1;
             foreach (var aiAnalysis in aiAnalysisForTheImage)
             {
-                if (aiAnalysis.MedicalImageId == medicalImageId && aiAnalysis.Diagnosis == Diagnosis)
+                if (aiAnalysis.MedicalImageId == medicalImageId && aiAnalysis.DiseaseType == diseaseType)
                 {
                     aiAnalysisId = aiAnalysis.AiAnalysisId;
                 }
             }
             return aiAnalysisId;
+        }
+
+        public async Task<IEnumerable<AiAnalysisDto>> GetMedicalImageAiAnalysisService(int medicalImageId)
+        {
+            var specification = new AiAnalysisWithFilterSpecification(medicalImageId);
+
+            var aiAnalysis = await unitOfWork.GetRepository<AiAnalysis, int>().GetAllAsync(specification);
+            return aiAnalysis == null
+                ? throw new Exception("AI Analysis not found for the given medical image ID in Get Medical Image AI Analysis Service")
+                : mapper.Map<IEnumerable<AiAnalysisDto>>(aiAnalysis);
         }
 
         public async Task<PatientDto> GetMedicalImageOwnerService(int medicalImageId)
@@ -70,6 +72,14 @@ namespace Services
             return patient == null
                 ? throw new Exception($"Patient assoiciated to this medical image id {medicalImageId} is not found")
                 : mapper.Map<PatientDto>(patient);
+        }
+
+        public async Task<DoctorDto> GetAiAnalysisDoctorDataService(string doctorId)
+        {
+            var doctor = await unitOfWork.GetRepository<Doctor, string>().GetByIdAsync(doctorId);
+
+            return doctor is not null ? mapper.Map<DoctorDto>(doctor) : 
+                throw new Exception($"Doctor assoiciated to this medical image id {doctorId} is not found");
         }
     }
 }

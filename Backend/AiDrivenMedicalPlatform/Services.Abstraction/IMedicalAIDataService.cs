@@ -1,4 +1,5 @@
 ﻿using Shared.AiAnalysisDtos;
+using Shared.DoctorDtos;
 using Shared.PatientDtos;
 
 namespace Services.Abstraction
@@ -8,5 +9,6 @@ namespace Services.Abstraction
         public Task<string> SetMedicalImageAiAnalysisService(AiAnalysisDto aiAnalysisDto);
         public Task<IEnumerable<AiAnalysisDto>> GetMedicalImageAiAnalysisService(int medicalImageId);
         public Task<PatientDto> GetMedicalImageOwnerService(int medicalImageId);
+        public Task<DoctorDto> GetAiAnalysisDoctorDataService(string doctorId);
     }
 }
