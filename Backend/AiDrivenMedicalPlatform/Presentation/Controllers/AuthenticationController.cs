@@ -110,6 +110,37 @@ namespace Presentation.Controllers
 
             return Ok(new { isRegistered = emailExists } );
         }
-    
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<ActionResult> ForgetPassword([FromBody] CheckEmailRequest emailRequest)
+        {
+            bool isEmailExist = await serviceManager.AuthenticationService.CheckEmailService(emailRequest);
+
+            if (!isEmailExist)
+                return NotFound(new { error = "Email does not exist." });
+
+            await serviceManager.AuthenticationService.ForgetPasswordService(emailRequest);
+
+            return Ok(new { message = "Password reset link has been sent to your email address. Please check your inbox." });
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<ActionResult> ResetPassword([FromBody] ResetPasswordDto resetPasswordDto)
+        {
+            CheckEmailRequest emailRequest = new() { Email = resetPasswordDto.Email };
+
+            bool isEmailExist = await serviceManager.AuthenticationService.CheckEmailService(emailRequest);
+
+            if (!isEmailExist)
+                return NotFound(new { error = "Email does not exist." });
+
+            var result = await serviceManager.AuthenticationService.ResetPasswordService(resetPasswordDto);
+
+            if (result.Succeeded)
+                return Ok(new { message = "Password reset successfully." });
+            return BadRequest(new { error = result.Errors });
+        }
     }
 }

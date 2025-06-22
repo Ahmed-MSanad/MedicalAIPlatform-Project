@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using Shared;
 using Shared.AuthenticationDtos;
 
@@ -11,5 +12,7 @@ namespace Services.Abstraction
         public Task<string> AdminSignupService(AdminRegistrationModel adminRegistrationModel);
         public Task<object> SignInUserService(LoginModel loginModel, IOptions<AppSettings> appSettings);
         public Task<bool> CheckEmailService(CheckEmailRequest request);
+        public Task ForgetPasswordService(CheckEmailRequest emailRequest);
+        public Task<IdentityResult> ResetPasswordService(ResetPasswordDto resetPasswordDto);
     }
 }

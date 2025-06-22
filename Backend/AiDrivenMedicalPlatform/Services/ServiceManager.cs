@@ -4,6 +4,7 @@ using MedicalProj.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Services.Abstraction;
+using Shared;
 
 namespace Services
 {
@@ -20,7 +21,7 @@ namespace Services
         public ServiceManager(IUnitOfWork unitOfWork, IMapper mapper, IOptions<SmtpSettings> _smtpSettings, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager) {
             feedbackService = new Lazy<IFeedbackService>(() => new FeedbackService(unitOfWork, mapper));
             notificationService = new Lazy<INotificationService>(() => new NotificationService(unitOfWork, mapper, _smtpSettings));
-            authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(userManager, roleManager, unitOfWork, mapper));
+            authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(userManager, roleManager, unitOfWork, mapper, _smtpSettings));
             scheduleService = new Lazy<IScheduleService>(() => new ScheduleService(unitOfWork, mapper));
             profileService = new Lazy<IProfileService>(() => new ProfileService(unitOfWork, mapper, userManager));
             appointmentService = new Lazy<IAppointmentService>(() => new AppointmentService(unitOfWork, mapper, userManager));
