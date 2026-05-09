@@ -1,3 +1,3 @@
 export const environment = {
-    apiBaseURL : 'http://localhost:5190'
+    apiBaseURL : 'http://diagnosioapi.runasp.net'
 };

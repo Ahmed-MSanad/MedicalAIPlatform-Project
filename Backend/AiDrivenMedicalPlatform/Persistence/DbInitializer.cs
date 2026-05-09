@@ -20,19 +20,39 @@ namespace Persistence
             {
                 if (!_context.Roles.Any())
                 {
-                    var rolesData = File.ReadAllText(@".\..\Persistence\Data\Seeding\roles.json");
-                    var roles = JsonSerializer.Deserialize<List<IdentityRole>>(rolesData);
-                    if (roles is not null && roles.Any())
+                    var roles = new List<IdentityRole>
                     {
-                        await _context.Roles.AddRangeAsync(roles);
-                        await _context.SaveChangesAsync();
-                    }
+                        new IdentityRole
+                        {
+                            Id = "1",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN",
+                            ConcurrencyStamp = Guid.NewGuid().ToString()
+                        },
+                        new IdentityRole
+                        {
+                            Id = "2",
+                            Name = "Doctor",
+                            NormalizedName = "DOCTOR",
+                            ConcurrencyStamp = Guid.NewGuid().ToString()
+                        },
+                        new IdentityRole
+                        {
+                            Id = "3",
+                            Name = "Patient",
+                            NormalizedName = "PATIENT",
+                            ConcurrencyStamp = Guid.NewGuid().ToString()
+                        }
+                    };
+
+                    await _context.Roles.AddRangeAsync(roles);
+                    await _context.SaveChangesAsync();
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Console.WriteLine($"Seeding Roles Failed: {ex}");
                 throw;
             }
         }

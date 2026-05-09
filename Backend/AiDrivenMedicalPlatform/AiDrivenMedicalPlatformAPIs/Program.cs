@@ -31,7 +31,7 @@ namespace AiDrivenMedicalPlatformAPIs
 
             app.UseStaticFiles();
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseAuthentication();
 

@@ -90,7 +90,11 @@ export class RegisterComponent {
     ) {
       console.log(this.registerForm.value);
       this.isLoading = true;
-      this._authService$.createUser(this.registerForm.value).subscribe({
+      const formData = {
+        ...this.registerForm.value,
+        phones: [this.registerForm.controls.phoneNumber.value]
+      };  
+      this._authService$.createUser(formData).subscribe({
         next: (res: any) => {
           this.isLoading = false;
           this.registerForm.reset();
