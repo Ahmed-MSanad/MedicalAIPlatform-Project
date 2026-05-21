@@ -5,9 +5,9 @@ using Shared.ScheduleDtos;
 
 namespace Presentation.Controllers
 {
+    [Authorize]
     public class ScheduleController(IServiceManager serviceManager) : ApiController
     {
-        [Authorize]
         [HttpGet]
         public async Task<ActionResult<ScheduleDto>> GetDoctorSchedule()
         {
@@ -18,7 +18,6 @@ namespace Presentation.Controllers
             return Ok(schedules);
         }
 
-        [Authorize]
         [HttpPut]
         public async Task<ActionResult> EditDoctorSchedule([FromBody] List<ScheduleDto> schedules)
         {
@@ -26,7 +25,7 @@ namespace Presentation.Controllers
 
             await serviceManager.ScheduleService.EditDoctorScheduleService(schedules, userId);
 
-            return Ok(new { Message = "Schedule Updated Successfully" });
+            return Ok(new { message = "Schedule Updated Successfully" });
 
         }
     }

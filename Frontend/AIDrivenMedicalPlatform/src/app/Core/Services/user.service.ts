@@ -9,8 +9,21 @@ export class UserService {
 
   constructor(private _http : HttpClient){}
 
-  deleteUserProfile() {
-    return this._http.delete(environment.apiBaseURL + '/Profile/DeleteUserProfile');
+  getProfile() {
+    return this._http.get(`${environment.apiBaseURL}/api/profile`);
   }
 
+  deleteUserProfile() {
+    return this._http.delete(`${environment.apiBaseURL}/api/profile`);
+  }
+
+  updateAdminProfile(updatedUser: any) {
+    return this._http.put(`${environment.apiBaseURL}/api/profile/admin`, updatedUser);
+  }
+  updateDoctorProfile(updatedUser: any) {
+    return this._http.put(`${environment.apiBaseURL}/api/profile/doctor`, updatedUser);
+  }
+  updatePatientProfile(updatedUser: any) {
+    return this._http.put(`${environment.apiBaseURL}/api/profile/patient`, updatedUser);
+  }
 }

@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../Core/Services/auth.service';
 import { FormArray, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { AdminService } from '../../../Core/Services/ForAdmin/admin.service';
 import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 @Component({
@@ -18,7 +17,6 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 export class AdminProfileComponent {
   
   private readonly _user = inject(UserService);
-  private readonly _admin = inject(AdminService);
   private readonly _router = inject(Router);
   private readonly _auth = inject(AuthService);
   private readonly _toastr = inject(ToastrService);
@@ -50,7 +48,7 @@ export class AdminProfileComponent {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this._admin.getAdminProfile().subscribe({
+    this._user.getProfile().subscribe({
       next: (res: any) => {
         // Patch non-phone values first
         console.log(res)
@@ -122,7 +120,7 @@ export class AdminProfileComponent {
       },
       error: (err: any) => {
         this.isLoading = false;
-        this._toastr.error(this._translate.instant("profile.Failed to delete user"));
+        this._toastr.error(err.error.error);
         console.error(err);
       }
     });
@@ -131,7 +129,7 @@ export class AdminProfileComponent {
   SaveChanges() {
     if (this.profileForm.valid) {
       this.isLoading = true;
-      this._admin.updateAdminProfile(this.profileForm.value).subscribe({
+      this._user.updateAdminProfile(this.profileForm.value).subscribe({
         next: () => {
           this._toastr.success(this._translate.instant("profile.Profile updated successfully"));
           this.isEdit = false;

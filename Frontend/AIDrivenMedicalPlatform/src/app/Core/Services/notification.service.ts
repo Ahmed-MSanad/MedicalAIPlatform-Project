@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
@@ -10,15 +10,25 @@ export class NotificationService {
 
   constructor(private http: HttpClient) { }
 
-  sendNotification(NotificationType : any) : Observable<any>{
-    return this.http.post(environment.apiBaseURL+`/Notification/SendEmail/${NotificationType}`,{});
+  sendNotification(notificationType: any): Observable<any> {
+    const params = new HttpParams().set('notificationType', notificationType);
+
+    return this.http.post(
+      `${environment.apiBaseURL}/api/notifications/send`,
+      {},
+      { params }
+    );
   }
 
-  getPatientNotifications() : Observable<any>{
-    return this.http.get(environment.apiBaseURL+"/Notification/getNotifications");
+  getPatientNotifications(): Observable<any> {
+    return this.http.get(
+      `${environment.apiBaseURL}/api/notifications`
+    );
   }
 
-  removeNotification(NotificationId : number) : Observable<any>{
-    return this.http.delete(environment.apiBaseURL+`/Notification/removeNotification/${NotificationId}`);
+  removeNotification(notificationId: number): Observable<any> {
+    return this.http.delete(
+      `${environment.apiBaseURL}/api/notifications/${notificationId}`
+    );
   }
 }

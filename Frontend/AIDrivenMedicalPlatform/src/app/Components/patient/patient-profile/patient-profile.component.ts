@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../Core/Services/auth.service';
 import { FormArray, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { PatientService } from '../../../Core/Services/ForPatient/patient.service';
 import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
@@ -18,7 +17,6 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 })
 export class PatientProfileComponent {
   private readonly _user = inject(UserService);
-  private readonly _patient = inject(PatientService);
   private readonly _router = inject(Router);
   private readonly _auth = inject(AuthService);
   private readonly _toastr = inject(ToastrService);
@@ -55,7 +53,7 @@ export class PatientProfileComponent {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this._patient.getPatientProfile().subscribe({
+    this._user.getProfile().subscribe({
       next: (res: any) => {
         // Patch non-phone values first
         const { patientPhones, ...rest } = res;
@@ -127,7 +125,7 @@ export class PatientProfileComponent {
       },
       error: (err: any) => {
         this.isLoading = false;
-        this._toastr.error(this._translate.instant("profile.Failed to delete user"));
+        this._toastr.error(err.error.error);
         console.error(err);
       }
     });
@@ -136,7 +134,7 @@ export class PatientProfileComponent {
   SaveChanges() {
     if (this.profileForm.valid) {
       this.isLoading = true;
-      this._patient.updatePatientProfile(this.profileForm.value).subscribe({
+      this._user.updatePatientProfile(this.profileForm.value).subscribe({
         next: () => {
           this._toastr.success(this._translate.instant("profile.Profile updated successfully"));
           this.isEdit = false;

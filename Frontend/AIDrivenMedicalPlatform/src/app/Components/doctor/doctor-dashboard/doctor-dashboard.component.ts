@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { DoctorService } from '../../../Core/Services/ForDoctor/doctor.service';
+import { ScheduleService } from '../../../Core/Services/schedule.service';
 import { ToastrService } from 'ngx-toastr';
 import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
 import { RouterModule } from '@angular/router';
@@ -14,7 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class DoctorDashboardComponent {
 
-  private readonly _schedule = inject(DoctorService);
+  private readonly _schedule = inject(ScheduleService);
   private readonly _toastr = inject(ToastrService);
 
 

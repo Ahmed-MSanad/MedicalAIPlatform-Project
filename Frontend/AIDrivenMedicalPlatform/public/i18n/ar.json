@@ -227,7 +227,7 @@
         "Error during login !!": "خطأ اثناء تسجيل الدخول !!",
         "Incorrect Email or Password": "الايميل او الباسورد خطأ",
         "Login Failed": "لم ينجح تسجيل الدخول",
-        "Forget Password": "نسيت كلمة المرور"
+        "Forgot Password": "نسيت كلمة المرور"
     },
     "feedback": {
         "Patient Feedback": "ملاحظات المريض",

@@ -11,26 +11,29 @@ export class MedicalImageService {
   constructor(private _http: HttpClient) { }
 
   CreateMedicalImage(medicalImage: MedicalImage) {
-    return this._http.post(`${environment.apiBaseURL}/MedicalImage/AddMedicalImage`, medicalImage)
+    return this._http.post(
+      `${environment.apiBaseURL}/api/medical-images`,
+      medicalImage
+    );
   }
 
   RemoveMedicalImage(medicalImageId: number) {
-    let params = new HttpParams();
-    if (medicalImageId) params = params.set('medicalImageId', medicalImageId);
-
-    return this._http.delete(`${environment.apiBaseURL}/MedicalImage/DeleteMedicalImage`, { params })
+    return this._http.delete(
+      `${environment.apiBaseURL}/api/medical-images/${medicalImageId}`
+    );
   }
 
   GetMedicalImage(appointmentId: number) {
-    let params = new HttpParams();
-    if (appointmentId) params = params.set('appointmentId', appointmentId);
-    return this._http.get(`${environment.apiBaseURL}/MedicalImage/GetMedicalImage`, { params })
+    return this._http.get(
+      `${environment.apiBaseURL}/api/appointments/${appointmentId}/medical-images`
+    );
   }
 
   EditMedicalImage(newImage: string, medicalImageId: number) {
-    const body = { Image:newImage };
-    let params = new HttpParams();
-    if (medicalImageId) params = params.set('medicalImageId', medicalImageId);
-    return this._http.patch(`${environment.apiBaseURL}/MedicalImage/EditMedicalImage`, body, { params });
+    const body = { image: newImage };
+    return this._http.patch(
+      `${environment.apiBaseURL}/api/medical-images/${medicalImageId}`,
+      body
+    );
   }
 }

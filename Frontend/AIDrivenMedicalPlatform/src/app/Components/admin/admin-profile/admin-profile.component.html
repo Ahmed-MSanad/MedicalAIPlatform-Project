@@ -54,15 +54,7 @@
   <div class="bg-white flex flex-col md:flex-row mx-auto space-y-4 justify-between p-5 pb-0">
     <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 items-center">
       <div class="relative w-20 h-20 overflow-hidden rounded-full">
-        @if(imageSrc){
-        <img [src]="imageSrc" class="w-full h-full object-cover rounded-full" alt="Profile Pic">
-        }
-        @else{
-        <div
-          class="w-full h-full bg-gray-200 rounded-full flex items-center justify-center text-2xl font-bold text-gray-500">
-          {{ this.profileForm.get("fullName")?.value?.charAt(0) }}
-        </div>
-        }
+        <img [src]="imageSrc|| './Default.png'" class="w-full h-full object-cover rounded-full" alt="Profile Pic">
         @if(isEdit){
         <div class="absolute inset-0 flex items-center justify-center bg-gray-500/50 rounded-full">
           <label class="cursor-pointer flex flex-col items-center justify-center text-white">

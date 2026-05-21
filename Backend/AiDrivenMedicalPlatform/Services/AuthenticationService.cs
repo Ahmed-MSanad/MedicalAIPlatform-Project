@@ -139,13 +139,12 @@ namespace Services
             
             var callbackUrl = $"http://localhost:4200/resetPassword/{emailRequest.Email}/{encodedToken}";
 
-
             var email = new MimeMessage();
             email.From.Add(new MailboxAddress("MedicalAiPlatform", smtpSettings.Username));
             email.To.Add(new MailboxAddress("", emailRequest.Email!));
             email.Subject = "Reset Password";
 
-            var bodyBuilder = new BodyBuilder { TextBody = $"Click <a href='{callbackUrl}'>here</a> to reset your password." };
+            var bodyBuilder = new BodyBuilder { HtmlBody = $"Click <a href='{callbackUrl}'>here</a> to reset your password." };
             email.Body = bodyBuilder.ToMessageBody();
 
             using var smtp = new SmtpClient();

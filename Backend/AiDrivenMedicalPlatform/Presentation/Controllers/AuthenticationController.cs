@@ -7,10 +7,11 @@ using Shared.AuthenticationDtos;
 
 namespace Presentation.Controllers
 {
+    [Route("api/auth")]
     public class AuthenticationController(IServiceManager serviceManager) : ApiController
     {
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("signup/patient")]
         public async Task<ActionResult> PatientSignup([FromBody] PatientRegistrationModel patientRegistrationModel)
         {
             if (patientRegistrationModel == null)
@@ -31,7 +32,7 @@ namespace Presentation.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("signup/doctor")]
         public async Task<ActionResult> DoctorSignup([FromBody] DoctorRegistrationModel doctorRegistrationModel)
         {
             if (doctorRegistrationModel == null)
@@ -58,7 +59,7 @@ namespace Presentation.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("signup/admin")]
         public async Task<ActionResult> AdminSignup([FromBody] AdminRegistrationModel adminRegistrationModel)
         {
             if (adminRegistrationModel == null)
@@ -79,7 +80,7 @@ namespace Presentation.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("login")]
         public async Task<ActionResult> SignInUser([FromBody] LoginModel loginModel, IOptions<AppSettings> appSettings)
         {
             if (loginModel == null)
@@ -98,7 +99,7 @@ namespace Presentation.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("check-email")]
         public async Task<ActionResult> CheckEmail([FromBody] CheckEmailRequest request)
         {
             if (string.IsNullOrEmpty(request?.Email))
@@ -112,7 +113,7 @@ namespace Presentation.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("forgot-password")]
         public async Task<ActionResult> ForgetPassword([FromBody] CheckEmailRequest emailRequest)
         {
             bool isEmailExist = await serviceManager.AuthenticationService.CheckEmailService(emailRequest);
@@ -126,7 +127,7 @@ namespace Presentation.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("reset-password")]
         public async Task<ActionResult> ResetPassword([FromBody] ResetPasswordDto resetPasswordDto)
         {
             CheckEmailRequest emailRequest = new() { Email = resetPasswordDto.Email };

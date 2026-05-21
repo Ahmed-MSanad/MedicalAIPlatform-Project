@@ -12,7 +12,7 @@ using Shared.PatientDtos;
 
 namespace Services
 {
-    public class AppointmentService(IUnitOfWork unitOfWork, IMapper mapper, UserManager<AppUser> userManager) : IAppointmentService
+    public class AppointmentService(IUnitOfWork unitOfWork, IMapper mapper) : IAppointmentService
     {
         public async Task<IEnumerable<DoctorResponseDto>> GetDoctorsInfoService(DoctorSpecificationParams specificationParams)
         {
@@ -100,9 +100,15 @@ namespace Services
             var appointment = await unitOfWork.GetRepository<Appointment, int>().GetByIdAsync(appointmentId);
             if (appointment is null)
             {
-                throw new Exception("Appointment Not Found in Complete Appointment Service");
+                throw new Exception("Appointment Not Found in Appointment Service");
             }
-            if (appointment.Date > DateTime.UtcNow)
+            if (appointment.Status == AppointmentStatus.Completed)
+                throw new Exception("Appointment already completed");
+
+            if (appointment.Status == AppointmentStatus.Cancelled)
+                throw new Exception("Cancelled appointment cannot be completed");
+            
+            if (appointment.Date.ToUniversalTime() > DateTime.UtcNow)
             {
                 throw new Exception("Can't complete an appointment before its time");
             }

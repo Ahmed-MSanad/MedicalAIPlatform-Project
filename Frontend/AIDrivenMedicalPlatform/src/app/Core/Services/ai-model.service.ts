@@ -20,19 +20,28 @@ export class AiModelService {
     return this.http.post(`http://localhost:8000/${IllnessChoices.Infiltration}`, formData);
   }
 
-  saveMedicalImageAiAnalysis(AiAnalysisData : any){
-    return this.http.post(`${environment.apiBaseURL}/MedicalAIData/SetMedicalImageAiAnalysis`, AiAnalysisData);
+  saveMedicalImageAiAnalysis(aiAnalysisData: any) {
+    return this.http.post(
+      `${environment.apiBaseURL}/api/medicalaidata/medical-images/analysis`,
+      aiAnalysisData
+    );
   }
 
-  getMedicalImageAiAnalysis(medicalImageId : any){
-    return this.http.get(`${environment.apiBaseURL}/MedicalAIData/GetMedicalImageAiAnalysis/${medicalImageId}`);
+  getMedicalImageAiAnalysis(medicalImageId: number) {
+    return this.http.get(
+      `${environment.apiBaseURL}/api/medicalaidata/medical-images/${medicalImageId}/analysis`
+    );
   }
 
-  getMedicalImageOwner(medicalImageId : any){
-    return this.http.get(`${environment.apiBaseURL}/MedicalAIData/GetMedicalImageOwner/${medicalImageId}`);
+  getMedicalImageOwner(medicalImageId: number) {
+    return this.http.get(
+      `${environment.apiBaseURL}/api/medicalaidata/medical-images/${medicalImageId}/patient`
+    );
   }
 
-  getAiAnalysisDoctorData(doctorId : string){
-    return this.http.get(`${environment.apiBaseURL}/MedicalAIData/GetAiAnalysisDoctorData/${doctorId}`);
+  getAiAnalysisDoctorData(doctorId: string) {
+    return this.http.get(
+      `${environment.apiBaseURL}/api/medicalaidata/doctors/${doctorId}/ai-data`
+    );
   }
 }

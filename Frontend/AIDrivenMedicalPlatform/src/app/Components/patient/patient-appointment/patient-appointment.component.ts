@@ -155,7 +155,7 @@ export class PatientAppointmentComponent {
         localDate.getHours() - Math.sign(gmtOffsetHours) * Math.floor(Math.abs(gmtOffsetHours)),
         localDate.getMinutes() - (Math.abs(gmtOffsetMinutes)) % 60
       );
-
+      this.showModal = true;
       this._appointmentService.CreateAppointment({
         Date: localDate,
         Cost: this.selectedDoctor.fee,
@@ -184,6 +184,7 @@ export class PatientAppointmentComponent {
           }
         },
         error: (err) => {
+          this.showModal = false;
           this._toastr.error(err.message);
         }
       })

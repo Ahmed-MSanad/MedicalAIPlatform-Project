@@ -73,6 +73,17 @@ namespace Services
 
             if (userDetails == null) throw new Exception("User not found in Delete User Profile Service");
 
+            var scheduledSpecification = new AppointmentWithFilterSpecification(0, userId);
+            var completedSpecification = new AppointmentWithFilterSpecification(1, userId);
+
+            var scheduledAppointments = await _unitOfWork.GetRepository<Appointment, int>().GetAllAsync(scheduledSpecification);
+            if (scheduledAppointments.Any())
+            {
+                throw new Exception("Can't Delete User because he has scheduled appointments. Complete/Cancel them");
+            }
+            var completedAppointments = await _unitOfWork.GetRepository<Appointment, int>().GetAllAsync(completedSpecification);
+            _unitOfWork.GetRepository<Appointment, int>().DeleteAll(completedAppointments);
+
             var result = await _userManager.DeleteAsync(userDetails);
             if (!result.Succeeded)
             {

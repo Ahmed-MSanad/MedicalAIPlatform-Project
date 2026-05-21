@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../Core/Services/auth.service';
 import { FormArray, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { DoctorService } from '../../../Core/Services/ForDoctor/doctor.service';
 import { CurrencyPipe } from '@angular/common';
 import { BackgroundLayoutComponent } from "../../../Layouts/background-layout/background-layout.component";
 import { TranslateModule } from '@ngx-translate/core';
@@ -19,7 +18,6 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class DoctorProfileComponent {
    private readonly _user = inject(UserService);
-  private readonly _doctor = inject(DoctorService);
   private readonly _router = inject(Router);
   private readonly _auth = inject(AuthService);
   private readonly _toastr = inject(ToastrService);
@@ -53,7 +51,7 @@ export class DoctorProfileComponent {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this._doctor.getDoctorProfile().subscribe({
+    this._user.getProfile().subscribe({
       next: (res: any) => {
         // Patch non-phone values first
         console.log(res)
@@ -115,14 +113,18 @@ export class DoctorProfileComponent {
   }
 
   DeleteUser() {
+    this.isLoading = true;
     this._user.deleteUserProfile().subscribe({
       next: () => {
         this._toastr.success("User deleted successfully");
         this._auth.deleteToken();
+        this.isLoading = false;
         this._router.navigateByUrl('/login');
+
       },
       error: (err: any) => {
-        this._toastr.error("Failed to delete user");
+        this.isLoading = false;
+        this._toastr.error(err.error.error);
         console.error(err);
       }
     });
@@ -131,7 +133,7 @@ export class DoctorProfileComponent {
   SaveChanges() {
     if (this.profileForm.valid) {
       this.isLoading = true;
-      this._doctor.updateDoctorProfile(this.profileForm.value).subscribe({
+      this._user.updateDoctorProfile(this.profileForm.value).subscribe({
         next: () => {
           this._toastr.success("Profile updated successfully");
           this.isEdit = false;

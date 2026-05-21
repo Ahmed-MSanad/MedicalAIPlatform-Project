@@ -6,19 +6,19 @@ using Shared.NotificationDtos;
 
 namespace Presentation.Controllers
 {
-    public class NotificationController : ApiController
+    [Authorize]
+    public class NotificationsController : ApiController
     {
 
         private readonly IServiceManager _serviceManager;
 
-        public NotificationController(IServiceManager serviceManager)
+        public NotificationsController(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
         }
 
-        [Authorize]
-        [HttpPost("{NotificationType}")]
-        public async Task<IActionResult> SendEmail([FromRoute] NotificationType NotificationType)
+        [HttpPost("send")]
+        public async Task<IActionResult> SendEmail([FromQuery] NotificationType notificationType)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace Presentation.Controllers
                     return BadRequest("User ID is required");
                 }
 
-                await _serviceManager.NotificationService.SendEmailToPatient(NotificationType, patientId);
+                await _serviceManager.NotificationService.SendEmailToPatient(notificationType, patientId);
 
                 return Ok(new { message = "Email sent successfully" });
             }
@@ -38,9 +38,8 @@ namespace Presentation.Controllers
             }
         }
 
-        [Authorize]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<NotificationDto>>> getNotifications()
+        public async Task<ActionResult<IEnumerable<NotificationDto>>> GetNotifications()
         {
             try
             {
@@ -60,19 +59,18 @@ namespace Presentation.Controllers
             }
         }
 
-        [Authorize]
-        [HttpDelete("{NotificationId}")]
-        public async Task<ActionResult> removeNotification([FromRoute] int NotificationId)
+        [HttpDelete("{notificationId}")]
+        public async Task<ActionResult> RemoveNotification([FromRoute] int notificationId)
         {
             try
             {
-                await _serviceManager.NotificationService.RemovePatientNotification(NotificationId);
+                await _serviceManager.NotificationService.RemovePatientNotification(notificationId);
 
-                return Ok(new { message = $"The Notification is Deleted Successfully" });
+                return Ok(new { message = "The Notification is Deleted Successfully" });
 
             }catch(Exception ex)
             {
-                return StatusCode(500, new { error = $"Failed to remove notification of id {NotificationId}: {ex.Message}" });
+                return StatusCode(500, new { error = $"Failed to remove notification of id {notificationId}: {ex.Message}" });
             }
         }
     }

@@ -8,10 +8,10 @@ using Shared.DoctorDtos;
 
 namespace Presentation.Controllers
 {
+    [Authorize]
     public class MedicalAIDataController(IServiceManager serviceManager) : ApiController
     {
-        [Authorize]
-        [HttpPost]
+        [HttpPost("medical-images/analysis")]
         public async Task<ActionResult> SetMedicalImageAiAnalysis([FromBody] AiAnalysisDto aiAnalysisDto)
         {
             if (!ModelState.IsValid)
@@ -32,8 +32,7 @@ namespace Presentation.Controllers
             }
         }
 
-        [Authorize]
-        [HttpGet("{medicalImageId}")]
+        [HttpGet("medical-images/{medicalImageId}/analysis")]
         public async Task<ActionResult<IEnumerable<AiAnalysisDto>>> GetMedicalImageAiAnalysis([FromRoute] int medicalImageId)
         {
             var aiAnalysis = await serviceManager.MedicalAIDataService.GetMedicalImageAiAnalysisService(medicalImageId);
@@ -41,8 +40,7 @@ namespace Presentation.Controllers
             return Ok(aiAnalysis);
         }
 
-        [Authorize]
-        [HttpGet("{medicalImageId}")]
+        [HttpGet("medical-images/{medicalImageId}/patient")]
         public async Task<ActionResult<PatientDto>> GetMedicalImageOwner([FromRoute] int medicalImageId)
         {
             var patient = await serviceManager.MedicalAIDataService.GetMedicalImageOwnerService(medicalImageId);
@@ -50,8 +48,7 @@ namespace Presentation.Controllers
             return Ok(patient);
         }
 
-        [Authorize]
-        [HttpGet("{doctorId}")]
+        [HttpGet("doctors/{doctorId}/ai-data")]
         public async Task<ActionResult<DoctorDto>> GetAiAnalysisDoctorData([FromRoute] string doctorId)
         {
             var doctor = await serviceManager.MedicalAIDataService.GetAiAnalysisDoctorDataService(doctorId);

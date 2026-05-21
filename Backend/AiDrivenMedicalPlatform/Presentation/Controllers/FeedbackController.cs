@@ -44,8 +44,8 @@ namespace Presentation.Controllers
         }
 
         [Authorize(Policy = "AdminOnly")]
-        [HttpPut]
-        public async Task<ActionResult<FeedbackDto>> adminResponse([FromBody] FeedbackResponseDto responseDto)
+        [HttpPut("{feedbackId}/response")]
+        public async Task<ActionResult<FeedbackDto>> adminResponse([FromRoute] int feedbackId,[FromBody] FeedbackResponseDto responseDto)
         {
             if (!ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace Presentation.Controllers
                 var updatedFeedbackDto = await serviceManager.FeedbackService.SendAdminResponse(responseDto, adminId.Value);
                 if (updatedFeedbackDto == null)
                 {
-                    return NotFound(new { error = $"Can't Found a Feedback with id: {responseDto.FeedbackId}" });
+                    return NotFound(new { error = $"Can't find a Feedback with id: {feedbackId}" });
                 }
 
                 return Ok(updatedFeedbackDto);

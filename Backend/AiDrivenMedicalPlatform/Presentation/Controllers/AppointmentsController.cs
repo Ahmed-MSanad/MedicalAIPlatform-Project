@@ -10,10 +10,10 @@ using Shared.PatientDtos;
 
 namespace Presentation.Controllers
 {
-    public class AppointmentController(IServiceManager serviceManager) : ApiController
+    public class AppointmentsController(IServiceManager serviceManager) : ApiController
     {
         [Authorize]
-        [HttpGet]
+        [HttpGet("doctors")]
         public async Task<ActionResult<IEnumerable<DoctorResponseDto>>> GetDoctorsInfo([FromQuery] DoctorSpecificationParams specificationParams)
         {
             var doctorResponseDtos = await serviceManager.AppointmentService.GetDoctorsInfoService(specificationParams);
@@ -22,8 +22,8 @@ namespace Presentation.Controllers
         }
 
         [Authorize]
-        [HttpGet]
-        public async Task<ActionResult<DoctorInfoDto>> GetDoctorInfo([FromQuery] string id)
+        [HttpGet("doctors/{id}")]
+        public async Task<ActionResult<DoctorInfoDto>> GetDoctorInfo([FromRoute] string id)
         {
             var doctorInfoDto = await serviceManager.AppointmentService.GetDoctorInfoService(id);
 
@@ -31,17 +31,17 @@ namespace Presentation.Controllers
         }
 
         [Authorize]
-        [HttpPatch]
-        public async Task<ActionResult> AddRate([FromQuery]string id, [FromQuery] int appointmentId, [FromQuery]int rate)
+        [HttpPatch("{appointmentId}/rating")]
+        public async Task<ActionResult> AddRate([FromRoute] int appointmentId,[FromBody] AddRatingDto dto)
         {
-            if (rate < 1 || rate > 5)
+            if (dto.Rate < 1 || dto.Rate > 5)
             {
-                return BadRequest(new { Message = "Rating Should Be from 1 to 5" });
+                return BadRequest(new { message = "Rating Should Be from 1 to 5" });
             }
 
-            await serviceManager.AppointmentService.AddRateService(id, appointmentId, rate);
+            await serviceManager.AppointmentService.AddRateService(dto.DoctorId, appointmentId, dto.Rate);
 
-            return Ok(new { Message = "Rating added successfully." });
+            return Ok(new { message = "Rating added successfully." });
         }
 
         [Authorize]
@@ -52,25 +52,25 @@ namespace Presentation.Controllers
 
             var appointmentId = await serviceManager.AppointmentService.CreateAppointmentService(appointmentDto, patientId);
 
-            return StatusCode(StatusCodes.Status201Created, new { Message = "Appointment created successfully", AppointmentId = appointmentId});
+            return StatusCode(StatusCodes.Status201Created, new { message = "Appointment created successfully", AppointmentId = appointmentId});
         }
 
         [Authorize]
-        [HttpDelete]
-        public async Task<ActionResult> CancelAppointment([FromQuery] int appointmentId)
+        [HttpDelete("{appointmentId}")]
+        public async Task<ActionResult> CancelAppointment([FromRoute] int appointmentId)
         {
             await serviceManager.AppointmentService.CancelAppointmentService(appointmentId);
 
-            return Ok(new { Message = "Appointment Cancelled Successfully" });
+            return Ok(new { message = "Appointment Cancelled Successfully" });
         }
 
         [Authorize]
-        [HttpPatch]
-        public async Task<ActionResult> CompleteAppointment([FromQuery] int appointmentId)
+        [HttpPatch("{appointmentId}/complete")]
+        public async Task<ActionResult> CompleteAppointment([FromRoute] int appointmentId)
         {
             await serviceManager.AppointmentService.CompleteAppointmentService(appointmentId);
 
-            return Ok(new { Message = "Appointment Completed Successfully" });
+            return Ok(new { message = "Appointment Completed Successfully" });
         }
 
         [Authorize]
@@ -85,16 +85,16 @@ namespace Presentation.Controllers
         }
 
         [Authorize]
-        [HttpGet]
-        public async Task<ActionResult<AppointmentInfoDto>> GetAvailableTimeSlots([FromQuery] string id, [FromQuery] DateTime day)
+        [HttpGet("doctors/{id}/available-slots")]
+        public async Task<ActionResult<AppointmentInfoDto>> GetAvailableTimeSlots([FromRoute] string id, [FromQuery] DateTime day)
         {
             var availableSlots = await serviceManager.AppointmentService.GetAvailableTimeSlotsService(id, day);
 
             return Ok(availableSlots);
         }
         [Authorize]
-        [HttpGet]
-        public async Task<ActionResult<AppointmentInfoDto>> GetAppointmentInfo([FromQuery] int appointmentId)
+        [HttpGet("{appointmentId:int}")]
+        public async Task<ActionResult<AppointmentInfoDto>> GetAppointmentInfo([FromRoute] int appointmentId)
         {
             var appointmentInfo = await serviceManager.AppointmentService.GetAppointmentInfoService(appointmentId);
 

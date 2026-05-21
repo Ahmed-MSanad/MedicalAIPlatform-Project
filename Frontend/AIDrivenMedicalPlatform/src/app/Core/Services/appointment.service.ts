@@ -18,61 +18,55 @@ export class AppointmentService {
     if (Cost) params = params.set('Cost', Cost);
     if (Workplace) params = params.set('Workplace', Workplace);
 
-    return this._http.get(`${environment.apiBaseURL}/Appointment/GetDoctorsInfo`, { params });
+    return this._http.get(`${environment.apiBaseURL}/api/appointments/doctors`, { params });
   }
 
   GetDoctorInfo(id: string) {
-    let params = new HttpParams();
-    if (id) params = params.set('id', id);
-
-    return this._http.get(`${environment.apiBaseURL}/Appointment/GetDoctorInfo`, { params });
+    return this._http.get(`${environment.apiBaseURL}/api/appointments/doctors/${id}`);
   }
 
-  AddRate(id: string, appointmentId: number, rate: number) {
-    let params = new HttpParams();
-    if (id) params = params.set('id', id);
-    if (appointmentId) params = params.set('appointmentId', appointmentId.toString());
-    if (rate) params = params.set('rate', rate.toString());
-
-    return this._http.patch(`${environment.apiBaseURL}/Appointment/AddRate`, null, { params });
+  AddRate(doctorId: string, appointmentId: number, rate: number) {
+    return this._http.patch(
+      `${environment.apiBaseURL}/api/appointments/${appointmentId}/rating`,
+      {
+        doctorId,
+        rate
+      }
+    );
   }
 
 
   CreateAppointment(appointment: any) {
-    return this._http.post(`${environment.apiBaseURL}/Appointment/CreateAppointment`, appointment);
+    return this._http.post(`${environment.apiBaseURL}/api/appointments`, appointment);
   }
 
   CancelAppointment(appointmentId: number) {
-    let params = new HttpParams();
-    if (appointmentId) params = params.set('appointmentId', appointmentId);
-
-    return this._http.delete(`${environment.apiBaseURL}/Appointment/CancelAppointment`, { params });
+    return this._http.delete(`${environment.apiBaseURL}/api/appointments/${appointmentId}`);
   }
 
   CompleteAppointment(appointmentId: number) {
-    let params = new HttpParams();
-    if (appointmentId) params = params.set('appointmentId', appointmentId);
-
-    return this._http.patch(`${environment.apiBaseURL}/Appointment/CompleteAppointment`,null, { params });
+    return this._http.patch(
+      `${environment.apiBaseURL}/api/appointments/${appointmentId}/complete`,
+      {}
+    );
   }
 
-  GetAppointments(status: number): Observable<any> {    
-  const params = new HttpParams().set('status', status.toString());
-  return this._http.get<any>(`${environment.apiBaseURL}/Appointment/GetAppointments`, { params });
-}
+  GetAppointments(status: number): Observable<any> {
+    const params = new HttpParams().set('status', status.toString());
+    return this._http.get<any>(`${environment.apiBaseURL}/api/appointments`, { params });
+  }
 
   GetAppointmentInfo(id: number) {
-    let params = new HttpParams();
-    if (id) params = params.set('appointmentId', id);
-
-    return this._http.get(`${environment.apiBaseURL}/Appointment/GetAppointmentInfo`, { params });
+    return this._http.get(`${environment.apiBaseURL}/api/appointments/${id}`);
   }
 
   getAvailableTimeSlots(id: string, day: Date) {
-    let params = new HttpParams().set('id', id)
-      .set('day', day.toString());
+    const params = new HttpParams().set('day', day.toString());
 
-    return this._http.get(`${environment.apiBaseURL}/Appointment/GetAvailableTimeSlots`, { params });
+    return this._http.get(
+      `${environment.apiBaseURL}/api/appointments/doctors/${id}/available-slots`,
+      { params }
+    );
   }
 
 }

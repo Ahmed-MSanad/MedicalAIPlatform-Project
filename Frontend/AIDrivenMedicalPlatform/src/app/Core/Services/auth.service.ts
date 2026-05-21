@@ -10,16 +10,27 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  createUser(formData : any){
-    return this.http.post(`${environment.apiBaseURL}/Authentication/${formData.role.charAt(0).toUpperCase() + formData.role.slice(1).toLowerCase()}Signup`, formData);
+  createUser(formData: any) {
+    const role = formData.role.toLowerCase();
+
+    return this.http.post(
+      `${environment.apiBaseURL}/api/auth/signup/${role}`,
+      formData
+    );
   }
 
-  checkEmail(formData : any){
-    return this.http.post(environment.apiBaseURL+'/Authentication/CheckEmail', formData);
+  checkEmail(formData: any) {
+    return this.http.post(
+      `${environment.apiBaseURL}/api/auth/check-email`,
+      formData
+    );
   }
 
-  signIn(formData : any){
-    return this.http.post(environment.apiBaseURL+'/Authentication/SignInUser' ,formData);  
+  signIn(formData: any) {
+    return this.http.post(
+      `${environment.apiBaseURL}/api/auth/login`,
+      formData
+    );
   }
 
   isLoggedIn() : boolean{
@@ -51,11 +62,17 @@ export class AuthService {
     return JSON.parse(window.atob(this.getToken()!.split('.')[1])); // token -> header.payload.signature
   }
 
-  forgetPassword(formData : any){
-    return this.http.post(environment.apiBaseURL+'/Authentication/ForgetPassword', formData);
+  forgetPassword(formData: any) {
+    return this.http.post(
+      `${environment.apiBaseURL}/api/auth/forgot-password`,
+      formData
+    );
   }
 
-  resetPassword(formData : any){
-    return this.http.post(environment.apiBaseURL+'/Authentication/ResetPassword', formData);
+  resetPassword(formData: any) {
+    return this.http.post(
+      `${environment.apiBaseURL}/api/auth/reset-password`,
+      formData
+    );
   }
 }

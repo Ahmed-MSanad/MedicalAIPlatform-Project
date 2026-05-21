@@ -24,7 +24,7 @@ namespace Services
             authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(userManager, roleManager, unitOfWork, mapper, _smtpSettings));
             scheduleService = new Lazy<IScheduleService>(() => new ScheduleService(unitOfWork, mapper));
             profileService = new Lazy<IProfileService>(() => new ProfileService(unitOfWork, mapper, userManager));
-            appointmentService = new Lazy<IAppointmentService>(() => new AppointmentService(unitOfWork, mapper, userManager));
+            appointmentService = new Lazy<IAppointmentService>(() => new AppointmentService(unitOfWork, mapper));
             medicalImageService = new Lazy<IMedicalImageService>(() => new MedicalImageService(unitOfWork, mapper));
             medicalAIDataService = new Lazy<IMedicalAIDataService>(() => new MedicalAIDataService(unitOfWork, mapper));
         }

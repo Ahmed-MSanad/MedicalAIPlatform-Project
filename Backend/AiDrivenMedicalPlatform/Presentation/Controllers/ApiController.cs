@@ -3,7 +3,7 @@
 namespace Presentation.Controllers
 {
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route("api/[controller]")]
     public class ApiController : ControllerBase
     {
 
