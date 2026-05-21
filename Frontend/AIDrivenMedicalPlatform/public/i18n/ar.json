@@ -225,6 +225,7 @@
         "Enter your Password": "أدخل كلمة المرور",
         "Password is required!": "كلمة المرور مطلوبة!",
         "Error during login !!": "خطأ اثناء تسجيل الدخول !!",
+        "Incorrect Email or Password": "الايميل او الباسورد خطأ",
         "Login Failed": "لم ينجح تسجيل الدخول",
         "Forget Password": "نسيت كلمة المرور"
     },

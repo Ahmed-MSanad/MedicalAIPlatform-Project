@@ -225,6 +225,7 @@
     "Enter your Password": "Enter your Password",
     "Password is required!": "Password is required!",
     "Error during login !!": "Error during login !!",
+    "Incorrect Email or Password":"Incorrect Email or Password",
     "Login Failed": "Login Failed",
     "Forget Password": "Forget Password"
   },

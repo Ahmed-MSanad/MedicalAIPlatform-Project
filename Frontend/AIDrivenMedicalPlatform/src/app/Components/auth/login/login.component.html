@@ -131,7 +131,9 @@
                        transition duration-300 transform hover:scale-105 hover:shadow-lg hover:from-blue-900 hover:via-gray-800 hover:to-black cursor-pointer">
                     {{ 'login.Sign In' | translate }}
                 </button>
-                <p class="text-red-400 font-bold text-center">{{ loginInErrorMessage }}</p>
+                @if(loginInErrorMessage){
+                <p class="text-red-400 font-bold text-center">{{ 'login.Incorrect Email or Password' | translate}}</p>
+                }
             </div>
 
             <div class="text-center">

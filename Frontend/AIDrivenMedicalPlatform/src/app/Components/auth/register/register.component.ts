@@ -103,6 +103,7 @@ export class RegisterComponent {
           console.log('response: ', res);
         },
         error: err => {
+          this.isLoading = false;
           if (err.error.errors) {
             err.error.errors.forEach((x: any) => {
               switch (x.code) {
@@ -230,9 +231,11 @@ export class RegisterComponent {
 
         },
         error: (error) => {
+          this.isLoading = false;
           console.log(error);
         },
         complete: () => {
+          this.isLoading = false;
           this.checkEmailSubscription?.unsubscribe();
         }
       });
